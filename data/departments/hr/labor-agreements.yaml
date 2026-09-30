@@ -1,0 +1,154 @@
+id: labor-agreements
+label: { ja: 36協定と就業規則, en: Overtime agreement and work rules }
+description:
+  ja: 時間外・休日労働に関する36協定を、労働者の代表と結んで労働基準監督署に届け出て周知するまでと、就業規則を作り、労働者の代表の意見を聴いて届け出て周知するまでの流れ。
+  en: From concluding the overtime agreement with the workers' representative, filing it and notifying employees, to drafting work rules, hearing the representative's opinion, filing and notifying them.
+frequency: yearly
+timing: { ja: 36協定は、対象期間の1年ごとに。就業規則は、作るときと変えるとき。 }
+regulations: [overtime-agreement, work-rules, employee-notification-duty]
+stages:
+  - id: overtime-agreement
+    label: { ja: 36協定, en: Overtime agreement }
+    steps:
+      - id: plan-overtime-terms
+        label: { ja: 時間外・休日労働の条件案を作る, en: Draft the overtime terms }
+        description: { ja: 前の期間の時間外・休日労働の実績と、これからの業務の見込みから、対象の労働者の範囲、対象期間、延長できる時間などの案を作る。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [attendance-summary]
+        produces: [overtime-agreement-draft]
+        requiresJudgment: true
+        judgment: { ja: 時間外・休日労働をさせる必要がある場合と、限度時間の範囲で延長できる時間を、どう定めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [overtime-agreement]
+
+      - id: confirm-agreement-party
+        label: { ja: 協定を結ぶ相手を確かめる, en: Confirm the party to the agreement }
+        description: { ja: 労働者の過半数で組織する労働組合があるかを確かめ、なければ、労働者の過半数を代表する者を確かめる。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        produces: [agreement-party-confirmation]
+        requiresJudgment: true
+        judgment: { ja: 労働者の過半数で組織する労働組合があるか。なければ、労働者の過半数を代表する者は誰か。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [overtime-agreement]
+
+      - id: agree-to-overtime-agreement
+        label: { ja: 協定案の内容に合意する, en: Agree to the draft agreement }
+        description: { ja: 協定案の内容を確かめ、労働者の側として、合意するかを決める。 }
+        performedBy: employee-representative
+        receives: [overtime-agreement-draft, agreement-party-confirmation]
+        produces: [overtime-agreement-consent]
+        requiresJudgment: true
+        judgment: { ja: 協定案の延長時間や特別条項が、労働者にとって受け入れられる内容か。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 労働者の側と使用者が、書面で協定を結ぶ合意そのものであるため。 }
+        regulations: [overtime-agreement]
+
+      - id: conclude-overtime-agreement
+        label: { ja: 36協定を結ぶ, en: Conclude the overtime agreement }
+        description: { ja: 労働者の代表が合意した内容で、使用者として書面の協定に署名して、協定を結ぶ。 }
+        performedBy: executive
+        receives: [overtime-agreement-draft, overtime-agreement-consent]
+        produces: [signed-overtime-agreement]
+        requiresJudgment: true
+        judgment: { ja: この内容で、会社として協定を結んでよいか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 使用者と労働者の側が、書面で協定を結ぶ合意そのものであるため。 }
+        regulations: [overtime-agreement]
+
+      - id: file-overtime-agreement
+        label: { ja: 36協定を労働基準監督署に届け出る, en: File the overtime agreement }
+        description: { ja: 結んだ協定を、所轄の労働基準監督署長に届け出る。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [signed-overtime-agreement]
+        produces: [overtime-agreement-filing]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [overtime-agreement]
+
+      - id: announce-overtime-agreement
+        label: { ja: 36協定を労働者に周知する, en: Notify employees of the overtime agreement }
+        description: { ja: 結んだ協定を、作業場の見やすい場所に掲示するなどして、労働者に周知する。 }
+        performedBy: hr-staff
+        receives: [signed-overtime-agreement]
+        produces: [agreement-notice-to-employees]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, document-storage]
+        regulations: [employee-notification-duty]
+
+  - id: work-rules
+    label: { ja: 就業規則, en: Work rules }
+    pcf: ["10429"]
+    steps:
+      - id: draft-work-rules
+        label: { ja: 就業規則の案を作る, en: Draft the work rules }
+        description: { ja: 始業と終業の時刻、休憩、休日、休暇、賃金の決め方と支払、退職に関する事項などを書いた、就業規則の案を作る。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        produces: [work-rules-draft]
+        requiresJudgment: true
+        judgment: { ja: 働く時間、休み、賃金、退職などの決まりを、どう定めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [work-rules]
+
+      - id: state-representative-opinion
+        label: { ja: 就業規則の案について意見を述べる, en: State an opinion on the draft work rules }
+        description: { ja: 就業規則の案を読み、労働者の側の意見を、書面に書く。 }
+        performedBy: employee-representative
+        receives: [work-rules-draft]
+        produces: [representative-opinion]
+        requiresJudgment: true
+        judgment: { ja: 就業規則の案に、労働者の側として、賛成か反対か、直してほしい点があるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 使用者が労働者の代表の意見を聴くことが求められ、意見を述べるのは代表者本人であるため。 }
+        regulations: [work-rules]
+
+      - id: approve-work-rules
+        label: { ja: 就業規則を決定する, en: Approve the work rules }
+        description: { ja: 労働者の代表の意見を読み、会社として就業規則の内容を決める。 }
+        performedBy: executive
+        receives: [work-rules-draft, representative-opinion]
+        produces: [approved-work-rules]
+        requiresJudgment: true
+        judgment: { ja: 労働者の代表の意見を、どこまで取り入れて、会社として決めるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: file-work-rules
+        label: { ja: 就業規則を労働基準監督署に届け出る, en: File the work rules }
+        description: { ja: 決定した就業規則に、労働者の代表の意見を記した書面を添えて、所轄の労働基準監督署長に届け出る。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-work-rules, representative-opinion]
+        produces: [work-rules-filing]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [work-rules]
+
+      - id: announce-work-rules
+        label: { ja: 就業規則を労働者に周知する, en: Notify employees of the work rules }
+        description: { ja: 決定した就業規則を、作業場の見やすい場所に掲示するなどして、労働者に周知する。 }
+        performedBy: hr-staff
+        receives: [approved-work-rules]
+        produces: [work-rules-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, document-storage]
+        regulations: [employee-notification-duty]

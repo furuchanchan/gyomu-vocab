@@ -1,0 +1,13 @@
+- id: applicant-tracking-system
+  label: { ja: 採用管理のシステム, en: Applicant tracking system }
+  description: { ja: 応募者の情報と選考の進み具合を管理するシステム。 }
+
+- id: hr-system
+  label: { ja: 人事・労務のシステム, en: HR information system }
+  description: { ja: 従業員の情報を持ち、入退社の手続きや書類の作成を助けるシステム。 }
+
+- id: attendance-system
+  label: { ja: 勤怠管理のシステム, en: Time and attendance system }
+
+- id: payroll-software
+  label: { ja: 給与計算ソフト, en: Payroll software }

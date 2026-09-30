@@ -1,0 +1,48 @@
+- id: hr-staff
+  label: { ja: 人事・労務の担当, en: HR and labor administration staff }
+  description: { ja: 採用の事務、入退社の手続き、勤怠の集計、給与の計算、社会保険や税の届出などの、人事・労務の実務を行う役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "252"
+
+- id: hr-manager
+  label: { ja: 人事・労務の責任者, en: HR and labor administration manager }
+  description: { ja: 人事・労務の処理を確かめ、内定の通知や給与の支払、届出の提出を承認する役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: employee-representative
+  label: { ja: 労働者の過半数を代表する者, en: Representative of the majority of workers }
+  description: { ja: 労働者の過半数で組織する労働組合がない事業場で、労働者の側として、労使協定を結び、就業規則について意見を述べる従業員。労働組合がある場合は、その労働組合が同じ役割を担う。 }
+  external: false
+
+- id: applicant
+  label: { ja: 応募者, en: Applicant }
+  description: { ja: 会社の募集に応じて、選考を受け、内定を受ける相手。 }
+  external: true
+
+- id: pension-office
+  label: { ja: 年金事務所（日本年金機構）, en: Pension office (Japan Pension Service) }
+  description: { ja: 健康保険と厚生年金保険の資格の届出、算定基礎届、保険料の納付を受け付ける役所。 }
+  external: true
+
+- id: public-employment-office
+  label: { ja: 公共職業安定所（ハローワーク）, en: Public employment security office (Hello Work) }
+  description: { ja: 雇用保険の資格取得届、資格喪失届、離職証明書を受け付ける役所。 }
+  external: true
+
+- id: labor-standards-office
+  label: { ja: 労働基準監督署, en: Labor standards inspection office }
+  description: { ja: 36協定や就業規則の届出を受け付ける役所。 }
+  external: true
+
+- id: labor-bureau
+  label: { ja: 労働局, en: Labor bureau }
+  description: { ja: 労働保険の年度更新の申告書を受け付ける役所。 }
+  external: true
+
+- id: municipality
+  label: { ja: 市区町村, en: Municipality }
+  description: { ja: 個人住民税の特別徴収の通知を出し、給与支払報告書と納入を受け付ける役所。 }
+  external: true

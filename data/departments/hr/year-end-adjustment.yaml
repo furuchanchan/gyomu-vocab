@@ -1,0 +1,136 @@
+id: year-end-adjustment
+label: { ja: 年末調整, en: Year-end tax adjustment }
+description:
+  ja: 従業員から年末調整の申告書を集めて確かめ、年税額を計算して過不足を精算し、源泉徴収票を作って渡し、税務署と市区町村に提出するまでの流れ。
+  en: From collecting and checking employees' declarations, to calculating the annual tax and settling the difference, and issuing withholding slips and filing them with the tax office and municipalities.
+frequency: yearly
+timing: { ja: 毎年。秋に申告書を集め、12月の最後の給与で精算し、翌年1月31日までに提出する。 }
+pcf: ["10755"]
+regulations: [year-end-adjustment, withholding-slip, payroll-report-to-municipality]
+stages:
+  - id: collect
+    label: { ja: 申告書の回収, en: Collecting declarations }
+    steps:
+      - id: distribute-declaration-forms
+        label: { ja: 申告書の様式と案内を配る, en: Distribute the forms and guidance }
+        description: { ja: 提出の期限、書き方、控除の証明書の要る物を書いた案内と、申告書の様式を、従業員に配る。 }
+        performedBy: hr-staff
+        produces: [year-end-declaration-guide]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system, email]
+
+      - id: submit-year-end-declarations
+        label: { ja: 年末調整の申告書を書いて出す, en: Fill in and submit the declarations }
+        description: { ja: 扶養控除等申告書、配偶者控除等申告書、基礎控除申告書、保険料控除申告書などを書き、控除の証明書を添えて、人事に出す。 }
+        performedBy: employee
+        receives: [year-end-declaration-guide]
+        produces: [year-end-declarations]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+        regulations: [year-end-adjustment]
+
+      - id: check-year-end-declarations
+        label: { ja: 申告書の記載と添付書類を確かめる, en: Check the declarations and attachments }
+        description: { ja: 申告書の記載に誤りや不足がないかと、控除の対象になるかを、添付の証明書に照らして確かめ、直しが要れば本人に伝える。 }
+        performedBy: hr-staff
+        receives: [year-end-declarations]
+        produces: [checked-year-end-declarations]
+        requiresJudgment: true
+        judgment: { ja: 控除の対象になるか。記載と証明書に、足りない点や食い違いがないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+        regulations: [year-end-adjustment]
+
+  - id: adjustment
+    label: { ja: 計算と精算, en: Calculation and settlement }
+    pcf: ["10755"]
+    steps:
+      - id: calculate-year-end-adjustment
+        label: { ja: 年税額を計算する, en: Calculate the annual tax }
+        description: { ja: その年の給与の合計と申告書の控除から年税額を計算し、源泉徴収した税額との過不足を出す。給与が2,000万円を超える人は対象にならない。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [checked-year-end-declarations, wage-ledger]
+        produces: [year-end-adjustment-result]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [year-end-adjustment]
+
+      - id: settle-adjustment-difference
+        label: { ja: 過不足を精算する, en: Settle the difference }
+        description: { ja: 超過額は、その年最後の給与から徴収する所得税に充当し、不足額は、その給与から徴収する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [year-end-adjustment-result]
+        produces: [adjustment-settlement-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [year-end-adjustment]
+
+      - id: pay-adjustment-shortfall
+        label: { ja: 不足額を納付する, en: Pay the shortfall }
+        description: { ja: 従業員から徴収した不足額を、税務署に納める。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [adjustment-settlement-record]
+        produces: [adjustment-tax-payment-record]
+        doneWhen: { ja: 徴収の日の属する月の翌月10日までに、納付が済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+        regulations: [year-end-adjustment, withholding-tax-payment]
+
+  - id: issue-and-filing
+    label: { ja: 源泉徴収票と提出, en: Withholding slips and filing }
+    pcf: ["10867", "10868"]
+    steps:
+      - id: prepare-withholding-slips
+        label: { ja: 源泉徴収票を作って従業員に渡す, en: Prepare the withholding slips and hand them to employees }
+        description: { ja: 年末調整の結果をもとに、従業員ごとに源泉徴収票を作り、本人に渡す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [year-end-adjustment-result]
+        produces: [withholding-slips]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [withholding-slip]
+
+      - id: file-withholding-slips
+        label: { ja: 源泉徴収票を税務署に提出する, en: File the withholding slips with the tax office }
+        description: { ja: 作った源泉徴収票を、税務署に提出する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [withholding-slips]
+        produces: [withholding-slip-filing]
+        doneWhen: { ja: 翌年1月31日までに、提出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [withholding-slip]
+
+      - id: file-payroll-report
+        label: { ja: 給与支払報告書を市区町村に提出する, en: File the payroll reports with municipalities }
+        description: { ja: 従業員の1月1日現在の住所がある市区町村ごとに、給与支払報告書を作って提出する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [withholding-slips]
+        produces: [payroll-report]
+        doneWhen: { ja: 1月31日までに、各市区町村への提出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [payroll-report-to-municipality]

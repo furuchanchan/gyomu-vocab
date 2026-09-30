@@ -1,0 +1,130 @@
+id: onboarding
+label: { ja: 入社の手続き, en: Onboarding }
+description:
+  ja: 内定を承諾した人に労働条件を明示し、入社の書類を集めて従業員として登録し、健康保険・厚生年金保険と雇用保険の資格取得を届け出て、給与と税の準備をするまでの流れ。
+  en: From presenting the working conditions to a person who accepted an offer and collecting the joining documents, to registering the employee, filing social insurance and employment insurance enrollment, and preparing payroll and tax data.
+frequency: on-demand
+timing: { ja: 入社日の前から、入社日を含む月の翌月10日までのあいだ。 }
+pcf: ["10469"]
+regulations: [labor-conditions-notice, health-pension-qualification, employment-insurance-notification]
+stages:
+  - id: contract
+    label: { ja: 労働条件の明示と書類集め, en: Conditions and documents }
+    steps:
+      - id: issue-conditions-notice
+        label: { ja: 労働条件通知書を作って渡す, en: Prepare and hand over the employment conditions notice }
+        description: { ja: 労働契約の期間、就業の場所、仕事の内容、労働時間、賃金、退職に関する事項などを書いた通知書を作り、入社する人に渡す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [accepted-offer-record]
+        produces: [employment-conditions-notice]
+        requiresJudgment: true
+        judgment: { ja: 内定で合意した条件を、就業規則の定めと食い違わない形で、どう書くか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [hr-system]
+        regulations: [labor-conditions-notice]
+
+      - id: submit-new-hire-documents
+        label: { ja: 入社の書類を出す, en: Submit the joining documents }
+        description: { ja: 本人確認の書類、基礎年金番号や雇用保険の被保険者番号の分かる書類、給与の振込先、家族の情報などを、人事に出す。 }
+        performedBy: employee
+        receives: [employment-conditions-notice]
+        produces: [new-hire-documents]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+      - id: check-new-hire-documents
+        label: { ja: 入社の書類を確かめる, en: Check the joining documents }
+        description: { ja: 出された書類に、足りない物や食い違いがないかを見て、あれば本人に確かめる。 }
+        performedBy: hr-staff
+        receives: [new-hire-documents]
+        produces: [checked-new-hire-data]
+        doneWhen: { ja: 手続きに要る書類がそろい、氏名と生年月日などが書類の間で合っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+      - id: create-employee-record
+        label: { ja: 従業員の情報を登録する, en: Register the employee }
+        description: { ja: 氏名、住所、入社日、所属、雇用の形態などを、人事・労務のシステムに登録する。 }
+        performedBy: hr-staff
+        receives: [checked-new-hire-data, accepted-offer-record]
+        produces: [employee-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+  - id: insurance
+    label: { ja: 社会保険と雇用保険の資格取得, en: Insurance enrollment }
+    steps:
+      - id: decide-insurance-eligibility
+        label: { ja: 加入する保険を判断する, en: Decide which insurance applies }
+        description: { ja: 所定労働時間や雇用の見込みなどから、健康保険、厚生年金保険、雇用保険のどれに加入する対象かを判断する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [checked-new-hire-data, employment-conditions-notice]
+        produces: [insurance-eligibility-decision]
+        requiresJudgment: true
+        judgment: { ja: 所定労働時間や雇用の見込みなどから見て、それぞれの保険の加入の対象か。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: file-health-pension-acquisition
+        label: { ja: 健康保険・厚生年金保険の資格取得届を出す, en: File the health and pension insurance acquisition report }
+        description: { ja: 被保険者の資格取得届を作り、日本年金機構に出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [insurance-eligibility-decision, checked-new-hire-data]
+        produces: [health-pension-acquisition-report]
+        doneWhen: { ja: 資格を取得した事実があった日から5日以内に、届出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [health-pension-qualification]
+
+      - id: file-employment-insurance-acquisition
+        label: { ja: 雇用保険の資格取得届を出す, en: File the employment insurance acquisition report }
+        description: { ja: 被保険者の資格取得届を作り、公共職業安定所に出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [insurance-eligibility-decision, checked-new-hire-data]
+        produces: [employment-insurance-acquisition-report]
+        doneWhen: { ja: 資格を取得した事実があった日の属する月の翌月10日までに、届出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [employment-insurance-notification]
+
+  - id: payroll-setup
+    label: { ja: 給与と税の準備, en: Payroll and tax setup }
+    steps:
+      - id: submit-dependent-deduction-declaration
+        label: { ja: 扶養控除等申告書を出す, en: Submit the dependent deduction declaration }
+        description: { ja: 扶養している家族などを書いた扶養控除等申告書を、人事に出す。毎年最初の給与を受ける日の前日までに出す。 }
+        performedBy: employee
+        receives: [employment-conditions-notice]
+        produces: [dependent-deduction-declaration]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+        regulations: [year-end-adjustment]
+
+      - id: register-payroll-data
+        label: { ja: 給与計算に使う情報を登録する, en: Register the payroll data }
+        description: { ja: 賃金、手当、社会保険の加入状況、扶養の人数、振込先を、給与計算ソフトに登録する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [employee-record, employment-conditions-notice, dependent-deduction-declaration]
+        produces: [payroll-master-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]

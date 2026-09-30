@@ -1,0 +1,432 @@
+# 人事・労務の工程で受け渡される物。
+# --- 採用
+- id: hiring-requisition
+  label: { ja: 採用の依頼, en: Hiring requisition }
+  description: { ja: 部署が、募集する職種、人数、時期、理由を書いて、人事に出す依頼。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-hiring-requisition
+  label: { ja: 承認された採用の依頼, en: Approved hiring requisition }
+  kind: form
+  fromOutside: false
+
+- id: job-posting
+  label: { ja: 募集の内容, en: Job posting }
+  description: { ja: 職種、仕事の内容、賃金、労働時間、勤務地などの労働条件を書いた、募集の文面。 }
+  kind: document
+  fromOutside: false
+
+- id: published-job-posting
+  label: { ja: 掲載した募集, en: Published job posting }
+  description: { ja: 求人サイトや自社の採用ページなど、社外に出した募集。 }
+  kind: message
+  fromOutside: false
+  recipient: applicant
+
+- id: application-materials
+  label: { ja: 応募書類, en: Application materials }
+  kind: form
+  fromOutside: true
+  sender: applicant
+
+- id: applicant-record
+  label: { ja: 応募者の記録, en: Applicant record }
+  description: { ja: 応募者の氏名、経歴、応募した職種、選考の進み具合を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: screening-result
+  label: { ja: 書類選考の結果, en: Screening result }
+  kind: data
+  fromOutside: false
+
+- id: screening-notice
+  label: { ja: 選考結果の連絡, en: Screening notice }
+  kind: message
+  fromOutside: false
+  recipient: applicant
+
+- id: interview-evaluation
+  label: { ja: 面接の評価, en: Interview evaluation }
+  kind: document
+  fromOutside: false
+
+- id: hiring-decision
+  label: { ja: 採用の決定, en: Hiring decision }
+  description: { ja: 誰を、どの職種と条件で採用するかの決定。 }
+  kind: document
+  fromOutside: false
+
+- id: offer-terms
+  label: { ja: 内定の条件, en: Offer terms }
+  description: { ja: 職種、賃金、入社日、勤務地など、内定で示す条件をまとめた書類。 }
+  kind: document
+  fromOutside: false
+
+- id: offer-notice
+  label: { ja: 内定通知, en: Offer notice }
+  kind: document
+  fromOutside: false
+  recipient: applicant
+
+- id: offer-acceptance
+  label: { ja: 内定の承諾, en: Offer acceptance }
+  kind: form
+  fromOutside: true
+  sender: applicant
+
+- id: accepted-offer-record
+  label: { ja: 承諾された内定の記録, en: Accepted offer record }
+  description: { ja: 入社する人の氏名、入社日、職種、合意した条件を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+# --- 入社の手続き
+- id: employment-conditions-notice
+  label: { ja: 労働条件通知書, en: Employment conditions notice }
+  description: { ja: 労働契約の期間、就業の場所、仕事の内容、労働時間、賃金、退職に関する事項などを書いて、労働者に明示する書類。 }
+  kind: document
+  fromOutside: false
+
+- id: new-hire-documents
+  label: { ja: 入社の書類, en: New hire documents }
+  description: { ja: 本人確認の書類、年金手帳や基礎年金番号の分かる書類、雇用保険の被保険者番号、給与の振込先、家族の情報など、入社の手続きに要る書類。 }
+  kind: form
+  fromOutside: false
+
+- id: checked-new-hire-data
+  label: { ja: 確かめた入社の情報, en: Checked new hire data }
+  kind: data
+  fromOutside: false
+
+- id: employee-record
+  label: { ja: 従業員の記録, en: Employee record }
+  description: { ja: 氏名、住所、入社日、所属、雇用の形態など、従業員ごとの基本の情報。 }
+  kind: data
+  fromOutside: false
+
+- id: insurance-eligibility-decision
+  label: { ja: 加入する保険の判断, en: Insurance eligibility decision }
+  description: { ja: 健康保険、厚生年金保険、雇用保険の、どれに加入する対象かを書いた判断。 }
+  kind: document
+  fromOutside: false
+
+- id: health-pension-acquisition-report
+  label: { ja: 健康保険・厚生年金保険の資格取得届, en: Health and pension insurance acquisition report }
+  kind: form
+  fromOutside: false
+  recipient: pension-office
+
+- id: employment-insurance-acquisition-report
+  label: { ja: 雇用保険の資格取得届, en: Employment insurance acquisition report }
+  kind: form
+  fromOutside: false
+  recipient: public-employment-office
+
+- id: dependent-deduction-declaration
+  label: { ja: 扶養控除等申告書（入社時）, en: Dependent deduction declaration at joining }
+  description: { ja: 給与から源泉徴収する所得税の額を決めるために、従業員が出す申告書。 }
+  kind: form
+  fromOutside: false
+
+- id: payroll-master-record
+  label: { ja: 給与計算の基本情報, en: Payroll master record }
+  description: { ja: 給与の額、手当、社会保険の加入状況、扶養の人数、振込先など、給与の計算に使う従業員ごとの情報。 }
+  kind: data
+  fromOutside: false
+
+# --- 勤怠の集計と給与計算
+- id: attendance-report
+  label: { ja: 勤怠の申告, en: Attendance report }
+  description: { ja: 従業員が、その月の出勤、労働時間、時間外・休日・深夜の労働、休暇を申告したデータ。 }
+  kind: data
+  fromOutside: false
+
+- id: approved-attendance
+  label: { ja: 承認された勤怠, en: Approved attendance }
+  kind: data
+  fromOutside: false
+
+- id: attendance-summary
+  label: { ja: 勤怠の集計, en: Attendance summary }
+  description: { ja: 従業員ごとの、労働日数、労働時間、時間外・休日・深夜の労働時間、欠勤、有給休暇の日数を集計したデータ。 }
+  kind: data
+  fromOutside: false
+
+- id: resident-tax-notice
+  label: { ja: 住民税の特別徴収税額の通知, en: Resident tax special collection notice }
+  description: { ja: 市区町村が、給与から引く住民税の額を、従業員ごとに知らせる通知。 }
+  kind: document
+  fromOutside: true
+  sender: municipality
+
+- id: payroll-calculation
+  label: { ja: 給与の計算結果, en: Payroll calculation }
+  description: { ja: 従業員ごとの、支給額、控除額、差引支給額、会社が負担する社会保険料の計算結果。 }
+  kind: data
+  fromOutside: false
+
+- id: approved-payroll
+  label: { ja: 承認された給与, en: Approved payroll }
+  kind: data
+  fromOutside: false
+
+- id: payslip
+  label: { ja: 給与明細, en: Payslip }
+  kind: document
+  fromOutside: false
+
+- id: salary-transfer-instruction
+  label: { ja: 給与の振込の依頼, en: Salary transfer instruction }
+  kind: data
+  fromOutside: false
+  recipient: bank
+
+- id: salary-payment-record
+  label: { ja: 給与の支払の記録, en: Salary payment record }
+  kind: data
+  fromOutside: false
+
+- id: wage-ledger
+  label: { ja: 賃金台帳, en: Wage ledger }
+  description: { ja: 賃金計算の基礎になる事項と賃金の額を、従業員ごとに、支払のたびに記録した台帳。 }
+  kind: data
+  fromOutside: false
+
+- id: withholding-tax-payment-record
+  label: { ja: 源泉所得税の納付の記録, en: Withholding tax payment record }
+  kind: data
+  fromOutside: false
+  recipient: tax-office
+
+- id: resident-tax-payment-record
+  label: { ja: 住民税の納入の記録, en: Resident tax payment record }
+  kind: data
+  fromOutside: false
+  recipient: municipality
+
+- id: insurance-premium-notice
+  label: { ja: 社会保険料の額の通知, en: Insurance premium notice }
+  description: { ja: その月の健康保険料と厚生年金保険料の額を、年金事務所が事業主に知らせる書類。 }
+  kind: document
+  fromOutside: true
+  sender: pension-office
+
+- id: insurance-premium-payment-record
+  label: { ja: 社会保険料の納付の記録, en: Insurance premium payment record }
+  kind: data
+  fromOutside: false
+  recipient: pension-office
+
+# --- 年末調整
+- id: year-end-declaration-guide
+  label: { ja: 年末調整の案内と様式, en: Year-end adjustment guide and forms }
+  description: { ja: 提出の期限、書き方、様式を従業員に知らせる案内。 }
+  kind: document
+  fromOutside: false
+
+- id: year-end-declarations
+  label: { ja: 年末調整の申告書, en: Year-end adjustment declarations }
+  description: { ja: 扶養控除等申告書、配偶者控除等申告書、基礎控除申告書、保険料控除申告書などと、控除の証明書。 }
+  kind: form
+  fromOutside: false
+
+- id: checked-year-end-declarations
+  label: { ja: 確かめた年末調整の申告書, en: Checked year-end adjustment declarations }
+  kind: data
+  fromOutside: false
+
+- id: year-end-adjustment-result
+  label: { ja: 年末調整の計算結果, en: Year-end adjustment result }
+  description: { ja: 従業員ごとの、年税額と、源泉徴収した税額との過不足。 }
+  kind: data
+  fromOutside: false
+
+- id: adjustment-settlement-record
+  label: { ja: 年末調整の精算の記録, en: Year-end adjustment settlement record }
+  description: { ja: 過不足を、最後の給与で還付または徴収した記録。 }
+  kind: data
+  fromOutside: false
+
+- id: adjustment-tax-payment-record
+  label: { ja: 年末調整の不足額の納付の記録, en: Year-end adjustment tax payment record }
+  kind: data
+  fromOutside: false
+  recipient: tax-office
+
+- id: withholding-slips
+  label: { ja: 源泉徴収票, en: Withholding tax slips }
+  kind: form
+  fromOutside: false
+
+- id: withholding-slip-filing
+  label: { ja: 源泉徴収票の提出, en: Withholding slip filing }
+  kind: form
+  fromOutside: false
+  recipient: tax-office
+
+- id: payroll-report
+  label: { ja: 給与支払報告書, en: Payroll report }
+  kind: form
+  fromOutside: false
+  recipient: municipality
+
+# --- 算定基礎届と年度更新
+- id: remuneration-data
+  label: { ja: 4月から6月の報酬のデータ, en: April to June remuneration data }
+  description: { ja: 被保険者ごとの、4月、5月、6月に受けた報酬と、報酬の支払の基礎になった日数。 }
+  kind: data
+  fromOutside: false
+
+- id: standard-remuneration-report-draft
+  label: { ja: 算定基礎届の案, en: Draft standard remuneration report }
+  kind: form
+  fromOutside: false
+
+- id: standard-remuneration-report
+  label: { ja: 算定基礎届, en: Standard remuneration report }
+  kind: form
+  fromOutside: false
+  recipient: pension-office
+
+- id: annual-wage-total
+  label: { ja: 前の年度の賃金総額, en: Annual wage total }
+  description: { ja: 前の保険年度に労働者へ支払った賃金の総額。 }
+  kind: data
+  fromOutside: false
+
+- id: labor-insurance-premium-calculation
+  label: { ja: 労働保険料の計算, en: Labor insurance premium calculation }
+  description: { ja: 前の年度の確定保険料と、その年度の概算保険料の計算。 }
+  kind: data
+  fromOutside: false
+
+- id: labor-insurance-renewal-filing
+  label: { ja: 労働保険の年度更新の申告書, en: Labor insurance annual renewal filing }
+  kind: form
+  fromOutside: false
+  recipient: labor-bureau
+
+# --- 退職の手続き
+- id: resignation-notice
+  label: { ja: 退職の届, en: Resignation notice }
+  kind: form
+  fromOutside: false
+
+- id: separation-plan
+  label: { ja: 退職の段取り, en: Separation plan }
+  description: { ja: 退職の日、引き継ぎ、有給休暇の消化、貸与物の返却の予定。 }
+  kind: document
+  fromOutside: false
+
+- id: property-return-record
+  label: { ja: 貸与物と保険証の返却の記録, en: Property return record }
+  kind: data
+  fromOutside: false
+
+- id: health-pension-loss-report
+  label: { ja: 健康保険・厚生年金保険の資格喪失届, en: Health and pension insurance loss report }
+  kind: form
+  fromOutside: false
+  recipient: pension-office
+
+- id: separation-certificate-draft
+  label: { ja: 離職証明書の案, en: Draft separation certificate }
+  description: { ja: 離職の日前の賃金の額と、離職の理由を書いた、離職証明書の案。 }
+  kind: form
+  fromOutside: false
+
+- id: confirmed-separation-certificate
+  label: { ja: 本人が確かめた離職証明書, en: Confirmed separation certificate }
+  kind: form
+  fromOutside: false
+
+- id: employment-insurance-loss-report
+  label: { ja: 雇用保険の資格喪失届, en: Employment insurance loss report }
+  kind: form
+  fromOutside: false
+  recipient: public-employment-office
+
+- id: final-payroll-calculation
+  label: { ja: 最後の給与の計算結果, en: Final payroll calculation }
+  kind: data
+  fromOutside: false
+
+- id: separation-withholding-slip
+  label: { ja: 退職者の源泉徴収票, en: Withholding slip for a separated employee }
+  kind: form
+  fromOutside: false
+  recipient: tax-office
+
+- id: resident-tax-change-notice
+  label: { ja: 住民税の異動届, en: Resident tax change notice }
+  kind: form
+  fromOutside: false
+  recipient: municipality
+
+- id: employment-certificate
+  label: { ja: 退職時の証明書, en: Employment certificate }
+  description: { ja: 退職した人の請求に応じて出す、使用期間、業務の種類、地位、賃金、退職の事由の証明書。 }
+  kind: document
+  fromOutside: false
+
+# --- 36協定と就業規則
+- id: overtime-agreement-draft
+  label: { ja: 36協定の案, en: Draft overtime agreement }
+  kind: document
+  fromOutside: false
+
+- id: agreement-party-confirmation
+  label: { ja: 協定を結ぶ相手の確認, en: Confirmation of the agreement party }
+  description: { ja: 労働者の過半数で組織する労働組合があるか、なければ過半数を代表する者が誰かを確かめた記録。 }
+  kind: document
+  fromOutside: false
+
+- id: overtime-agreement-consent
+  label: { ja: 36協定案への合意, en: Consent to the overtime agreement }
+  kind: form
+  fromOutside: false
+
+- id: signed-overtime-agreement
+  label: { ja: 締結された36協定, en: Signed overtime agreement }
+  kind: document
+  fromOutside: false
+
+- id: overtime-agreement-filing
+  label: { ja: 36協定の届出, en: Overtime agreement filing }
+  kind: form
+  fromOutside: false
+  recipient: labor-standards-office
+
+- id: agreement-notice-to-employees
+  label: { ja: 36協定の周知, en: Notice of the overtime agreement to employees }
+  kind: message
+  fromOutside: false
+
+- id: work-rules-draft
+  label: { ja: 就業規則の案, en: Draft work rules }
+  kind: document
+  fromOutside: false
+
+- id: representative-opinion
+  label: { ja: 労働者の代表の意見書, en: "Written opinion of the workers' representative" }
+  description: { ja: 就業規則の案について、労働者の過半数を代表する者が述べた意見を書いた書面。 }
+  kind: document
+  fromOutside: false
+
+- id: approved-work-rules
+  label: { ja: 決定した就業規則, en: Approved work rules }
+  kind: document
+  fromOutside: false
+
+- id: work-rules-filing
+  label: { ja: 就業規則の届出, en: Work rules filing }
+  kind: form
+  fromOutside: false
+  recipient: labor-standards-office
+
+- id: work-rules-notice
+  label: { ja: 就業規則の周知, en: Notice of the work rules to employees }
+  kind: message
+  fromOutside: false

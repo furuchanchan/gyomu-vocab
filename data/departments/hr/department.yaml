@@ -1,0 +1,15 @@
+id: hr
+order: 2
+label: { ja: 人事・労務, en: Human resources and labor administration }
+description:
+  ja: 人を採用し、入社から退職までの手続きを行い、毎月の給与を計算して支払い、社会保険や税の届出をし、就業規則や労使協定を整える部署。
+  en: The department that hires people, handles procedures from joining to leaving, calculates and pays monthly wages, makes social insurance and tax filings, and maintains work rules and labor-management agreements.
+pcf: ["10007"]
+workflows:
+  - recruiting
+  - onboarding
+  - payroll
+  - year-end-adjustment
+  - annual-insurance-filings
+  - offboarding
+  - labor-agreements

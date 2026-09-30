@@ -1,0 +1,160 @@
+id: offboarding
+label: { ja: 退職の手続き, en: Offboarding }
+description:
+  ja: 従業員の退職の届を受けて退職の段取りを決め、健康保険・厚生年金保険と雇用保険の資格喪失を届け出、最後の給与を精算し、源泉徴収票と住民税の届出をするまでの流れ。
+  en: From receiving a resignation to deciding the exit plan, filing social insurance and employment insurance loss reports, settling final pay, and handling the withholding slip and resident tax notice.
+frequency: on-demand
+timing: { ja: 従業員から退職の届があったとき。届出の期限は、退職の日の翌日から数える。 }
+pcf: ["10513"]
+regulations: [health-pension-qualification, employment-insurance-notification, separation-payment-and-certificate, withholding-slip, resident-tax-special-collection]
+stages:
+  - id: notice
+    label: { ja: 退職の受付, en: Resignation intake }
+    steps:
+      - id: submit-resignation-notice
+        label: { ja: 退職を届け出る, en: Submit the resignation notice }
+        description: { ja: 退職したい日と理由を書いた届を、人事に出す。 }
+        performedBy: employee
+        produces: [resignation-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+      - id: decide-separation-plan
+        label: { ja: 退職の日と引き継ぎを決める, en: Decide the exit date and handover }
+        description: { ja: 本人の希望と、部署の引き継ぎの都合、残っている有給休暇に照らして、退職の日、引き継ぎ、貸与物の返却の予定を決める。 }
+        performedBy: hr-staff
+        confirmedBy: department-manager
+        receives: [resignation-notice]
+        produces: [separation-plan]
+        requiresJudgment: true
+        judgment: { ja: 退職の日までに、引き継ぎと有給休暇の消化がどう収まるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+  - id: insurance
+    label: { ja: 社会保険と雇用保険の資格喪失, en: Insurance loss filings }
+    steps:
+      - id: collect-company-property
+        label: { ja: 貸与物と保険証を受け取る, en: Collect company property and the insurance card }
+        description: { ja: パソコンや社員証などの貸与物と、健康保険の保険証を受け取り、返却の記録に残す。 }
+        performedBy: hr-staff
+        receives: [separation-plan]
+        produces: [property-return-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 貸与物や保険証の現物を受け取り、確かめる作業であるため。 }
+
+      - id: file-health-pension-loss
+        label: { ja: 健康保険・厚生年金保険の資格喪失届を出す, en: File the health and pension insurance loss report }
+        description: { ja: 被保険者の資格喪失届を作り、日本年金機構に出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [separation-plan, property-return-record]
+        produces: [health-pension-loss-report]
+        doneWhen: { ja: 資格を喪失した事実があった日から5日以内に、届出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [health-pension-qualification]
+
+      - id: prepare-separation-certificate
+        label: { ja: 離職証明書を作る, en: Prepare the separation certificate }
+        description: { ja: 離職の日前の賃金の額を賃金台帳から書き、離職の理由を書いて、離職証明書を作る。 }
+        performedBy: hr-staff
+        receives: [separation-plan, wage-ledger]
+        produces: [separation-certificate-draft]
+        requiresJudgment: true
+        judgment: { ja: 離職の理由を、事実に合わせて、どの区分として書くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, hr-system]
+        regulations: [employment-insurance-notification]
+
+      - id: confirm-separation-certificate
+        label: { ja: 離職の理由を確かめて氏名を書く, en: Confirm the reason for leaving and sign }
+        description: { ja: 離職証明書に書かれた離職の理由などを確かめ、離職前に本人が氏名を書く。 }
+        performedBy: employee
+        receives: [separation-certificate-draft]
+        produces: [confirmed-separation-certificate]
+        requiresJudgment: true
+        judgment: { ja: 書かれた離職の理由が、実際と合っているか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 離職証明書には、本人が氏名を書くため。 }
+        regulations: [employment-insurance-notification]
+
+      - id: file-employment-insurance-loss
+        label: { ja: 雇用保険の資格喪失届と離職証明書を出す, en: File the employment insurance loss report and separation certificate }
+        description: { ja: 資格喪失届に、離職証明書と賃金台帳などを添えて、公共職業安定所に出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [confirmed-separation-certificate, wage-ledger]
+        produces: [employment-insurance-loss-report]
+        doneWhen: { ja: 被保険者でなくなった事実のあった日の翌日から起算して10日以内に、届出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [employment-insurance-notification]
+
+  - id: final-pay-and-tax
+    label: { ja: 最後の給与と税, en: Final pay and tax }
+    pcf: ["10513"]
+    steps:
+      - id: calculate-final-pay
+        label: { ja: 最後の給与を精算する, en: Settle the final pay }
+        description: { ja: 退職の日までの賃金、残っている有給休暇の扱い、社会保険料と住民税の引き方を確かめ、最後の給与を計算する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [separation-plan, payroll-master-record]
+        produces: [final-payroll-calculation]
+        requiresJudgment: true
+        judgment: { ja: 残っている有給休暇や住民税の残りを、最後の給与でどう扱うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [separation-payment-and-certificate]
+
+      - id: issue-separation-withholding-slip
+        label: { ja: 退職者の源泉徴収票を作って渡す, en: Issue the withholding slip to the separated employee }
+        description: { ja: 退職した年の給与について源泉徴収票を作り、本人に渡し、税務署に提出する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [final-payroll-calculation]
+        produces: [separation-withholding-slip]
+        doneWhen: { ja: 退職の日以後1か月以内に、本人への交付と税務署への提出が済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [payroll-software, e-filing]
+        regulations: [withholding-slip]
+
+      - id: file-resident-tax-change-notice
+        label: { ja: 住民税の異動届を出す, en: File the resident tax change notice }
+        description: { ja: 退職したことを、従業員が住む市区町村に届け出る。 }
+        performedBy: hr-staff
+        receives: [separation-plan, final-payroll-calculation]
+        produces: [resident-tax-change-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [resident-tax-special-collection]
+
+      - id: issue-employment-certificate
+        label: { ja: 退職時の証明書を交付する, en: Issue the employment certificate }
+        description: { ja: 退職した人から請求があったとき、使用期間、業務の種類、地位、賃金、退職の事由のうち請求された事項だけを書いた証明書を出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [separation-plan]
+        produces: [employment-certificate]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+        regulations: [separation-payment-and-certificate]

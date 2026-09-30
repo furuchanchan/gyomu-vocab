@@ -1,0 +1,93 @@
+id: annual-insurance-filings
+label: { ja: 社会保険の算定基礎届と労働保険の年度更新, en: Annual social insurance and labor insurance filings }
+description:
+  ja: 毎年6月と7月に、4月から6月の報酬をもとに算定基礎届を出し、あわせて労働保険の保険料を申告して納めるまでの流れ。
+  en: Each June and July, from filing the annual standard remuneration report based on April to June pay, to declaring and paying labor insurance premiums.
+frequency: yearly
+timing: { ja: 毎年6月から7月10日まで。 }
+stages:
+  - id: standard-remuneration
+    label: { ja: 算定基礎届, en: Standard remuneration report }
+    steps:
+      - id: collect-april-june-pay
+        label: { ja: 4月から6月の報酬を集める, en: Collect April to June pay }
+        description: { ja: 7月1日に使っている被保険者ごとに、4月、5月、6月に受けた報酬と、報酬の支払の基礎になった日数を、賃金台帳から集める。 }
+        performedBy: hr-staff
+        receives: [wage-ledger]
+        produces: [remuneration-data]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, spreadsheet]
+        regulations: [annual-standard-remuneration-report]
+
+      - id: make-standard-remuneration-report
+        label: { ja: 算定基礎届を作る, en: Prepare the standard remuneration report }
+        description: { ja: 集めた報酬から、被保険者ごとの届出の内容を作る。6月1日から7月1日までに資格を取得した人など、対象にならない人を除く。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [remuneration-data]
+        produces: [standard-remuneration-report-draft]
+        requiresJudgment: true
+        judgment: { ja: 報酬に入れる支払と入れない支払の区別。報酬の支払の基礎になった日数の数え方。届出の対象になるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [annual-standard-remuneration-report]
+
+      - id: file-standard-remuneration-report
+        label: { ja: 算定基礎届を提出する, en: File the standard remuneration report }
+        description: { ja: 作った算定基礎届を、日本年金機構に出す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [standard-remuneration-report-draft]
+        produces: [standard-remuneration-report]
+        doneWhen: { ja: 7月10日までに、届出が受け付けられている。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [annual-standard-remuneration-report]
+
+  - id: labor-insurance-renewal
+    label: { ja: 労働保険の年度更新, en: Labor insurance annual renewal }
+    steps:
+      - id: total-annual-wages
+        label: { ja: 前の年度の賃金総額を集計する, en: Total the previous year's wages }
+        description: { ja: 前の保険年度に労働者へ支払った賃金の総額を、賃金台帳から集計する。 }
+        performedBy: hr-staff
+        receives: [wage-ledger]
+        produces: [annual-wage-total]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, spreadsheet]
+        regulations: [labor-insurance-annual-renewal]
+
+      - id: calculate-labor-insurance-premium
+        label: { ja: 確定保険料と概算保険料を計算する, en: Calculate the final and estimated premiums }
+        description: { ja: 前の年度の賃金総額から確定保険料を、その年度に使う労働者の賃金総額の見込額から概算保険料を計算する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [annual-wage-total]
+        produces: [labor-insurance-premium-calculation]
+        requiresJudgment: true
+        judgment: { ja: その年度に使う労働者の賃金総額の見込額を、いくらとするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, spreadsheet]
+        regulations: [labor-insurance-annual-renewal]
+
+      - id: file-and-pay-labor-insurance
+        label: { ja: 申告書を提出して保険料を納付する, en: File the declaration and pay the premium }
+        description: { ja: 確定保険料と概算保険料を書いた申告書を、労働局などに出し、保険料を納める。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [labor-insurance-premium-calculation]
+        produces: [labor-insurance-renewal-filing]
+        doneWhen: { ja: 保険年度の6月1日から40日以内（7月10日まで）に、申告書の提出と保険料の納付が済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing, online-banking]
+        regulations: [labor-insurance-annual-renewal]

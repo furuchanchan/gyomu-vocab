@@ -214,6 +214,868 @@
           "ok": true
         }
       ]
+    },
+    "personal-information-protection": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "sales.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第17条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_17&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（利用目的の特定）第十七条個人情報取扱事業者は、個人情報を取り扱うに当たっては、その利用の目的（以下「利用目的」という。"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第21条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_21&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（取得に際しての利用目的の通知等）第二十一条個人情報取扱事業者は、個人情報を取得した場合は、あらかじめその利用目的を公表"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.ppc.go.jp/all_faq_index/faq1-q4-16/",
+          "url": "https://www.ppc.go.jp/all_faq_index/faq1-q4-16/",
+          "ok": true
+        }
+      ]
+    },
+    "specified-email": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "sales.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "特定電子メールの送信の適正化等に関する法律 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/414AC0100000026?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "414AC0100000026_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（定義）第二条この法律において、次の各号に掲げる用語の意義は、当該各号に定めるところによる。一電子メール特定の者に対し通"
+        },
+        {
+          "kind": "article",
+          "name": "特定電子メールの送信の適正化等に関する法律 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/414AC0100000026?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "414AC0100000026_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（特定電子メールの送信の制限）第三条送信者は、次に掲げる者以外の者に対し、特定電子メールの送信をしてはならない。一あらか"
+        },
+        {
+          "kind": "article",
+          "name": "特定電子メールの送信の適正化等に関する法律 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/414AC0100000026?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "414AC0100000026_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（表示義務）第四条送信者は、特定電子メールの送信に当たっては、総務省令・内閣府令で定めるところにより、その受信をする者が"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.caa.go.jp/policies/policy/consumer_transaction/specifed_email",
+          "url": "https://www.caa.go.jp/policies/policy/consumer_transaction/specifed_email",
+          "ok": true
+        }
+      ]
+    },
+    "electronic-signature": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "sales.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "電子署名及び認証業務に関する法律 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000102?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000102_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（定義）第二条この法律において「電子署名」とは、電磁的記録（電子的方式、磁気的方式その他人の知覚によっては認識することが"
+        },
+        {
+          "kind": "article",
+          "name": "電子署名及び認証業務に関する法律 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000102?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000102_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "第三条電磁的記録であって情報を表すために作成されたもの（公務員が職務上作成したものを除く。）は、当該電磁的記録に記録され"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.moj.go.jp/MINJI/minji32-1.html",
+          "url": "https://www.moj.go.jp/MINJI/minji32-1.html",
+          "ok": true
+        }
+      ]
+    },
+    "antisocial-forces-exclusion": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "sales.yaml",
+      "checks": [
+        {
+          "kind": "page",
+          "name": "https://www.keishicho.metro.tokyo.lg.jp/kurashi/anzen/tsuiho/haijo_seitei/haijo_q_a.html",
+          "url": "https://www.keishicho.metro.tokyo.lg.jp/kurashi/anzen/tsuiho/haijo_seitei/haijo_q_a.html",
+          "ok": true
+        }
+      ]
+    },
+    "stamp-tax": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "sales.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "印紙税法 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/342AC0000000023?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "342AC0000000023_20260603_508AC0000000027",
+          "enforcedOn": "2026-06-03",
+          "head": "（課税物件）第二条別表第一の課税物件の欄に掲げる文書には、この法律により、印紙税を課する。"
+        },
+        {
+          "kind": "article",
+          "name": "印紙税法 第8条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/342AC0000000023?elm=MainProvision-Article_8&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "342AC0000000023_20260603_508AC0000000027",
+          "enforcedOn": "2026-06-03",
+          "head": "（印紙による納付等）第八条課税文書の作成者は、次条から第十二条までの規定の適用を受ける場合を除き、当該課税文書に課される"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/law/shitsugi/inshi/02/10.htm",
+          "url": "https://www.nta.go.jp/law/shitsugi/inshi/02/10.htm",
+          "ok": true
+        }
+      ]
+    },
+    "recruitment-conditions-disclosure": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "職業安定法 第5条の3",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000141?elm=MainProvision-Article_5_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000141_20260401_506AC0000000050",
+          "enforcedOn": "2026-04-01",
+          "head": "（労働条件等の明示）第五条の三公共職業安定所、特定地方公共団体及び職業紹介事業者、労働者の募集を行う者及び募集受託者並び"
+        }
+      ]
+    },
+    "labor-conditions-notice": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第15条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_15&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（労働条件の明示）第十五条使用者は、労働契約の締結に際し、労働者に対して賃金、労働時間その他の労働条件を明示しなければな"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 第5条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=MainProvision-Article_5&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第五条使用者が法第十五条第一項前段の規定により労働者に対して明示しなければならない労働条件は、次に掲げるものとする。ただ"
+        }
+      ]
+    },
+    "health-pension-qualification": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "健康保険法 第48条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/211AC0000000070?elm=MainProvision-Article_48&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "211AC0000000070_20260801_508AC0000000031",
+          "enforcedOn": "2026-08-01",
+          "head": "（届出）第四十八条適用事業所の事業主は、厚生労働省令で定めるところにより、被保険者の資格の取得及び喪失並びに報酬月額及び"
+        },
+        {
+          "kind": "article",
+          "name": "健康保険法施行規則 第24条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036?elm=MainProvision-Article_24&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "215M10000008036_20260801_508M60000100117",
+          "enforcedOn": "2026-08-01",
+          "head": "（被保険者の資格取得の届出）第二十四条法第四十八条の規定による被保険者（任意継続被保険者を除く。以下この条、第二十九条、"
+        },
+        {
+          "kind": "article",
+          "name": "健康保険法施行規則 第29条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036?elm=MainProvision-Article_29&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "215M10000008036_20260801_508M60000100117",
+          "enforcedOn": "2026-08-01",
+          "head": "（被保険者の資格喪失の届出）第二十九条法第四十八条の規定による被保険者の資格の喪失に関する届出は、当該事実があった日から"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法 第27条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329AC0000000115?elm=MainProvision-Article_27&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329AC0000000115_20260525_506AC0000000052",
+          "enforcedOn": "2026-05-25",
+          "head": "（届出）第二十七条適用事業所の事業主又は第十条第二項の同意をした事業主（第百条第一項及び第四項、第百二条第二項並びに第百"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法施行規則 第15条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329M50000100037?elm=MainProvision-Article_15&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329M50000100037_20260401_508M60000100050",
+          "enforcedOn": "2026-04-01",
+          "head": "（被保険者の資格取得の届出）第十五条法第二十七条の規定による当然被保険者（船員被保険者を除く。）の資格の取得の届出は、当"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法施行規則 第22条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329M50000100037?elm=MainProvision-Article_22&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329M50000100037_20260401_508M60000100050",
+          "enforcedOn": "2026-04-01",
+          "head": "（被保険者の資格喪失の届出）第二十二条法第二十七条の規定による被保険者（船員被保険者を除く。）の資格喪失の届出は、当該事"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150422.html",
+          "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150422.html",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150407-02.html",
+          "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150407-02.html",
+          "ok": true
+        }
+      ]
+    },
+    "employment-insurance-notification": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "雇用保険法 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/349AC0000000116?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "349AC0000000116_20260513_507AC0000000032",
+          "enforcedOn": "2026-05-13",
+          "head": "（被保険者に関する届出）第七条事業主（徴収法第八条第一項又は第二項の規定により元請負人が事業主とされる場合にあつては、当"
+        },
+        {
+          "kind": "article",
+          "name": "雇用保険法施行規則 第6条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003?elm=MainProvision-Article_6&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "350M50002000003_20260825_508M60000100134",
+          "enforcedOn": "2026-08-25",
+          "head": "（被保険者となつたことの届出）第六条事業主は、法第七条の規定により、その雇用する労働者が当該事業主の行う適用事業に係る被"
+        },
+        {
+          "kind": "article",
+          "name": "雇用保険法施行規則 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "350M50002000003_20260825_508M60000100134",
+          "enforcedOn": "2026-08-25",
+          "head": "（被保険者でなくなつたことの届出）第七条事業主は、法第七条の規定により、その雇用する労働者が当該事業主の行う適用事業に係"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+          "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+          "ok": true
+        }
+      ]
+    },
+    "annual-standard-remuneration-report": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "健康保険法 第41条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/211AC0000000070?elm=MainProvision-Article_41&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "211AC0000000070_20260801_508AC0000000031",
+          "enforcedOn": "2026-08-01",
+          "head": "（定時決定）第四十一条保険者等は、被保険者が毎年七月一日現に使用される事業所において同日前三月間（その事業所で継続して使"
+        },
+        {
+          "kind": "article",
+          "name": "健康保険法施行規則 第25条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036?elm=MainProvision-Article_25&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "215M10000008036_20260801_508M60000100117",
+          "enforcedOn": "2026-08-01",
+          "head": "（報酬月額の届出）第二十五条毎年七月一日現に使用する被保険者（法第四十一条第三項に該当する者を除く。）の報酬月額に関する"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法 第21条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329AC0000000115?elm=MainProvision-Article_21&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329AC0000000115_20260525_506AC0000000052",
+          "enforcedOn": "2026-05-25",
+          "head": "（定時決定）第二十一条実施機関は、被保険者が毎年七月一日現に使用される事業所において同日前三月間（その事業所で継続して使"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法施行規則 第18条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329M50000100037?elm=MainProvision-Article_18&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329M50000100037_20260401_508M60000100050",
+          "enforcedOn": "2026-04-01",
+          "head": "（報酬月額の届出）第十八条毎年七月一日現に使用する被保険者（船員被保険者及び法第二十一条第三項に該当する者を除く。）及び"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nenkin.go.jp/tokusetsu/santei.html",
+          "url": "https://www.nenkin.go.jp/tokusetsu/santei.html",
+          "ok": true
+        }
+      ]
+    },
+    "labor-insurance-annual-renewal": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働保険の保険料の徴収等に関する法律 第15条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/344AC0000000084?elm=MainProvision-Article_15&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "344AC0000000084_20251001_506AC0000000026",
+          "enforcedOn": "2025-10-01",
+          "head": "（概算保険料の納付）第十五条事業主は、保険年度ごとに、次に掲げる労働保険料を、その労働保険料の額その他厚生労働省令で定め"
+        },
+        {
+          "kind": "article",
+          "name": "労働保険の保険料の徴収等に関する法律 第19条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/344AC0000000084?elm=MainProvision-Article_19&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "344AC0000000084_20251001_506AC0000000026",
+          "enforcedOn": "2025-10-01",
+          "head": "（確定保険料）第十九条事業主は、保険年度ごとに、次に掲げる労働保険料の額その他厚生労働省令で定める事項を記載した申告書を"
+        },
+        {
+          "kind": "article",
+          "name": "労働保険の保険料の徴収等に関する法律施行規則 第24条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000008?elm=MainProvision-Article_24&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000008_20260521_508M60000100088",
+          "enforcedOn": "2026-05-21",
+          "head": "（賃金総額の見込額の特例等）第二十四条法第十五条第一項各号の厚生労働省令で定める場合は、当該保険年度の保険料算定基礎額の"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/roudouhoken21/index.html",
+          "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/roudouhoken21/index.html",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.mhlw.go.jp/bunya/roudoukijun/roudouhoken01/kousin.html",
+          "url": "https://www.mhlw.go.jp/bunya/roudoukijun/roudouhoken01/kousin.html",
+          "ok": true
+        }
+      ]
+    },
+    "wage-payment-principles": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第24条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_24&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（賃金の支払）第二十四条賃金は、通貨で、直接労働者に、その全額を支払わなければならない。ただし、法令若しくは労働協約に別"
+        }
+      ]
+    },
+    "premium-wages": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第37条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_37&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（時間外、休日及び深夜の割増賃金）第三十七条使用者が、第三十三条又は前条第一項の規定により労働時間を延長し、又は休日に労"
+        }
+      ]
+    },
+    "wage-records": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第108条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_108&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（賃金台帳）第百八条使用者は、各事業場ごとに賃金台帳を調製し、賃金計算の基礎となる事項及び賃金の額その他厚生労働省令で定"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法 第109条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_109&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（記録の保存）第百九条使用者は、労働者名簿、賃金台帳及び雇入れ、解雇、災害補償、賃金その他労働関係に関する重要な書類を五"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法 附則 第143条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=SupplProvision-Article_143&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "第百四十三条第百九条の規定の適用については、当分の間、同条中「五年間」とあるのは、「三年間」とする。第百十四条の規定の適"
+        }
+      ]
+    },
+    "annual-leave": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第39条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_39&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（年次有給休暇）第三十九条使用者は、その雇入れの日から起算して六箇月間継続勤務し全労働日の八割以上出勤した労働者に対して"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 第24条の7",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=MainProvision-Article_24_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第二十四条の七使用者は、法第三十九条第五項から第七項までの規定により有給休暇を与えたときは、時季、日数及び基準日（第一基"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 附則 第71条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=SupplProvision-Article_71&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第七十一条第十七条第二項、第二十四条の二の二第三項第四号、第二十四条の二の二の二、第二十四条の二の三第三項第四号、第二十"
+        }
+      ]
+    },
+    "social-insurance-premium": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "健康保険法 第161条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/211AC0000000070?elm=MainProvision-Article_161&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "211AC0000000070_20260801_508AC0000000031",
+          "enforcedOn": "2026-08-01",
+          "head": "（保険料の負担及び納付義務）第百六十一条被保険者及び被保険者を使用する事業主は、それぞれ保険料額の二分の一を負担する。た"
+        },
+        {
+          "kind": "article",
+          "name": "健康保険法 第164条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/211AC0000000070?elm=MainProvision-Article_164&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "211AC0000000070_20260801_508AC0000000031",
+          "enforcedOn": "2026-08-01",
+          "head": "（保険料の納付）第百六十四条被保険者に関する毎月の保険料は、翌月末日までに、納付しなければならない。ただし、任意継続被保"
+        },
+        {
+          "kind": "article",
+          "name": "健康保険法 第167条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/211AC0000000070?elm=MainProvision-Article_167&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "211AC0000000070_20260801_508AC0000000031",
+          "enforcedOn": "2026-08-01",
+          "head": "（保険料の源泉控除）第百六十七条事業主は、被保険者に対して通貨をもって報酬を支払う場合においては、被保険者の負担すべき前"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法 第82条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329AC0000000115?elm=MainProvision-Article_82&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329AC0000000115_20260525_506AC0000000052",
+          "enforcedOn": "2026-05-25",
+          "head": "（保険料の負担及び納付義務）第八十二条被保険者及び被保険者を使用する事業主は、それぞれ保険料の半額を負担する。２事業主は"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法 第83条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329AC0000000115?elm=MainProvision-Article_83&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329AC0000000115_20260525_506AC0000000052",
+          "enforcedOn": "2026-05-25",
+          "head": "（保険料の納付）第八十三条毎月の保険料は、翌月末日までに、納付しなければならない。２厚生労働大臣は、納入の告知をした保険"
+        },
+        {
+          "kind": "article",
+          "name": "厚生年金保険法 第84条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/329AC0000000115?elm=MainProvision-Article_84&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "329AC0000000115_20260525_506AC0000000052",
+          "enforcedOn": "2026-05-25",
+          "head": "（保険料の源泉控除）第八十四条事業主は、被保険者に対して通貨をもつて報酬を支払う場合においては、被保険者の負担すべき前月"
+        }
+      ]
+    },
+    "withholding-tax-payment": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "所得税法 第183条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_183&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（源泉徴収義務）第百八十三条居住者に対し国内において第二十八条第一項（給与所得）に規定する給与等（以下この章において「給"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第216条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_216&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（源泉徴収に係る所得税の納期の特例）第二百十六条居住者に対し国内において第二十八条第一項（給与所得）に規定する給与等（以"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm",
+          "ok": true
+        }
+      ]
+    },
+    "year-end-adjustment": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "所得税法 第190条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_190&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（年末調整）第百九十条給与所得者の扶養控除等申告書を提出した居住者で、第一号に規定するその年中に支払うべきことが確定した"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第194条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_194&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（給与所得者の扶養控除等申告書）第百九十四条国内において給与等の支払を受ける居住者は、その給与等の支払者（その支払者が二"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第195条の2",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_195_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（給与所得者の配偶者控除等申告書）第百九十五条の二国内において給与等の支払を受ける居住者は、第百九十条（年末調整）に規定"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第195条の3",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_195_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（給与所得者の特定親族特別控除申告書）第百九十五条の三国内において給与等の支払を受ける居住者は、第百九十条（年末調整）に"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第195条の4",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_195_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（給与所得者の基礎控除申告書）第百九十五条の四国内において給与等の支払を受ける居住者は、第百九十条（年末調整）に規定する"
+        },
+        {
+          "kind": "article",
+          "name": "所得税法 第196条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_196&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（給与所得者の保険料控除申告書）第百九十六条国内において給与等の支払を受ける居住者は、第百九十条（年末調整）に規定する過"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm",
+          "ok": true
+        }
+      ]
+    },
+    "withholding-slip": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "所得税法 第226条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000033?elm=MainProvision-Article_226&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000033_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（源泉徴収票）第二百二十六条居住者に対し国内において第二十八条第一項（給与所得）に規定する給与等（第百八十四条（源泉徴収"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/01.htm",
+          "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/01.htm",
+          "ok": true
+        }
+      ]
+    },
+    "payroll-report-to-municipality": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "地方税法 第317条の6",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226?elm=MainProvision-Article_317_6&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "325AC0000000226_20260924_506AC0000000065",
+          "enforcedOn": "2026-09-24",
+          "head": "（給与支払報告書等の提出義務）第三百十七条の六一月一日現在において給与の支払をする者（法人でない社団又は財団で代表者又は"
+        }
+      ]
+    },
+    "resident-tax-special-collection": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "地方税法 第321条の3",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226?elm=MainProvision-Article_321_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "325AC0000000226_20260924_506AC0000000065",
+          "enforcedOn": "2026-09-24",
+          "head": "（給与所得に係る個人の市町村民税の特別徴収）第三百二十一条の三市町村は、納税義務者が前年中において給与の支払を受けた者で"
+        },
+        {
+          "kind": "article",
+          "name": "地方税法 第321条の5",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226?elm=MainProvision-Article_321_5&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "325AC0000000226_20260924_506AC0000000065",
+          "enforcedOn": "2026-09-24",
+          "head": "（給与所得に係る特別徴収税額の納入の義務等）第三百二十一条の五前条の特別徴収義務者は、同条第二項に規定する期日までに同条"
+        },
+        {
+          "kind": "article",
+          "name": "地方税法 第321条の5の2",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226?elm=MainProvision-Article_321_5_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "325AC0000000226_20260924_506AC0000000065",
+          "enforcedOn": "2026-09-24",
+          "head": "（給与所得に係る特別徴収税額の納期の特例）第三百二十一条の五の二第三百二十一条の四の特別徴収義務者は、その事務所、事業所"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju/tokubetsu/about",
+          "url": "https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju/tokubetsu/about",
+          "ok": true
+        }
+      ]
+    },
+    "overtime-agreement": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第36条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_36&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（時間外及び休日の労働）第三十六条使用者は、当該事業場に、労働者の過半数で組織する労働組合がある場合においてはその労働組"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 第16条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=MainProvision-Article_16&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第十六条法第三十六条第一項の規定による届出は、様式第九号（同条第五項に規定する事項に関する定めをする場合にあつては、様式"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 第17条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=MainProvision-Article_17&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第十七条法第三十六条第二項第五号の厚生労働省令で定める事項は、次に掲げるものとする。ただし、第四号から第七号までの事項に"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 附則 第71条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=SupplProvision-Article_71&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第七十一条第十七条第二項、第二十四条の二の二第三項第四号、第二十四条の二の二の二、第二十四条の二の三第三項第四号、第二十"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.startup-roudou.mhlw.go.jp/36_pact.html",
+          "url": "https://www.startup-roudou.mhlw.go.jp/36_pact.html",
+          "ok": true
+        }
+      ]
+    },
+    "work-rules": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第89条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_89&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（作成及び届出の義務）第八十九条常時十人以上の労働者を使用する使用者は、次に掲げる事項について就業規則を作成し、行政官庁"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法 第90条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_90&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（作成の手続）第九十条使用者は、就業規則の作成又は変更について、当該事業場に、労働者の過半数で組織する労働組合がある場合"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法施行規則 第49条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322M40000100023?elm=MainProvision-Article_49&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322M40000100023_20260401_508M60000100057",
+          "enforcedOn": "2026-04-01",
+          "head": "第四十九条使用者は、常時十人以上の労働者を使用するに至つた場合においては、遅滞なく、法第八十九条の規定による就業規則の届"
+        }
+      ]
+    },
+    "employee-notification-duty": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第106条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_106&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（法令等の周知義務）第百六条使用者は、この法律及びこれに基づく命令の要旨、就業規則、第十八条第二項、第二十四条第一項ただ"
+        }
+      ]
+    },
+    "separation-payment-and-certificate": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "hr.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働基準法 第22条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_22&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（退職時等の証明）第二十二条労働者が、退職の場合において、使用期間、業務の種類、その事業における地位、賃金又は退職の事由"
+        },
+        {
+          "kind": "article",
+          "name": "労働基準法 第23条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/322AC0000000049?elm=MainProvision-Article_23&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "322AC0000000049_20260717_508AC0000000060",
+          "enforcedOn": "2026-07-17",
+          "head": "（金品の返還）第二十三条使用者は、労働者の死亡又は退職の場合において、権利者の請求があつた場合においては、七日以内に賃金"
+        }
+      ]
     }
   }
 }

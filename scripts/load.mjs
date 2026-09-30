@@ -124,6 +124,7 @@ export function load(dataDir) {
         if (!Array.isArray(b.articles) || !b.articles.length) err(where, `legalBasis ${b.law} に、条（articles）が要る`);
         for (const a of b.articles ?? []) {
           if (!/^\d+(_\d+)*$/.test(String(a.article))) err(where, `条は 57_4 の形で書く（${a.article}）`);
+          if (a.part !== undefined && a.part !== 'suppl') err(where, `part は suppl（附則）だけ（${a.part}）`);
           if (!Array.isArray(a.contains) || !a.contains.length) err(where, `${b.law} ${a.article} に、照合する語（contains）が要る`);
         }
       }

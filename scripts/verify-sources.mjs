@@ -28,8 +28,9 @@ const missing = (text, words) => words.filter(w => !norm(text).includes(norm(w))
 const nodeText = n => (typeof n === 'string' ? n : Array.isArray(n) ? n.map(nodeText).join('') : n && typeof n === 'object' ? nodeText(n.children ?? []) : '');
 
 async function checkArticle(basis, a) {
-  const url = `https://laws.e-gov.go.jp/api/2/law_data/${basis.lawId}?elm=MainProvision-Article_${a.article}&law_full_text_format=json&asof=${today}`;
-  const name = `${basis.law} ${articleLabel(a.article)}`;
+  const part = a.part === 'suppl' ? 'SupplProvision' : 'MainProvision';
+  const url = `https://laws.e-gov.go.jp/api/2/law_data/${basis.lawId}?elm=${part}-Article_${a.article}&law_full_text_format=json&asof=${today}`;
+  const name = `${basis.law} ${articleLabel(a)}`;
   try {
     const res = await fetch(url, { headers: { 'user-agent': UA } });
     if (!res.ok) return { kind: 'article', name, url, ok: false, reason: `HTTP ${res.status}` };

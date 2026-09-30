@@ -1,0 +1,429 @@
+# 人事・労務に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: recruitment-conditions-disclosure
+  label: { ja: 募集のときの労働条件の明示（職業安定法）, en: Disclosure of working conditions when recruiting }
+  obligation:
+    ja: 労働者の募集を行う者は、募集にあたって、募集に応じて労働者になろうとする者に、従事すべき業務の内容と、賃金、労働時間その他の労働条件を明示する。賃金と労働時間に関する事項その他の厚生労働省令で定める事項は、厚生労働省令で定める方法で明示する。
+  deadline:
+    ja: 募集にあたって。
+  appliesTo:
+    ja: 労働者の募集を行う者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 職業安定法
+      lawId: 322AC0000000141
+      articles:
+        - { article: "5_3", contains: [労働条件等の明示, 労働者の募集を行う者, 賃金、労働時間その他の労働条件を明示] }
+  verifiedOn: 2026-09-30
+
+- id: labor-conditions-notice
+  label: { ja: 労働契約を結ぶときの労働条件の明示（労働基準法）, en: Disclosure of working conditions when concluding an employment contract }
+  obligation:
+    ja: 労働契約を結ぶときに、労働者に、賃金、労働時間その他の労働条件を明示する。明示する事項には、労働契約の期間、就業の場所と従事すべき業務（変更の範囲を含む）、始業と終業の時刻や休憩や休日、賃金の決定と計算と支払の方法と締切りと支払の時期、退職に関する事項（解雇の事由を含む）などがある。賃金や労働時間などの事項は書面の交付で明示する。労働者が希望した場合は、書面のほかの方法も認められる。明示された条件が事実と違うときは、労働者は、すぐに労働契約を解除できる。
+  deadline:
+    ja: 労働契約を結ぶとき。
+  appliesTo:
+    ja: 労働者を雇う使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "15", contains: [労働条件の明示, 賃金、労働時間その他の労働条件を明示, 即時に労働契約を解除] }
+    - law: 労働基準法施行規則
+      lawId: 322M40000100023
+      articles:
+        - { article: "5", contains: [就業の場所及び従事すべき業務, 労働契約の期間に関する事項, 書面の交付, 希望した場合] }
+  verifiedOn: 2026-09-30
+
+- id: health-pension-qualification
+  label: { ja: 健康保険・厚生年金保険の資格取得と資格喪失の届出, en: Notification of acquisition and loss of health insurance and employees' pension insurance }
+  obligation:
+    ja: 適用事業所の事業主は、被保険者の資格の取得と喪失を届け出る。健康保険の届出は日本年金機構か健康保険組合に、厚生年金保険の届出は日本年金機構に出す。資格取得届も資格喪失届も、その事実があった日から5日以内に出す。
+  deadline:
+    ja: 資格の取得も喪失も、その事実があった日から5日以内。
+  appliesTo:
+    ja: 健康保険・厚生年金保険の適用事業所の事業主。
+  authority: { ja: 日本年金機構、厚生労働省, en: "Japan Pension Service, Ministry of Health, Labour and Welfare" }
+  legalBasis:
+    - law: 健康保険法
+      lawId: 211AC0000000070
+      articles:
+        - { article: "48", contains: [適用事業所の事業主, 被保険者の資格の取得及び喪失] }
+    - law: 健康保険法施行規則
+      lawId: 215M10000008036
+      articles:
+        - { article: "24", contains: [当該事実があった日から五日以内, 健康保険被保険者資格取得届] }
+        - { article: "29", contains: [当該事実があった日から五日以内, 健康保険被保険者資格喪失届] }
+    - law: 厚生年金保険法
+      lawId: 329AC0000000115
+      articles:
+        - { article: "27", contains: [適用事業所の事業主, 資格の取得及び喪失] }
+    - law: 厚生年金保険法施行規則
+      lawId: 329M50000100037
+      articles:
+        - { article: "15", contains: [当該事実があつた日から五日以内, 厚生年金保険被保険者資格取得届] }
+        - { article: "22", contains: [当該事実があつた日から五日以内, 厚生年金保険被保険者資格喪失届] }
+  officialGuidance:
+    - url: https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150422.html
+      contains: [5日以内, 資格取得届]
+    - url: https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20150407-02.html
+      contains: [5日以内, 資格喪失届]
+  verifiedOn: 2026-09-30
+
+- id: employment-insurance-notification
+  label: { ja: 雇用保険の資格取得と資格喪失の届出、離職証明書, en: Notification of acquisition and loss of employment insurance, and the separation certificate }
+  obligation:
+    ja: 事業主は、雇っている労働者が雇用保険の被保険者になったことと、被保険者でなくなったことを、公共職業安定所の長に届け出る。資格喪失届には、労働契約の契約書、労働者名簿、賃金台帳など、事実を証明できる書類を添える。被保険者でなくなった原因が離職のときは、離職証明書と、離職の日前の賃金の額を証明できる書類も添える。被保険者が離職票の交付を望まないときは離職証明書を添えなくてよい。ただし、離職の日に59歳以上の被保険者は除く。離職証明書には、離職前に本人が氏名を書く。
+  deadline:
+    ja: 資格取得届は、その事実のあった日の属する月の翌月10日まで。資格喪失届は、その事実のあった日の翌日から起算して10日以内。
+  appliesTo:
+    ja: 雇用保険の適用事業の事業主。
+  authority: { ja: 厚生労働省（公共職業安定所）, en: "Ministry of Health, Labour and Welfare (Public Employment Security Office)" }
+  legalBasis:
+    - law: 雇用保険法
+      lawId: 349AC0000000116
+      articles:
+        - { article: "7", contains: [被保険者に関する届出, 被保険者となつたこと, 被保険者でなくなつたこと] }
+    - law: 雇用保険法施行規則
+      lawId: 350M50002000003
+      articles:
+        - { article: "6", contains: [翌月十日までに, 雇用保険被保険者資格取得届] }
+        - { article: "7", contains: [翌日から起算して十日以内, 雇用保険被保険者離職証明書, 五十九歳以上] }
+  officialGuidance:
+    - url: https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html
+      contains: [離職証明書, 離職前に本人が氏名の記載をする]
+  verifiedOn: 2026-09-30
+
+- id: annual-standard-remuneration-report
+  label: { ja: 算定基礎届（定時決定）, en: Annual report of standard remuneration (regular determination) }
+  obligation:
+    ja: 毎年7月1日に使っている被保険者の報酬月額を、算定基礎届で届け出る。7月1日の前の3か月に受けた報酬の総額を月数で割った額が報酬月額になり、それをもとに標準報酬月額が決まる。決まった標準報酬月額は、その年の9月から翌年の8月までの各月の標準報酬月額になる。6月1日から7月1日までに被保険者の資格を取得した人は、その年は対象にならない。厚生年金保険では、70歳以上の使用される者も届出の対象になる。
+  deadline:
+    ja: 7月10日まで。
+  appliesTo:
+    ja: 健康保険・厚生年金保険の適用事業所の事業主。
+  authority: { ja: 日本年金機構、厚生労働省, en: "Japan Pension Service, Ministry of Health, Labour and Welfare" }
+  legalBasis:
+    - law: 健康保険法
+      lawId: 211AC0000000070
+      articles:
+        - { article: "41", contains: [定時決定, 毎年七月一日, その年の九月から翌年の八月まで] }
+    - law: 健康保険法施行規則
+      lawId: 215M10000008036
+      articles:
+        - { article: "25", contains: [同月十日までに, 健康保険被保険者報酬月額算定基礎届] }
+    - law: 厚生年金保険法
+      lawId: 329AC0000000115
+      articles:
+        - { article: "21", contains: [定時決定, 毎年七月一日] }
+    - law: 厚生年金保険法施行規則
+      lawId: 329M50000100037
+      articles:
+        - { article: "18", contains: [同月十日までに, 七十歳以上の使用される者] }
+  officialGuidance:
+    - url: https://www.nenkin.go.jp/tokusetsu/santei.html
+      contains: [算定基礎届, 7月1日, 7月10日]
+  verifiedOn: 2026-09-30
+
+- id: labor-insurance-annual-renewal
+  label: { ja: 労働保険の年度更新, en: Annual renewal of labor insurance premiums }
+  obligation:
+    ja: 事業主は、保険年度ごとに、その年度の概算保険料を申告書に添えて納める。あわせて、前の保険年度の確定保険料を、申告書で申告する。概算保険料は、その年度に使うすべての労働者の賃金総額の見込額に保険料率をかけて求める。その年度の見込額が前の年度の額の50%以上200%以下のときは、前の年度の賃金総額を見込額として使う。
+  deadline:
+    ja: 概算保険料の納付も、確定保険料の申告も、保険年度の6月1日から40日以内（7月10日まで）。
+  appliesTo:
+    ja: 労働保険の対象になる事業の事業主。
+  authority: { ja: 厚生労働省（都道府県労働局）, en: "Ministry of Health, Labour and Welfare (Prefectural Labor Bureau)" }
+  legalBasis:
+    - law: 労働保険の保険料の徴収等に関する法律
+      lawId: 344AC0000000084
+      articles:
+        - { article: "15", contains: [概算保険料の納付, 六月一日から四十日以内, 賃金総額] }
+        - { article: "19", contains: [確定保険料, 次の保険年度の六月一日から四十日以内] }
+    - law: 労働保険の保険料の徴収等に関する法律施行規則
+      lawId: 347M50002000008
+      articles:
+        - { article: "24", contains: [百分の五十以上百分の二百以下, 直前の保険年度] }
+  officialGuidance:
+    - url: https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/roudouhoken21/index.html
+      contains: [年度更新, 6月1日, 7月10日]
+    - url: https://www.mhlw.go.jp/bunya/roudoukijun/roudouhoken01/kousin.html
+      contains: [年度更新, 6月1日から7月10日まで]
+  verifiedOn: 2026-09-30
+
+- id: wage-payment-principles
+  label: { ja: 賃金の支払の原則（労働基準法）, en: Principles of wage payment }
+  obligation:
+    ja: 賃金は、通貨で、直接労働者に、その全額を支払う。毎月1回以上、一定の期日を定めて支払う。臨時に支払われる賃金や賞与などで厚生労働省令が定めるものは、毎月1回以上の対象にならない。法令に別段の定めがある場合や、労働者の過半数で組織する労働組合（ないときは労働者の過半数を代表する者）との書面による協定がある場合は、賃金の一部を控除して支払える。
+  deadline:
+    ja: 毎月1回以上、一定の期日。
+  appliesTo:
+    ja: 労働者に賃金を支払う使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "24", contains: [賃金の支払, 通貨で、直接労働者に、その全額を支払, 毎月一回以上、一定の期日を定めて支払] }
+  verifiedOn: 2026-09-30
+
+- id: premium-wages
+  label: { ja: 時間外・休日・深夜の割増賃金（労働基準法）, en: Premium wages for overtime, holiday and late-night work }
+  obligation:
+    ja: 時間外労働をさせたときと、休日に労働させたときは、通常の労働時間または労働日の賃金の計算額の2割5分以上5割以下の範囲で政令が定める率以上の率で計算した割増賃金を支払う。時間外労働が1か月について60時間を超えたときは、超えた時間の労働について、5割以上の率で計算した割増賃金を支払う。午後10時から午前5時までの間の労働には、2割5分以上の率で計算した割増賃金を支払う。家族手当、通勤手当その他厚生労働省令で定める賃金は、割増賃金の基礎になる賃金に入れない。
+  deadline:
+    ja: 賃金の支払のとき。
+  appliesTo:
+    ja: 労働者に時間外・休日・深夜の労働をさせた使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "37", contains: [二割五分以上五割以下, 六十時間を超えた, 午後十時から午前五時まで, 家族手当、通勤手当] }
+  verifiedOn: 2026-09-30
+
+- id: wage-records
+  label: { ja: 賃金台帳の作成と労働関係書類の保存, en: Wage ledger and retention of employment records }
+  obligation:
+    ja: 事業場ごとに賃金台帳を作り、賃金計算の基礎になる事項と賃金の額などを、賃金を支払うたびに遅れずに記入する。労働者名簿、賃金台帳、雇入れ、解雇、災害補償、賃金その他労働関係に関する重要な書類は、保存する。保存の期間は、条文の本則では5年間で、附則により、当分の間は3年間とされている。
+  deadline:
+    ja: 記入は賃金の支払のたびに遅れずに。保存は、本則では5年間、当分の間は3年間。
+  appliesTo:
+    ja: 労働者を使用する使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "108", contains: [賃金台帳, 賃金支払の都度遅滞なく記入] }
+        - { article: "109", contains: [記録の保存, 労働者名簿、賃金台帳, 五年間保存] }
+        - { article: "143", part: suppl, contains: [第百九条の規定の適用については、当分の間, 「三年間」とする] }
+  verifiedOn: 2026-09-30
+
+- id: annual-leave
+  label: { ja: 年次有給休暇の年5日の付与と管理簿, en: Five days of annual paid leave per year and the leave ledger }
+  obligation:
+    ja: 年次有給休暇の日数が10労働日以上の労働者には、そのうち5日を、基準日から1年以内の期間に、労働者ごとに時季を定めることにより与える。労働者が自分で請求した日や計画的付与で与えた日数は、5日を上限に、この5日から引ける。年次有給休暇を与えたときは、時季、日数、基準日を労働者ごとに明らかにした年次有給休暇管理簿を作り、有給休暇を与えた期間中と、期間が満了したあとも保存する。満了したあとの保存の期間は、施行規則の本則では5年間で、附則により、当分の間は3年間とされている。
+  deadline:
+    ja: 基準日から1年以内に5日。管理簿の保存は、期間の満了後、本則では5年間、当分の間は3年間。
+  appliesTo:
+    ja: 年次有給休暇の日数が10労働日以上の労働者を使用する使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "39", contains: [十労働日以上, 基準日, 一年以内の期間に、労働者ごとにその時季を定めることにより与えなければならない] }
+    - law: 労働基準法施行規則
+      lawId: 322M40000100023
+      articles:
+        - { article: "24_7", contains: [年次有給休暇管理簿, 五年間保存] }
+        - { article: "71", part: suppl, contains: [第二十四条の七, 当分の間, 「三年間」とする] }
+  verifiedOn: 2026-09-30
+
+- id: social-insurance-premium
+  label: { ja: 健康保険料・厚生年金保険料の納付と給与からの控除, en: Payment of health insurance and employees' pension premiums, and deduction from pay }
+  obligation:
+    ja: 被保険者と事業主は、保険料を半分ずつ負担する。事業主は、被保険者の分と自分の分をあわせて納付する義務を負う。毎月の保険料は、翌月末日までに納付する。事業主は、通貨で報酬を支払うとき、被保険者が負担する前月の標準報酬月額に係る保険料を報酬から控除できる。賞与では、標準賞与額に係る保険料を賞与から控除できる。控除したときは、保険料の控除に関する計算書を作り、控除額を被保険者に通知する。
+  deadline:
+    ja: 毎月の保険料は、翌月末日まで。
+  appliesTo:
+    ja: 健康保険・厚生年金保険の適用事業所の事業主。任意継続被保険者の保険料は、この対象に入らない。
+  authority: { ja: 日本年金機構、厚生労働省, en: "Japan Pension Service, Ministry of Health, Labour and Welfare" }
+  legalBasis:
+    - law: 健康保険法
+      lawId: 211AC0000000070
+      articles:
+        - { article: "161", contains: [保険料の負担及び納付義務, 二分の一を負担, 保険料を納付する義務を負う] }
+        - { article: "164", contains: [保険料の納付, 翌月末日までに] }
+        - { article: "167", contains: [前月の標準報酬月額に係る保険料, 保険料の控除に関する計算書] }
+    - law: 厚生年金保険法
+      lawId: 329AC0000000115
+      articles:
+        - { article: "82", contains: [保険料の半額を負担, 保険料を納付する義務を負う] }
+        - { article: "83", contains: [毎月の保険料, 翌月末日までに] }
+        - { article: "84", contains: [前月の標準報酬月額に係る保険料, 保険料の控除に関する計算書] }
+  verifiedOn: 2026-09-30
+
+- id: withholding-tax-payment
+  label: { ja: 給与から引いた源泉所得税の納付と納期の特例, en: Payment of income tax withheld from wages, and the special payment schedule }
+  obligation:
+    ja: 居住者に国内で給与等を支払う者は、その支払の際に所得税を徴収し、徴収の日の属する月の翌月10日までに国に納付する。給与等の支払を受ける者が常時10人未満の事務所等は、所轄の税務署長の承認を受けると、1月から6月までの分と7月から12月までの分に分けて、半年分をまとめて納付できる。納付する税は、復興特別所得税を含む。
+  deadline:
+    ja: 原則は、徴収の日の属する月の翌月10日まで。納期の特例では、1月から6月までの分は7月10日まで、7月から12月までの分は翌年1月20日まで。
+  appliesTo:
+    ja: 居住者に国内で給与等を支払う者。納期の特例は、給与の支給人員が常時10人未満で、税務署長の承認を受けた者。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 所得税法
+      lawId: 340AC0000000033
+      articles:
+        - { article: "183", contains: [源泉徴収義務, 翌月十日までに、これを国に納付] }
+        - { article: "216", contains: [納期の特例, 常時十人未満, 承認, 七月十日までに, 翌年一月二十日までに] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm
+      contains: [翌月10日, 常時10人未満, 7月10日, 翌年1月20日, 復興特別所得税]
+  verifiedOn: 2026-09-30
+
+- id: year-end-adjustment
+  label: { ja: 年末調整, en: Year-end tax adjustment }
+  obligation:
+    ja: 給与所得者の扶養控除等申告書を出した人で、その年に支払うことが確定した給与等の金額が2,000万円以下の人には、給与等の支払者が、その年最後に給与等を支払うときに、年末調整をする。その年に徴収した所得税の合計と、その年の給与等の金額から求めた税額との過不足を精算する。超過額は、その年最後の給与等から徴収する所得税に充当し、不足額は、その際に徴収して、徴収の日の属する月の翌月10日までに国に納付する。控除を受ける人は、給与等の支払者を経由して申告書を出す。扶養控除等申告書は毎年最初に給与等を受ける日の前日までに、配偶者控除等申告書、特定親族特別控除申告書、基礎控除申告書、保険料控除申告書は、その年最後に給与等を受ける日の前日までに出す。
+  deadline:
+    ja: その年最後に給与等を支払うとき。不足額は、徴収の日の属する月の翌月10日まで。
+  appliesTo:
+    ja: 給与所得者の扶養控除等申告書を提出していて、その年に支払うことが確定した給与等が2,000万円以下の給与所得者と、その給与等の支払者。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 所得税法
+      lawId: 340AC0000000033
+      articles:
+        - { article: "190", contains: [年末調整, 二千万円以下, 翌月十日までに国に納付] }
+        - { article: "194", contains: [給与所得者の扶養控除等申告書, 毎年最初に給与等の支払を受ける日の前日まで] }
+        - { article: "195_2", contains: [給与所得者の配偶者控除等申告書, その年最後に給与等の支払を受ける日の前日まで] }
+        - { article: "195_3", contains: [給与所得者の特定親族特別控除申告書, その年最後に給与等の支払を受ける日の前日まで] }
+        - { article: "195_4", contains: [給与所得者の基礎控除申告書, その年最後に給与等の支払を受ける日の前日まで] }
+        - { article: "196", contains: [給与所得者の保険料控除申告書, その年最後に給与等の支払を受ける日の前日まで] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm
+      contains: [年末調整, 2,000万円]
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm
+      contains: [年末調整の対象となる人, 扶養控除等]
+  verifiedOn: 2026-09-30
+
+- id: withholding-slip
+  label: { ja: 源泉徴収票の作成・提出・交付, en: Preparation, filing and delivery of withholding tax slips }
+  obligation:
+    ja: 居住者に国内で給与等を支払う者は、その年に支払が確定した給与等について、給与等の支払を受ける者ごとに源泉徴収票を2通作る。1通を税務署長に提出し、もう1通を給与等の支払を受ける者に交付する。財務省令で定めるところにより税務署長の承認を受けた場合は、この限りでない。
+  deadline:
+    ja: 翌年1月31日まで。年の中途で退職した居住者については、退職の日以後1か月以内。
+  appliesTo:
+    ja: 居住者に国内で給与等を支払う者。所得税の徴収と納付が要らない給与等は除く。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 所得税法
+      lawId: 340AC0000000033
+      articles:
+        - { article: "226", contains: [源泉徴収票, 翌年一月三十一日まで, 退職の日以後一月以内, 税務署長の承認] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/01.htm
+      contains: [給与所得の源泉徴収票, 翌年1月31日, 退職の日以後1ヶ月以内]
+  verifiedOn: 2026-09-30
+
+- id: payroll-report-to-municipality
+  label: { ja: 給与支払報告書の提出, en: Payroll report to the municipality }
+  obligation:
+    ja: 1月1日現在で給与の支払をする者で、給与の支払の際に所得税を徴収する義務があるものは、給与の支払を受けている人について、前年中の給与所得の金額その他必要な事項を、その人の1月1日現在の住所がある市町村ごとに作った給与支払報告書に書いて、その市町村の長に提出する。年の中途に給与の支払を受けなくなった人がいるときは、その人について、給与の支払を受けなくなった日の属する年の給与所得の金額などを書いた給与支払報告書を、その日現在の住所がある市町村の長に提出する。ただし、その年に支払った給与の総額が30万円以下の人は除く。1月31日までに出した給与支払報告書に書かれた人のうち、4月1日現在で給与の支払を受けなくなった人がいるときは、その旨を書いた届出書を、市町村長に提出する。
+  deadline:
+    ja: 1月1日現在の分は1月31日まで。年の中途に給与の支払を受けなくなった人の分は、その日の属する年の翌年1月31日まで。4月1日現在で給与の支払を受けなくなった人の届出書は、4月15日まで。
+  appliesTo:
+    ja: 給与の支払をする際に所得税を徴収する義務がある、給与の支払者。
+  authority: { ja: 総務省（市区町村）, en: "Ministry of Internal Affairs and Communications (Municipality)" }
+  legalBasis:
+    - law: 地方税法
+      lawId: 325AC0000000226
+      articles:
+        - { article: "317_6", contains: [給与支払報告書等の提出義務, 同月三十一日まで, 住所所在の市町村別, 三十万円以下, 同月十五日まで] }
+  verifiedOn: 2026-09-30
+
+- id: resident-tax-special-collection
+  label: { ja: 個人住民税の特別徴収（給与から引いて納める）, en: Special collection of resident tax from wages }
+  obligation:
+    ja: 前年中に給与の支払を受けていて、その年度の初日にも給与の支払を受けている人の個人の市町村民税は、市町村が、給与の支払者を通じて、特別徴収の方法で徴収する。特別徴収義務者は、市町村から通知された特別徴収税額の12分の1を、6月から翌年5月まで、給与の支払の際に毎月徴収して、徴収した月の翌月10日までに市町村に納入する。給与の支払を受ける者が常時10人未満の事務所等は、市町村長の承認を受けると、6月から11月までの分と、12月から翌年5月までの分に分けて、各期間の最終月の翌月10日までに納入できる。東京都の区市町村では、従業員の退職や転勤などの異動があったときは、異動が生じた月の翌月10日までに「特別徴収に係る給与所得者異動届出書」を出す。
+  deadline:
+    ja: 徴収した月の翌月10日まで。納期の特例では、6月から11月までの分は12月10日まで、12月から翌年5月までの分は6月10日まで。
+  appliesTo:
+    ja: 給与の支払者（特別徴収義務者）。納期の特例は、給与の支払を受ける者が常時10人未満の事務所等で、市町村長の承認を受けた者。
+  authority: { ja: 総務省（市区町村）, en: "Ministry of Internal Affairs and Communications (Municipality)" }
+  legalBasis:
+    - law: 地方税法
+      lawId: 325AC0000000226
+      articles:
+        - { article: "321_3", contains: [給与所得に係る個人の市町村民税の特別徴収, 特別徴収の方法によつて徴収するものとする] }
+        - { article: "321_5", contains: [十二分の一の額を六月から翌年五月まで, 翌月の十日までに、これを当該市町村に納入] }
+        - { article: "321_5_2", contains: [納期の特例, 常時十人未満, 承認, 最終月の翌月十日までに] }
+  officialGuidance:
+    - url: https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju/tokubetsu/about
+      contains: [特別徴収に係る給与所得者異動届出書, 翌月10日]
+  verifiedOn: 2026-09-30
+
+- id: overtime-agreement
+  label: { ja: 時間外・休日労働に関する協定（36協定）の締結と届出, en: Agreement on overtime and holiday work (Article 36 agreement) and its filing }
+  obligation:
+    ja: 法定の労働時間を超えて労働させたり、休日に労働させたりするには、事業場の労働者の過半数で組織する労働組合（ないときは労働者の過半数を代表する者）と書面による協定を結び、行政官庁に届け出る。協定には、対象になる労働者の範囲、対象期間（1年間に限る）、労働させることができる場合、1日と1か月と1年について延長できる時間や休日の日数などを定める。延長できる時間は、原則として、1か月45時間、1年360時間の限度時間を超えない範囲にする。臨時的な特別の事情があるときの特別条項では、時間外と休日の労働を合わせて1か月100時間未満、時間外労働は1年720時間以内の範囲で定められる。届出は、所轄労働基準監督署長に様式第9号（特別条項を定めるときは様式第9号の2）で出す。協定には有効期間も定める。特別条項を定めたときは、限度時間を超えて労働させる労働者の健康と福祉を確保する措置の実施状況の記録を、有効期間中と満了後も保存する。満了後の保存の期間は、施行規則の本則では5年間で、附則により、当分の間は3年間とされている。
+  deadline:
+    ja: 協定の対象期間は1年間。
+  appliesTo:
+    ja: 法定労働時間を超える労働や休日労働をさせる事業場の使用者。
+  authority: { ja: 厚生労働省（労働基準監督署）, en: "Ministry of Health, Labour and Welfare (Labor Standards Inspection Office)" }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "36", contains: [時間外及び休日の労働, 労働者の過半数を代表する者との書面による協定, 一年間に限る, 四十五時間, 三百六十時間, 百時間未満, 七百二十時間] }
+    - law: 労働基準法施行規則
+      lawId: 322M40000100023
+      articles:
+        - { article: "16", contains: [様式第九号, 様式第九号の二, 所轄労働基準監督署長] }
+        - { article: "17", contains: [有効期間, 五年間保存] }
+        - { article: "71", part: suppl, contains: [第十七条第二項, 当分の間, 「三年間」とする] }
+  officialGuidance:
+    - url: https://www.startup-roudou.mhlw.go.jp/36_pact.html
+      contains: [36協定, 労働基準監督署, 1か月45時間, 1年360時間]
+  verifiedOn: 2026-09-30
+
+- id: work-rules
+  label: { ja: 就業規則の作成・意見聴取・届出, en: Preparation, consultation and filing of work rules }
+  obligation:
+    ja: 常時10人以上の労働者を使用する使用者は、始業と終業の時刻、休憩時間、休日、休暇、賃金の決定と計算と支払の方法、退職に関する事項（解雇の事由を含む）などについて就業規則を作り、行政官庁に届け出る。変更したときも同じ。作ったり変えたりするときは、労働者の過半数で組織する労働組合（ないときは労働者の過半数を代表する者）の意見を聴く。届出には、その意見を記した書面を添える。届出は所轄労働基準監督署長に出す。意見を記した書面には、労働者を代表する者の氏名を書く。
+  deadline:
+    ja: 常時10人以上の労働者を使用するに至ったときは、遅滞なく届け出る。変更のときも届け出る。
+  appliesTo:
+    ja: 常時10人以上の労働者を使用する使用者。
+  authority: { ja: 厚生労働省（労働基準監督署）, en: "Ministry of Health, Labour and Welfare (Labor Standards Inspection Office)" }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "89", contains: [作成及び届出の義務, 常時十人以上の労働者を使用する使用者, 就業規則を作成し、行政官庁に届け出] }
+        - { article: "90", contains: [作成の手続, 労働者の過半数を代表する者の意見を聴かなければならない, 意見を記した書面を添付] }
+    - law: 労働基準法施行規則
+      lawId: 322M40000100023
+      articles:
+        - { article: "49", contains: [遅滞なく, 所轄労働基準監督署長, 労働者を代表する者の氏名] }
+  verifiedOn: 2026-09-30
+
+- id: employee-notification-duty
+  label: { ja: 就業規則や労使協定の労働者への周知, en: Notifying workers of work rules and labor-management agreements }
+  obligation:
+    ja: 使用者は、労働基準法とそれにもとづく命令の要旨、就業規則、36協定などの労使協定を、常時各作業場の見やすい場所へ掲示するか備え付けること、書面を交付することその他の厚生労働省令で定める方法で、労働者に周知させる。
+  deadline:
+    ja: 常時。
+  appliesTo:
+    ja: 労働者を使用する使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "106", contains: [法令等の周知義務, 就業規則, 常時各作業場の見やすい場所へ掲示し, 書面を交付する, 第三十六条第一項] }
+  verifiedOn: 2026-09-30
+
+- id: separation-payment-and-certificate
+  label: { ja: 退職のときの証明書の交付と賃金の支払（労働基準法）, en: Certificate on leaving and payment of wages on separation }
+  obligation:
+    ja: 労働者が退職するとき、使用期間、業務の種類、その事業における地位、賃金、退職の事由について証明書を請求したら、使用者は、遅れずに交付する。証明書には、労働者が請求しない事項を書いてはならない。労働者が死亡したときや退職したときに、権利者から請求があったら、使用者は、7日以内に賃金を支払い、積立金、保証金、貯蓄金など、労働者の権利に属する金品を返す。賃金や金品について争いがあるときは、異議のない部分を7日以内に支払い、または返す。
+  deadline:
+    ja: 証明書は、請求があったら遅れずに。賃金の支払と金品の返還は、請求があってから7日以内。
+  appliesTo:
+    ja: 退職する労働者を使用していた使用者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働基準法
+      lawId: 322AC0000000049
+      articles:
+        - { article: "22", contains: [退職時等の証明, 遅滞なくこれを交付, 労働者の請求しない事項を記入してはならない] }
+        - { article: "23", contains: [金品の返還, 七日以内に賃金を支払い, 異議のない部分] }
+  verifiedOn: 2026-09-30

@@ -54,6 +54,7 @@ test('条の書き方を、日本語の表記にする', () => {
   assert.equal(articleLabel('36'), '第36条');
   assert.equal(articleLabel('57_4'), '第57条の4');
   assert.equal(articleLabel('66_10'), '第66条の10');
+  assert.equal(articleLabel({ article: '143', part: 'suppl' }), '附則 第143条');
 });
 
 test('正しい小さなデータは、検査を通る', () => {

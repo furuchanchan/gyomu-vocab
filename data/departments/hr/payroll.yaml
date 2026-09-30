@@ -1,0 +1,173 @@
+id: payroll
+label: { ja: 勤怠の集計と給与計算, en: Attendance and payroll }
+description:
+  ja: 毎月、勤怠を締めて集計し、給与を計算して確かめ、明細を渡して振り込み、源泉所得税、住民税、社会保険料を納め、経理に給与の集計を渡すまでの流れ。
+  en: Each month, from closing and totaling attendance to calculating and checking wages, paying them, remitting withholding tax, resident tax and social insurance premiums, and passing the payroll summary to accounting.
+frequency: monthly
+timing: { ja: 毎月。締め日と支払日は、就業規則と会社の決まりによる。 }
+pcf: ["10732"]
+regulations: [wage-payment-principles, premium-wages, wage-records, annual-leave, social-insurance-premium, withholding-tax-payment, resident-tax-special-collection]
+stages:
+  - id: attendance
+    label: { ja: 勤怠の締め, en: Attendance closing }
+    pcf: ["10753"]
+    steps:
+      - id: report-attendance
+        label: { ja: 勤怠を申告する, en: Report attendance }
+        description: { ja: その月の出勤、労働時間、時間外・休日・深夜の労働、休暇を、勤怠管理のシステムに入れて申告する。 }
+        performedBy: employee
+        produces: [attendance-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [attendance-system]
+
+      - id: approve-attendance
+        label: { ja: 勤怠を承認する, en: Approve attendance }
+        description: { ja: 部下の申告を見て、時間外や休日の労働が業務として必要だったかを確かめ、承認する。 }
+        performedBy: department-manager
+        receives: [attendance-report]
+        produces: [approved-attendance]
+        requiresJudgment: true
+        judgment: { ja: 時間外や休日の労働が、業務として必要で、指示した範囲に収まっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [attendance-system]
+
+      - id: close-attendance
+        label: { ja: 勤怠を締めて集計する, en: Close and total attendance }
+        description: { ja: 承認された勤怠を、従業員ごとに、労働日数、労働時間、時間外・休日・深夜の労働時間、欠勤、有給休暇の日数に集計し、有給休暇の管理簿に反映する。 }
+        performedBy: hr-staff
+        receives: [approved-attendance]
+        produces: [attendance-summary]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [attendance-system]
+        regulations: [premium-wages, annual-leave]
+
+  - id: calculation
+    label: { ja: 給与の計算, en: Wage calculation }
+    pcf: ["10754"]
+    steps:
+      - id: calculate-payroll
+        label: { ja: 給与を計算する, en: Calculate the wages }
+        description: { ja: 勤怠の集計をもとに、基本の賃金、手当、割増賃金を出し、社会保険料、源泉所得税、住民税を引いて、差引支給額を計算する。 }
+        performedBy: hr-staff
+        receives: [attendance-summary, payroll-master-record, resident-tax-notice, insurance-premium-notice]
+        produces: [payroll-calculation]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+        regulations: [premium-wages, wage-payment-principles, social-insurance-premium, resident-tax-special-collection]
+
+      - id: review-payroll
+        label: { ja: 給与の計算結果を確かめる, en: Review the payroll }
+        description: { ja: 計算結果を、前の月と比べて、大きな増減や想定と違う金額がないかを見て、支給してよいかを決める。 }
+        performedBy: hr-manager
+        receives: [payroll-calculation]
+        produces: [approved-payroll]
+        requiresJudgment: true
+        judgment: { ja: 前の月と比べて大きく変わった金額に、理由があるか。支給してよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+
+  - id: payment
+    label: { ja: 支給と記録, en: Payment and records }
+    pcf: ["10862"]
+    steps:
+      - id: issue-payslips
+        label: { ja: 給与明細を作って渡す, en: Issue the payslips }
+        description: { ja: 従業員ごとの給与明細を作り、支給日に見られる状態にする。 }
+        performedBy: hr-staff
+        receives: [approved-payroll]
+        produces: [payslip]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software]
+
+      - id: execute-salary-transfer
+        label: { ja: 給与を振り込む, en: Pay the wages by bank transfer }
+        description: { ja: 承認された給与のとおりに、振込のデータを作って金融機関に送る。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-payroll]
+        produces: [salary-transfer-instruction, salary-payment-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+        regulations: [wage-payment-principles]
+
+      - id: record-wage-ledger
+        label: { ja: 賃金台帳に記入する, en: Enter the wages in the wage ledger }
+        description: { ja: 賃金計算の基礎になる事項と賃金の額を、従業員ごとに、支払のたびに賃金台帳に記入し、決まった期間保存する。 }
+        performedBy: hr-staff
+        receives: [approved-payroll]
+        produces: [wage-ledger]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, document-storage]
+        regulations: [wage-records]
+
+      - id: produce-payroll-summary
+        label: { ja: 給与の集計を作って経理に渡す, en: Produce the payroll summary for accounting }
+        description: { ja: 支給額、控除額、会社が負担する社会保険料を月ごとにまとめ、経理に渡す。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-payroll]
+        produces: [payroll-summary]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [payroll-software, spreadsheet]
+
+  - id: remittance
+    label: { ja: 税と社会保険料の納付, en: Tax and premium remittance }
+    pcf: ["10755"]
+    steps:
+      - id: pay-withholding-tax
+        label: { ja: 源泉所得税を納付する, en: Pay the withholding tax }
+        description: { ja: 給与から引いた源泉所得税を、納付書を作って税務署に納める。納期の特例の承認を受けていれば、その納期に合わせる。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-payroll]
+        produces: [withholding-tax-payment-record]
+        doneWhen: { ja: 給与を支払った月の翌月10日までに、納付が済んでいる。納期の特例の承認を受けていれば、その納期までに済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+        regulations: [withholding-tax-payment]
+
+      - id: pay-resident-tax
+        label: { ja: 住民税を納入する, en: Remit the resident tax }
+        description: { ja: 給与から引いた住民税を、従業員が住む市区町村ごとにまとめて納入する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-payroll]
+        produces: [resident-tax-payment-record]
+        doneWhen: { ja: 給与から引いた月の翌月10日までに、納入が済んでいる。納期の特例の承認を受けていれば、その納期までに済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+        regulations: [resident-tax-special-collection]
+
+      - id: pay-social-insurance-premium
+        label: { ja: 社会保険料を納付する, en: Pay the social insurance premiums }
+        description: { ja: 年金事務所から知らされた額を、従業員の分と会社の分をあわせて納付する。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [insurance-premium-notice, approved-payroll]
+        produces: [insurance-premium-payment-record]
+        doneWhen: { ja: 保険料の対象の月の翌月末日までに、納付が済んでいる。 }
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+        regulations: [social-insurance-premium]

@@ -36,10 +36,11 @@ export const iri = {
   law: lawId => `https://laws.e-gov.go.jp/law/${lawId}`,
 };
 
-// 57_4 → 第57条の4
-export const articleLabel = article => {
+// 57_4 → 第57条の4。附則の条（part: suppl）は「附則 第143条」
+export const articleLabel = spec => {
+  const { article, part } = typeof spec === 'object' ? spec : { article: spec };
   const [head, ...rest] = String(article).split('_');
-  return `第${head}条${rest.map(n => `の${n}`).join('')}`;
+  return `${part === 'suppl' ? '附則 ' : ''}第${head}条${rest.map(n => `の${n}`).join('')}`;
 };
 
 export function toStore(data, { version, modified }) {
@@ -130,7 +131,7 @@ export function toStore(data, { version, modified }) {
       link(s, ns('legalBasis'), law);
       add(law, p('rdfs', 'label'), literal(b.law, 'ja'));
       add(law, p('dcterms', 'identifier'), literal(b.lawId));
-      for (const a of b.articles) add(s, ns('legalBasisArticle'), literal(`${b.law} ${articleLabel(a.article)}`, 'ja'));
+      for (const a of b.articles) add(s, ns('legalBasisArticle'), literal(`${b.law} ${articleLabel(a)}`, 'ja'));
     }
     for (const g of r.officialGuidance ?? []) link(s, ns('officialGuidance'), g.url);
     add(s, ns('verifiedOn'), typed(r.verifiedOn, 'date'));

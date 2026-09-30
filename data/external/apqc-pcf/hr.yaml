@@ -1,0 +1,17 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、人事・労務で参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "10007", hierarchy: "7.0", name: "Develop and Manage Human Capital" }
+- { id: "10410", hierarchy: "7.2", name: "Recruit, source, and select employees" }
+- { id: "10439", hierarchy: "7.2.1", name: "Manage employee requisitions" }
+- { id: "20123", hierarchy: "7.2.3", name: "Screen and select candidates" }
+- { id: "10443", hierarchy: "7.2.4", name: "Manage new hire/re-hire" }
+- { id: "10469", hierarchy: "7.3.1", name: "Manage employee orientation and deployment" }
+- { id: "10732", hierarchy: "9.5", name: "Process payroll" }
+- { id: "10753", hierarchy: "9.5.1", name: "Report time" }
+- { id: "10754", hierarchy: "9.5.2", name: "Manage pay" }
+- { id: "10862", hierarchy: "9.5.2.5", name: "Process and distribute payments" }
+- { id: "10755", hierarchy: "9.5.3", name: "Manage and process payroll taxes" }
+- { id: "10867", hierarchy: "9.5.3.4", name: "Produce and distribute employee annual tax statements" }
+- { id: "10868", hierarchy: "9.5.3.5", name: "File regulatory payroll tax forms" }
+- { id: "10513", hierarchy: "7.6.2", name: "Manage separation" }
+- { id: "10429", hierarchy: "7.1.2.11", name: "Develop HR policies" }

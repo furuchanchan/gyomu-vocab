@@ -1,0 +1,165 @@
+id: recruiting
+label: { ja: 採用, en: Recruiting }
+description:
+  ja: 部署からの採用の依頼を受けて、募集の内容を決めて掲載し、応募書類と面接で選考し、内定を通知して承諾を受けるまでの流れ。
+  en: From receiving a hiring request to writing and posting the job ad, screening and interviewing applicants, and making an offer that the applicant accepts.
+frequency: on-demand
+timing: { ja: 部署から採用の依頼があったとき。 }
+pcf: ["10410"]
+regulations: [recruitment-conditions-disclosure]
+stages:
+  - id: requisition
+    label: { ja: 募集の準備, en: Preparing to recruit }
+    pcf: ["10439"]
+    steps:
+      - id: request-hiring
+        label: { ja: 採用を依頼する, en: Request a hire }
+        description: { ja: 募集したい職種、人数、時期、理由を書いて、人事に採用を依頼する。 }
+        performedBy: department-manager
+        produces: [hiring-requisition]
+        requiresJudgment: true
+        judgment: { ja: どの仕事に、何人、いつまでに要るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-hiring
+        label: { ja: 採用の人数と予算を承認する, en: Approve the headcount and budget }
+        description: { ja: 依頼の中身を見て、会社として採用してよいかと、採用にかけられる予算を決める。 }
+        performedBy: executive
+        receives: [hiring-requisition]
+        produces: [approved-hiring-requisition]
+        requiresJudgment: true
+        judgment: { ja: 事業の計画と人件費に照らして、その人数を採用してよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: write-job-posting
+        label: { ja: 募集の内容を書く, en: Write the job posting }
+        description: { ja: 仕事の内容、賃金、労働時間、勤務地などの労働条件を、募集の文面にまとめる。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [approved-hiring-requisition]
+        produces: [job-posting]
+        requiresJudgment: true
+        judgment: { ja: 賃金や労働時間などの条件を、会社の決まりと合わせて、どう示すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [applicant-tracking-system]
+        regulations: [recruitment-conditions-disclosure]
+
+      - id: publish-job-posting
+        label: { ja: 募集を掲載する, en: Publish the job posting }
+        description: { ja: 求人サイトや自社の採用ページに、募集を載せる。 }
+        performedBy: hr-staff
+        receives: [job-posting]
+        produces: [published-job-posting]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [applicant-tracking-system]
+        regulations: [recruitment-conditions-disclosure]
+
+  - id: screening
+    label: { ja: 応募者の選考, en: Screening applicants }
+    pcf: ["20123"]
+    steps:
+      - id: receive-application
+        label: { ja: 応募を受け付ける, en: Receive the application }
+        description: { ja: 届いた応募書類を受け取り、応募者の氏名、経歴、応募した職種を記録に入れる。 }
+        performedBy: hr-staff
+        receives: [application-materials]
+        produces: [applicant-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [applicant-tracking-system, email]
+
+      - id: screen-documents
+        label: { ja: 書類で選考する, en: Screen the documents }
+        description: { ja: 応募書類を、募集の条件に照らして読み、面接に進める人を決める。 }
+        performedBy: hr-staff
+        confirmedBy: department-manager
+        receives: [applicant-record, approved-hiring-requisition]
+        produces: [screening-result]
+        requiresJudgment: true
+        judgment: { ja: 経歴が募集の条件に合い、面接で確かめる価値があるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [applicant-tracking-system]
+
+      - id: notify-screening-result
+        label: { ja: 選考の結果を応募者に知らせる, en: Notify the applicant of the screening result }
+        description: { ja: 面接に進む人には日程の案内を、進まない人には結果を、メールで伝える。 }
+        performedBy: hr-staff
+        receives: [screening-result]
+        produces: [screening-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [applicant-tracking-system, email]
+
+      - id: interview-applicant
+        label: { ja: 面接をする, en: Interview the applicant }
+        description: { ja: 応募者と話して、経験、考え方、条件の希望を聞き、募集した仕事に合うかを評価する。 }
+        performedBy: department-manager
+        receives: [applicant-record, screening-result]
+        produces: [interview-evaluation]
+        requiresJudgment: true
+        judgment: { ja: 応募者が仕事とチームに合い、条件が折り合うか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 応募者と直接話して、互いを確かめ合う対話そのものであるため。 }
+
+  - id: offer
+    label: { ja: 内定, en: Offer }
+    pcf: ["10443"]
+    steps:
+      - id: decide-hiring
+        label: { ja: 採用する人を決める, en: Decide who to hire }
+        description: { ja: 面接の評価をもとに、誰を、どの職種と条件で採用するかを決める。 }
+        performedBy: hr-manager
+        confirmedBy: executive
+        receives: [interview-evaluation]
+        produces: [hiring-decision]
+        requiresJudgment: true
+        judgment: { ja: 誰を採用するか。どの職種と賃金で迎えるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: prepare-offer-terms
+        label: { ja: 内定の条件をまとめる, en: Prepare the offer terms }
+        description: { ja: 採用が決まった人について、職種、賃金、入社日、勤務地などの条件をまとめる。 }
+        performedBy: hr-staff
+        confirmedBy: hr-manager
+        receives: [hiring-decision]
+        produces: [offer-terms]
+        requiresJudgment: true
+        judgment: { ja: 本人の経験と会社の賃金の決まりに照らして、賃金や入社日をいくらといつにするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [hr-system]
+
+      - id: send-offer
+        label: { ja: 内定を通知する, en: Send the offer }
+        description: { ja: 内定の条件を書いた通知を、採用が決まった人に送る。 }
+        performedBy: hr-manager
+        receives: [offer-terms]
+        produces: [offer-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 会社が採用の条件を応募者に示して、合意を求める行為そのものであるため。 }
+        toolKinds: [email]
+
+      - id: record-offer-acceptance
+        label: { ja: 内定の承諾を受ける, en: Receive the offer acceptance }
+        description: { ja: 応募者から届いた承諾を受け取り、入社日と合意した条件を記録する。 }
+        performedBy: hr-staff
+        receives: [offer-acceptance]
+        produces: [accepted-offer-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [applicant-tracking-system, hr-system]

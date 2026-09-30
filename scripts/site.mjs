@@ -300,7 +300,7 @@ ${r.appliesTo ? `<h2>対象になる会社</h2><p>${esc(r.appliesTo.ja)}</p>` : 
 <h2>根拠</h2>
 ${r.basisNote ? `<p>${esc(r.basisNote.ja)}</p>` : ''}
 ${list([
-  ...(r.legalBasis ?? []).map(b => `<a href="${esc(iri.law(b.lawId))}">${esc(b.law)}</a>　${b.articles.map(a => esc(articleLabel(a.article))).join('、')}`),
+  ...(r.legalBasis ?? []).map(b => `<a href="${esc(iri.law(b.lawId))}">${esc(b.law)}</a>　${b.articles.map(a => esc(articleLabel(a))).join('、')}`),
   ...(r.officialGuidance ?? []).map(g => `<a href="${esc(g.url)}">${esc(g.url)}</a>`),
 ])}
 <p>根拠の条と、役所のページに照らして確かめた日　${esc(r.verifiedOn)}</p>
