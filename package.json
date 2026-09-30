@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/check-site.mjs",
-    "test": "node --test test/",
+    "test": "node --test",
     "verify": "node scripts/verify-sources.mjs",
     "check": "node scripts/check.mjs"
   },
