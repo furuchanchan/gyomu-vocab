@@ -1,0 +1,8 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、参照する要素だけを書く。
+- { id: "20008", hierarchy: "3.3", name: "Develop and manage marketing plans" }
+- { id: "10149", hierarchy: "3.3.2", name: "Establish marketing budgets" }
+- { id: "20010", hierarchy: "3.3.4", name: "Develop and manage promotional activities" }
+- { id: "10169", hierarchy: "3.3.4.5", name: "Execute promotional activities" }
+- { id: "10170", hierarchy: "3.3.4.6", name: "Evaluate promotional performance metrics" }
+- { id: "10189", hierarchy: "3.5.1.2", name: "Identify/receive leads/opportunities" }
+- { id: "18115", hierarchy: "3.5.1.3", name: "Validate and qualify leads/opportunities" }

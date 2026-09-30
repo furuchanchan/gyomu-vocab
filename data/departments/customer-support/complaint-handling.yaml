@@ -1,0 +1,116 @@
+id: complaint-handling
+label: { ja: 苦情・クレームの対応, en: Complaint handling }
+description:
+  ja: 顧客の苦情を受け付けて記録し、事実を確かめ、関係部署と調整して対応の方針を決め、顧客に回答し、再発を防ぐ対策を記録するまでの流れ。
+  en: From receiving and recording a customer complaint and establishing the facts, to coordinating with related departments, deciding the response policy, responding to the customer and recording recurrence prevention.
+frequency: on-demand
+timing: { ja: 苦情が届くたびに。 }
+regulations: [personal-information-protection, consumer-contract-act]
+pcf: ["10389"]
+stages:
+  - id: receive
+    label: { ja: 受け付け, en: Receive }
+    steps:
+      - id: receive-complaint
+        label: { ja: 苦情を受け付けて記録する, en: Receive and record the complaint }
+        description: { ja: 顧客の苦情を受け付け、何に対する不満か、顧客が何を求めているかを、顧客の言葉のとおりに記録する。 }
+        performedBy: cs-staff
+        receives: [customer-complaint]
+        produces: [complaint-case]
+        doneWhen: { ja: 日時、顧客、申し出の内容、顧客が求めていることが入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, email]
+        regulations: [personal-information-protection]
+
+
+  - id: fact-check
+    label: { ja: 事実の確認と社内の調整, en: Fact check and internal coordination }
+    steps:
+      - id: confirm-facts
+        label: { ja: 記録から事実を確かめる, en: Confirm the facts from records }
+        description: { ja: 契約、これまでの問い合わせの記録、送った連絡などから、苦情の内容が事実か、どこが食い違うかを確かめる。 }
+        performedBy: cs-staff
+        receives: [complaint-case]
+        produces: [fact-findings]
+        requiresJudgment: true
+        judgment: { ja: 記録で確かめられた点と、社内に確かめる点の区別。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, crm]
+
+      - id: request-department-check
+        label: { ja: 関係部署に確認を頼む, en: Ask related departments to check }
+        description: { ja: 記録だけでは分からない事情を、関係部署に確かめてもらう依頼を出す。 }
+        performedBy: cs-staff
+        receives: [fact-findings]
+        produces: [department-check-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, workflow-system]
+
+      - id: check-department
+        label: { ja: 関係部署が事実と原因を確かめる, en: Related department checks facts and cause }
+        description: { ja: 依頼された事実と原因を調べて、対応できる内容とあわせてカスタマーサポートに返す。 }
+        performedBy: related-staff
+        receives: [department-check-request]
+        produces: [department-findings]
+        requiresJudgment: true
+        judgment: { ja: 原因はどこにあるか。会社として対応できる内容は何か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, workflow-system]
+
+
+  - id: policy
+    label: { ja: 対応の方針, en: Response policy }
+    steps:
+      - id: decide-policy
+        label: { ja: 対応の方針を決める, en: Decide the response policy }
+        description: { ja: 事実の確認の結果と関係部署の回答をもとに、苦情にどう答え、何を行うかを決める。契約の勧誘のときの説明や解約の条件が問題のときは、消費者契約法にも照らす。 }
+        performedBy: cs-manager
+        confirmedBy: executive
+        receives: [fact-findings, department-findings]
+        produces: [response-policy]
+        requiresJudgment: true
+        judgment: { ja: 会社に非があるか。謝罪、返金、代替、改善の約束のうち何を行うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+        regulations: [consumer-contract-act]
+
+
+  - id: respond
+    label: { ja: 回答, en: Respond }
+    steps:
+      - id: respond-complaint
+        label: { ja: 顧客に回答する, en: Respond to the customer }
+        description: { ja: 決めた方針を、顧客に説明して受け止めてもらう。顧客の反応を聞いて、理解を得られるまで話す。 }
+        performedBy: cs-staff
+        receives: [response-policy]
+        produces: [complaint-response]
+        requiresJudgment: true
+        judgment: { ja: 顧客の反応を見て、どこまで説明を足し、どこで打ち切るか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 顧客の気持ちを受け止めながら、対話で理解を得る必要があるため。 }
+        toolKinds: [email, support-desk]
+
+
+  - id: prevention
+    label: { ja: 再発の防止, en: Recurrence prevention }
+    steps:
+      - id: record-prevention
+        label: { ja: 再発の防止の対策を記録する, en: Record recurrence prevention measures }
+        description: { ja: 苦情の原因と、同じ苦情を繰り返さないために決めた対策を、関係部署の確認とあわせて記録する。 }
+        performedBy: cs-staff
+        confirmedBy: cs-manager
+        receives: [complaint-case, department-findings, complaint-response]
+        produces: [complaint-prevention-record]
+        requiresJudgment: true
+        judgment: { ja: 原因が個別の対応の誤りか、仕組みの問題か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, document-storage]

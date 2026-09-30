@@ -1,0 +1,15 @@
+- id: identity-management
+  label: { ja: アカウントと権限を管理するシステム, en: Identity and access management system }
+  description: { ja: 従業員のアカウントを作り、権限を付け、停止や削除をするシステム。 }
+
+- id: device-management-system
+  label: { ja: 端末を管理するシステム, en: Device management system }
+  description: { ja: 会社の端末の設定を配り、遠隔で利用の停止や消去をするシステム。 }
+
+- id: monitoring-system
+  label: { ja: 監視とログのシステム, en: Monitoring and logging system }
+  description: { ja: システムの稼働や不審な動きを見張り、記録を残すシステム。 }
+
+- id: backup-system
+  label: { ja: バックアップのシステム, en: Backup system }
+  description: { ja: データの複製を定期的に取り、必要なときに戻すシステム。 }

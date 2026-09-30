@@ -1,0 +1,248 @@
+# マーケティングの工程で受け渡される物。
+- id: campaign-review-record
+  label: { ja: 施策の見直しの記録, en: Campaign review record }
+  description: { ja: 施策の結果を見て、続けるか、変えるか、やめるかを書いた記録。 }
+  kind: document
+  fromOutside: false
+
+- id: marketing-goals
+  label: { ja: マーケティングの目標, en: Marketing goals }
+  description: { ja: 期間中に達成する、見込み客の数や営業への引き渡しの数などの目標。 }
+  kind: document
+  fromOutside: false
+
+- id: campaign-plan-draft
+  label: { ja: 施策の企画の案, en: Campaign plan draft }
+  description: { ja: 目標のために行う施策、対象の相手、時期、使う手段を書いた案。 }
+  kind: document
+  fromOutside: false
+
+- id: campaign-cost-estimate
+  label: { ja: 施策の費用の見積, en: Campaign cost estimate }
+  description: { ja: 施策ごとにかかる費用を積み上げた表。 }
+  kind: data
+  fromOutside: false
+
+- id: budget-request
+  label: { ja: 予算の申請, en: Budget request }
+  description: { ja: 施策の企画と費用の見積をつけて、予算を求める申請。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-budget
+  label: { ja: 承認された予算, en: Approved budget }
+  description: { ja: 経営者が承認した、施策ごとの予算。 }
+  kind: data
+  fromOutside: false
+
+- id: campaign-schedule
+  label: { ja: 施策の日程と担当, en: Campaign schedule }
+  description: { ja: 承認された施策を、いつ、誰が行うかを並べた表。 }
+  kind: data
+  fromOutside: false
+
+- id: campaign-results-summary
+  label: { ja: 施策の結果のまとめ, en: Campaign results summary }
+  description: { ja: 見込み客の数、営業への引き渡しの数、費用などを施策ごとにまとめたもの。 }
+  kind: document
+  fromOutside: false
+
+- id: content-brief
+  label: { ja: コンテンツの企画, en: Content brief }
+  description: { ja: コンテンツの狙い、読み手、載せる中身、公開の時期を書いた企画。 }
+  kind: document
+  fromOutside: false
+
+- id: content-draft
+  label: { ja: コンテンツの原稿, en: Content draft }
+  description: { ja: 記事、ページ、資料などの原稿と、使う画像や素材。 }
+  kind: document
+  fromOutside: false
+
+- id: rights-check-record
+  label: { ja: 他人の著作物と商標の確認の記録, en: Third-party rights check record }
+  description: { ja: 原稿に使った他人の文章や画像、他社の商標について、引用の範囲か、許可を取るかを確かめた記録。 }
+  kind: document
+  fromOutside: false
+
+- id: content-legal-review
+  label: { ja: コンテンツへの法務の意見, en: Legal review of content }
+  description: { ja: 表示の内容や他人の権利について、法務の担当が確かめた意見。 }
+  kind: document
+  fromOutside: false
+
+- id: approved-content
+  label: { ja: 公開を承認したコンテンツ, en: Approved content }
+  description: { ja: 責任者が公開してよいと認めたコンテンツ。 }
+  kind: document
+  fromOutside: false
+
+- id: published-content
+  label: { ja: 公開したコンテンツ, en: Published content }
+  description: { ja: Webサイトなどで公開したコンテンツ。 }
+  kind: document
+  fromOutside: false
+  recipient: prospect
+
+- id: content-catalog
+  label: { ja: 公開したコンテンツの一覧, en: Published content catalog }
+  description: { ja: 公開した日、場所、担当、確認の記録の置き場所を並べた一覧。 }
+  kind: data
+  fromOutside: false
+
+- id: lead-source-information
+  label: { ja: 展示会・セミナー・Webでの見込み客の情報, en: Lead source information }
+  description: { ja: 展示会やセミナーで受け取った名刺、Webの問い合わせや資料請求の内容。 }
+  kind: message
+  fromOutside: true
+  sender: prospect
+
+- id: lead-list-entry
+  label: { ja: 見込み客の情報の記録, en: Lead list entry }
+  description: { ja: 名前、会社、連絡先、接点になった場所と日を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: purpose-notice
+  label: { ja: 利用目的の知らせ, en: Purpose notice }
+  description: { ja: 取得した個人情報の利用目的を、本人に知らせる連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: prospect
+
+- id: consent-check-result
+  label: { ja: 配信への同意の確認の結果, en: Consent check result }
+  description: { ja: 広告や宣伝のメールを受け取ることへの同意があるか、いつ、どの方法で得たかを確かめた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: qualified-lead
+  label: { ja: 見込みの度合いを判定した見込み客, en: Qualified lead }
+  description: { ja: 関心の強さや、営業が会う価値の高さを判定した見込み客の情報。 }
+  kind: data
+  fromOutside: false
+
+- id: handover-decision
+  label: { ja: 営業へ渡すかの決定, en: Lead handover decision }
+  description: { ja: 見込み客を営業へ渡すか、もう少し育てるかの決定。 }
+  kind: data
+  fromOutside: false
+
+- id: marketing-lead
+  label: { ja: マーケティングからの見込み客の情報, en: Marketing-sourced lead }
+  description: { ja: 営業へ引き渡す、見込み客の情報。接点になった経緯、判定の結果、同意の状況、利用目的の知らせの有無を含む。営業の担当が受け取り、見込み客の記録にする。 }
+  kind: data
+  fromOutside: false
+
+- id: consent-record
+  label: { ja: 配信への同意の記録, en: Consent record }
+  description: { ja: メールの宛先ごとに、送るように求められた日や同意を得た日と方法を残した記録。 }
+  kind: data
+  fromOutside: false
+
+- id: unsubscribe-list
+  label: { ja: 配信停止を求めた宛先の一覧, en: Unsubscribe list }
+  description: { ja: メールを送らないよう求めた宛先の一覧。 }
+  kind: data
+  fromOutside: false
+
+- id: recipient-list
+  label: { ja: 配信先の一覧, en: Recipient list }
+  description: { ja: 今回のメールを送る宛先の一覧。同意の記録があり、配信停止を求めていない宛先だけを入れる。 }
+  kind: data
+  fromOutside: false
+
+- id: email-draft
+  label: { ja: メールの案, en: Email draft }
+  description: { ja: 件名、本文、送信者の名称、配信停止の連絡先を入れたメールの案。 }
+  kind: message
+  fromOutside: false
+
+- id: approved-email
+  label: { ja: 承認されたメール, en: Approved email }
+  description: { ja: 責任者が配信してよいと認めたメール。 }
+  kind: message
+  fromOutside: false
+
+- id: sent-email
+  label: { ja: 配信したメール, en: Sent email }
+  description: { ja: 見込み客や顧客に配信したメール。 }
+  kind: message
+  fromOutside: false
+  recipient: prospect
+
+- id: opt-out-request
+  label: { ja: 配信停止の求め, en: Opt-out request }
+  description: { ja: メールを送らないでほしいという、相手からの連絡。 }
+  kind: message
+  fromOutside: true
+  sender: prospect
+
+- id: email-results
+  label: { ja: メールの配信の結果, en: Email results }
+  description: { ja: 配信した数、開かれた数、クリックされた数、配信停止の数を記録したもの。 }
+  kind: data
+  fromOutside: false
+
+- id: event-plan
+  label: { ja: 展示会・セミナーの企画, en: Event plan }
+  description: { ja: 目的、対象の相手、日時、場所、内容、費用を書いた企画。 }
+  kind: document
+  fromOutside: false
+
+- id: approved-event-plan
+  label: { ja: 承認された展示会・セミナーの企画, en: Approved event plan }
+  description: { ja: 責任者が実施してよいと認めた企画。 }
+  kind: document
+  fromOutside: false
+
+- id: event-application
+  label: { ja: 展示会・セミナーの申し込み, en: Event application }
+  description: { ja: 展示会やセミナーへの参加を申し込む、相手からの連絡。 }
+  kind: form
+  fromOutside: true
+  sender: prospect
+
+- id: attendee-list
+  label: { ja: 参加者の一覧, en: Attendee list }
+  description: { ja: 申し込みを受け付けた参加者の名前、会社、連絡先。 }
+  kind: data
+  fromOutside: false
+
+- id: event-guidance
+  label: { ja: 参加の案内, en: Event guidance }
+  description: { ja: 日時、場所、当日の流れを知らせる、申込者への連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: prospect
+
+- id: event-onsite-record
+  label: { ja: 当日の運営の記録, en: Event onsite record }
+  description: { ja: 当日の受付、名刺の回収、来場の状況を書いた記録。 }
+  kind: document
+  fromOutside: false
+
+- id: visitor-record
+  label: { ja: 来場者の情報の記録, en: Visitor record }
+  description: { ja: 来場した人の名前、会社、連絡先、話した内容を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: partner-sharing-decision
+  label: { ja: 共催先などに渡すかの決定, en: Partner sharing decision }
+  description: { ja: 来場者の情報を共催先などの社外に渡すか、渡すなら本人の同意をどう得るかの決定。 }
+  kind: data
+  fromOutside: false
+
+- id: thank-you-message
+  label: { ja: 来場のお礼, en: Thank-you message }
+  description: { ja: 来場者へ送る、お礼と資料の連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: prospect
+
+- id: event-report
+  label: { ja: 展示会・セミナーの結果, en: Event report }
+  description: { ja: 参加者数、来場者数、見込み客の数、費用を書いた結果のまとめ。 }
+  kind: document
+  fromOutside: false

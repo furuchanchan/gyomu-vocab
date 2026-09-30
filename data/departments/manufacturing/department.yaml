@@ -1,0 +1,13 @@
+id: manufacturing
+order: 9
+label: { ja: 製造, en: Manufacturing }
+description:
+  ja: 需要と受注をもとに生産の計画を立て、材料を手配して製品を作り、検査して不良を処置し、設備を点検して保つとともに、働く人の安全を守る、工場の部署。
+  en: The plant department that plans production from demand and orders, arranges materials and makes products, inspects them and handles defects, inspects and maintains equipment, and keeps workers safe.
+pcf: ["10217"]
+workflows:
+  - production-planning
+  - production-execution
+  - quality-control
+  - equipment-maintenance
+  - workplace-safety

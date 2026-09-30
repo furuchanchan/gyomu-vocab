@@ -1,0 +1,136 @@
+id: event-management
+label: { ja: 展示会やセミナーの運営, en: Exhibition and seminar management }
+description:
+  ja: 展示会やセミナーを企画し、申し込みを受け付け、当日を運営して、来場者の情報を記録し、お礼と後追いをするまでの流れ。
+  en: From planning an exhibition or seminar and receiving applications to running it, recording visitor information and following up.
+frequency: on-demand
+timing: { ja: 展示会やセミナーを開くたびに。 }
+pcf: ["10169"]
+regulations: [personal-information-protection, personal-data-handling, specified-email]
+stages:
+  - id: planning
+    label: { ja: 企画, en: Planning }
+    steps:
+      - id: plan-event
+        label: { ja: 展示会・セミナーを企画する, en: Plan the event }
+        description: { ja: 施策の日程をもとに、目的、対象の相手、日時、場所、内容、費用を決める。 }
+        performedBy: marketing-staff
+        receives: [campaign-schedule]
+        produces: [event-plan]
+        requiresJudgment: true
+        judgment: { ja: 狙う相手に届く内容、日時、場所か。費用に見合うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage, spreadsheet]
+
+      - id: approve-event
+        label: { ja: 企画を承認する, en: Approve the event plan }
+        description: { ja: 企画と費用を見て、実施してよいかを決める。 }
+        performedBy: marketing-manager
+        receives: [event-plan]
+        produces: [approved-event-plan]
+        requiresJudgment: true
+        judgment: { ja: この企画に、この費用をかけてよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+
+  - id: registration
+    label: { ja: 申し込み, en: Registration }
+    steps:
+      - id: receive-applications
+        label: { ja: 申し込みを受け付ける, en: Receive applications }
+        description: { ja: 申し込みの内容を、参加者の一覧に登録する。 }
+        performedBy: marketing-staff
+        receives: [event-application, approved-event-plan]
+        produces: [attendee-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [personal-information-protection]
+
+      - id: send-guidance
+        label: { ja: 参加の案内を送る, en: Send guidance to attendees }
+        description: { ja: 日時、場所、当日の流れを申込者に知らせる。 }
+        performedBy: marketing-staff
+        receives: [attendee-list, approved-event-plan]
+        produces: [event-guidance]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+
+  - id: operation
+    label: { ja: 当日と来場者の記録, en: Event day and visitor records }
+    steps:
+      - id: run-event
+        label: { ja: 当日を運営する, en: Run the event }
+        description: { ja: 会場で受付をし、参加者に対応し、名刺を受け取る。 }
+        performedBy: marketing-staff
+        receives: [approved-event-plan, attendee-list]
+        produces: [event-onsite-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 会場で参加者と直接会って行う、現物と対面の作業のため。 }
+        toolKinds: [document-storage]
+
+      - id: record-visitors
+        label: { ja: 来場者の情報を記録する, en: Record visitor information }
+        description: { ja: 受付の記録と名刺から、来場者の名前、会社、連絡先、話した内容を記録する。 }
+        performedBy: marketing-staff
+        receives: [event-onsite-record]
+        produces: [visitor-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, spreadsheet]
+        regulations: [personal-data-handling]
+
+      - id: decide-partner-sharing
+        label: { ja: 共催先などに渡すかを決める, en: Decide on sharing with partners }
+        description: { ja: 共催先などの社外へ来場者の情報を渡す場合に、本人の同意を得られているか、第三者に当たらない場合かを確かめて、渡すかを決める。 }
+        performedBy: marketing-staff
+        confirmedBy: marketing-manager
+        receives: [visitor-record]
+        produces: [partner-sharing-decision]
+        requiresJudgment: true
+        judgment: { ja: 本人の同意があるか。委託や共同利用など、第三者に当たらない場合か。同意がなければ渡さない。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [personal-data-handling]
+
+
+  - id: follow-up
+    label: { ja: お礼と後追い, en: Thank-you and follow-up }
+    pcf: ["10170"]
+    steps:
+      - id: send-thanks
+        label: { ja: お礼と資料を送る, en: Send thanks and materials }
+        description: { ja: 来場者に、お礼と資料を送る。 }
+        performedBy: marketing-staff
+        receives: [visitor-record, consent-record]
+        produces: [thank-you-message]
+        requiresJudgment: true
+        judgment: { ja: 広告や宣伝を含むお礼を送ってよい相手か。同意の記録があるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, marketing-automation]
+        regulations: [specified-email]
+
+      - id: report-event
+        label: { ja: 結果をまとめる, en: Report the results }
+        description: { ja: 参加者数、来場者数、見込み客の数、費用をまとめる。 }
+        performedBy: marketing-staff
+        receives: [visitor-record, event-onsite-record]
+        produces: [event-report]
+        doneWhen: { ja: 参加者数、来場者数、見込み客の数、費用が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+

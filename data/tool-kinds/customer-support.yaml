@@ -1,0 +1,7 @@
+- id: support-desk
+  label: { ja: 問い合わせ管理のシステム, en: Support desk system }
+  description: { ja: メールや電話などで届いた問い合わせと苦情を、1件ずつ記録して、対応の状況を管理するシステム。 }
+
+- id: knowledge-base
+  label: { ja: よくある質問と手順書の置き場, en: Knowledge base }
+  description: { ja: 顧客向けのよくある質問と、社内向けの対応の手順書を載せて、探せるようにした場所。 }

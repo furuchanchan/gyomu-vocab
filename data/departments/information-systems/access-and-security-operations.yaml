@@ -1,0 +1,165 @@
+id: access-and-security-operations
+label: { ja: 権限とセキュリティの運用, en: Access and security operations }
+description:
+  ja: 権限の申請を承認して付け、定期に棚卸をして不要な権限を外し、脆弱性の情報を確かめて更新を適用し、パスワードと多要素認証の決まりを運用するまでの流れ。
+  en: From approving and granting permissions, through periodic reviews that remove unneeded ones, checking vulnerability information and applying updates, to operating password and multi-factor authentication rules.
+frequency: quarterly
+timing: { ja: 権限の申請は随時。棚卸は会社の決めた周期（四半期ごとなど）で行う。脆弱性の情報は、届くたびに。 }
+pcf: ["20721"]
+regulations: [personal-data-security, unauthorized-access-prevention, cybersecurity-effort]
+stages:
+  - id: permission-requests
+    label: { ja: 権限の申請と承認, en: Permission requests and approval }
+    pcf: ["20759"]
+    steps:
+      - id: request-permission
+        label: { ja: 権限を申請する, en: Request a permission }
+        description: { ja: 使いたいシステムやデータと、その理由を書いて、権限を申請する。 }
+        performedBy: employee
+        produces: [permission-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-permission
+        label: { ja: 権限の申請を承認する, en: Approve the permission request }
+        description: { ja: 業務に必要な範囲かを確かめて承認する。 }
+        performedBy: department-manager
+        receives: [permission-request]
+        produces: [approved-permission-request]
+        requiresJudgment: true
+        judgment: { ja: その権限が、申請した人の職務に必要な最小の範囲か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: grant-permission
+        label: { ja: 権限を付ける, en: Grant the permission }
+        description: { ja: 承認された申請のとおりに権限を付け、記録に残す。 }
+        performedBy: it-staff
+        receives: [approved-permission-request]
+        produces: [permission-grant-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [personal-data-security]
+
+  - id: review
+    label: { ja: 権限の定期の棚卸, en: Periodic permission review }
+    pcf: ["20761"]
+    steps:
+      - id: extract-permission-list
+        label: { ja: 権限の一覧を出す, en: Extract the permission list }
+        description: { ja: システムごとに、誰にどの権限が付いているかを一覧にし、人事の従業員の記録と照らして、在籍していない人が残っていないかを見る。 }
+        performedBy: it-staff
+        receives: [permission-grant-record, employee-record]
+        produces: [permission-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management, spreadsheet]
+
+      - id: review-permissions
+        label: { ja: 権限が今も必要かを確かめる, en: Review whether each permission is still needed }
+        description: { ja: 部下の権限を一つずつ見て、今の職務に必要かを確かめ、残すか外すかを決める。 }
+        performedBy: department-manager
+        receives: [permission-list]
+        produces: [permission-review-result]
+        requiresJudgment: true
+        judgment: { ja: その権限は今の職務に必要か。外して業務に支障が出ないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [personal-data-security]
+
+      - id: remove-unneeded-permissions
+        label: { ja: 不要な権限を外す, en: Remove unneeded permissions }
+        description: { ja: 棚卸の結果のとおりに権限を外し、記録に残す。 }
+        performedBy: it-staff
+        receives: [permission-review-result]
+        produces: [permission-removal-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+
+  - id: vulnerability
+    label: { ja: 脆弱性の情報の確認と対応, en: Vulnerability handling }
+    steps:
+      - id: check-vulnerability-info
+        label: { ja: 脆弱性の情報を確かめる, en: Check vulnerability information }
+        description: { ja: 製品の提供元や公的な機関から届いた情報を読み、自社で使っている製品が対象かを確かめ、影響を受けるシステムを一覧にする。 }
+        performedBy: it-staff
+        receives: [vulnerability-advisory]
+        produces: [affected-systems-list]
+        requiresJudgment: true
+        judgment: { ja: 自社の使っている製品と版が対象か。悪用された場合の影響と緊急度はどれくらいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: apply-security-update
+        label: { ja: セキュリティの更新を適用する, en: Apply the security update }
+        description: { ja: 影響の大きさに応じて更新の日時を決め、更新を適用して、業務に支障がないことを確かめ、記録に残す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [affected-systems-list]
+        produces: [update-record]
+        requiresJudgment: true
+        judgment: { ja: 業務への影響を考えて、いつ、どの順に適用するか。すぐに適用できないときの暫定の対策は何か。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [unauthorized-access-prevention, cybersecurity-effort]
+
+  - id: authentication
+    label: { ja: パスワードと多要素認証の運用, en: Password and MFA operations }
+    pcf: ["20760"]
+    steps:
+      - id: set-authentication-rules
+        label: { ja: パスワードと多要素認証の決まりを決める, en: Set the authentication rules }
+        description: { ja: パスワードの条件と、多要素認証を求めるシステムや人の範囲を決める。 }
+        performedBy: it-manager
+        confirmedBy: executive
+        produces: [authentication-rules]
+        requiresJudgment: true
+        judgment: { ja: パスワードの条件と多要素認証を求める範囲を、使いやすさと守る対象の重さの釣り合いでどう決めるか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [unauthorized-access-prevention, personal-data-security]
+
+      - id: check-mfa-enrollment
+        label: { ja: 多要素認証の登録の状況を確かめる, en: Check MFA enrollment }
+        description: { ja: 決まりの範囲の人が、多要素認証を登録しているかを確かめ、未登録の人には登録を求める。 }
+        performedBy: it-staff
+        receives: [authentication-rules, employee-record]
+        produces: [mfa-status-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [unauthorized-access-prevention]
+
+      - id: request-credential-reset
+        label: { ja: 認証情報の再設定を依頼する, en: Request a credential reset }
+        description: { ja: パスワードを忘れた、多要素認証の端末をなくした、というときに、情報システムに再設定を依頼する。 }
+        performedBy: employee
+        produces: [credential-reset-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: reset-credentials
+        label: { ja: 本人であることを確かめて再設定する, en: Verify the requester and reset credentials }
+        description: { ja: 依頼した人が本人であることを確かめ、認証情報を再設定して、記録に残す。 }
+        performedBy: it-staff
+        receives: [credential-reset-request, authentication-rules]
+        produces: [credential-reset-record]
+        requiresJudgment: true
+        judgment: { ja: 依頼した人が本人だと言えるか。なりすましのおそれはないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [unauthorized-access-prevention]

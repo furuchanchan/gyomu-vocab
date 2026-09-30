@@ -1,0 +1,13 @@
+id: procurement
+order: 8
+label: { ja: 購買・調達, en: Procurement }
+description:
+  ja: 物の購入と業務の委託（外注）を、取引先の選定から、発注、受け入れ、契約の管理まで行う部署。
+  en: The department that buys goods and outsources work, from selecting vendors to ordering, receiving and managing contracts.
+pcf: ["10216"]
+workflows:
+  - purchase-request-to-order
+  - vendor-onboarding
+  - outsourcing-management
+  - receiving-and-inspection
+  - contract-renewal

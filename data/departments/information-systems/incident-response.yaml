@@ -1,0 +1,171 @@
+id: incident-response
+label: { ja: 障害とセキュリティ事故の対応, en: Incident response }
+description:
+  ja: 障害や不審な動きを見つけて受け付け、影響を見極めて暫定の対処をし、個人データの漏えい等のときは報告と本人への通知をして、復旧し、原因と再発防止を記録するまでの流れ。
+  en: From detecting and receiving an incident, assessing impact and containing it, reporting and notifying data subjects in case of a personal data breach, to recovery and recording the cause and prevention.
+frequency: on-demand
+timing: { ja: 障害や不審な動きに気づいたとき。個人データの漏えい等の報告は、その事態を知った後速やかに。 }
+pcf: ["20749"]
+regulations: [personal-data-security, data-breach-reporting, cybersecurity-effort]
+stages:
+  - id: intake
+    label: { ja: 検知と受け付け, en: Detection and intake }
+    steps:
+      - id: report-incident
+        label: { ja: 障害や不審な動きを連絡する, en: Report an incident }
+        description: { ja: システムの不調、不審なメール、誤送信、端末の紛失などに気づいたら、すぐに情報システムに連絡する。 }
+        performedBy: employee
+        produces: [incident-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: detect-anomaly
+        label: { ja: 監視の通知を確かめる, en: Check monitoring alerts }
+        description: { ja: 監視の通知やログを見て、不審な動きや障害の兆しがないかを確かめ、あれば通知として残す。 }
+        performedBy: it-staff
+        produces: [monitoring-alert]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [monitoring-system]
+
+      - id: triage-incident
+        label: { ja: 事故を受け付けて緊急度を判断する, en: Triage the incident }
+        description: { ja: 連絡と通知をもとに、障害かセキュリティ事故か、個人データが関わるおそれがあるか、緊急度はどれかを判断する。 }
+        performedBy: it-staff
+        receives: [incident-notice, monitoring-alert]
+        produces: [incident-assessment]
+        requiresJudgment: true
+        judgment: { ja: 障害かセキュリティ事故か。個人データが関わるおそれがあるか。すぐに対処が要るか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: containment
+    label: { ja: 影響の見極めと暫定の対処, en: Impact assessment and containment }
+    pcf: ["20762"]
+    steps:
+      - id: assess-impact
+        label: { ja: 影響を見極める, en: Assess the impact }
+        description: { ja: 影響を受けたシステム、個人データの項目、本人の数、原因の見当をまとめる。個人データの漏えい等のおそれがあれば、報告の対象になる事態に当たるかを見る。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [incident-assessment]
+        produces: [impact-assessment]
+        requiresJudgment: true
+        judgment: { ja: 個人データの漏えい等が起きた、またはおそれがあるか。要配慮個人情報、財産的被害のおそれ、不正の目的、本人1,000人超のどれかに当たるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [monitoring-system]
+        regulations: [data-breach-reporting, personal-data-security]
+
+      - id: contain-incident
+        label: { ja: 暫定の対処をする, en: Contain the incident }
+        description: { ja: 被害が広がらないように、ネットワークからの切り離し、アカウントの停止、パスワードの変更などをして、記録に残す。 }
+        performedBy: it-staff
+        receives: [impact-assessment]
+        produces: [containment-record]
+        requiresJudgment: true
+        judgment: { ja: 業務への影響と被害の広がりを見比べて、何を止め、何を残すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management, monitoring-system]
+
+  - id: notification
+    label: { ja: 関係者への連絡と報告, en: Notification and reporting }
+    steps:
+      - id: inform-internal
+        label: { ja: 社内に知らせる, en: Inform the company }
+        description: { ja: 影響を受ける部署と経営者に、起きたこと、影響、暫定の対処、今後の見通しを知らせる。 }
+        performedBy: it-manager
+        receives: [impact-assessment, containment-record]
+        produces: [internal-incident-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: decide-reporting
+        label: { ja: 報告と本人への通知の要否を決める, en: Decide on reporting and notification }
+        description: { ja: 影響の見極めの結果から、個人情報保護委員会への報告、本人への通知、公表をするかを決める。 }
+        performedBy: executive
+        receives: [impact-assessment, internal-incident-notice]
+        produces: [reporting-decision]
+        requiresJudgment: true
+        judgment: { ja: 報告の対象になる事態に当たるか。本人への通知をするか、通知が困難なとき代わりの措置は何か。公表をするか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [data-breach-reporting]
+
+      - id: report-to-commission
+        label: { ja: 個人情報保護委員会に報告する, en: Report to the Personal Information Protection Commission }
+        description: { ja: 事態を知った後、速やかに、把握している事項を報告する。その後、事態を知った日から30日以内（不正の目的をもって行われたおそれがある行為による事態は60日以内）に、全ての事項を報告する。 }
+        performedBy: it-manager
+        confirmedBy: executive
+        receives: [reporting-decision, impact-assessment]
+        produces: [ppc-breach-report]
+        doneWhen: { ja: 事態を知った後速やかに報告し、事態を知った日から30日以内（不正の目的をもって行われたおそれがある行為による事態は60日以内）に、全ての事項を報告している。 }
+        requiresJudgment: true
+        judgment: { ja: 報告の時点で把握している事項をどこまで書くか。原因と再発防止の措置をどう書くか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [data-breach-reporting]
+
+      - id: notify-data-subjects
+        label: { ja: 本人に通知する, en: Notify the persons concerned }
+        description: { ja: 影響を受けた本人に、起きたこと、個人データの項目、原因、二次被害を防ぐための案内を通知する。 }
+        performedBy: it-manager
+        confirmedBy: executive
+        receives: [reporting-decision, impact-assessment]
+        produces: [breach-notice-to-persons]
+        requiresJudgment: true
+        judgment: { ja: 状況に応じて、いつ、どの方法で、どこまでを通知するか。通知が困難なとき、代わりの措置は何か。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [data-breach-reporting]
+
+  - id: recovery
+    label: { ja: 復旧と再発防止, en: Recovery and prevention }
+    pcf: ["20928"]
+    steps:
+      - id: restore-service
+        label: { ja: システムを復旧する, en: Restore the service }
+        description: { ja: 原因を取り除いたうえで、システムとデータを元に戻し、動作と安全を確かめて、復旧の記録を残す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [containment-record]
+        produces: [recovery-record]
+        requiresJudgment: true
+        judgment: { ja: 原因が取り除かれ、再び動かしてよい状態か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [backup-system, monitoring-system]
+
+      - id: record-incident
+        label: { ja: 原因と経過を記録する, en: Record the cause and course of events }
+        description: { ja: 経過、原因、対応、報告と通知の内容を記録に残す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [impact-assessment, recovery-record]
+        produces: [incident-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [data-breach-reporting]
+
+      - id: plan-prevention
+        label: { ja: 再発を防ぐ計画を立てる, en: Plan the prevention of recurrence }
+        description: { ja: 記録された原因から、再発を防ぐ措置と、その期限、担当を決める。個人データの安全管理の措置も見直す。 }
+        performedBy: it-manager
+        confirmedBy: executive
+        receives: [incident-record]
+        produces: [prevention-plan]
+        requiresJudgment: true
+        judgment: { ja: どの措置を、どの費用と順序で実施するか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [personal-data-security, cybersecurity-effort]

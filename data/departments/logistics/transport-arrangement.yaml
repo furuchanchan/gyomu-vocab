@@ -1,0 +1,174 @@
+id: transport-arrangement
+label: { ja: 運送の手配と運送会社の管理, en: Transport arrangement and carrier management }
+description:
+  ja: 運送会社の見積を集めて選び、運賃と条件を取り決めて契約し、集荷を頼み、荷待ちや荷役の時間の短縮に取り組み、運送会社からの運賃の請求を確かめて支払を申請するまでの流れ。
+  en: From collecting quotes and selecting a carrier, agreeing rates and terms and concluding the contract, through requesting pickups and working to shorten waiting and handling times, to checking the carrier's invoice and requesting payment.
+frequency: on-demand
+timing: { ja: 運送会社の選定と契約は、新しく頼むときと見直すときに。集荷の依頼は出荷ごとに。運賃の確認は、請求が届くたびに。 }
+pcf: ["10347"]
+regulations: [truck-transport-contract-document, shipper-consideration-truck, specified-transport-subcontract, subcontract-payment, shipper-logistics-efficiency, specified-shipper-duty]
+stages:
+  - id: carrier-selection
+    label: { ja: 運送会社の選定と契約, en: Carrier selection and contract }
+    steps:
+      - id: request-carrier-quote
+        label: { ja: 運送会社に見積を頼む, en: Request quotes from carriers }
+        description: { ja: 出荷の実績から、届け先の地域、荷物の大きさ、個数、出荷の頻度をまとめて、運送会社に見積を頼む。 }
+        performedBy: logistics-clerk
+        receives: [shipment-record]
+        produces: [carrier-quote-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, spreadsheet]
+
+      - id: compare-carriers
+        label: { ja: 運送会社を比べて選ぶ, en: Compare and select a carrier }
+        description: { ja: 届いた見積を、運賃、届けにかかる日数、荷物の扱いの丁寧さ、荷待ちや荷役の時間の扱いで比べ、頼む運送会社を選ぶ。 }
+        performedBy: logistics-manager
+        receives: [carrier-quote, shipment-record]
+        produces: [carrier-selection]
+        requiresJudgment: true
+        judgment: { ja: 運賃の安さと、届ける品質、荷待ちや荷役の扱いの、どれを重く見るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: agree-carrier-terms
+        label: { ja: 運賃と条件を運送会社と取り決める, en: Agree rates and terms with the carrier }
+        description: { ja: 運賃、運送の内容、集荷の時刻、荷待ちの時間の扱い、荷役や付帯の作業を誰がするか、支払の期日を、運送会社と話し合って決める。 }
+        performedBy: logistics-manager
+        receives: [carrier-selection]
+        produces: [agreed-carrier-terms]
+        requiresJudgment: true
+        judgment: { ja: 運賃と、荷待ちや荷役の時間、付帯の作業の分担を、どこまで受けるか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 相手との合意そのものであり、対話で条件を決めるため。 }
+        toolKinds: [email, web-meeting]
+        regulations: [shipper-consideration-truck]
+
+      - id: conclude-carrier-contract
+        label: { ja: 運送の契約を結ぶ, en: Conclude the transport contract }
+        description: { ja: 取り決めた運送の内容と対価を書いた書面を、運送会社と相互に交わす。書面のかわりに、相手の承諾を得て電子のデータで示すこともできる。委託する荷物の内容、代金の額、支払期日、支払方法もこの書面に書く。 }
+        performedBy: logistics-manager
+        confirmedBy: executive
+        receives: [agreed-carrier-terms]
+        produces: [carrier-agreement]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 契約という、相手との合意そのものであり、書面を相互に交わすため。 }
+        toolKinds: [e-contract-service, document-storage]
+        regulations: [truck-transport-contract-document, specified-transport-subcontract]
+
+  - id: pickup-request
+    label: { ja: 運送の依頼, en: Transport request }
+    steps:
+      - id: request-pickup
+        label: { ja: 運送会社に集荷を頼む, en: Request a pickup from the carrier }
+        description: { ja: 出荷の予定に合わせて、運送会社に、集荷の日と時刻、荷物の個数、届け先の地域を伝えて集荷を頼む。 }
+        performedBy: logistics-clerk
+        receives: [shipping-order, carrier-agreement]
+        produces: [pickup-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, warehouse-system]
+        regulations: [specified-transport-subcontract]
+
+  - id: shipper-efforts
+    label: { ja: 荷主としての取り組み, en: Shipper efforts }
+    steps:
+      - id: summarize-wait-and-handling-time
+        label: { ja: 荷待ちと荷役の時間をまとめる, en: Summarize waiting and handling times }
+        description: { ja: 出荷と入荷のたびに記録した、運転者の荷待ちと荷役の時間を、運送会社ごと、場所ごとにまとめる。 }
+        performedBy: logistics-clerk
+        receives: [driver-wait-record]
+        produces: [wait-time-summary]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [shipper-logistics-efficiency]
+
+      - id: plan-time-reduction
+        label: { ja: 荷待ちと荷役の時間の短縮を計画する, en: Plan the reduction of waiting and handling times }
+        description: { ja: まとめの結果から、時間のかかる場所や時間帯を見つけ、受渡しの時間帯を分ける、パレットを使う、荷の量をまとめて積むなど、短くする手を決める。運送会社と話し合う。 }
+        performedBy: logistics-manager
+        receives: [wait-time-summary, shipment-record]
+        produces: [logistics-improvement-plan]
+        requiresJudgment: true
+        judgment: { ja: どの場所と時間帯の、どの手から取り組むか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [shipper-logistics-efficiency]
+
+      - id: total-annual-freight-weight
+        label: { ja: 年度の貨物の重量を集計し、指定の対象かを確かめる, en: Total the annual freight weight and check for designation }
+        description: { ja: 運送会社に運ばせた貨物の重量を年度ごとに集計し、特定荷主の指定を受ける重量に達しているか、すでに指定を受けているかを確かめる。 }
+        performedBy: logistics-clerk
+        receives: [shipment-record]
+        produces: [annual-freight-weight]
+        requiresJudgment: true
+        judgment: { ja: 決められた算定の方法で集計した重量が、基準の重量以上か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [specified-shipper-duty]
+
+      - id: submit-shipper-plan-and-report
+        label: { ja: 特定荷主の中長期の計画と定期の報告を出す, en: Submit the medium- to long-term plan and periodic report }
+        description: { ja: 特定荷主の指定を受けたときに、物流統括管理者として選任した人が、中長期の計画と、毎年度の取り組みの報告を作り、所管の省庁に出す。指定を受けていなければ、この工程は行わない。 }
+        performedBy: logistics-manager
+        confirmedBy: executive
+        receives: [annual-freight-weight, wait-time-summary, logistics-improvement-plan]
+        produces: [shipper-plan-and-report]
+        requiresJudgment: true
+        judgment: { ja: 計画に、どの取り組みを、どこまで盛り込むか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 特定荷主は、法律により、計画の作成などを統括管理する物流統括管理者を選任する必要があり、その人が行うため。 }
+        toolKinds: [e-filing, document-storage]
+        regulations: [specified-shipper-duty]
+
+  - id: freight-invoice
+    label: { ja: 運賃の請求の確認, en: Freight invoice check }
+    pcf: ["10363"]
+    steps:
+      - id: check-carrier-invoice
+        label: { ja: 運賃の請求を確かめる, en: Check the carrier's invoice }
+        description: { ja: 運送会社から届いた請求書を、取り決めた運賃、出荷の記録、追加の料金の有無に照らして確かめる。 }
+        performedBy: logistics-clerk
+        receives: [carrier-invoice, shipment-record, carrier-agreement]
+        produces: [checked-carrier-invoice]
+        requiresJudgment: true
+        judgment: { ja: 取り決めにない追加の料金や、出荷の記録と合わない件数を、どう扱うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet, warehouse-system]
+
+      - id: request-freight-payment
+        label: { ja: 運賃の支払を申請する, en: Request payment of the freight charge }
+        description: { ja: 確かめた請求を、経理に払ってもらうための支払の申請にまとめる。支払の期日は、運送を受けた日から60日以内になるようにする。 }
+        performedBy: logistics-clerk
+        receives: [checked-carrier-invoice]
+        produces: [payment-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+        regulations: [subcontract-payment]
+
+      - id: store-transport-records
+        label: { ja: 運送の書類を保存する, en: Store the transport records }
+        description: { ja: 運送の契約の書面、確かめた請求、出荷の記録を、運送の給付を受けたことや代金の支払が分かる記録として、探し出せる形で保存する。 }
+        performedBy: logistics-clerk
+        receives: [carrier-agreement, checked-carrier-invoice, shipment-record]
+        produces: [stored-transport-records]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [specified-transport-subcontract]

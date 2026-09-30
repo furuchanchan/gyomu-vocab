@@ -1,0 +1,16 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、情報システムで参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "20607", hierarchy: "8.0", name: "Manage Information Technology (IT)" }
+- { id: "20756", hierarchy: "8.3.8", name: "Manage IT user identity and authorization" }
+- { id: "20759", hierarchy: "8.3.8.3", name: "Manage IT user authorization" }
+- { id: "20914", hierarchy: "8.7.7", name: "Manage infrastructure resource administration" }
+- { id: "20918", hierarchy: "8.7.7.4", name: "Maintain IT asset records" }
+- { id: "20721", hierarchy: "8.3.3", name: "Control IT risk, compliance, and security" }
+- { id: "20761", hierarchy: "8.3.8.5", name: "Audit IT user identity and authorization systems" }
+- { id: "20760", hierarchy: "8.3.8.4", name: "Manage IT user authentication mechanisms" }
+- { id: "20749", hierarchy: "8.3.7", name: "Develop and execute IT resilience and continuity operations" }
+- { id: "20762", hierarchy: "8.3.8.6", name: "Respond to IT information security and network breaches" }
+- { id: "20840", hierarchy: "8.6.3", name: "Manage change deployment control" }
+- { id: "20858", hierarchy: "8.6.5", name: "Perform service and solution rollout" }
+- { id: "20731", hierarchy: "8.3.4", name: "Plan and manage IT continuity" }
+- { id: "20928", hierarchy: "8.7.8.6", name: "Execute IT continuity and recovery action" }

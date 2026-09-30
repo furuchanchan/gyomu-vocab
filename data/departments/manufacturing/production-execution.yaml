@@ -1,0 +1,111 @@
+id: production-execution
+label: { ja: 製造の指示と実行, en: Production instruction and execution }
+description:
+  ja: 承認された計画から製造の指示を出し、材料を払い出し、製品を作り、作業を記録し、異常があれば止めて報告し、完成を報告するまでの流れ。
+  en: From issuing work orders from the approved plan to releasing materials, making the product, recording the work, stopping and reporting abnormalities, and reporting completion.
+frequency: daily
+timing: { ja: 毎日。製造の指示は、計画の日程に合わせて出す。 }
+pcf: ["10304"]
+stages:
+  - id: instruction
+    label: { ja: 作業の指示, en: Work instruction }
+    steps:
+      - id: issue-work-order
+        label: { ja: 製造の指示を出す, en: Issue the work order }
+        description: { ja: 承認された計画か変更後の計画から、製品、数量、日程、使う設備と材料を書いた製造の指示を作って現場に出す。 }
+        performedBy: production-planner
+        receives: [approved-production-plan, revised-production-plan]
+        produces: [work-order]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system]
+
+      - id: prepare-line
+        label: { ja: 段取りをして始める前の確認をする, en: Set up the line and check before starting }
+        description: { ja: 型や工具を取り付け、設備を動かせる状態にして、始める前の確認を済ませる。 }
+        performedBy: production-worker
+        receives: [work-order]
+        produces: [line-setup-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備に型や工具を取り付け、目で見て確かめる作業であるため。 }
+
+  - id: material-release
+    label: { ja: 材料の払い出し, en: Material release }
+    steps:
+      - id: issue-materials
+        label: { ja: 材料を倉庫から払い出す, en: Release materials from the warehouse }
+        description: { ja: 製造の指示に書かれた材料を、種類と数量を確かめて倉庫から出し、現場に運ぶ。払い出した種類と数量を記録する。 }
+        performedBy: production-worker
+        receives: [work-order]
+        produces: [material-issue-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の材料を数え、運ぶ作業であるため。 }
+        toolKinds: [production-management-system]
+
+  - id: manufacturing
+    label: { ja: 製造と記録, en: Manufacturing and recording }
+    steps:
+      - id: manufacture-product
+        label: { ja: 製品を作る, en: Make the product }
+        description: { ja: 製造の指示と作業の手順に従って、材料を加工し、組み立てて、製品をロットごとに作る。 }
+        performedBy: production-worker
+        receives: [work-order, material-issue-record, line-setup-record]
+        produces: [produced-lot]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の材料と設備を扱って製品を作る作業であるため。 }
+
+      - id: record-work
+        label: { ja: 作業の実績を記録する, en: Record the work results }
+        description: { ja: ロットごとに、作った数量、良品と不良の数、使った時間と材料の量を記録する。 }
+        performedBy: production-worker
+        receives: [produced-lot]
+        produces: [work-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system]
+
+      - id: stop-and-report-abnormality
+        label: { ja: 異常があれば止めて報告する, en: Stop and report abnormalities }
+        description: { ja: 設備の音や動き、製品の出来に異常を見つけたら、作業を止めて状況を報告する。 }
+        performedBy: production-worker
+        receives: [work-record]
+        produces: [abnormality-report]
+        requiresJudgment: true
+        judgment: { ja: 異常が、作業を止めて報告するほどのものか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備と製品の状態を、その場で見て判断するため。 }
+
+  - id: completion
+    label: { ja: 完成の報告, en: Completion report }
+    steps:
+      - id: check-work-record
+        label: { ja: 作業の記録を確かめる, en: Check the work record }
+        description: { ja: 作業の記録を、製造の指示の数量と日程に照らし、ずれや欠けを確かめる。 }
+        performedBy: production-manager
+        receives: [work-record]
+        produces: [checked-work-record]
+        requiresJudgment: true
+        judgment: { ja: 実績と指示のずれを、そのまま認めてよいか、理由を確かめ直させるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system]
+
+      - id: report-completion
+        label: { ja: 完成を報告する, en: Report completion }
+        description: { ja: 確かめた実績から、作った数量、良品と不良の数、日程の差を、完成の報告にまとめる。 }
+        performedBy: production-planner
+        receives: [checked-work-record]
+        produces: [completion-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system]

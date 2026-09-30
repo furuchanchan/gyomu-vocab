@@ -1,0 +1,111 @@
+id: contract-management
+label: { ja: 契約書の審査と管理, en: Contract review and management }
+description:
+  ja: 社内から契約書の審査の依頼を受けて、会社に不利な点や法令に合わない点を確かめて意見を返し、締結後の契約書を保管して台帳に登録し、更新の期限を確かめて更新か終了かを決めるまでの流れ。営業が締結した契約書も受け取る。
+  en: From receiving review requests from other departments, reviewing contracts and returning opinions, to filing signed contracts, registering them in a ledger, watching renewal deadlines and deciding on renewal or termination. Contracts signed by sales are also received.
+frequency: on-demand
+timing: { ja: 審査の依頼を受けたときと、契約書を締結したときに。期限の確認は毎月。 }
+pcf: ["10291"]
+regulations: [antisocial-forces-exclusion, stamp-tax, electronic-signature, subcontract-payment, electronic-transaction-data, bookkeeping-retention]
+stages:
+  - id: review
+    label: { ja: 契約書の審査, en: Contract review }
+    pcf: ["11013"]
+    steps:
+      - id: submit-contract-review-request
+        label: { ja: 契約書の審査を依頼する, en: Submit a contract for review }
+        description: { ja: 契約書の案を、取引の内容、金額、期間、相手を書いて、法務に出す。相手から契約書の案が届いているときは、その案を付ける。 }
+        performedBy: employee
+        receives: [received-contract-draft]
+        produces: [contract-review-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+
+      - id: review-contract
+        label: { ja: 契約書を審査する, en: Review the contract }
+        description: { ja: 契約書の案を読み、会社に不利な点、法令に合わない点、抜けている点を確かめ、直し方の意見を返す。 }
+        performedBy: legal-staff
+        confirmedBy: general-affairs-manager
+        receives: [contract-review-request]
+        produces: [contract-review-opinion]
+        requiresJudgment: true
+        judgment: { ja: 会社に不利な点や法令に合わない点があるか。暴力団排除の条項、印紙の要否、電子署名の方法、委託の代金の支払期日などが適切か。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [antisocial-forces-exclusion, stamp-tax, electronic-signature, subcontract-payment]
+
+  - id: custody
+    label: { ja: 締結後の契約書の保管, en: Custody of signed contracts }
+    steps:
+      - id: check-signed-contract
+        label: { ja: 締結した契約書を確かめる, en: Check the signed contract }
+        description: { ja: 営業などが締結した契約書を受け取り、審査の意見が反映されているか、署名や押印、日付、印紙（電子契約は電子署名）に漏れがないかを確かめる。 }
+        performedBy: general-affairs-staff
+        receives: [signed-contract, contract-review-opinion]
+        produces: [checked-signed-contract]
+        requiresJudgment: true
+        judgment: { ja: 審査した内容どおりに締結されているか。条件が変わっていないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [e-contract-service]
+        regulations: [stamp-tax, electronic-signature]
+
+      - id: store-contract
+        label: { ja: 契約書を保管する, en: File the contract }
+        description: { ja: 紙の契約書は決めた場所に、電子契約は改ざんされていない形で、保管する。 }
+        performedBy: general-affairs-staff
+        receives: [checked-signed-contract]
+        produces: [filed-contract]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage, e-contract-service]
+        regulations: [electronic-transaction-data, bookkeeping-retention]
+
+      - id: register-contract
+        label: { ja: 契約管理台帳に登録する, en: Register the contract in the ledger }
+        description: { ja: 相手、契約の種類、金額、期間、更新の方法、更新の通知の期限、保管場所を台帳に書く。 }
+        performedBy: general-affairs-staff
+        receives: [filed-contract]
+        produces: [contract-ledger-entry]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+  - id: renewal
+    label: { ja: 更新と期限の管理, en: Renewal and deadline management }
+    steps:
+      - id: check-renewal-deadlines
+        label: { ja: 更新の期限を確かめる, en: Check renewal deadlines }
+        description: { ja: 台帳から、更新や解約の通知の期限が近い契約を洗い出し、契約の担当部署の責任者に知らせる。 }
+        performedBy: general-affairs-staff
+        receives: [contract-ledger-entry]
+        produces: [contract-renewal-alert]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet, email]
+
+      - id: decide-contract-renewal
+        label: { ja: 契約を更新するか決める, en: Decide whether to renew }
+        description: { ja: 契約の実績と今後の必要から、更新するか、条件を変えるか、終了するかを決める。相手への通知は、契約の担当部署が行う。 }
+        performedBy: department-manager
+        receives: [contract-renewal-alert]
+        produces: [contract-renewal-decision]
+        requiresJudgment: true
+        judgment: { ja: 更新するか。条件を変えるか。終了するか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: update-contract-ledger
+        label: { ja: 台帳を更新する, en: Update the ledger }
+        description: { ja: 決定と、更新後の期間や条件を台帳に書き直す。 }
+        performedBy: general-affairs-staff
+        receives: [contract-renewal-decision]
+        produces: [updated-contract-ledger-entry]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]

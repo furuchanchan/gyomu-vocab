@@ -1,0 +1,138 @@
+id: outsourcing-management
+label: { ja: 業務の委託（外注）の管理, en: Outsourcing management }
+description:
+  ja: 業務を外部に委託するとき、委託の内容と条件を決めて書面か電磁的方法で示し、進み具合を確かめ、成果物を受け取って検収し、代金の支払期日を守るまでの流れ。
+  en: From deciding the scope and terms of outsourced work and stating them in writing or electronically, through monitoring progress and accepting the deliverable, to managing the payment due date.
+frequency: on-demand
+timing: { ja: 業務を委託するたび。 }
+pcf: ["10291"]
+regulations: [torite-terms-statement, torite-record-keeping, subcontract-payment, freelance-terms-disclosure, freelance-payment-deadline, electronic-transaction-data]
+stages:
+  - id: terms
+    label: { ja: 委託の条件, en: Terms of the commission }
+    steps:
+      - id: define-outsourcing-terms
+        label: { ja: 委託の内容と条件を決める, en: Define the scope and terms }
+        description: { ja: 委託する作業、成果物、納期、報酬、支払期日、検査の有無を決める。 }
+        performedBy: requesting-staff
+        produces: [outsourcing-terms]
+        requiresJudgment: true
+        judgment: { ja: 何を、いつまでに、いくらで委託するか。成果物をどの基準で受け取るか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: check-applicable-law
+        label: { ja: 相手にかかわる法律を確かめる, en: Check which law applies to the counterparty }
+        description: { ja: 委託の相手が、取適法の中小受託事業者か、フリーランス法の特定受託事業者かを、法律の定義に照らして確かめる。 }
+        performedBy: procurement-staff
+        receives: [outsourcing-terms]
+        produces: [applicable-law-check]
+        requiresJudgment: true
+        judgment: { ja: 相手の規模や従業員の有無が、法律の定義のどれに当たるか。どちらにも当たらないか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [torite-terms-statement, freelance-terms-disclosure]
+
+      - id: state-terms
+        label: { ja: 取引条件を書面か電磁的方法で示す, en: State the terms in writing or electronically }
+        description: { ja: 給付の内容、報酬の額、支払期日その他の事項を、委託後直ちに、書面かメールなどの電磁的方法で委託先に示す。電磁的方法で示したあと、書面を求められたときは、遅滞なく交付する。 }
+        performedBy: procurement-staff
+        confirmedBy: department-manager
+        receives: [outsourcing-terms, applicable-law-check]
+        produces: [terms-statement]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, document-storage]
+        regulations: [torite-terms-statement, freelance-terms-disclosure, electronic-transaction-data]
+
+  - id: progress
+    label: { ja: 進み具合の確認, en: Progress monitoring }
+    steps:
+      - id: check-progress
+        label: { ja: 進み具合を確かめる, en: Check the progress }
+        description: { ja: 委託先の報告を見て、作業が条件どおりに進んでいるか、納期に間に合うかを確かめ、記録する。 }
+        performedBy: requesting-staff
+        receives: [vendor-progress-report, terms-statement]
+        produces: [progress-record]
+        requiresJudgment: true
+        judgment: { ja: 納期に間に合うか。条件と違う進め方になっていないか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: acceptance
+    label: { ja: 受け取りと検収, en: Delivery and acceptance }
+    steps:
+      - id: receive-deliverable
+        label: { ja: 成果物を受け取り、受け取った日を記録する, en: Receive the deliverable and record the date }
+        description: { ja: 委託先から成果物を受け取り、受け取った日を記録する。代金の支払期日は、この日から数える。 }
+        performedBy: requesting-staff
+        receives: [vendor-deliverable]
+        produces: [deliverable-receipt-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [torite-record-keeping]
+
+      - id: inspect-deliverable
+        label: { ja: 成果物を検収する, en: Inspect the deliverable }
+        description: { ja: 成果物が、示した条件のとおりかを確かめ、合格か、直しが要るかを決める。 }
+        performedBy: requesting-staff
+        confirmedBy: department-manager
+        receives: [vendor-deliverable, deliverable-receipt-record, terms-statement]
+        produces: [outsourcing-acceptance-record]
+        requiresJudgment: true
+        judgment: { ja: 成果物が、条件に合っているか。直しを求めるほどの違いか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: notify-acceptance-result
+        label: { ja: 検収の結果を委託先に伝える, en: Notify the vendor of the acceptance result }
+        description: { ja: 検収の結果を、委託先に知らせる。直しが要るときは、直す点を伝える。 }
+        performedBy: requesting-staff
+        receives: [outsourcing-acceptance-record]
+        produces: [acceptance-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+  - id: payment-due
+    label: { ja: 支払期日の管理, en: Payment due date management }
+    steps:
+      - id: set-payment-due-date
+        label: { ja: 支払期日を確かめて管理表に入れる, en: Set the payment due date }
+        description: { ja: 成果物を受け取った日から数えて、法律が定める期間の中に、支払期日が収まっているかを確かめ、管理表に入れる。収まらないときは、条件を見直す。 }
+        performedBy: procurement-staff
+        receives: [deliverable-receipt-record, terms-statement]
+        produces: [payment-due-schedule]
+        doneWhen: { ja: 支払期日が、受け取った日から数えて60日以内で、管理表に入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [subcontract-payment, freelance-payment-deadline]
+
+      - id: notify-accounting
+        label: { ja: 代金の金額と期日を経理に伝える, en: Notify accounting of the amount and due date }
+        description: { ja: 検収の済んだ委託の代金の金額と支払期日を、経理に伝える。 }
+        performedBy: procurement-staff
+        receives: [outsourcing-acceptance-record, payment-due-schedule]
+        produces: [outsourcing-payment-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: store-outsourcing-records
+        label: { ja: 委託の書類を作って保存する, en: Keep the outsourcing records }
+        description: { ja: 取引条件の明示、受領の記録、検収の記録、支払の予定を、探し出せる形で保存する。 }
+        performedBy: procurement-staff
+        receives: [terms-statement, deliverable-receipt-record, outsourcing-acceptance-record]
+        produces: [stored-outsourcing-records]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [torite-record-keeping, electronic-transaction-data]

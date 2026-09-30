@@ -1,0 +1,128 @@
+id: equipment-maintenance
+label: { ja: 設備の点検と保全, en: Equipment inspection and maintenance }
+description:
+  ja: 設備の点検の計画を立て、日常の点検と定期の自主検査を行い、故障が起きたときは状況を確かめて修理し、点検と保全の記録を残すまでの流れ。
+  en: From planning equipment inspection to daily inspection and periodic self-inspection, assessing and repairing breakdowns, and keeping inspection and maintenance records.
+frequency: daily
+timing: { ja: 日常の点検は毎日、定期の自主検査は決めた間隔で行う。故障はそのつど。 }
+pcf: ["10315"]
+regulations: [periodic-self-inspection]
+stages:
+  - id: planning
+    label: { ja: 点検の計画, en: Inspection planning }
+    steps:
+      - id: plan-inspection-schedule
+        label: { ja: 点検と保全の計画を立てる, en: Plan inspection and maintenance }
+        description: { ja: 設備ごとに、日常の点検、定期の自主検査、部品の交換の時期を決め、生産の計画に合わせて止められる日に割り当てる。 }
+        performedBy: maintenance-staff
+        confirmedBy: production-manager
+        receives: [approved-production-plan]
+        produces: [inspection-schedule]
+        requiresJudgment: true
+        judgment: { ja: 設備ごとの点検の間隔と、生産を止める日をどう割り振るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, spreadsheet]
+
+  - id: inspection
+    label: { ja: 点検, en: Inspection }
+    steps:
+      - id: perform-daily-inspection
+        label: { ja: 始める前に日常の点検をする, en: Perform daily inspection }
+        description: { ja: 作業を始める前に、設備の音、油や圧力、安全装置の動きを目で見て確かめ、結果を記録する。 }
+        performedBy: production-worker
+        receives: [inspection-schedule]
+        produces: [daily-inspection-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備を目で見て、手で触れて確かめる作業であるため。 }
+
+      - id: perform-periodic-inspection
+        label: { ja: 定期の自主検査をする, en: Perform periodic self-inspection }
+        description: { ja: 決めた間隔で、設備の検査の項目に沿って点検し、検査した日、方法、箇所、結果、実施した人を記録する。 }
+        performedBy: maintenance-staff
+        receives: [inspection-schedule]
+        produces: [periodic-inspection-record]
+        requiresJudgment: true
+        judgment: { ja: 検査の結果から、補修が要る箇所があるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備を点検する作業であり、定期に自主検査を行って記録することが、労働安全衛生法で事業者に求められているため。 }
+        toolKinds: [measuring-instrument]
+        regulations: [periodic-self-inspection]
+
+      - id: check-inspection-result
+        label: { ja: 点検の結果を確かめる, en: Check the inspection results }
+        description: { ja: 日常の点検と定期の自主検査の記録を見て、異常や補修の要る箇所があるかを確かめ、設備を使い続けてよいかを決める。 }
+        performedBy: production-manager
+        receives: [daily-inspection-record, periodic-inspection-record]
+        produces: [checked-inspection-result]
+        requiresJudgment: true
+        judgment: { ja: 異常のある設備を、使い続けてよいか、止めて直すか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: breakdown
+    label: { ja: 故障の対応と修理, en: Breakdown and repair }
+    pcf: ["10316"]
+    steps:
+      - id: assess-breakdown
+        label: { ja: 故障の状況を確かめる, en: Assess the breakdown }
+        description: { ja: 現場の異常の報告を受けて設備を見に行き、壊れた箇所と原因を確かめて、応急で足りるか、部品の交換か、業者への依頼かを決める。 }
+        performedBy: maintenance-staff
+        receives: [abnormality-report]
+        produces: [repair-decision]
+        requiresJudgment: true
+        judgment: { ja: 自社で直せるか、業者に頼むか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備を見て、壊れた箇所を確かめる作業であるため。 }
+
+      - id: request-outside-repair
+        label: { ja: 自社で直せない修理を業者に依頼する, en: Request outside repair }
+        description: { ja: 自社で直せない修理について、故障の状況と希望する日を書いて、修理の業者に依頼する。 }
+        performedBy: maintenance-staff
+        receives: [repair-decision]
+        produces: [repair-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: repair-equipment
+        label: { ja: 設備を修理する, en: Repair the equipment }
+        description: { ja: 部品を交換し、調整して設備を直す。業者が直したときは、業者の報告を受けて直った箇所を確かめる。 }
+        performedBy: maintenance-staff
+        receives: [repair-decision]
+        produces: [repair-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の設備の部品を交換し、調整する作業であるため。 }
+
+      - id: confirm-restart
+        label: { ja: 直った設備の使用を再開してよいかを決める, en: Decide whether to resume use }
+        description: { ja: 修理の報告と動作の確認の結果を見て、その設備を製造に戻してよいかを決める。 }
+        performedBy: production-manager
+        receives: [repair-report]
+        produces: [restart-approval]
+        requiresJudgment: true
+        judgment: { ja: 設備が安全に動くと言えて、製造に戻してよいか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: records
+    label: { ja: 記録, en: Records }
+    steps:
+      - id: record-maintenance-history
+        label: { ja: 点検と保全の記録を残す, en: Keep the maintenance history }
+        description: { ja: 点検の結果と修理の内容を設備ごとの履歴にまとめ、定期の自主検査の記録と一緒に保存する。 }
+        performedBy: maintenance-staff
+        receives: [checked-inspection-result, restart-approval]
+        produces: [maintenance-history]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, document-storage]
+        regulations: [periodic-self-inspection]

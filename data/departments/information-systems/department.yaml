@@ -1,0 +1,14 @@
+id: information-systems
+order: 7
+label: { ja: 情報システム, en: Information systems }
+description:
+  ja: 従業員のアカウントと端末を管理し、権限とセキュリティを運用し、障害や事故に対応し、システムの導入と変更を行い、データのバックアップと復旧を担う部署。
+  en: The department that manages employee accounts and devices, operates access control and security, responds to incidents, adopts and changes systems, and handles data backup and recovery.
+pcf: ["20607"]
+workflows:
+  - account-lifecycle
+  - device-management
+  - access-and-security-operations
+  - incident-response
+  - system-change
+  - backup-and-recovery

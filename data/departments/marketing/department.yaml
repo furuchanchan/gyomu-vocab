@@ -1,0 +1,13 @@
+id: marketing
+order: 4
+label: { ja: マーケティング, en: Marketing }
+description:
+  ja: 施策の計画と予算を立て、コンテンツやWebサイトを公開し、展示会・セミナー・Webで見込み客を集めて営業へ引き渡し、メールで情報を届け、効果を見直す部署。
+  en: The department that plans marketing activities and budgets, publishes content and web pages, gathers leads through exhibitions, seminars and the web and hands them to sales, sends email and reviews the results.
+pcf: ["10004"]
+workflows:
+  - campaign-planning
+  - content-production
+  - lead-generation
+  - email-marketing
+  - event-management

@@ -1,0 +1,115 @@
+id: board-meeting
+label: { ja: 取締役会の運営, en: Running the board of directors meeting }
+description:
+  ja: 取締役会に諮る事項を集めて議題を決め、取締役に招集の通知と資料を出し、取締役会を開いて決議を得て、議事録を作って本店に備え置くまでの流れ。取締役会を置く会社の流れで、置かない会社は取締役の決定書などで同じことを行う。
+  en: From collecting items and setting the agenda, to sending the notice and materials to directors, holding the board meeting, obtaining resolutions, and preparing and keeping the minutes at the head office. Companies without a board of directors do the equivalent through written decisions of directors.
+frequency: on-demand
+timing: { ja: 定例の日と、必要が出たときに。 }
+pcf: ["11012"]
+regulations: [board-meeting-resolution, board-meeting-minutes]
+stages:
+  - id: preparation
+    label: { ja: 議題と招集, en: Agenda and convocation }
+    steps:
+      - id: submit-board-agenda-request
+        label: { ja: 取締役会に諮る事項を出す, en: Submit an item for the board }
+        description: { ja: 取締役会の決議や報告が要る事項を、内容と理由を書いて総務・法務に出す。 }
+        performedBy: department-manager
+        produces: [board-agenda-request]
+        requiresJudgment: true
+        judgment: { ja: この事項が、法令や定款、社内の決まりで、取締役会の決議や報告が要るものか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: decide-board-agenda
+        label: { ja: 開催日と議題を決める, en: Decide the date and the agenda }
+        description: { ja: 出された事項から、開催日と議題を決める。招集する取締役を定款か取締役会で決めているときは、その取締役が決める。 }
+        performedBy: executive
+        receives: [board-agenda-request]
+        produces: [board-agenda]
+        requiresJudgment: true
+        judgment: { ja: いつ開き、どの議題を諮るか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [board-meeting-resolution]
+
+      - id: prepare-board-materials
+        label: { ja: 取締役会の資料をそろえる, en: Prepare the board materials }
+        description: { ja: 議題ごとに、判断に必要な資料をそろえる。 }
+        performedBy: general-affairs-staff
+        receives: [board-agenda]
+        produces: [board-materials]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: send-board-notice
+        label: { ja: 招集を通知する, en: Send the convocation notice }
+        description: { ja: 取締役会の日の1週間前までに、各取締役（監査役を置く会社では各監査役にも）に、議題と資料を付けて通知を発する。取締役と監査役の全員が同意すれば、招集の手続きは省ける。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [board-agenda, board-materials]
+        produces: [board-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [board-meeting-resolution]
+
+  - id: meeting
+    label: { ja: 開催と決議, en: Meeting and resolutions }
+    steps:
+      - id: hold-board-meeting
+        label: { ja: 取締役会を開いて決議する, en: Hold the board meeting and pass resolutions }
+        description: { ja: 議長として取締役会を進め、議題ごとに審議して採決をとる。特別の利害関係を有する取締役は、議決に加わらない。 }
+        performedBy: executive
+        receives: [board-notice, board-materials]
+        produces: [board-resolutions]
+        requiresJudgment: true
+        judgment: { ja: 議題ごとに承認するか。特別の利害関係を有する取締役が議決に加わっていないか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 議決に加わることができる取締役の過半数が出席し、その過半数で決議する、取締役どうしの合意そのものであるため（会社法369条）。 }
+        regulations: [board-meeting-resolution]
+
+  - id: minutes
+    label: { ja: 議事録の作成と保存, en: Minutes }
+    steps:
+      - id: draft-board-minutes
+        label: { ja: 議事録の案を作る, en: Draft the minutes }
+        description: { ja: 日時と場所、議事の経過の要領とその結果、特別の利害関係を有する取締役の氏名、議長の氏名などを、議事録の案に書く。 }
+        performedBy: general-affairs-staff
+        receives: [board-resolutions]
+        produces: [board-minutes-draft]
+        requiresJudgment: true
+        judgment: { ja: 議事の経過の要領とその結果を、法務省令が求める内容に沿って、どこまで書くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [board-meeting-minutes]
+
+      - id: sign-board-minutes
+        label: { ja: 議事録に署名か記名押印をする, en: Sign the minutes }
+        description: { ja: 議事録の案が議事の経過と結果に合っているかを確かめ、出席した取締役と監査役が、署名するか記名押印をする。電磁的記録で作ったときは、署名や記名押印に代わる措置をとる。 }
+        performedBy: executive
+        receives: [board-minutes-draft]
+        produces: [board-minutes]
+        requiresJudgment: true
+        judgment: { ja: 議事録の内容が、実際の議事の経過と結果に合っているか。合わないなら異議をとどめるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 書面の議事録には、出席した取締役と監査役の署名か記名押印が必要と、会社法369条が定めているため。 }
+        regulations: [board-meeting-minutes]
+
+      - id: keep-board-minutes
+        label: { ja: 議事録を本店に備え置く, en: Keep the minutes at the head office }
+        description: { ja: 取締役会の日から10年間、議事録を本店に備え置く。 }
+        performedBy: general-affairs-staff
+        receives: [board-minutes]
+        produces: [kept-board-minutes]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [board-meeting-minutes]

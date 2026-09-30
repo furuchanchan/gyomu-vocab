@@ -1,0 +1,137 @@
+id: office-and-assets
+label: { ja: 備品・オフィス・固定資産の管理, en: Managing office equipment and fixed assets }
+description:
+  ja: 備品や設備の購入の申請を受けて承認し、発注して現物を受け取り、台帳に登録して使う人に貸与し、定期に点検して、使えなくなった物を廃棄して台帳から除き、経理・財務に知らせるまでの流れ。
+  en: From approving purchase requests for office equipment and facilities, ordering and receiving them, registering them in a ledger, lending them to users and inspecting them, to disposing of unusable items, removing them from the ledger and notifying accounting.
+frequency: on-demand
+timing: { ja: 購入の申請があったときと、点検の時期ごと（年に1回など）に。 }
+pcf: ["19207"]
+regulations: [personal-data-erasure, personal-data-security]
+stages:
+  - id: purchase
+    label: { ja: 購入, en: Purchase }
+    pcf: ["10963"]
+    steps:
+      - id: request-office-purchase
+        label: { ja: 備品・設備の購入を申請する, en: Request a purchase }
+        description: { ja: 必要な備品や設備の品名、数量、金額、理由、使う人を書いて、申請する。 }
+        performedBy: employee
+        produces: [office-purchase-request]
+        requiresJudgment: true
+        judgment: { ja: 何がどれだけ必要か。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: approve-office-purchase
+        label: { ja: 購入を承認する, en: Approve the purchase }
+        description: { ja: 申請の必要性と金額を確かめ、購入を承認する。 }
+        performedBy: department-manager
+        receives: [office-purchase-request]
+        produces: [approved-office-purchase-request]
+        requiresJudgment: true
+        judgment: { ja: 購入する必要があるか。金額は妥当か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: place-office-order
+        label: { ja: 発注する, en: Place the order }
+        description: { ja: 承認された申請をもとに、取引先を選んで発注する。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [approved-office-purchase-request]
+        produces: [office-purchase-order]
+        requiresJudgment: true
+        judgment: { ja: どの取引先に頼むか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: receive-office-goods
+        label: { ja: 現物を受け取って確かめる, en: Receive and check the goods }
+        description: { ja: 届いた現物を、発注書と納品書に照らして、品名、数量、状態を確かめる。 }
+        performedBy: general-affairs-staff
+        receives: [office-purchase-order, office-delivery-slip]
+        produces: [received-goods-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 届いた現物を、数え、状態を自分の目で確かめる作業であるため。 }
+
+  - id: management
+    label: { ja: 登録・貸与・点検, en: Registration, lending and inspection }
+    pcf: ["19249"]
+    steps:
+      - id: register-asset
+        label: { ja: 台帳に登録する, en: Register in the asset ledger }
+        description: { ja: 管理番号をつけ、品名、取得日、金額、置き場所、使う人を台帳に書く。 }
+        performedBy: general-affairs-staff
+        receives: [received-goods-record]
+        produces: [asset-ledger-entry]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: lend-asset
+        label: { ja: 使う人に貸与する, en: Lend to the user }
+        description: { ja: 管理番号のラベルを貼り、使う人に現物を手渡し、貸与の記録を残す。 }
+        performedBy: general-affairs-staff
+        receives: [asset-ledger-entry]
+        produces: [asset-loan-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物にラベルを貼り、使う人に手渡す作業であるため。 }
+        toolKinds: [spreadsheet]
+
+      - id: inspect-assets
+        label: { ja: 台帳と現物を点検する, en: Inspect the assets against the ledger }
+        description: { ja: 台帳の記録と現物を照らし、置き場所、使う人、状態を確かめる。 }
+        performedBy: general-affairs-staff
+        receives: [asset-ledger-entry, asset-loan-record]
+        produces: [asset-inspection-record]
+        requiresJudgment: true
+        judgment: { ja: 使い続けられる状態か。修理が要るか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の状態を、自分の目で確かめる作業であるため。 }
+        toolKinds: [spreadsheet]
+
+  - id: disposal
+    label: { ja: 廃棄, en: Disposal }
+    pcf: ["18592"]
+    steps:
+      - id: decide-asset-disposal
+        label: { ja: 廃棄するかを決める, en: Decide on disposal }
+        description: { ja: 点検の結果から、使い続けるか、修理するか、廃棄するかを決める。 }
+        performedBy: general-affairs-manager
+        receives: [asset-inspection-record]
+        produces: [asset-disposal-decision]
+        requiresJudgment: true
+        judgment: { ja: 使い続けるか。修理するか。廃棄するか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: dispose-asset
+        label: { ja: 廃棄する, en: Dispose of the asset }
+        description: { ja: 決めた方法で廃棄する。パソコンなど、個人データが入った機器は、データを消してから廃棄する。 }
+        performedBy: general-affairs-staff
+        receives: [asset-disposal-decision]
+        produces: [asset-disposal-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を引き渡し、機器のデータの消去を確かめる作業であるため。 }
+        regulations: [personal-data-erasure, personal-data-security]
+
+      - id: report-asset-retirement
+        label: { ja: 台帳から除き経理に知らせる, en: Remove from the ledger and notify accounting }
+        description: { ja: 廃棄した物を台帳から除き、固定資産にあたる物は、経理・財務に知らせる。 }
+        performedBy: general-affairs-staff
+        receives: [asset-disposal-record]
+        produces: [asset-retirement-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]

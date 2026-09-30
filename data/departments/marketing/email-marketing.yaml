@@ -1,0 +1,114 @@
+id: email-marketing
+label: { ja: メールでの配信, en: Email marketing }
+description:
+  ja: 配信先の同意を記録し、メールを作って承認を受け、配信して、配信停止を受け付け、結果を記録するまでの流れ。
+  en: From recording recipient consent to creating and approving an email, sending it, handling opt-outs and recording the results.
+frequency: on-demand
+timing: { ja: メールを配信するたびに。 }
+pcf: ["20010"]
+regulations: [specified-email, specified-email-consent-record]
+stages:
+  - id: audience
+    label: { ja: 配信先, en: Audience }
+    steps:
+      - id: keep-consent-record
+        label: { ja: 同意の記録を残す, en: Keep the consent record }
+        description: { ja: 同意を確かめた結果から、宛先ごとに、求められた日や同意を得た日と方法を記録に残す。 }
+        performedBy: marketing-staff
+        receives: [consent-check-result]
+        produces: [consent-record]
+        doneWhen: { ja: 宛先ごとに、通知を受けた時期と方法が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [specified-email-consent-record]
+
+      - id: build-recipient-list
+        label: { ja: 配信先を選ぶ, en: Build the recipient list }
+        description: { ja: 同意の記録があり、配信停止を求めていない宛先だけを、今回の配信先にする。 }
+        performedBy: marketing-staff
+        receives: [consent-record, unsubscribe-list]
+        produces: [recipient-list]
+        requiresJudgment: true
+        judgment: { ja: 同意や取引関係などの要件を満たす宛先か。配信停止を求めた宛先が混ざっていないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [specified-email]
+
+
+  - id: creation
+    label: { ja: 作成と承認, en: Creation and approval }
+    steps:
+      - id: write-email
+        label: { ja: メールを作る, en: Write the email }
+        description: { ja: 施策の日程に沿って、件名、本文、送信者の名称、配信停止の連絡先を入れたメールを作る。 }
+        performedBy: marketing-staff
+        receives: [campaign-schedule]
+        produces: [email-draft]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [specified-email]
+
+      - id: approve-email
+        label: { ja: メールを承認する, en: Approve the email }
+        description: { ja: 送信者の名称と配信停止の連絡先が表示されているか、内容が事実に合うかを確かめて、配信を承認する。 }
+        performedBy: marketing-staff
+        confirmedBy: marketing-manager
+        receives: [email-draft]
+        produces: [approved-email]
+        requiresJudgment: true
+        judgment: { ja: 表示すべき事項が受信者の見やすい場所に入っているか。内容を配信してよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, workflow-system]
+        regulations: [specified-email]
+
+
+  - id: sending
+    label: { ja: 配信と配信停止, en: Sending and opt-out }
+    steps:
+      - id: send-email
+        label: { ja: メールを配信する, en: Send the email }
+        description: { ja: 承認されたメールを、配信先の一覧に配信する。 }
+        performedBy: marketing-staff
+        receives: [approved-email, recipient-list]
+        produces: [sent-email]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [marketing-automation, email]
+        regulations: [specified-email]
+
+      - id: handle-opt-out
+        label: { ja: 配信停止の求めを受け付ける, en: Handle opt-out requests }
+        description: { ja: メールを送らないでほしいという連絡を受けたら、その宛先を配信停止の一覧に入れる。 }
+        performedBy: marketing-staff
+        receives: [opt-out-request]
+        produces: [unsubscribe-list]
+        doneWhen: { ja: 連絡のあった宛先が、次の配信から外れる。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, email]
+        regulations: [specified-email]
+
+
+  - id: results
+    label: { ja: 結果, en: Results }
+    pcf: ["10170"]
+    steps:
+      - id: record-email-results
+        label: { ja: 結果を記録する, en: Record the results }
+        description: { ja: 配信した数、開かれた数、クリックされた数、配信停止の数を記録する。 }
+        performedBy: marketing-staff
+        receives: [sent-email]
+        produces: [email-results]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, spreadsheet]
+

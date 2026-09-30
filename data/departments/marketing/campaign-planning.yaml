@@ -1,0 +1,117 @@
+id: campaign-planning
+label: { ja: 施策の企画と予算, en: Campaign planning and budget }
+description:
+  ja: 年間や四半期の目標を決め、施策を企画し、予算を申請して承認を受け、結果を見直すまでの流れ。
+  en: From setting annual or quarterly goals and planning campaigns to requesting and approving the budget and reviewing the results.
+frequency: quarterly
+timing: { ja: 年度や四半期の初めに。四半期の終わりに効果を見直す。 }
+pcf: ["20008"]
+stages:
+  - id: planning
+    label: { ja: 目標と企画, en: Goals and plan }
+    pcf: ["10149"]
+    steps:
+      - id: set-goals
+        label: { ja: 目標を決める, en: Set the marketing goals }
+        description: { ja: 前回の見直しの記録と会社の方針をもとに、期間中の目標を決める。 }
+        performedBy: marketing-manager
+        confirmedBy: executive
+        receives: [campaign-review-record]
+        produces: [marketing-goals]
+        requiresJudgment: true
+        judgment: { ja: 見込み客の数や営業への引き渡しの数を、いくつに置くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: draft-plan
+        label: { ja: 施策の企画を書く, en: Draft the campaign plan }
+        description: { ja: 目標のために行う施策、対象の相手、時期、使う手段を書く。 }
+        performedBy: marketing-staff
+        receives: [marketing-goals]
+        produces: [campaign-plan-draft]
+        requiresJudgment: true
+        judgment: { ja: どの手段にどれだけ力を入れるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet, document-storage]
+
+      - id: estimate-cost
+        label: { ja: 施策の費用を見積もる, en: Estimate the cost }
+        description: { ja: 施策ごとに、制作、配信、会場、広告などの費用を積み上げる。 }
+        performedBy: marketing-staff
+        receives: [campaign-plan-draft]
+        produces: [campaign-cost-estimate]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+
+  - id: budget
+    label: { ja: 予算の申請と承認, en: Budget request and approval }
+    pcf: ["10149"]
+    steps:
+      - id: request-budget
+        label: { ja: 予算を申請する, en: Request the budget }
+        description: { ja: 企画と費用の見積をつけて、予算の申請を出す。 }
+        performedBy: marketing-staff
+        receives: [campaign-plan-draft, campaign-cost-estimate]
+        produces: [budget-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-budget
+        label: { ja: 予算を承認する, en: Approve the budget }
+        description: { ja: 申請の中身を見て、施策ごとの予算を承認する。 }
+        performedBy: executive
+        receives: [budget-request]
+        produces: [approved-budget]
+        requiresJudgment: true
+        judgment: { ja: この費用をかけて見合う効果が見込めるか。どの施策の予算を削るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: schedule-campaigns
+        label: { ja: 施策の日程と担当を決める, en: Schedule the campaigns }
+        description: { ja: 承認された予算の範囲で、施策をいつ、誰が行うかを決める。 }
+        performedBy: marketing-staff
+        receives: [approved-budget, campaign-plan-draft]
+        produces: [campaign-schedule]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+
+  - id: review
+    label: { ja: 結果の見直し, en: Review }
+    pcf: ["10170"]
+    steps:
+      - id: summarize-results
+        label: { ja: 施策の結果をまとめる, en: Summarize the results }
+        description: { ja: 見込み客の数、営業への引き渡しの数、メールと展示会・セミナーの結果、費用を施策ごとにまとめる。 }
+        performedBy: marketing-staff
+        receives: [campaign-schedule, marketing-lead, email-results, event-report]
+        produces: [campaign-results-summary]
+        doneWhen: { ja: 施策ごとの見込み客の数と費用が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: review-effect
+        label: { ja: 効果を見直す, en: Review the effect }
+        description: { ja: 結果と予算を照らし、続ける施策、変える施策、やめる施策を決める。 }
+        performedBy: marketing-manager
+        receives: [campaign-results-summary, approved-budget]
+        produces: [campaign-review-record]
+        requiresJudgment: true
+        judgment: { ja: 結果が目標に届かなかった原因はどこか。次の期間にどの施策を続けるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+

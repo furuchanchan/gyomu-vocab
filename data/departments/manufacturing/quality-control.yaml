@@ -1,0 +1,153 @@
+id: quality-control
+label: { ja: 検査と不良の処理, en: Inspection and defect handling }
+description:
+  ja: 検査の基準を決め、受け入れ、工程内、出荷前の検査を行い、不良を記録して処置し、原因を調べて是正するまでの流れ。
+  en: From setting inspection standards to incoming, in-process and pre-shipment inspection, recording and dispositioning defects, and investigating causes and correcting them.
+frequency: on-demand
+timing: { ja: 材料が届くとき、製造の途中、出荷の前。不良が出たときは、そのつど。 }
+pcf: ["10369"]
+regulations: [product-liability]
+stages:
+  - id: standard
+    label: { ja: 検査の基準, en: Inspection standard }
+    steps:
+      - id: set-inspection-standard
+        label: { ja: 検査の基準を決める, en: Set the inspection standard }
+        description: { ja: 受注の中身と製品の仕様から、検査する項目、方法、合格とする範囲を決める。 }
+        performedBy: quality-inspector
+        confirmedBy: production-manager
+        receives: [order-record]
+        produces: [inspection-standard]
+        requiresJudgment: true
+        judgment: { ja: どの項目を、どの方法で、どの範囲まで合格とするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+  - id: inspection
+    label: { ja: 検査, en: Inspection }
+    pcf: ["10374"]
+    steps:
+      - id: inspect-incoming-materials
+        label: { ja: 受け入れた材料を検査する, en: Inspect incoming materials }
+        description: { ja: 届いた材料を、検査の基準に沿って測り、目で見て、合格か不合格かを決めて記録する。 }
+        performedBy: quality-inspector
+        receives: [incoming-materials, inspection-standard]
+        produces: [incoming-inspection-record]
+        requiresJudgment: true
+        judgment: { ja: 材料が、基準の範囲に収まっていて合格と言えるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の材料を測り、目で見て確かめる作業であるため。 }
+        toolKinds: [measuring-instrument]
+
+      - id: inspect-in-process
+        label: { ja: 工程の途中で検査する, en: Inspect in process }
+        description: { ja: 製造の途中で、ロットから抜き取った物を検査の基準に沿って測り、結果を記録する。 }
+        performedBy: quality-inspector
+        receives: [produced-lot, inspection-standard]
+        produces: [in-process-inspection-record]
+        requiresJudgment: true
+        judgment: { ja: 途中の製品が基準を満たしていて、製造を続けてよいか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の製品を測り、目で見て確かめる作業であるため。 }
+        toolKinds: [measuring-instrument]
+
+      - id: inspect-before-shipment
+        label: { ja: 出荷の前に検査する, en: Inspect before shipment }
+        description: { ja: できあがった製品を検査の基準に沿って測り、工程の途中の検査の結果も照らして、結果を記録する。 }
+        performedBy: quality-inspector
+        receives: [produced-lot, in-process-inspection-record, inspection-standard]
+        produces: [final-inspection-record]
+        requiresJudgment: true
+        judgment: { ja: 製品が、基準を満たしていて合格と言えるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の製品を測り、目で見て確かめる作業であるため。 }
+        toolKinds: [measuring-instrument]
+
+      - id: approve-shipment-release
+        label: { ja: 出荷してよいかを決める, en: Decide whether to release for shipment }
+        description: { ja: 出荷前の検査の結果を見て、そのロットを出荷してよいかを決める。欠陥のある製品を出荷すれば、製造物責任を負うおそれがある。 }
+        performedBy: production-manager
+        receives: [final-inspection-record]
+        produces: [shipment-release-approval]
+        requiresJudgment: true
+        judgment: { ja: 検査の結果から、そのロットを出荷してよいか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [product-liability]
+
+  - id: defect
+    label: { ja: 不良の処理, en: Defect handling }
+    steps:
+      - id: record-defect
+        label: { ja: 不良を記録する, en: Record the defect }
+        description: { ja: 検査で基準を外れた物について、ロット、数量、外れた項目、見つかった工程を記録する。 }
+        performedBy: quality-inspector
+        receives: [incoming-inspection-record, in-process-inspection-record, final-inspection-record]
+        produces: [defect-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system]
+
+      - id: decide-defect-disposition
+        label: { ja: 不良の処置を決める, en: Decide the disposition of defects }
+        description: { ja: 不良の程度を見て、手直しをして再検査するか、そのまま使うか、廃棄するか、取引先に返すかを決める。 }
+        performedBy: production-manager
+        receives: [defect-record]
+        produces: [defect-disposition]
+        requiresJudgment: true
+        judgment: { ja: 手直し、そのまま使う、廃棄、返品のどれにするか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: carry-out-disposition
+        label: { ja: 不良の物を処置する, en: Carry out the disposition }
+        description: { ja: 決めた処置に従って、不良の物を手直しし、隔離し、廃棄し、または取引先に返して、記録する。 }
+        performedBy: production-worker
+        receives: [defect-disposition]
+        produces: [disposition-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の不良品を手直しし、隔離し、運ぶ作業であるため。 }
+
+  - id: corrective-action
+    label: { ja: 原因の調査と是正, en: Root cause and correction }
+    pcf: ["12046"]
+    steps:
+      - id: investigate-cause
+        label: { ja: 不良の原因を調べる, en: Investigate the cause }
+        description: { ja: 不良の記録と現場の状況から、材料、設備、作業の手順、検査のどこに原因があったかを調べる。 }
+        performedBy: production-manager
+        receives: [defect-record]
+        produces: [cause-analysis]
+        requiresJudgment: true
+        judgment: { ja: 原因が、材料、設備、手順、検査のどこにあると言えるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: plan-corrective-action
+        label: { ja: 是正の対策を決める, en: Decide the corrective action }
+        description: { ja: 原因を除くために、手順や設備、検査の基準を変える対策を決め、担当と期日を決める。 }
+        performedBy: production-manager
+        receives: [cause-analysis]
+        produces: [corrective-action-plan]
+        requiresJudgment: true
+        judgment: { ja: 原因を除くために、何をどこまで変えるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: verify-corrective-effect
+        label: { ja: 対策の効果を確かめる, en: Verify the effect of the action }
+        description: { ja: 対策のあとに作った製品の検査の結果を見て、同じ不良が出ていないかを確かめる。 }
+        performedBy: quality-inspector
+        receives: [corrective-action-plan, final-inspection-record]
+        produces: [corrective-action-result]
+        requiresJudgment: true
+        judgment: { ja: 同じ不良が出なくなったと言えるか。 }
+        irreversible: false
+        humanRequired: false

@@ -1,0 +1,122 @@
+id: contract-and-account-changes
+label: { ja: 契約とアカウントの変更の受け付け, en: Contract and account changes }
+description:
+  ja: 顧客からの名義や連絡先、プランの変更、解約の申し出を受け付け、本人を確かめ、変更を行い、解約の条件を案内して受け付け、請求などを担当する部署に引き継いで、顧客に完了を伝えるまでの流れ。
+  en: From receiving a customer request to change the account holder, contact details or plan, or to cancel, to verifying the requester, applying changes, explaining and accepting cancellation, handing over to billing and notifying the customer.
+frequency: on-demand
+timing: { ja: 顧客から変更や解約の申し出があるたびに。 }
+regulations: [personal-data-requests, consumer-contract-act, distance-selling]
+pcf: ["10183"]
+stages:
+  - id: receive-and-verify
+    label: { ja: 受け付けと本人の確認, en: Receive and verify }
+    steps:
+      - id: receive-change-request
+        label: { ja: 変更の申し出を受け付ける, en: Receive the change request }
+        description: { ja: 名義、連絡先、プラン、解約についての申し出を受け付け、何を、どの契約について求めているかを記録する。 }
+        performedBy: cs-staff
+        receives: [change-request]
+        produces: [change-case-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, email]
+        regulations: [personal-information-protection]
+
+      - id: verify-requester
+        label: { ja: 申し出た人を確かめる, en: Verify the requester }
+        description: { ja: 申し出た人が契約者本人か、変更や解約をする権限のある人かを、登録された情報や書類と照らして確かめる。 }
+        performedBy: cs-staff
+        receives: [change-case-record]
+        produces: [requester-check-result]
+        requiresJudgment: true
+        judgment: { ja: 契約を変更してよい相手か。追加の書類を求めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, support-desk]
+
+
+  - id: account
+    label: { ja: 名義・連絡先・プランの変更, en: Holder, contact and plan changes }
+    steps:
+      - id: update-holder-contact
+        label: { ja: 名義と連絡先を変更する, en: Update holder and contact details }
+        description: { ja: 確かめた内容に沿って、契約の名義と連絡先を、顧客の情報に反映する。 }
+        performedBy: cs-staff
+        receives: [change-case-record, requester-check-result]
+        produces: [updated-customer-record]
+        requiresJudgment: true
+        judgment: { ja: 名義の変更に、追加の書類や契約の確認が要るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+        regulations: [personal-data-requests]
+
+      - id: change-plan
+        label: { ja: プランの変更を顧客と合意する, en: Agree on the plan change }
+        description: { ja: 変更後のプランと開始の時期、料金の変わり方を顧客に説明し、変更に合意してもらう。 }
+        performedBy: cs-staff
+        receives: [change-case-record, requester-check-result]
+        produces: [plan-change-agreement]
+        requiresJudgment: true
+        judgment: { ja: 今のプランから変えられる条件を満たしているか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 契約の内容を変えるという、相手との合意そのものであるため。 }
+        toolKinds: [crm, email]
+
+
+  - id: cancellation
+    label: { ja: 解約, en: Cancellation }
+    steps:
+      - id: explain-cancellation
+        label: { ja: 解約の条件を案内する, en: Explain the cancellation terms }
+        description: { ja: 契約の内容を見て、解約できる時期、手続き、違約金や返金の有無を顧客に案内する。個人の消費者との契約では、違約金の額や、通信販売の返品の扱いに気を付ける。 }
+        performedBy: cs-staff
+        receives: [change-case-record, requester-check-result]
+        produces: [cancellation-terms-notice]
+        requiresJudgment: true
+        judgment: { ja: この契約の解約の条件は何か。違約金は契約の内容に沿った額か。通信販売の申込みの撤回等にあたるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, crm]
+        regulations: [consumer-contract-act, distance-selling]
+
+      - id: accept-cancellation
+        label: { ja: 解約を受け付ける, en: Accept the cancellation }
+        description: { ja: 案内を受けた顧客の解約の申し出を受け付け、解約の日と精算の扱いを記録する。 }
+        performedBy: cs-staff
+        confirmedBy: cs-manager
+        receives: [cancellation-request, cancellation-terms-notice]
+        produces: [cancellation-record]
+        requiresJudgment: true
+        judgment: { ja: 申し出が、案内した条件で解約できる内容か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, support-desk]
+
+
+  - id: handover
+    label: { ja: 引き継ぎと連絡, en: Handover and notification }
+    steps:
+      - id: hand-over-change
+        label: { ja: 請求などの担当に引き継ぐ, en: Hand over to billing }
+        description: { ja: 変更や解約の内容と日付を、請求や経理を担当する部署に伝える。 }
+        performedBy: cs-staff
+        receives: [updated-customer-record, plan-change-agreement, cancellation-record]
+        produces: [change-handover-note]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system, email]
+
+      - id: notify-completion
+        label: { ja: 変更の完了を顧客に伝える, en: Notify the customer of completion }
+        description: { ja: 手続きが終わったことと、変更後の内容を顧客に伝える。 }
+        performedBy: cs-staff
+        receives: [change-handover-note]
+        produces: [change-completion-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]

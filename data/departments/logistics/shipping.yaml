@@ -1,0 +1,116 @@
+id: shipping
+label: { ja: 出荷, en: Shipping }
+description:
+  ja: 営業から出荷の指示を受け、在庫を引き当て、荷物を取り出して検品し、梱包し、送り状を作って運送会社に引き渡し、出荷を記録して顧客に知らせるまでの流れ。
+  en: From receiving a shipping instruction from sales and allocating stock, through picking, inspecting and packing the goods, issuing the waybill and handing them to the carrier, to recording the shipment and notifying the customer.
+frequency: daily
+timing: { ja: 出荷の指示があった日ごとに。運送会社の集荷の時刻に間に合うように行う。 }
+pcf: ["10356"]
+regulations: [shipper-logistics-efficiency, forklift-operation]
+stages:
+  - id: shipping-instruction
+    label: { ja: 出荷の指示の受け取り, en: Receiving the shipping instruction }
+    steps:
+      - id: receive-shipping-instruction
+        label: { ja: 出荷の指示を受けて在庫を引き当てる, en: Receive the shipping instruction and allocate stock }
+        description: { ja: 営業からの納品の指示と受注の内容を見て、出荷する品物、数、届け先、希望の日を確かめ、在庫を割り当てて、倉庫への出荷の指示にまとめる。 }
+        performedBy: logistics-clerk
+        receives: [delivery-instruction, order-record, stock-record]
+        produces: [shipping-order]
+        doneWhen: { ja: 品物、数、届け先、出荷の予定日、割り当てた棚の場所が入っている。 }
+        requiresJudgment: true
+        judgment: { ja: 在庫が足りないとき、分けて出すか、営業に確かめて待つか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+  - id: picking-and-packing
+    label: { ja: ピッキングと梱包, en: Picking and packing }
+    steps:
+      - id: pick-goods
+        label: { ja: 荷物を棚から取り出す, en: Pick the goods }
+        description: { ja: 出荷の指示に書かれた品物を、指示された数だけ棚から取り出して、検品の場所へ運ぶ。重い物は、フォークリフトを使う。 }
+        performedBy: warehouse-staff
+        receives: [shipping-order]
+        produces: [picked-goods]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 棚から現物を取り出して運ぶ作業であるため。フォークリフトを使うときは、その資格のある人が行う。 }
+        toolKinds: [warehouse-system]
+        regulations: [forklift-operation]
+
+      - id: inspect-goods
+        label: { ja: 取り出した荷物を検品する, en: Inspect the picked goods }
+        description: { ja: 取り出した物を、出荷の指示の品物と数に照らし、傷や汚れがないかを見て確かめる。 }
+        performedBy: warehouse-staff
+        receives: [picked-goods, shipping-order]
+        produces: [inspected-goods]
+        requiresJudgment: true
+        judgment: { ja: 傷や汚れのある物を、そのまま出せるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の数と状態を目で見て確かめる作業であるため。 }
+        toolKinds: [warehouse-system]
+
+      - id: pack-goods
+        label: { ja: 荷物を梱包する, en: Pack the goods }
+        description: { ja: 検品を終えた物を、運ぶあいだに壊れないように箱や包みに入れ、届け先ごとにまとめる。運送会社が荷役をしやすいように、パレットに載せるなど荷姿をそろえる。 }
+        performedBy: warehouse-staff
+        receives: [inspected-goods]
+        produces: [packed-goods]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を箱や包みに詰める作業であるため。 }
+        toolKinds: [warehouse-system]
+
+  - id: handover
+    label: { ja: 引き渡しと記録, en: Handover and recording }
+    steps:
+      - id: issue-waybill
+        label: { ja: 送り状を作る, en: Issue the waybill }
+        description: { ja: 出荷の指示と運送会社との取り決めをもとに、届け先、品物、個数、希望の届け日を書いた送り状を作る。荷物の大きさと届け日に合う運送会社の便を選ぶ。 }
+        performedBy: logistics-clerk
+        receives: [shipping-order, carrier-agreement]
+        produces: [waybill]
+        requiresJudgment: true
+        judgment: { ja: 荷物の大きさと届け日に合う運送会社の便はどれか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+      - id: hand-over-to-carrier
+        label: { ja: 運送会社に荷物を引き渡す, en: Hand the shipment over to the carrier }
+        description: { ja: 集荷に来た運送会社の運転者に、梱包した荷物と送り状を渡す。運転者が着いた時刻と、荷物を積み終えた時刻を記録する。運転者を長く待たせないように、集荷の時刻に合わせて荷物をそろえておく。 }
+        performedBy: warehouse-staff
+        receives: [packed-goods, waybill]
+        produces: [shipment, driver-wait-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 運送会社の運転者に、現物を直接渡す作業であるため。 }
+        toolKinds: [warehouse-system]
+        regulations: [shipper-logistics-efficiency, forklift-operation]
+
+      - id: record-shipment
+        label: { ja: 出荷を記録する, en: Record the shipment }
+        description: { ja: 出荷した日、品物、数、送り状の番号、運送会社を記録し、在庫の数から引く。 }
+        performedBy: logistics-clerk
+        receives: [waybill, shipping-order]
+        produces: [shipment-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+      - id: notify-shipment
+        label: { ja: 顧客に出荷を知らせる, en: Notify the customer of the shipment }
+        description: { ja: 出荷した日、品物、送り状の番号を、顧客に知らせる。 }
+        performedBy: logistics-clerk
+        receives: [shipment-record]
+        produces: [shipping-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]

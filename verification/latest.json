@@ -1076,6 +1076,1245 @@
           "head": "（金品の返還）第二十三条使用者は、労働者の死亡又は退職の場合において、権利者の請求があつた場合においては、七日以内に賃金"
         }
       ]
+    },
+    "personal-data-security": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "information-systems.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第23条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_23&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（安全管理措置）第二十三条個人情報取扱事業者は、その取り扱う個人データの漏えい、滅失又は毀損の防止その他の個人データの安"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第24条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_24&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（従業者の監督）第二十四条個人情報取扱事業者は、その従業者に個人データを取り扱わせるに当たっては、当該個人データの安全管"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第25条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_25&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（委託先の監督）第二十五条個人情報取扱事業者は、個人データの取扱いの全部又は一部を委託する場合は、その取扱いを委託された"
+        }
+      ]
+    },
+    "data-breach-reporting": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "information-systems.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第26条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_26&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（漏えい等の報告等）第二十六条個人情報取扱事業者は、その取り扱う個人データの漏えい、滅失、毀損その他の個人データの安全の"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律施行規則 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/428M60020000003?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "428M60020000003_20260614_508M60020000002",
+          "enforcedOn": "2026-06-14",
+          "head": "（個人の権利利益を害するおそれが大きいもの）第七条法第二十六条第一項本文の個人の権利利益を害するおそれが大きいものとして"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律施行規則 第8条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/428M60020000003?elm=MainProvision-Article_8&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "428M60020000003_20260614_508M60020000002",
+          "enforcedOn": "2026-06-14",
+          "head": "（個人情報保護委員会への報告）第八条個人情報取扱事業者は、法第二十六条第一項本文の規定による報告をする場合には、前条各号"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律施行規則 第10条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/428M60020000003?elm=MainProvision-Article_10&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "428M60020000003_20260614_508M60020000002",
+          "enforcedOn": "2026-06-14",
+          "head": "（本人に対する通知）第十条個人情報取扱事業者は、法第二十六条第二項本文の規定による通知をする場合には、第七条各号に定める"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.ppc.go.jp/personalinfo/legal/leakAction/",
+          "url": "https://www.ppc.go.jp/personalinfo/legal/leakAction/",
+          "ok": true
+        }
+      ]
+    },
+    "unauthorized-access-prevention": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "information-systems.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "不正アクセス行為の禁止等に関する法律 第8条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/411AC0000000128?elm=MainProvision-Article_8&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "411AC0000000128_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（アクセス管理者による防御措置）第八条アクセス制御機能を特定電子計算機に付加したアクセス管理者は、当該アクセス制御機能に"
+        }
+      ]
+    },
+    "cybersecurity-effort": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "information-systems.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "サイバーセキュリティ基本法 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/426AC1000000104?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "426AC1000000104_20250701_507AC0000000043",
+          "enforcedOn": "2025-07-01",
+          "head": "（サイバー関連事業者その他の事業者の責務）第七条サイバー関連事業者（インターネットその他の高度情報通信ネットワークの整備"
+        }
+      ]
+    },
+    "torite-terms-statement": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "procurement.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（中小受託事業者の給付の内容その他の事項の明示等）第四条委託事業者は、中小受託事業者に対し製造委託等をした場合は、直ちに"
+        }
+      ]
+    },
+    "torite-record-keeping": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "procurement.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（書類等の作成及び保存）第七条委託事業者は、中小受託事業者に対し製造委託等をした場合は、公正取引委員会規則で定めるところ"
+        },
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律第七条の書類等の作成及び保存に関する規則 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/507M60200000010?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "507M60200000010_20260101_000000000000000",
+          "enforcedOn": "2026-01-01",
+          "head": "第三条書類等は、その記載又は記録をすべき事項の全部の記載又は記録をした日から二年間、保存しなければならない。"
+        }
+      ]
+    },
+    "freelance-terms-disclosure": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "procurement.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "特定受託事業者に係る取引の適正化等に関する法律 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/505AC0000000025?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "505AC0000000025_20241101_000000000000000",
+          "enforcedOn": "2024-11-01",
+          "head": "（定義）第二条この法律において「特定受託事業者」とは、業務委託の相手方である事業者であって、次の各号のいずれかに該当する"
+        },
+        {
+          "kind": "article",
+          "name": "特定受託事業者に係る取引の適正化等に関する法律 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/505AC0000000025?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "505AC0000000025_20241101_000000000000000",
+          "enforcedOn": "2024-11-01",
+          "head": "（特定受託事業者の給付の内容その他の事項の明示等）第三条業務委託事業者は、特定受託事業者に対し業務委託をした場合は、直ち"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.jftc.go.jp/fllaw_limited.html",
+          "url": "https://www.jftc.go.jp/fllaw_limited.html",
+          "ok": true
+        }
+      ]
+    },
+    "freelance-payment-deadline": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "procurement.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "特定受託事業者に係る取引の適正化等に関する法律 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/505AC0000000025?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "505AC0000000025_20241101_000000000000000",
+          "enforcedOn": "2024-11-01",
+          "head": "（定義）第二条この法律において「特定受託事業者」とは、業務委託の相手方である事業者であって、次の各号のいずれかに該当する"
+        },
+        {
+          "kind": "article",
+          "name": "特定受託事業者に係る取引の適正化等に関する法律 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/505AC0000000025?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "505AC0000000025_20241101_000000000000000",
+          "enforcedOn": "2024-11-01",
+          "head": "（報酬の支払期日等）第四条特定業務委託事業者が特定受託事業者に対し業務委託をした場合における報酬の支払期日は、当該特定業"
+        }
+      ]
+    },
+    "sale-nonconformity-liability": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "procurement.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "民法 第559条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/129AC0000000089?elm=MainProvision-Article_559&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "129AC0000000089_20260624_508AC0000000045",
+          "enforcedOn": "2026-06-24",
+          "head": "（有償契約への準用）第五百五十九条この節の規定は、売買以外の有償契約について準用する。ただし、その有償契約の性質がこれを"
+        },
+        {
+          "kind": "article",
+          "name": "民法 第562条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/129AC0000000089?elm=MainProvision-Article_562&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "129AC0000000089_20260624_508AC0000000045",
+          "enforcedOn": "2026-06-24",
+          "head": "（買主の追完請求権）第五百六十二条引き渡された目的物が種類、品質又は数量に関して契約の内容に適合しないものであるときは、"
+        },
+        {
+          "kind": "article",
+          "name": "民法 第563条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/129AC0000000089?elm=MainProvision-Article_563&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "129AC0000000089_20260624_508AC0000000045",
+          "enforcedOn": "2026-06-24",
+          "head": "（買主の代金減額請求権）第五百六十三条前条第一項本文に規定する場合において、買主が相当の期間を定めて履行の追完の催告をし"
+        },
+        {
+          "kind": "article",
+          "name": "民法 第566条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/129AC0000000089?elm=MainProvision-Article_566&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "129AC0000000089_20260624_508AC0000000045",
+          "enforcedOn": "2026-06-24",
+          "head": "（目的物の種類又は品質に関する担保責任の期間の制限）第五百六十六条売主が種類又は品質に関して契約の内容に適合しない目的物"
+        }
+      ]
+    },
+    "personal-data-handling": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "marketing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第23条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_23&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（安全管理措置）第二十三条個人情報取扱事業者は、その取り扱う個人データの漏えい、滅失又は毀損の防止その他の個人データの安"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第25条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_25&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（委託先の監督）第二十五条個人情報取扱事業者は、個人データの取扱いの全部又は一部を委託する場合は、その取扱いを委託された"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第27条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_27&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（第三者提供の制限）第二十七条個人情報取扱事業者は、次に掲げる場合を除くほか、あらかじめ本人の同意を得ないで、個人データ"
+        }
+      ]
+    },
+    "misleading-representation": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "marketing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "不当景品類及び不当表示防止法 第5条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/337AC0000000134?elm=MainProvision-Article_5&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "337AC0000000134_20260521_504AC0000000048",
+          "enforcedOn": "2026-05-21",
+          "head": "（不当な表示の禁止）第五条事業者は、自己の供給する商品又は役務の取引について、次の各号のいずれかに該当する表示をしてはな"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/",
+          "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/",
+          "ok": true
+        }
+      ]
+    },
+    "copyright-use": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "marketing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "著作権法 第21条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/345AC0000000048?elm=MainProvision-Article_21&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "345AC0000000048_20260624_508AC0000000048",
+          "enforcedOn": "2026-06-24",
+          "head": "（複製権）第二十一条著作者は、その著作物を複製する権利を専有する。"
+        },
+        {
+          "kind": "article",
+          "name": "著作権法 第23条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/345AC0000000048?elm=MainProvision-Article_23&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "345AC0000000048_20260624_508AC0000000048",
+          "enforcedOn": "2026-06-24",
+          "head": "（公衆送信権等）第二十三条著作者は、その著作物について、公衆送信（自動公衆送信の場合にあつては、送信可能化を含む。）を行"
+        },
+        {
+          "kind": "article",
+          "name": "著作権法 第30条の4",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/345AC0000000048?elm=MainProvision-Article_30_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "345AC0000000048_20260624_508AC0000000048",
+          "enforcedOn": "2026-06-24",
+          "head": "（著作物に表現された思想又は感情の享受を目的としない利用）第三十条の四著作物は、次に掲げる場合その他の当該著作物に表現さ"
+        },
+        {
+          "kind": "article",
+          "name": "著作権法 第32条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/345AC0000000048?elm=MainProvision-Article_32&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "345AC0000000048_20260624_508AC0000000048",
+          "enforcedOn": "2026-06-24",
+          "head": "（引用）第三十二条公表された著作物は、引用して利用することができる。この場合において、その引用は、公正な慣行に合致するも"
+        }
+      ]
+    },
+    "trademark-rights": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "marketing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "商標法 第25条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/334AC0000000127?elm=MainProvision-Article_25&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "334AC0000000127_20260521_504AC0000000048",
+          "enforcedOn": "2026-05-21",
+          "head": "（商標権の効力）第二十五条商標権者は、指定商品又は指定役務について登録商標の使用をする権利を専有する。ただし、その商標権"
+        },
+        {
+          "kind": "article",
+          "name": "商標法 第26条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/334AC0000000127?elm=MainProvision-Article_26&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "334AC0000000127_20260521_504AC0000000048",
+          "enforcedOn": "2026-05-21",
+          "head": "（商標権の効力が及ばない範囲）第二十六条商標権の効力は、次に掲げる商標（他の商標の一部となつているものを含む。）には、及"
+        },
+        {
+          "kind": "article",
+          "name": "商標法 第37条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/334AC0000000127?elm=MainProvision-Article_37&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "334AC0000000127_20260521_504AC0000000048",
+          "enforcedOn": "2026-05-21",
+          "head": "（侵害とみなす行為）第三十七条次に掲げる行為は、当該商標権又は専用使用権を侵害するものとみなす。一指定商品若しくは指定役"
+        }
+      ]
+    },
+    "specified-email-consent-record": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "marketing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "特定電子メールの送信の適正化等に関する法律 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/414AC0100000026?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "414AC0100000026_20250601_504AC0000000068",
+          "enforcedOn": "2025-06-01",
+          "head": "（特定電子メールの送信の制限）第三条送信者は、次に掲げる者以外の者に対し、特定電子メールの送信をしてはならない。一あらか"
+        },
+        {
+          "kind": "article",
+          "name": "特定電子メールの送信の適正化等に関する法律施行規則 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/414M60000008066?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "414M60000008066_20201215_502M6000000A010",
+          "enforcedOn": "2020-12-15",
+          "head": "（同意を証する記録の保存方法等）第四条法第三条第二項の規定による特定電子メールの送信をするように求めがあったこと又は送信"
+        }
+      ]
+    },
+    "personal-data-requests": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "customer-support.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第32条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_32&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（保有個人データに関する事項の公表等）第三十二条個人情報取扱事業者は、保有個人データに関し、次に掲げる事項について、本人"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第33条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_33&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（開示）第三十三条本人は、個人情報取扱事業者に対し、当該本人が識別される保有個人データの電磁的記録の提供による方法その他"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第34条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_34&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（訂正等）第三十四条本人は、個人情報取扱事業者に対し、当該本人が識別される保有個人データの内容が事実でないときは、当該保"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第35条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_35&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（利用停止等）第三十五条本人は、個人情報取扱事業者に対し、当該本人が識別される保有個人データが第十八条若しくは第十九条の"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第37条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_37&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（開示等の請求等に応じる手続）第三十七条個人情報取扱事業者は、第三十二条第二項の規定による求め又は第三十三条第一項（同条"
+        },
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第38条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_38&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（手数料）第三十八条個人情報取扱事業者は、第三十二条第二項の規定による利用目的の通知を求められたとき又は第三十三条第一項"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.ppc.go.jp/all_faq_index/faq1-q9-12/",
+          "url": "https://www.ppc.go.jp/all_faq_index/faq1-q9-12/",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.ppc.go.jp/all_faq_index/faq1-q9-29/",
+          "url": "https://www.ppc.go.jp/all_faq_index/faq1-q9-29/",
+          "ok": true
+        }
+      ]
+    },
+    "distance-selling": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "customer-support.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "特定商取引に関する法律 第11条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/351AC0000000057?elm=MainProvision-Article_11&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "351AC0000000057_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（通信販売についての広告）第十一条販売業者又は役務提供事業者は、通信販売をする場合の商品若しくは特定権利の販売条件又は役"
+        },
+        {
+          "kind": "article",
+          "name": "特定商取引に関する法律 第15条の3",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/351AC0000000057?elm=MainProvision-Article_15_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "351AC0000000057_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（通信販売における契約の解除等）第十五条の三通信販売をする場合の商品又は特定権利の販売条件について広告をした販売業者が当"
+        },
+        {
+          "kind": "article",
+          "name": "特定商取引に関する法律 第26条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/351AC0000000057?elm=MainProvision-Article_26&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "351AC0000000057_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（適用除外）第二十六条前三節の規定は、次の販売又は役務の提供で訪問販売、通信販売又は電話勧誘販売に該当するものについては"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.no-trouble.caa.go.jp/what/mailorder/",
+          "url": "https://www.no-trouble.caa.go.jp/what/mailorder/",
+          "ok": true
+        }
+      ]
+    },
+    "consumer-contract-act": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "customer-support.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "消費者契約法 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000061?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000061_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（定義）第二条この法律において「消費者」とは、個人（事業として又は事業のために契約の当事者となる場合におけるものを除く。"
+        },
+        {
+          "kind": "article",
+          "name": "消費者契約法 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000061?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000061_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（事業者及び消費者の努力）第三条事業者は、次に掲げる措置を講ずるよう努めなければならない。一消費者契約の条項を定めるに当"
+        },
+        {
+          "kind": "article",
+          "name": "消費者契約法 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000061?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000061_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（消費者契約の申込み又はその承諾の意思表示の取消し）第四条消費者は、事業者が消費者契約の締結について勧誘をするに際し、当"
+        },
+        {
+          "kind": "article",
+          "name": "消費者契約法 第9条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/412AC0000000061?elm=MainProvision-Article_9&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "412AC0000000061_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（消費者が支払う損害賠償の額を予定する条項等の無効等）第九条次の各号に掲げる消費者契約の条項は、当該各号に定める部分につ"
+        }
+      ]
+    },
+    "product-liability": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "customer-support.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "製造物責任法 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/406AC0000000085?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "406AC0000000085_20200401_429AC0000000045",
+          "enforcedOn": "2020-04-01",
+          "head": "（定義）第二条この法律において「製造物」とは、製造又は加工された動産をいう。２この法律において「欠陥」とは、当該製造物の"
+        },
+        {
+          "kind": "article",
+          "name": "製造物責任法 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/406AC0000000085?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "406AC0000000085_20200401_429AC0000000045",
+          "enforcedOn": "2020-04-01",
+          "head": "（製造物責任）第三条製造業者等は、その製造、加工、輸入又は前条第三項第二号若しくは第三号の氏名等の表示をした製造物であっ"
+        }
+      ]
+    },
+    "shareholders-meeting-convocation": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第124条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_124&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（基準日）第百二十四条株式会社は、一定の日（以下この章において「基準日」という。）を定めて、基準日において株主名簿に記載"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第296条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_296&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（株主総会の招集）第二百九十六条定時株主総会は、毎事業年度の終了後一定の時期に招集しなければならない。２株主総会は、必要"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第298条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_298&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（株主総会の招集の決定）第二百九十八条取締役（前条第四項の規定により株主が株主総会を招集する場合にあっては、当該株主。次"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第299条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_299&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（株主総会の招集の通知）第二百九十九条株主総会を招集するには、取締役は、株主総会の日の二週間（前条第一項第三号又は第四号"
+        }
+      ]
+    },
+    "shareholders-meeting-minutes": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第318条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_318&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（議事録）第三百十八条株主総会の議事については、法務省令で定めるところにより、議事録を作成しなければならない。２株式会社"
+        },
+        {
+          "kind": "article",
+          "name": "会社法施行規則 第72条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/418M60000010012?elm=MainProvision-Article_72&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "418M60000010012_20240401_506M60000010011",
+          "enforcedOn": "2024-04-01",
+          "head": "（議事録）第七十二条法第三百十八条第一項の規定による株主総会の議事録の作成については、この条の定めるところによる。２株主"
+        }
+      ]
+    },
+    "board-meeting-resolution": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第366条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_366&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（招集権者）第三百六十六条取締役会は、各取締役が招集する。ただし、取締役会を招集する取締役を定款又は取締役会で定めたとき"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第368条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_368&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（招集手続）第三百六十八条取締役会を招集する者は、取締役会の日の一週間（これを下回る期間を定款で定めた場合にあっては、そ"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第369条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_369&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（取締役会の決議）第三百六十九条取締役会の決議は、議決に加わることができる取締役の過半数（これを上回る割合を定款で定めた"
+        }
+      ]
+    },
+    "board-meeting-minutes": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第369条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_369&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（取締役会の決議）第三百六十九条取締役会の決議は、議決に加わることができる取締役の過半数（これを上回る割合を定款で定めた"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第371条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_371&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（議事録等）第三百七十一条取締役会設置会社は、取締役会の日（前条の規定により取締役会の決議があったものとみなされた日を含"
+        },
+        {
+          "kind": "article",
+          "name": "会社法施行規則 第101条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/418M60000010012?elm=MainProvision-Article_101&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "418M60000010012_20240401_506M60000010011",
+          "enforcedOn": "2024-04-01",
+          "head": "（取締役会の議事録）第百一条法第三百六十九条第三項の規定による取締役会の議事録の作成については、この条の定めるところによ"
+        }
+      ]
+    },
+    "commercial-registration-change": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第332条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_332&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（取締役の任期）第三百三十二条取締役の任期は、選任後二年以内に終了する事業年度のうち最終のものに関する定時株主総会の終結"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第911条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_911&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（株式会社の設立の登記）第九百十一条株式会社の設立の登記は、その本店の所在地において、次に掲げる日のいずれか遅い日から二"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第915条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_915&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（変更の登記）第九百十五条会社において第九百十一条第三項各号又は前三条各号に掲げる事項に変更が生じたときは、二週間以内に"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第916条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_916&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（他の登記所の管轄区域内への本店の移転の登記）第九百十六条会社がその本店を他の登記所の管轄区域内に移転したときは、二週間"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第976条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_976&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（過料に処すべき行為）第九百七十六条発起人、設立時取締役、設立時監査役、設立時執行役、取締役、会計参与若しくはその職務を"
+        },
+        {
+          "kind": "article",
+          "name": "商業登記法 第17条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/338AC0000000125?elm=MainProvision-Article_17&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "338AC0000000125_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（登記申請の方式）第十七条登記の申請は、書面でしなければならない。２申請書には、次の事項を記載し、申請人又はその代表者（"
+        },
+        {
+          "kind": "article",
+          "name": "商業登記法 第18条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/338AC0000000125?elm=MainProvision-Article_18&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "338AC0000000125_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（申請書の添付書面）第十八条代理人によつて登記を申請するには、申請書（前条第三項に規定する電磁的記録を含む。以下同じ。）"
+        },
+        {
+          "kind": "article",
+          "name": "商業登記法 第46条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/338AC0000000125?elm=MainProvision-Article_46&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "338AC0000000125_20260624_508AC0000000046",
+          "enforcedOn": "2026-06-24",
+          "head": "（添付書面の通則）第四十六条登記すべき事項につき株主全員若しくは種類株主全員の同意又はある取締役若しくは清算人の一致を要"
+        },
+        {
+          "kind": "page",
+          "name": "https://houmukyoku.moj.go.jp/homu/COMMERCE_11-1.html",
+          "url": "https://houmukyoku.moj.go.jp/homu/COMMERCE_11-1.html",
+          "ok": true
+        }
+      ]
+    },
+    "company-books-retention": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第432条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_432&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（会計帳簿の作成及び保存）第四百三十二条株式会社は、法務省令で定めるところにより、適時に、正確な会計帳簿を作成しなければ"
+        }
+      ]
+    },
+    "personal-data-erasure": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "general-affairs-legal.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "個人情報の保護に関する法律 第22条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/415AC0000000057?elm=MainProvision-Article_22&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "415AC0000000057_20260717_508AC0000000062",
+          "enforcedOn": "2026-07-17",
+          "head": "（データ内容の正確性の確保等）第二十二条個人情報取扱事業者は、利用目的の達成に必要な範囲内において、個人データを正確かつ"
+        }
+      ]
+    },
+    "shipper-logistics-efficiency": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第30条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_30&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（定義）第三十条この章において次の各号に掲げる用語の意義は、当該各号に定めるところによる。一貨物自動車道路運送車両法（昭"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第42条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_42&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（荷主の努力義務）第四十二条第一種荷主は、貨物自動車運送事業者又は貨物利用運送事業者に貨物の運送を委託する場合（貨物自動"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第44条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_44&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（指導及び助言）第四十四条荷主事業所管大臣は、荷主の第四十二条第一項又は第四項に規定する措置の適確な実施を確保するため必"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html",
+          "url": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html",
+          "ok": true
+        }
+      ]
+    },
+    "specified-shipper-duty": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第45条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_45&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（特定荷主の指定）第四十五条荷主事業所管大臣は、第一種荷主のうち、貨物自動車運送事業者又は貨物利用運送事業者に運送（貨物"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第46条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_46&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（中長期的な計画の作成）第四十六条特定第一種荷主及び特定第二種荷主（以下「特定荷主」という。）は、主務省令で定めるところ"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第47条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_47&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（物流統括管理者の選任）第四十七条特定荷主は、第四十五条第一項又は第五項の規定による指定を受けた後、速やかに、主務省令で"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第48条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_48&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（定期の報告）第四十八条特定荷主は、第四十五条第一項又は第五項の規定による指定を受けた日の属する年度の翌年度以降、毎年度"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律 第49条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000085?elm=MainProvision-Article_49&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000085_20260520_508AC0000000021",
+          "enforcedOn": "2026-05-20",
+          "head": "（勧告及び命令）第四十九条荷主事業所管大臣は、特定荷主の第四十二条第一項又は第四項に規定する措置の実施に関する状況が、第"
+        },
+        {
+          "kind": "article",
+          "name": "物資の流通の効率化に関する法律施行令 第6条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417CO0000000298?elm=MainProvision-Article_6&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417CO0000000298_20260701_508CO0000000205",
+          "enforcedOn": "2026-07-01",
+          "head": "（特定第一種荷主の指定に係る重量）第六条法第四十五条第一項の政令で定めるところにより算定した年度の貨物の合計の重量は、対"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html",
+          "url": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html",
+          "ok": true
+        }
+      ]
+    },
+    "truck-transport-contract-document": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "貨物自動車運送事業法 第12条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/401AC0000000083?elm=MainProvision-Article_12&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "401AC0000000083_20260521_505AC0000000063",
+          "enforcedOn": "2026-05-21",
+          "head": "（書面の交付）第十二条真荷主及び一般貨物自動車運送事業者は、運送契約を締結するときは、国土交通省令で定める場合を除き、次"
+        }
+      ]
+    },
+    "shipper-consideration-truck": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "貨物自動車運送事業法 第64条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/401AC0000000083?elm=MainProvision-Article_64&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "401AC0000000083_20260521_505AC0000000063",
+          "enforcedOn": "2026-05-21",
+          "head": "（荷主の責務）第六十四条荷主（次に掲げる者を含む。次条において同じ。）は、貨物自動車運送事業者がこの法律又はこの法律に基"
+        },
+        {
+          "kind": "article",
+          "name": "貨物自動車運送事業法 第65条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/401AC0000000083?elm=MainProvision-Article_65&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "401AC0000000083_20260521_505AC0000000063",
+          "enforcedOn": "2026-05-21",
+          "head": "（荷主への勧告）第六十五条国土交通大臣は、貨物自動車運送事業者が第十五条第一項から第四項まで（第三十五条第六項及び第三十"
+        }
+      ]
+    },
+    "specified-transport-subcontract": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第2条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（定義）第二条この法律で「製造委託」とは、事業者が業として行う販売若しくは業として請け負う製造（加工を含む。以下同じ。）"
+        },
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第4条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（中小受託事業者の給付の内容その他の事項の明示等）第四条委託事業者は、中小受託事業者に対し製造委託等をした場合は、直ちに"
+        },
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（書類等の作成及び保存）第七条委託事業者は、中小受託事業者に対し製造委託等をした場合は、公正取引委員会規則で定めるところ"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.jftc.go.jp/toriteki/toriteki_qa.html",
+          "url": "https://www.jftc.go.jp/toriteki/toriteki_qa.html",
+          "ok": true
+        }
+      ]
+    },
+    "forklift-operation": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "logistics.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第59条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_59&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（安全衛生教育）第五十九条事業者は、労働者を雇い入れたときは、当該労働者に対し、厚生労働省令で定めるところにより、その従"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第61条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_61&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（就業制限）第六十一条事業者は、クレーンの運転その他の業務で、政令で定めるものについては、都道府県労働局長の当該業務に係"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生法施行令 第20条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347CO0000000318?elm=MainProvision-Article_20&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347CO0000000318_20260401_507CO0000000361",
+          "enforcedOn": "2026-04-01",
+          "head": "（就業制限に係る業務）第二十条法第六十一条第一項の政令で定める業務は、次のとおりとする。一発破の場合におけるせん孔、装て"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第36条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_36&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（特別教育を必要とする業務）第三十六条法第五十九条第三項の厚生労働省令で定める危険又は有害な業務は、次のとおりとする。一"
+        }
+      ]
+    },
+    "safety-health-education": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "manufacturing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第59条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_59&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（安全衛生教育）第五十九条事業者は、労働者を雇い入れたときは、当該労働者に対し、厚生労働省令で定めるところにより、その従"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第35条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_35&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（雇入れ時等の教育）第三十五条事業者は、労働者を雇い入れ、又は労働者の作業内容を変更したときは、当該労働者に対し、遅滞な"
+        }
+      ]
+    },
+    "work-chief-appointment": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "manufacturing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第14条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_14&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（作業主任者）第十四条事業者は、高圧室内作業その他の労働災害を防止するための管理を必要とする作業で、政令で定めるものにつ"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生法施行令 第6条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347CO0000000318?elm=MainProvision-Article_6&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347CO0000000318_20260401_507CO0000000361",
+          "enforcedOn": "2026-04-01",
+          "head": "（作業主任者を選任すべき作業）第六条法第十四条の政令で定める作業は、次のとおりとする。一高圧室内作業（潜函かん工法その他"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第16条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_16&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（作業主任者の選任）第十六条法第十四条の規定による作業主任者の選任は、別表第一の上欄に掲げる作業の区分に応じて、同表の中"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第18条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_18&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（作業主任者の氏名等の周知）第十八条事業者は、作業主任者を選任したときは、当該作業主任者の氏名及びその者に行なわせる事項"
+        }
+      ]
+    },
+    "periodic-self-inspection": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "manufacturing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第45条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_45&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（定期自主検査）第四十五条事業者は、ボイラーその他の機械等で、政令で定めるものについて、厚生労働省令で定めるところにより"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生法施行令 第15条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347CO0000000318?elm=MainProvision-Article_15&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347CO0000000318_20260401_507CO0000000361",
+          "enforcedOn": "2026-04-01",
+          "head": "（定期に自主検査を行うべき機械等）第十五条法第四十五条第一項の政令で定める機械等は、次のとおりとする。一第十二条第一項各"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第134条の3",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_134_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（定期自主検査）第百三十四条の三事業者は、動力プレスについては、一年以内ごとに一回、定期に、次の事項について自主検査を行"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第135条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_135&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "第百三十五条事業者は、動力により駆動されるシヤーについては、一年以内ごとに一回、定期に、次の事項について自主検査を行わな"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第135条の2",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_135_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（定期自主検査の記録）第百三十五条の二事業者は、前二条の自主検査を行つたときは、次の事項を記録し、これを三年間保存しなけ"
+        }
+      ]
+    },
+    "worker-casualty-report": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "manufacturing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生法 第100条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347AC0000000057?elm=MainProvision-Article_100&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347AC0000000057_20260401_507AC0000000033",
+          "enforcedOn": "2026-04-01",
+          "head": "（報告等）第百条厚生労働大臣、都道府県労働局長又は労働基準監督署長は、この法律を施行するため必要があると認めるときは、厚"
+        },
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第97条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_97&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（労働者死傷病報告）第九十七条事業者は、労働者が労働災害その他就業中又は事業場内若しくはその附属建設物内における負傷、窒"
+        }
+      ]
+    },
+    "plant-accident-report": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "manufacturing.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "労働安全衛生規則 第96条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/347M50002000032?elm=MainProvision-Article_96&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "347M50002000032_20260801_508M60000100086",
+          "enforcedOn": "2026-08-01",
+          "head": "（事故報告）第九十六条事業者は、次の場合は、遅滞なく、様式第二十二号による報告書を所轄労働基準監督署長に提出しなければな"
+        }
+      ]
     }
   }
 }

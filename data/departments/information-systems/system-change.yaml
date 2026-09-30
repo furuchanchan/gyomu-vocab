@@ -1,0 +1,150 @@
+id: system-change
+label: { ja: システムの導入と変更, en: System adoption and change }
+description:
+  ja: 業務からの要望を受けて要件を整理し、候補を比べて稟議で決め、設定と試験をし、利用者に案内して本番に反映するまでの流れ。
+  en: From receiving a business request and organizing requirements, comparing options and obtaining approval, to configuring and testing, notifying users and releasing to production.
+frequency: on-demand
+timing: { ja: 業務でシステムの導入や変更の要望が出たとき。 }
+pcf: ["20840"]
+regulations: [personal-data-security, cybersecurity-effort]
+stages:
+  - id: request
+    label: { ja: 要望の受け付けと要件の整理, en: Request intake and requirements }
+    steps:
+      - id: submit-system-request
+        label: { ja: システムの導入や変更を要望する, en: Submit a system request }
+        description: { ja: 困っていること、望む変更、使う人と数を書いて、情報システムに要望を出す。 }
+        performedBy: requesting-staff
+        produces: [system-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: organize-requirements
+        label: { ja: 要件を整理する, en: Organize the requirements }
+        description: { ja: 要望を聞き取り、今あるシステムで足りるかを見たうえで、必要な機能、扱うデータ、使う人、期限を整理する。 }
+        performedBy: it-staff
+        receives: [system-request, system-inventory-record]
+        produces: [requirements-summary]
+        requiresJudgment: true
+        judgment: { ja: 今あるシステムの設定で足りるか、新しく入れる必要があるか。扱うデータに個人データが含まれるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+  - id: selection
+    label: { ja: 選定と稟議, en: Selection and approval }
+    steps:
+      - id: compare-options
+        label: { ja: 候補を比べる, en: Compare the options }
+        description: { ja: 要件に合う候補を集め、機能、費用、安全管理、個人データの扱い、提供元の対応を並べて比べる。 }
+        performedBy: it-staff
+        receives: [requirements-summary]
+        produces: [option-comparison]
+        requiresJudgment: true
+        judgment: { ja: 要件、費用、安全管理のどれを重く見て、どの候補を勧めるか。個人データを預ける相手として、安全管理が十分か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [personal-data-security, cybersecurity-effort]
+
+      - id: write-system-ringi
+        label: { ja: 導入の稟議書を書く, en: Write the adoption ringi }
+        description: { ja: 比較の結果から勧める候補と、費用、効果、リスクを書いて、稟議に出す。 }
+        performedBy: it-manager
+        receives: [option-comparison]
+        produces: [system-ringi]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: decide-system-ringi
+        label: { ja: 導入を決裁する, en: Approve the adoption }
+        description: { ja: 稟議書を見て、導入するか、見送るかを決める。 }
+        performedBy: executive
+        receives: [system-ringi]
+        produces: [approved-system-ringi]
+        requiresJudgment: true
+        judgment: { ja: 費用に見合う効果があるか。リスクを受け入れてよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: conclude-service-agreement
+        label: { ja: 利用の契約を結ぶ, en: Conclude the service agreement }
+        description: { ja: 決裁された内容で、提供元と利用の契約を結ぶ。個人データを預ける場合は、安全管理と再委託の扱いを契約に入れる。 }
+        performedBy: it-manager
+        receives: [approved-system-ringi]
+        produces: [service-agreement]
+        requiresJudgment: true
+        judgment: { ja: 契約の条件（期間、解約、データの扱い、安全管理、再委託）をどう定めるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [personal-data-security]
+
+  - id: build
+    label: { ja: 設定と試験, en: Configuration and testing }
+    steps:
+      - id: configure-system
+        label: { ja: システムを設定する, en: Configure the system }
+        description: { ja: 契約したサービスを、要件のとおりに設定し、権限と認証の決まりを反映する。 }
+        performedBy: it-staff
+        receives: [service-agreement, requirements-summary, authentication-rules]
+        produces: [system-configuration-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+
+      - id: test-system
+        label: { ja: システムを試験する, en: Test the system }
+        description: { ja: 要件どおりに動くか、権限が想定どおりに効いているかを、依頼した部署の担当と一緒に試験する。 }
+        performedBy: it-staff
+        confirmedBy: requesting-staff
+        receives: [system-configuration-record]
+        produces: [test-result]
+        requiresJudgment: true
+        judgment: { ja: 要件を満たし、本番に出してよい状態か。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: release
+    label: { ja: 案内と本番への反映, en: Notice and release }
+    pcf: ["20858"]
+    steps:
+      - id: announce-change
+        label: { ja: 利用者に変更を案内する, en: Announce the change to users }
+        description: { ja: 変更の内容、日時、使い方、止まる時間、困ったときの連絡先を、利用者に知らせる。 }
+        performedBy: it-staff
+        receives: [test-result]
+        produces: [change-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: release-to-production
+        label: { ja: 本番に反映する, en: Release to production }
+        description: { ja: 決めた日時に本番へ反映し、動作を確かめる。問題があれば戻す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [test-result, change-notice]
+        produces: [release-record]
+        requiresJudgment: true
+        judgment: { ja: 決めた日時に反映してよいか。問題が出たとき、戻す条件は何か。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: update-system-inventory
+        label: { ja: システムの台帳を更新する, en: Update the system inventory }
+        description: { ja: 使っているシステムとその管理者、契約、扱うデータの一覧を更新する。 }
+        performedBy: it-staff
+        receives: [release-record]
+        produces: [system-inventory-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]

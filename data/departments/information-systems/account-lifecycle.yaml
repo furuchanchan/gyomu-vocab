@@ -1,0 +1,131 @@
+id: account-lifecycle
+label: { ja: アカウントの発行と削除, en: Account issuance and removal }
+description:
+  ja: 入社に合わせてアカウントを発行して権限を付け、異動で権限を見直し、退職に合わせてアカウントを停止し、データを引き継いで削除するまでの流れ。
+  en: From issuing accounts and assigning permissions when someone joins, through reviewing permissions on transfer, to suspending the account, handing over data and deleting it when someone leaves.
+frequency: on-demand
+timing: { ja: 入社、異動、退職のたびに。人事の従業員の記録と退職の段取りを受け取って始める。 }
+pcf: ["20756"]
+regulations: [personal-data-security]
+stages:
+  - id: issue
+    label: { ja: アカウントの発行, en: Issuing accounts }
+    steps:
+      - id: request-account
+        label: { ja: アカウントの発行を依頼する, en: Request an account }
+        description: { ja: 入社する人の氏名、所属、入社日、必要な道具を書いて、情報システムに依頼する。 }
+        performedBy: hr-staff
+        receives: [employee-record]
+        produces: [account-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: decide-initial-permissions
+        label: { ja: 付ける権限を決める, en: Decide the permissions }
+        description: { ja: 所属と職務に照らして、その人が使うシステムとデータの権限を決める。 }
+        performedBy: department-manager
+        receives: [account-request]
+        produces: [approved-permission-plan]
+        requiresJudgment: true
+        judgment: { ja: 職務に必要な範囲に絞って、どの権限を付けるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: create-account
+        label: { ja: アカウントを作る, en: Create the account }
+        description: { ja: 承認された権限の案のとおりに、アカウントを作って権限を付け、記録に残す。 }
+        performedBy: it-staff
+        receives: [account-request, approved-permission-plan]
+        produces: [account-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [personal-data-security]
+
+      - id: hand-over-login-info
+        label: { ja: 最初のログインを案内する, en: Send the initial login information }
+        description: { ja: 初期の認証情報と、多要素認証の登録の手順を、本人に知らせる。 }
+        performedBy: it-staff
+        receives: [account-record]
+        produces: [initial-login-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+  - id: change
+    label: { ja: 異動の見直し, en: Review on transfer }
+    pcf: ["20759"]
+    steps:
+      - id: review-permissions-on-transfer
+        label: { ja: 異動に合わせて権限を見直す, en: Review permissions on transfer }
+        description: { ja: 新しい所属と職務に合わせて、要らなくなった権限を外し、必要な権限を付け直して、記録に残す。 }
+        performedBy: it-staff
+        confirmedBy: department-manager
+        receives: [employee-record, account-record]
+        produces: [permission-change-record]
+        requiresJudgment: true
+        judgment: { ja: 前の職務の権限を、いつまで残してよいか。新しい職務に必要な権限はどれか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [personal-data-security]
+
+  - id: suspend
+    label: { ja: 退職に合わせた停止と削除, en: Suspension and deletion on leaving }
+    steps:
+      - id: plan-suspension
+        label: { ja: 停止の段取りを決める, en: Plan the suspension }
+        description: { ja: 退職の日に合わせて、アカウントを止める日時、引き継ぐデータ、メールの扱いを決める。 }
+        performedBy: it-staff
+        receives: [separation-plan, account-record]
+        produces: [suspension-plan]
+        requiresJudgment: true
+        judgment: { ja: 退職の日のいつ止めるか。メールや共有データを誰に引き継ぐか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+
+      - id: hand-over-data
+        label: { ja: データを引き継ぐ, en: Hand over the data }
+        description: { ja: 退職する人が持っていた共有やデータの持ち主を、引き継ぎ先に移して、記録に残す。 }
+        performedBy: it-staff
+        confirmedBy: department-manager
+        receives: [suspension-plan]
+        produces: [handover-record]
+        requiresJudgment: true
+        judgment: { ja: どのデータを、誰に引き継ぎ、どれを残さず消すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+
+      - id: suspend-account
+        label: { ja: アカウントを停止する, en: Suspend the account }
+        description: { ja: 退職の日に、アカウントを止め、ログインできないことを確かめる。 }
+        performedBy: it-staff
+        receives: [suspension-plan, handover-record]
+        produces: [suspended-account-record]
+        doneWhen: { ja: 退職の日に、ログインできなくなっている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [personal-data-security]
+
+      - id: delete-account
+        label: { ja: アカウントを削除する, en: Delete the account }
+        description: { ja: 決めた保管の期間が過ぎたら、アカウントとデータを削除し、削除の記録を残す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [suspended-account-record]
+        produces: [deletion-record]
+        requiresJudgment: true
+        judgment: { ja: 保管の期間が過ぎているか。削除してはいけない記録が残っていないか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [identity-management]
+        regulations: [personal-data-security]

@@ -1,0 +1,121 @@
+id: inquiry-handling
+label: { ja: 問い合わせの対応, en: Inquiry handling }
+description:
+  ja: 顧客からの問い合わせを受け付けて記録し、本人と契約を確かめ、自分で答えるか関係部署へ引き継ぐかを決めて回答し、解決を記録して終了するまでの流れ。
+  en: From receiving and recording a customer inquiry and checking the customer and contract, to answering it or escalating it to a related department, recording the resolution and closing the case.
+frequency: on-demand
+timing: { ja: 問い合わせが届くたびに。 }
+regulations: [personal-information-protection, personal-data-requests]
+pcf: ["10388"]
+stages:
+  - id: receive-and-record
+    label: { ja: 受け付けと記録, en: Receive and record }
+    steps:
+      - id: receive-inquiry
+        label: { ja: 問い合わせを受け付けて記録する, en: Receive and record the inquiry }
+        description: { ja: メールや電話などで届いた問い合わせを受け付け、日時、顧客、連絡先、内容を記録する。顧客の個人情報は、問い合わせに答えるために使うことを伝えられる状態にしておく。 }
+        performedBy: cs-staff
+        receives: [customer-inquiry]
+        produces: [inquiry-case]
+        doneWhen: { ja: 日時、顧客、連絡先、問い合わせの内容が記録に入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, email]
+        regulations: [personal-information-protection]
+
+
+  - id: verify-and-route
+    label: { ja: 確認と振り分け, en: Verify and route }
+    steps:
+      - id: verify-inquirer
+        label: { ja: 本人と契約を確かめる, en: Verify the inquirer and the contract }
+        description: { ja: 問い合わせた人が契約者本人か、代理の人か、どの契約についての問い合わせかを、登録された情報と照らして確かめる。 }
+        performedBy: cs-staff
+        receives: [inquiry-case]
+        produces: [identity-check-result]
+        requiresJudgment: true
+        judgment: { ja: 契約の内容や個人の情報に触れる回答をしてよい相手か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, support-desk]
+
+      - id: classify-inquiry
+        label: { ja: 対応の振り分けを決める, en: Decide how to route the inquiry }
+        description: { ja: 問い合わせの種類を見て、自分で答えるか、関係部署に引き継ぐかを決める。自分の個人データの利用目的の通知、開示、訂正、利用停止の求めのときは、その求めとして扱う担当に回す。 }
+        performedBy: cs-staff
+        receives: [inquiry-case, identity-check-result]
+        produces: [routing-decision]
+        requiresJudgment: true
+        judgment: { ja: 手順書とよくある質問で答えられるか。関係部署に確かめる必要があるか。個人データについての本人からの求めか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, knowledge-base]
+        regulations: [personal-data-requests]
+
+
+  - id: answer
+    label: { ja: 回答, en: Answer }
+    steps:
+      - id: escalate-inquiry
+        label: { ja: 関係部署に引き継ぐ, en: Escalate to a related department }
+        description: { ja: 自分で答えられない問い合わせを、内容と経緯を添えて、関係部署に引き継ぐ。 }
+        performedBy: cs-staff
+        receives: [routing-decision]
+        produces: [escalation-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, email]
+
+      - id: answer-escalation
+        label: { ja: 引き継がれた問い合わせに答える, en: Answer the escalated inquiry }
+        description: { ja: 引き継がれた問い合わせについて、専門の立場で調べ、顧客に伝えてよい回答の中身をカスタマーサポートに返す。 }
+        performedBy: related-staff
+        receives: [escalation-request]
+        produces: [specialist-answer]
+        requiresJudgment: true
+        judgment: { ja: 顧客に伝えてよい範囲と、正確な回答の中身。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, email]
+
+      - id: answer-inquiry
+        label: { ja: 顧客に回答する, en: Answer the customer }
+        description: { ja: 手順書、または関係部署の回答をもとに、顧客の状況に合わせた言葉で回答を送る。 }
+        performedBy: cs-staff
+        receives: [inquiry-case, routing-decision, specialist-answer]
+        produces: [inquiry-answer]
+        requiresJudgment: true
+        judgment: { ja: 顧客にとって分かる言葉で、何をどこまで伝えるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, support-desk]
+
+
+  - id: closing
+    label: { ja: 解決の記録と終了, en: Record and close }
+    steps:
+      - id: record-resolution
+        label: { ja: 解決の内容を記録する, en: Record the resolution }
+        description: { ja: 回答の内容と、解決までの経緯を、あとで探し出せる形で記録する。 }
+        performedBy: cs-staff
+        receives: [inquiry-answer]
+        produces: [resolved-case-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk]
+
+      - id: close-case
+        label: { ja: 問い合わせを終了する, en: Close the case }
+        description: { ja: 顧客から追加の連絡がないことと、記録がそろっていることを確かめて、問い合わせを終了する。 }
+        performedBy: cs-staff
+        confirmedBy: cs-manager
+        receives: [resolved-case-record]
+        produces: [closed-case-record]
+        requiresJudgment: true
+        judgment: { ja: 追加の対応が要らず、終了してよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk]

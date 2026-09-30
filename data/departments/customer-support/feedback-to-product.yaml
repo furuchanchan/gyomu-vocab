@@ -1,0 +1,104 @@
+id: feedback-to-product
+label: { ja: 要望と不具合の製品側への引き渡し, en: Feedback to product }
+description:
+  ja: 顧客の要望と製品の不具合を記録し、重大さを判断してまとめ、責任者の確認を経て製品の担当と営業の担当へ引き渡すまでの流れ。
+  en: From recording customer requests and product defects and assessing their severity, to compiling them and handing them over to the product and sales teams after manager review.
+frequency: monthly
+timing: { ja: 要望や不具合が見つかったら記録し、毎月まとめて引き渡す。ただし人の安全に関わる不具合は、すぐに引き渡す。 }
+stages:
+  - id: record
+    label: { ja: 記録と重大さの判断, en: Record and assess }
+    steps:
+      - id: record-feedback
+        label: { ja: 要望と不具合を記録する, en: Record requests and defects }
+        description: { ja: 解決した問い合わせのうち、要望と不具合にあたるものを、内容と、同じ申し出が何件あるかとあわせて記録する。 }
+        performedBy: cs-staff
+        receives: [resolved-case-record]
+        produces: [feedback-record]
+        requiresJudgment: true
+        judgment: { ja: 要望か、製品の不具合か、使い方の誤りか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk, spreadsheet]
+
+      - id: assess-severity
+        label: { ja: 不具合の重大さを判断する, en: Assess the severity of defects }
+        description: { ja: 不具合が、顧客の生命、身体、財産に被害を出すおそれがあるかを含めて、どれだけ急ぐかを判断する。製造した製品の欠陥による被害の賠償は製造物責任法が定めるため、被害のおそれがあるものは印を付けて、責任者に伝える。 }
+        performedBy: cs-staff
+        confirmedBy: cs-manager
+        receives: [feedback-record]
+        produces: [severity-assessment]
+        requiresJudgment: true
+        judgment: { ja: 人の安全や財産に被害が出るおそれがあるか。すぐに製品側へ伝えるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [support-desk]
+        regulations: [product-liability]
+
+
+  - id: compile
+    label: { ja: まとめと確認, en: Compile and review }
+    steps:
+      - id: summarize-feedback
+        label: { ja: 要望と不具合をまとめる, en: Compile requests and defects }
+        description: { ja: 要望と不具合を種類ごとにまとめ、件数、顧客の声、重大さを書いた報告を作る。 }
+        performedBy: cs-staff
+        receives: [feedback-record, severity-assessment]
+        produces: [product-feedback-report]
+        requiresJudgment: true
+        judgment: { ja: 何を上位に置き、どの顧客の声を例として付けるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet, document-storage]
+
+      - id: review-report
+        label: { ja: 報告の内容と優先度を確かめる, en: Review the report and priorities }
+        description: { ja: 報告の内容が事実と合っているか、優先度が妥当かを確かめ、製品側に渡してよいとする。 }
+        performedBy: cs-manager
+        receives: [product-feedback-report]
+        produces: [approved-product-feedback-report]
+        requiresJudgment: true
+        judgment: { ja: 優先度が妥当か。顧客が特定される情報を含んでいないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+
+  - id: handover
+    label: { ja: 引き渡し, en: Handover }
+    steps:
+      - id: hand-over-to-product
+        label: { ja: 製品の担当に引き渡す, en: Hand over to product staff }
+        description: { ja: 承認された報告を、製品の担当に渡し、渡した日と相手を記録する。 }
+        performedBy: cs-staff
+        receives: [approved-product-feedback-report]
+        produces: [feedback-handover-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, workflow-system]
+
+      - id: register-feedback
+        label: { ja: 改善の一覧に登録する, en: Register in the product backlog }
+        description: { ja: 受け取った要望と不具合を、製品の改善の一覧に登録する。 }
+        performedBy: product-staff
+        receives: [approved-product-feedback-report]
+        produces: [product-registration-record]
+        requiresJudgment: true
+        judgment: { ja: 今の計画のなかで、いつ、どの順で扱うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: hand-over-to-sales
+        label: { ja: 営業の担当に引き渡す, en: Hand over to sales }
+        description: { ja: 顧客の追加の利用や別の商品への関心が見つかったときは、その顧客と内容を営業の担当に伝える。 }
+        performedBy: cs-staff
+        receives: [feedback-record]
+        produces: [sales-handover-note]
+        requiresJudgment: true
+        judgment: { ja: 営業の担当に伝える話か、サポートで完結する話か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, crm]
+        pcf: ["16937"]

@@ -1,0 +1,42 @@
+# 製造の工程で使う担い手。
+- id: production-planner
+  label: { ja: 生産管理の担当, en: Production planning staff }
+  description: { ja: 受注と需要を確かめ、生産の計画を作り、材料の手配を依頼し、製造の指示を出す役割。 }
+  external: false
+  occupation: jsoc-b
+  occupationCode: "08"
+
+- id: production-manager
+  label: { ja: 製造の責任者, en: Production manager }
+  description: { ja: 生産の計画の承認、作業の記録の確認、出荷や不良の処置の決定、作業主任者の選任など、製造の現場に責任を持つ役割。 }
+  external: false
+  occupation: jsoc-a
+
+- id: production-worker
+  label: { ja: 製造の作業者, en: Production worker }
+  description: { ja: 段取り、材料の払い出し、製品の製造、作業の記録、始める前の設備の点検など、現場で現物を扱う役割。 }
+  external: false
+  occupation: jsoc-h
+
+- id: quality-inspector
+  label: { ja: 検査の担当, en: Quality inspector }
+  description: { ja: 材料と製品を検査の基準に沿って測り、結果を記録して、不良を見つける役割。 }
+  external: false
+  occupation: jsoc-h
+
+- id: maintenance-staff
+  label: { ja: 設備保全の担当, en: Equipment maintenance staff }
+  description: { ja: 設備の点検の計画を立て、定期の自主検査を行い、故障を確かめて修理する役割。 }
+  external: false
+  occupation: jsoc-h
+  occupationCode: "55"
+
+- id: safety-officer
+  label: { ja: 安全衛生の担当, en: Safety and health officer }
+  description: { ja: 安全衛生教育の実施、作業主任者の氏名の周知、危険な作業の手順の作成、災害の記録と役所への報告を行う役割。 }
+  external: false
+
+- id: work-chief
+  label: { ja: 作業主任者, en: Work chief }
+  description: { ja: 労働災害を防ぐための管理が要る作業で、免許か技能講習の修了の資格を持つ人の中から選ばれ、その作業に従事する人を指揮する役割。 }
+  external: false

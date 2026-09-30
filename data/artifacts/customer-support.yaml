@@ -1,0 +1,249 @@
+# カスタマーサポートの工程で受け渡される物。
+- id: customer-inquiry
+  label: { ja: 顧客からの問い合わせ, en: Customer inquiry }
+  description: { ja: メール、電話、フォームなどで顧客から届く、質問や依頼。 }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: inquiry-case
+  label: { ja: 問い合わせの記録, en: Inquiry case record }
+  description: { ja: 受け付けた日時、顧客、連絡先、問い合わせの内容、経緯を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: identity-check-result
+  label: { ja: 本人と契約の確認の結果, en: Identity and contract check result }
+  description: { ja: 問い合わせた人が契約者本人か代理の人か、どの契約についての問い合わせかを確かめた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: routing-decision
+  label: { ja: 対応の振り分けの判断, en: Routing decision }
+  description: { ja: 自分で答えるか、関係部署へ引き継ぐか、個人データの開示などの求めとして扱うかの判断。 }
+  kind: data
+  fromOutside: false
+
+- id: escalation-request
+  label: { ja: 関係部署への引き継ぎの依頼, en: Escalation request }
+  description: { ja: 問い合わせの内容と経緯を添えて、関係部署に回答か対応を頼む連絡。 }
+  kind: message
+  fromOutside: false
+
+- id: specialist-answer
+  label: { ja: 関係部署からの回答, en: Answer from a related department }
+  description: { ja: 引き継いだ問い合わせについて、関係部署が返した回答の中身。 }
+  kind: message
+  fromOutside: false
+
+- id: inquiry-answer
+  label: { ja: 顧客への回答, en: Answer to the customer }
+  description: { ja: 問い合わせに対して顧客に返す回答。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: resolved-case-record
+  label: { ja: 解決の記録, en: Resolved case record }
+  description: { ja: 問い合わせの内容、回答、解決までの経緯を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: closed-case-record
+  label: { ja: 終了した問い合わせの記録, en: Closed case record }
+  description: { ja: 顧客への回答を終え、対応を終了した問い合わせの記録。 }
+  kind: data
+  fromOutside: false
+
+- id: customer-complaint
+  label: { ja: 顧客からの苦情, en: Customer complaint }
+  description: { ja: 製品、サービス、対応に対する不満や抗議として顧客から届く申し出。 }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: complaint-case
+  label: { ja: 苦情の記録, en: Complaint case record }
+  description: { ja: 苦情を受け付けた日時、顧客、申し出の内容、顧客が求めていることを書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: fact-findings
+  label: { ja: 事実の確認の結果, en: Fact findings }
+  description: { ja: 苦情の内容について、記録や履歴から確かめた事実と、確かめられなかった点。 }
+  kind: document
+  fromOutside: false
+
+- id: department-check-request
+  label: { ja: 関係部署への確認の依頼, en: Request for department check }
+  description: { ja: 苦情に関わる事実や事情を、関係部署に確かめる依頼。 }
+  kind: message
+  fromOutside: false
+
+- id: department-findings
+  label: { ja: 関係部署の確認の結果, en: Department findings }
+  description: { ja: 関係部署が確かめた事実、原因、対応できる内容。 }
+  kind: document
+  fromOutside: false
+
+- id: response-policy
+  label: { ja: 苦情への対応の方針, en: Complaint response policy }
+  description: { ja: 苦情にどう答え、何を行うかを決めた内容。 }
+  kind: document
+  fromOutside: false
+
+- id: complaint-response
+  label: { ja: 苦情への回答, en: Response to the complaint }
+  description: { ja: 事実の確認の結果と対応の方針を、顧客に伝える回答。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: complaint-prevention-record
+  label: { ja: 再発の防止の記録, en: Recurrence prevention record }
+  description: { ja: 苦情の原因と、同じ苦情を繰り返さないために決めた対策の記録。 }
+  kind: document
+  fromOutside: false
+
+- id: inquiry-trend-report
+  label: { ja: 問い合わせの傾向の集計, en: Inquiry trend report }
+  description: { ja: 一定の期間の問い合わせを、種類と件数で集計した結果。 }
+  kind: document
+  fromOutside: false
+
+- id: article-plan
+  label: { ja: 記事の作成の計画, en: Article plan }
+  description: { ja: どの質問や手順を記事にするか、何を書くかを決めた計画。 }
+  kind: document
+  fromOutside: false
+
+- id: article-draft
+  label: { ja: 記事の案, en: Article draft }
+  description: { ja: よくある質問や手順書の記事の下書き。 }
+  kind: document
+  fromOutside: false
+
+- id: reviewed-article
+  label: { ja: 内容を確かめた記事, en: Reviewed article }
+  description: { ja: 内容が正しいと関係部署が確かめた記事。 }
+  kind: document
+  fromOutside: false
+
+- id: published-article
+  label: { ja: 公開した記事, en: Published article }
+  description: { ja: 顧客が読めるように公開したよくある質問や手順書。 }
+  kind: document
+  fromOutside: false
+  recipient: customer
+
+- id: article-review-result
+  label: { ja: 記事の見直しの結果, en: Article review result }
+  description: { ja: 公開中の記事を、そのまま残すか、直すか、下げるかを決めた結果。 }
+  kind: document
+  fromOutside: false
+
+- id: feedback-record
+  label: { ja: 要望と不具合の記録, en: Feedback record }
+  description: { ja: 顧客の要望か、製品の不具合かを分けて、内容と件数を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: severity-assessment
+  label: { ja: 重大さの判断, en: Severity assessment }
+  description: { ja: 不具合が、顧客の生命、身体、財産に被害を出すおそれがあるかを含めて、急ぐ度合いを判断した結果。 }
+  kind: data
+  fromOutside: false
+
+- id: product-feedback-report
+  label: { ja: 要望と不具合のまとめ, en: Product feedback report }
+  description: { ja: 要望と不具合を種類ごとにまとめ、件数、顧客の声、重大さを書いた製品側への報告。 }
+  kind: document
+  fromOutside: false
+
+- id: approved-product-feedback-report
+  label: { ja: 承認された要望と不具合のまとめ, en: Approved product feedback report }
+  description: { ja: 責任者が内容と優先度を確かめて、製品側へ渡してよいとした報告。 }
+  kind: document
+  fromOutside: false
+
+- id: feedback-handover-record
+  label: { ja: 製品側への引き渡しの記録, en: Feedback handover record }
+  description: { ja: いつ、誰に、何を渡したかの記録。 }
+  kind: data
+  fromOutside: false
+
+- id: product-registration-record
+  label: { ja: 製品の改善の一覧への登録の記録, en: Product backlog registration record }
+  description: { ja: 製品の担当が、引き渡された要望と不具合を、改善の一覧に登録した記録。 }
+  kind: data
+  fromOutside: false
+
+- id: sales-handover-note
+  label: { ja: 営業への引き渡しのメモ, en: Sales handover note }
+  description: { ja: 顧客の追加の利用や別の商品への関心を、営業の担当に伝えるメモ。 }
+  kind: message
+  fromOutside: false
+
+- id: change-request
+  label: { ja: 契約やアカウントの変更の申し出, en: Change request }
+  description: { ja: 名義、連絡先、プランの変更や、解約について顧客から届く申し出。 }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: change-case-record
+  label: { ja: 変更の申し出の記録, en: Change case record }
+  description: { ja: 変更の種類、対象の契約、顧客が求める内容を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: requester-check-result
+  label: { ja: 申し出た人の確認の結果, en: Requester check result }
+  description: { ja: 申し出た人が契約者本人か、変更する権限のある人かを確かめた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: updated-customer-record
+  label: { ja: 更新した顧客の情報, en: Updated customer record }
+  description: { ja: 名義や連絡先を変更した後の顧客の情報。 }
+  kind: data
+  fromOutside: false
+
+- id: plan-change-agreement
+  label: { ja: プランの変更の合意, en: Plan change agreement }
+  description: { ja: 変更後のプラン、開始の時期、料金の変わり方について顧客と合意した内容。 }
+  kind: data
+  fromOutside: false
+
+- id: cancellation-terms-notice
+  label: { ja: 解約の条件の案内, en: Cancellation terms notice }
+  description: { ja: 解約できる時期、手続き、違約金や返金の有無などを顧客に伝える案内。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: cancellation-request
+  label: { ja: 解約の申し出, en: Cancellation request }
+  description: { ja: 条件の案内を受けたうえで、顧客が解約を求める申し出。 }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: cancellation-record
+  label: { ja: 解約の受け付けの記録, en: Cancellation record }
+  description: { ja: 解約を受け付けた日、解約の日、精算の扱いを書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: change-handover-note
+  label: { ja: 変更の引き継ぎのメモ, en: Change handover note }
+  description: { ja: 名義、連絡先、プランの変更や解約の内容を、請求などを担当する部署に伝えるメモ。 }
+  kind: message
+  fromOutside: false
+
+- id: change-completion-notice
+  label: { ja: 変更の完了の連絡, en: Change completion notice }
+  description: { ja: 変更や解約の手続きが終わったこと、変更後の内容を顧客に伝える連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: customer

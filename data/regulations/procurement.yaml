@@ -1,0 +1,93 @@
+# 購買・調達に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: torite-terms-statement
+  label: { ja: 取適法の発注のときの明示（中小受託取引適正化法）, en: Stating the terms when placing an order under the Act on subcontract transactions }
+  obligation:
+    ja: 中小受託事業者に製造委託などをした委託事業者は、直ちに、公正取引委員会規則で定めるところにより、給付の内容、代金の額、支払期日、支払方法その他の事項を、書面か電磁的方法で中小受託事業者に明示する。内容が定められないことに正当な理由がある事項は、内容が定まった後、直ちに明示する。電磁的方法で明示したあとで、相手から書面の交付を求められたときは、遅滞なく交付する。
+  deadline:
+    ja: 製造委託などをした後、直ちに。
+  appliesTo:
+    ja: 中小受託事業者に、製造委託などをする委託事業者。対象になる取引と事業者の範囲は、法律で決まっている。
+  authority: { ja: 公正取引委員会、中小企業庁, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency" }
+  legalBasis:
+    - law: 製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律
+      lawId: 331AC0000000120
+      articles:
+        - { article: "4", contains: [中小受託事業者の給付の内容その他の事項の明示等, 直ちに, 書面又は電磁的方法, 書面の交付を求められたとき] }
+  verifiedOn: 2026-09-30
+
+- id: torite-record-keeping
+  label: { ja: 取適法の書類の作成と保存（中小受託取引適正化法）, en: Keeping records of subcontract transactions }
+  obligation:
+    ja: 中小受託事業者に製造委託などをした委託事業者は、公正取引委員会規則で定めるところにより、給付、給付の受領（役務の提供を受けたこと）、代金の支払その他の事項を記載し、または記録した書類か電磁的記録を作り、保存する。書類か電磁的記録は、記載や記録をすべき事項の全部を記載または記録した日から2年間保存する。
+  deadline:
+    ja: 記載や記録をすべき事項の全部を記載または記録した日から2年間。
+  appliesTo:
+    ja: 中小受託事業者に、製造委託などをする委託事業者。
+  authority: { ja: 公正取引委員会、中小企業庁, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency" }
+  legalBasis:
+    - law: 製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律
+      lawId: 331AC0000000120
+      articles:
+        - { article: "7", contains: [書類等の作成及び保存, 給付の受領, 作成し、これを保存しなければならない] }
+    - law: 製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律第七条の書類等の作成及び保存に関する規則
+      lawId: 507M60200000010
+      articles:
+        - { article: "3", contains: [記載又は記録をした日から二年間、保存しなければならない] }
+  verifiedOn: 2026-09-30
+
+- id: freelance-terms-disclosure
+  label: { ja: フリーランス法の取引条件の明示, en: Stating the terms of a commission to a freelancer }
+  obligation:
+    ja: 特定受託事業者（従業員を使用しない個人と、一人の代表者以外に役員がなく従業員を使用しない法人）に業務委託をした業務委託事業者は、直ちに、公正取引委員会規則で定めるところにより、給付の内容、報酬の額、支払期日その他の事項を、書面か電磁的方法で明示する。内容が定められないことに正当な理由がある事項は、定まった後、直ちに明示する。電磁的方法で明示したあとで、相手から書面の交付を求められたときは、遅滞なく交付する。
+  deadline:
+    ja: 業務委託をした後、直ちに。
+  appliesTo:
+    ja: 特定受託事業者に業務委託をする事業者。従業員を使う事業者かどうかは問わない。
+  authority: { ja: 公正取引委員会、中小企業庁、厚生労働省, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency, Ministry of Health, Labour and Welfare" }
+  legalBasis:
+    - law: 特定受託事業者に係る取引の適正化等に関する法律
+      lawId: 505AC0000000025
+      articles:
+        - { article: "2", contains: [特定受託事業者, 従業員を使用しないもの, 業務委託事業者] }
+        - { article: "3", contains: [特定受託事業者の給付の内容その他の事項の明示等, 直ちに, 書面又は電磁的方法, 書面の交付を求められたとき] }
+  officialGuidance:
+    - url: https://www.jftc.go.jp/fllaw_limited.html
+      contains: [特定受託事業者, 取引条件の明示義務]
+  verifiedOn: 2026-09-30
+
+- id: freelance-payment-deadline
+  label: { ja: フリーランス法の報酬の支払期日, en: Payment deadline for a freelancer's fee }
+  obligation:
+    ja: 特定受託事業者に業務委託をした特定業務委託事業者は、報酬の支払期日を、給付を受け取った日（役務の提供を受けたときは、その提供を受けた日）から数えて60日の期間内で、できる限り短い期間内に定める。給付の内容を検査するかどうかは問わない。他の事業者から受けた業務を再委託する場合の特例（元委託の支払期日から30日以内）もある。
+  deadline:
+    ja: 給付を受け取った日から起算して60日以内。
+  appliesTo:
+    ja: 特定受託事業者に業務委託をする、従業員を使用する個人か、役員が二人以上または従業員を使用する法人（特定業務委託事業者）。
+  authority: { ja: 公正取引委員会、中小企業庁、厚生労働省, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency, Ministry of Health, Labour and Welfare" }
+  legalBasis:
+    - law: 特定受託事業者に係る取引の適正化等に関する法律
+      lawId: 505AC0000000025
+      articles:
+        - { article: "2", contains: [特定業務委託事業者, 従業員を使用するもの, 二以上の役員があり] }
+        - { article: "4", contains: [報酬の支払期日等, 検査をするかどうかを問わず, 六十日の期間内, できる限り短い期間内, 三十日の期間内] }
+  verifiedOn: 2026-09-30
+
+- id: sale-nonconformity-liability
+  label: { ja: 引き渡された物が契約に合わないときの買主の権利（民法）, en: Buyer's remedies when goods do not conform to the contract }
+  obligation:
+    ja: 引き渡された物が、種類、品質、数量について契約の内容に適合しないときは、買主は売主に、修補、代替物の引渡し、不足分の引渡しによる追完を請求できる。相当の期間を定めて追完を催告しても追完がないときは、不適合の程度に応じて代金の減額を請求できる。種類と品質の不適合は、買主が知った時から1年以内に売主に通知しないと、追完の請求、代金の減額の請求、損害賠償の請求、契約の解除ができなくなる（売主が引渡しの時に不適合を知っていたか、重大な過失で知らなかったときを除く）。売買以外の有償契約にも、契約の性質が許す限り、準用される。
+  deadline:
+    ja: 種類または品質の不適合は、知った時から1年以内に通知する。
+  appliesTo:
+    ja: 物を買う、または売買以外の有償契約で物や成果を受け取る、すべての事業者。契約で別の定めをした場合は、その定めが先になることがある。
+  authority: { ja: 法務省, en: Ministry of Justice }
+  legalBasis:
+    - law: 民法
+      lawId: 129AC0000000089
+      articles:
+        - { article: "559", contains: [有償契約への準用, 売買以外の有償契約について準用する] }
+        - { article: "562", contains: [買主の追完請求権, 契約の内容に適合しないもの, 代替物の引渡し] }
+        - { article: "563", contains: [買主の代金減額請求権, 相当の期間を定めて履行の追完の催告] }
+        - { article: "566", contains: [買主がその不適合を知った時から一年以内, 契約の解除をすることができない] }
+  verifiedOn: 2026-09-30

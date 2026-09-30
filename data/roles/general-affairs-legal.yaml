@@ -1,0 +1,31 @@
+# 総務・法務の工程に出てくる担い手。
+- id: general-affairs-staff
+  label: { ja: 総務・法務の担当, en: General affairs and legal staff }
+  description: { ja: 株主総会や取締役会の運営、登記、契約書と文書の管理、備品やオフィスの管理、社内規程の整備などの、総務・法務の実務を行う役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "251"
+
+- id: general-affairs-manager
+  label: { ja: 総務・法務の責任者, en: General affairs and legal manager }
+  description: { ja: 総務・法務の処理を確かめ、招集や登記の進め方、文書の廃棄などを承認する役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: shareholder
+  label: { ja: 株主, en: Shareholder }
+  description: { ja: 会社の株式を持ち、株主総会で議決権を行使する相手。 }
+  external: true
+
+- id: judicial-scrivener
+  label: { ja: 司法書士, en: Judicial scrivener }
+  description: { ja: 会社の依頼を受けて、登記の申請書を作り、登記を申請する専門家。 }
+  external: true
+  occupation: jsoc-b
+  occupationCode: "175"
+
+- id: legal-affairs-bureau
+  label: { ja: 法務局（登記所）, en: Legal affairs bureau (registry office) }
+  description: { ja: 会社の登記の申請を受け付け、登記事項証明書を交付する役所。 }
+  external: true

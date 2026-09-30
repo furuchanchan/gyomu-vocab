@@ -1,0 +1,134 @@
+id: backup-and-recovery
+label: { ja: バックアップと復旧, en: Backup and recovery }
+description:
+  ja: 取る対象と頻度を決め、取得の結果を確かめ、復旧の試験をし、データが消えたときに戻すまでの流れ。
+  en: From deciding what and how often to back up, checking the results and testing restores, to restoring data when it is lost.
+frequency: on-demand
+timing: { ja: 方針は、システムを入れたときと、年に一度の見直しのとき。取得の確認は日々。復旧の試験は決めた周期で。復旧は依頼があったとき。 }
+pcf: ["20731"]
+regulations: [electronic-transaction-data, bookkeeping-retention, personal-data-security]
+stages:
+  - id: policy
+    label: { ja: 対象と頻度の決定, en: Scope and frequency }
+    steps:
+      - id: decide-backup-policy
+        label: { ja: バックアップの方針を決める, en: Decide the backup policy }
+        description: { ja: システムの台帳から、取る対象、頻度、保管の期間、戻すまでの目標の時間を決める。帳簿や電子取引のデータのように、法令で保存が決まっているものを外さない。 }
+        performedBy: it-manager
+        confirmedBy: executive
+        receives: [system-inventory-record]
+        produces: [backup-policy]
+        requiresJudgment: true
+        judgment: { ja: どのデータを、どの頻度と期間で取り、どれくらいの時間で戻せるようにするか。費用に見合うか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [electronic-transaction-data, bookkeeping-retention, personal-data-security]
+
+      - id: configure-backup
+        label: { ja: バックアップを設定する, en: Configure the backup }
+        description: { ja: 方針のとおりに、取得の対象、頻度、保管の場所と期間を設定する。 }
+        performedBy: it-staff
+        receives: [backup-policy]
+        produces: [backup-configuration-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [backup-system]
+
+  - id: operation
+    label: { ja: 取得の確認, en: Checking the backups }
+    steps:
+      - id: check-backup-results
+        label: { ja: 取得の結果を確かめる, en: Check the backup results }
+        description: { ja: 決めた周期で、取得が成功したかを見て、失敗があれば原因を調べて取り直し、記録に残す。 }
+        performedBy: it-staff
+        receives: [backup-configuration-record]
+        produces: [backup-check-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [backup-system, monitoring-system]
+
+  - id: test
+    label: { ja: 復旧の試験, en: Restore testing }
+    steps:
+      - id: plan-restore-test
+        label: { ja: 復旧の試験を計画する, en: Plan the restore test }
+        description: { ja: 試験する対象、時点、確かめる項目、目標の時間を決める。 }
+        performedBy: it-staff
+        receives: [backup-policy]
+        produces: [restore-test-plan]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: run-restore-test
+        label: { ja: 復旧の試験をする, en: Run the restore test }
+        description: { ja: 取ったデータを試験の環境に戻し、中身が使える状態か、目標の時間内に戻せたかを確かめる。 }
+        performedBy: it-staff
+        receives: [restore-test-plan, backup-check-record]
+        produces: [restore-test-result]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [backup-system]
+
+      - id: review-restore-test
+        label: { ja: 試験の結果を見直す, en: Review the restore test result }
+        description: { ja: 目標の時間内に戻せたか、戻せなかった対象がないかを見て、方針や設定を直すかを決める。 }
+        performedBy: it-manager
+        receives: [restore-test-result]
+        produces: [backup-improvement-record]
+        requiresJudgment: true
+        judgment: { ja: 目標の時間内に戻せたか。方針や設定を直す必要があるか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: restore
+    label: { ja: 復旧の実施, en: Restoring data }
+    pcf: ["20928"]
+    steps:
+      - id: request-restore
+        label: { ja: データの復旧を依頼する, en: Request a restore }
+        description: { ja: 消してしまった、壊れた、というときに、戻したい対象と時点を書いて、情報システムに依頼する。 }
+        performedBy: requesting-staff
+        produces: [restore-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: plan-restore
+        label: { ja: 復旧の段取りを決める, en: Plan the restore }
+        description: { ja: 戻す対象と時点を確かめ、今あるデータを上書きしてよいかを見て、段取りを決める。 }
+        performedBy: it-staff
+        receives: [restore-request, backup-policy]
+        produces: [restore-plan]
+        requiresJudgment: true
+        judgment: { ja: どの時点に戻すか。今あるデータを上書きして失うものはないか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: restore-data
+        label: { ja: データを戻す, en: Restore the data }
+        description: { ja: 段取りのとおりにデータを戻し、記録を残す。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [restore-plan]
+        produces: [restore-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [backup-system]
+
+      - id: confirm-restore
+        label: { ja: 戻ったことを確かめる, en: Confirm the restored data }
+        description: { ja: 依頼した人が、戻ったデータが必要な状態かを確かめる。 }
+        performedBy: requesting-staff
+        receives: [restore-record]
+        produces: [restore-confirmation]
+        requiresJudgment: true
+        judgment: { ja: 戻ったデータが、必要な内容と時点になっているか。 }
+        irreversible: false
+        humanRequired: false

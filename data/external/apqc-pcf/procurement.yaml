@@ -1,0 +1,15 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、参照する要素だけを書く。
+- { id: "10216", hierarchy: "4.2", name: "Procure materials and services" }
+- { id: "10289", hierarchy: "4.2.2.2", name: "Certify and validate suppliers" }
+- { id: "10290", hierarchy: "4.2.2.3", name: "Negotiate and establish contracts" }
+- { id: "10291", hierarchy: "4.2.2.4", name: "Manage contracts" }
+- { id: "10279", hierarchy: "4.2.3", name: "Order materials and services" }
+- { id: "10292", hierarchy: "4.2.3.1", name: "Process/Review requisitions" }
+- { id: "10293", hierarchy: "4.2.3.2", name: "Approve requisitions" }
+- { id: "10294", hierarchy: "4.2.3.3", name: "Solicit supplier quotes" }
+- { id: "10295", hierarchy: "4.2.3.4", name: "Create/Distribute purchase orders" }
+- { id: "10280", hierarchy: "4.2.4", name: "Manage suppliers" }
+- { id: "10299", hierarchy: "4.2.4.1", name: "Monitor/Manage supplier information" }
+- { id: "10300", hierarchy: "4.2.4.2", name: "Prepare/Analyze procurement and supplier performance" }
+- { id: "10302", hierarchy: "4.2.4.4", name: "Monitor quality of product delivered" }
+- { id: "10354", hierarchy: "4.4.3.2", name: "Receive, inspect, and store inbound deliveries" }

@@ -1,0 +1,3 @@
+- id: warehouse-system
+  label: { ja: 倉庫と在庫の管理のシステム, en: Warehouse and inventory management system }
+  description: { ja: 入荷、出荷、棚の場所、在庫の数を記録して管理するシステム。送り状の発行に使うこともある。 }

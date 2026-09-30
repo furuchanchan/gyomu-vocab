@@ -1,0 +1,23 @@
+- id: it-staff
+  label: { ja: 情報システムの担当, en: IT staff }
+  description: { ja: アカウント、端末、権限、システムの設定、バックアップ、障害の対応などの、情報システムの実務を行う役割。 }
+  external: false
+  occupation: jsoc-b
+  occupationCode: "105"
+
+- id: it-manager
+  label: { ja: 情報システムの責任者, en: IT manager }
+  description: { ja: 情報システムの運用を確かめ、契約、削除、報告、方針の決定を承認する役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: personal-information-protection-commission
+  label: { ja: 個人情報保護委員会, en: Personal Information Protection Commission }
+  description: { ja: 個人データの漏えい等の報告を受け付ける役所。 }
+  external: true
+
+- id: data-subject
+  label: { ja: 個人データの本人, en: Data subject }
+  description: { ja: 会社が持つ個人データが誰のものかにあたる個人。従業員、顧客、応募者など。 }
+  external: true

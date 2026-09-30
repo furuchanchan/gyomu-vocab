@@ -1,0 +1,15 @@
+id: general-affairs-legal
+order: 6
+label: { ja: 総務・法務, en: General affairs and legal }
+description:
+  ja: 株主総会と取締役会を運営し、登記を変更し、契約書を審査して管理し、備品やオフィスを管理し、社内規程を整え、文書を保存して廃棄する部署。
+  en: The department that runs shareholders and board meetings, registers changes to the company register, reviews and manages contracts, manages office equipment and assets, maintains internal rules, and retains and disposes of records.
+pcf: ["10012"]
+workflows:
+  - shareholders-meeting
+  - board-meeting
+  - corporate-registration
+  - contract-management
+  - office-and-assets
+  - internal-rules
+  - records-management

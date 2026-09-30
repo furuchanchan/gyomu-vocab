@@ -1,0 +1,30 @@
+- id: warehouse-staff
+  label: { ja: 倉庫の担当, en: Warehouse staff }
+  description: { ja: 倉庫で、荷物の荷受け、棚入れ、ピッキング、検品、梱包、運送会社への引き渡し、棚卸の実地の数え直しを行う役割。 }
+  external: false
+  occupation: jsoc-k
+  occupationCode: "704"
+
+- id: logistics-clerk
+  label: { ja: 物流事務の担当, en: Logistics clerk }
+  description: { ja: 出荷の指示の受け取り、送り状の作成、入出荷と在庫の記録、運送会社との連絡、運賃の請求の確認など、物流の事務を行う役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "272"
+
+- id: logistics-manager
+  label: { ja: 物流の責任者, en: Logistics manager }
+  description: { ja: 棚卸の計画、在庫の修正、返品の処理、運送会社の選定と契約、荷待ちや荷役の時間の短縮の取り組みを決める役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: carrier
+  label: { ja: 運送会社, en: Carrier }
+  description: { ja: 荷主から荷物の運送を頼まれ、集荷、運送、配達を行う会社。運賃を荷主に請求する。 }
+  external: true
+
+- id: shipper-supervising-ministry
+  label: { ja: 荷主の事業を所管する省庁, en: Ministry supervising the shipper's business }
+  description: { ja: 荷主が行う事業を所管する大臣の役所。特定荷主から、物流の中長期の計画と定期の報告を受け取る。 }
+  external: true

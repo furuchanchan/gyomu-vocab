@@ -1,0 +1,153 @@
+id: device-management
+label: { ja: 端末の調達・貸与・回収, en: Device procurement, lending and collection }
+description:
+  ja: 端末の申請を受けて調達し、設定して貸し出し、紛失や故障に対応し、返却された端末を初期化して再利用か廃棄をするまでの流れ。
+  en: From receiving a device request, procuring, configuring and lending the device, handling loss or failure, to wiping returned devices and deciding reuse or disposal.
+frequency: on-demand
+timing: { ja: 端末が必要になったとき、紛失や故障があったとき、退職や更新で端末を返すとき。 }
+pcf: ["20914"]
+regulations: [personal-data-security]
+stages:
+  - id: procurement
+    label: { ja: 申請と調達, en: Request and procurement }
+    steps:
+      - id: request-device
+        label: { ja: 端末を申請する, en: Request a device }
+        description: { ja: 必要な端末の種類、使う人、理由を書いて申請する。 }
+        performedBy: employee
+        produces: [device-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-device-request
+        label: { ja: 端末の申請を承認する, en: Approve the device request }
+        description: { ja: 業務に必要か、申請の内容が妥当かを確かめて承認する。 }
+        performedBy: department-manager
+        receives: [device-request]
+        produces: [approved-device-request]
+        requiresJudgment: true
+        judgment: { ja: その端末が業務に必要か。仕様と数が妥当か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: order-device
+        label: { ja: 端末を発注する, en: Order the device }
+        description: { ja: 承認された申請に合う端末を選び、取引先に発注する。 }
+        performedBy: it-staff
+        receives: [approved-device-request]
+        produces: [device-order]
+        requiresJudgment: true
+        judgment: { ja: 申請の用途に合う仕様と、費用と、納期の折り合いをどうつけるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: inspect-delivered-device
+        label: { ja: 届いた端末を検品して台帳に載せる, en: Inspect the delivery and register the device }
+        description: { ja: 届いた端末を納品書と照らして数と状態を確かめ、管理の番号を付けて、台帳に載せる。 }
+        performedBy: it-staff
+        receives: [device-delivery-note]
+        produces: [asset-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 届いた端末の現物を、数え、状態を確かめる作業であるため。 }
+        toolKinds: [spreadsheet]
+
+  - id: provisioning
+    label: { ja: 設定と貸与, en: Configuration and lending }
+    steps:
+      - id: configure-device
+        label: { ja: 端末を設定する, en: Configure the device }
+        description: { ja: 会社の決まりの設定を入れ、ディスクの暗号化、画面ロック、遠隔での消去ができる状態にする。 }
+        performedBy: it-staff
+        receives: [asset-record, approved-device-request]
+        produces: [configured-device-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [device-management-system]
+        regulations: [personal-data-security]
+
+      - id: lend-device
+        label: { ja: 端末を貸し出す, en: Lend the device }
+        description: { ja: 設定した端末を本人に渡し、使い方と持ち出しの決まりを説明して、貸与の記録に本人の確認をもらう。 }
+        performedBy: it-staff
+        receives: [configured-device-record]
+        produces: [device-loan-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 端末の現物を本人に渡し、説明して受け取りの確認をもらう作業であるため。 }
+
+  - id: incident
+    label: { ja: 紛失や故障の対応, en: Loss and failure }
+    steps:
+      - id: report-device-incident
+        label: { ja: 端末の紛失や故障を連絡する, en: Report a lost or broken device }
+        description: { ja: 端末をなくした、盗まれた、壊れたときに、気づいたらすぐに情報システムに連絡する。 }
+        performedBy: employee
+        receives: [device-loan-record]
+        produces: [device-incident-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: respond-to-device-incident
+        label: { ja: 紛失や故障に対応する, en: Respond to the loss or failure }
+        description: { ja: 端末の利用を止め、必要なら遠隔で消去し、端末に個人データが入っていたかを確かめて、対応を記録する。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [device-incident-report, asset-record]
+        produces: [device-response-record]
+        requiresJudgment: true
+        judgment: { ja: 遠隔で消去するか。個人データが入っていたおそれがあるか。事故として扱うか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [device-management-system]
+        regulations: [personal-data-security]
+
+  - id: return
+    label: { ja: 回収と廃棄, en: Collection and disposal }
+    pcf: ["20918"]
+    steps:
+      - id: collect-device
+        label: { ja: 端末を回収する, en: Collect the device }
+        description: { ja: 退職や更新で不要になった端末を本人から受け取り、返却の記録を残す。 }
+        performedBy: it-staff
+        receives: [device-loan-record, separation-plan]
+        produces: [device-return-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 返却された端末の現物を受け取り、付属品と状態を確かめる作業であるため。 }
+
+      - id: wipe-device
+        label: { ja: 端末を初期化する, en: Wipe the device }
+        description: { ja: 端末の中のデータを消して、初期の状態に戻し、記録を残す。 }
+        performedBy: it-staff
+        receives: [device-return-record]
+        produces: [wipe-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [device-management-system]
+        regulations: [personal-data-security]
+
+      - id: reuse-or-dispose-device
+        label: { ja: 端末を再利用するか廃棄するかを決めて実施する, en: Decide reuse or disposal and carry it out }
+        description: { ja: 状態と年数から、再利用か廃棄かを決める。廃棄のときは、データを読み出せない状態にして処分し、台帳を更新する。 }
+        performedBy: it-staff
+        confirmedBy: it-manager
+        receives: [wipe-record, asset-record]
+        produces: [disposal-record]
+        requiresJudgment: true
+        judgment: { ja: 再利用できる状態か。廃棄するなら、データを読み出せない状態になっているか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 端末の現物を、点検し、処分する作業であるため。 }
+        toolKinds: [spreadsheet]

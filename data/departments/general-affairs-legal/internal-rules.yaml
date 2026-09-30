@@ -1,0 +1,108 @@
+id: internal-rules
+label: { ja: 社内規程の整備, en: Maintaining internal rules }
+description:
+  ja: 社内規程の新設や改定の要望を受けて、規程の案を作り、法務と関係部署の確認を受けて直し、経営者の決裁を受け、従業員に周知して、改廃の記録を残すまでの流れ。就業規則は、人事・労務の36協定と就業規則の流れで扱う。
+  en: From receiving a request to create or amend a rule, drafting it, getting legal and departmental review, obtaining executive approval, announcing it to employees, to recording the revision history. Work rules are handled in the HR workflow.
+frequency: on-demand
+timing: { ja: 規程を新しく作るときと、変えるとき。 }
+pcf: ["17468"]
+regulations: [employee-notification-duty]
+stages:
+  - id: drafting
+    label: { ja: 案の作成, en: Drafting }
+    steps:
+      - id: request-rule-change
+        label: { ja: 規程の新設や改定を求める, en: Request a rule change }
+        description: { ja: 業務で決まりが要る場面や、今の規程で困る場面を書いて、総務・法務に求める。 }
+        performedBy: department-manager
+        produces: [rule-change-request]
+        requiresJudgment: true
+        judgment: { ja: 今の規程で足りないか。どう変えたいか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: draft-rule
+        label: { ja: 規程の案を作る, en: Draft the rule }
+        description: { ja: 要望と今の規程をもとに、規程の案を作る。 }
+        performedBy: general-affairs-staff
+        receives: [rule-change-request, rule-register]
+        produces: [rule-draft]
+        requiresJudgment: true
+        judgment: { ja: 何を、どこまで、どんな言葉で決めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+  - id: review-and-approval
+    label: { ja: 確認と決裁, en: Review and approval }
+    steps:
+      - id: check-rule-legal
+        label: { ja: 法令との整合を確かめる, en: Check the rule against the law }
+        description: { ja: 案が、法令や契約に合っているか、ほかの規程と食い違わないかを確かめる。 }
+        performedBy: legal-staff
+        receives: [rule-draft]
+        produces: [rule-legal-opinion]
+        requiresJudgment: true
+        judgment: { ja: 法令や契約に合わない点や、ほかの規程との食い違いがあるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: review-rule-in-departments
+        label: { ja: 関係部署が確かめる, en: Review in the departments }
+        description: { ja: 実際の業務で守れる内容かを、関係する部署の責任者が確かめる。 }
+        performedBy: department-manager
+        receives: [rule-draft, rule-legal-opinion]
+        produces: [rule-department-feedback]
+        requiresJudgment: true
+        judgment: { ja: 現場で守れる内容か。業務が止まる点はないか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: revise-rule
+        label: { ja: 意見を反映して案を直す, en: Revise the draft }
+        description: { ja: 法務と関係部署の意見を反映して、案を直す。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [rule-draft, rule-legal-opinion, rule-department-feedback]
+        produces: [final-rule-draft]
+        requiresJudgment: true
+        judgment: { ja: 意見が食い違うとき、どれを取り入れるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: approve-rule
+        label: { ja: 規程を決裁する, en: Approve the rule }
+        description: { ja: 直した案を確かめ、規程として決める。取締役会の決議が要る規程は、取締役会の運営の流れで決議する。 }
+        performedBy: executive
+        receives: [final-rule-draft]
+        produces: [approved-rule]
+        requiresJudgment: true
+        judgment: { ja: この内容で、会社の規程としてよいか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: rollout
+    label: { ja: 周知と記録, en: Announcement and records }
+    steps:
+      - id: announce-rule
+        label: { ja: 従業員に周知する, en: Announce to employees }
+        description: { ja: 決まった規程を、従業員が読める場所に置き、施行日と変更点を知らせる。就業規則のように、法令で周知が決まっている規程は、その方法に合わせる。 }
+        performedBy: general-affairs-staff
+        receives: [approved-rule]
+        produces: [rule-announcement]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, document-storage]
+        regulations: [employee-notification-duty]
+
+      - id: record-rule-history
+        label: { ja: 改廃を記録する, en: Record the revision history }
+        description: { ja: 規程の名前、施行日、改廃の内容、最新の版の置き場所を、規程の一覧に書く。 }
+        performedBy: general-affairs-staff
+        receives: [approved-rule, rule-announcement]
+        produces: [rule-register]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage, spreadsheet]

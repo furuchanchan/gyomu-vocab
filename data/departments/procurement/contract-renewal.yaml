@@ -1,0 +1,122 @@
+id: contract-renewal
+label: { ja: 定期の契約の見直し, en: Recurring contract review }
+description:
+  ja: 保守、利用料、賃借など、期間を決めて続く契約について、更新の時期を管理し、利用の状況を確かめ、条件を見直して、更新か解約かを決めるまでの流れ。
+  en: For contracts that run for a fixed term, from tracking renewal dates and checking usage to reviewing terms and deciding to renew or terminate.
+frequency: quarterly
+timing: { ja: 更新の時期が近づく契約ごと。予定表は、3か月ごとに見直す。 }
+pcf: ["10291"]
+stages:
+  - id: scheduling
+    label: { ja: 更新の時期の管理, en: Renewal scheduling }
+    steps:
+      - id: list-renewal-dates
+        label: { ja: 更新の時期を一覧にする, en: List the renewal dates }
+        description: { ja: 契約ごとに、更新の日と、解約を申し出る期限を、予定表に並べる。 }
+        performedBy: procurement-staff
+        receives: [signed-master-agreement, signed-renewal-agreement]
+        produces: [renewal-schedule]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: request-usage-review
+        label: { ja: 利用した部署に見直しを頼む, en: Ask the user department for a review }
+        description: { ja: 解約の期限が近づく契約について、利用している部署に、利用の状況の確認を頼む。 }
+        performedBy: procurement-staff
+        receives: [renewal-schedule]
+        produces: [renewal-review-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+  - id: review
+    label: { ja: 利用と条件の見直し, en: Usage and terms review }
+    steps:
+      - id: report-usage
+        label: { ja: 利用の状況を確かめる, en: Check the usage }
+        description: { ja: 契約している物やサービスを、どれだけ使っているか、これからも要るかを確かめて報告する。 }
+        performedBy: requesting-staff
+        receives: [renewal-review-request]
+        produces: [usage-report]
+        requiresJudgment: true
+        judgment: { ja: 今の利用の量で足りているか。これからも要るか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: draft-renewal-proposal
+        label: { ja: 更新の条件の見直し案を作る, en: Draft the renewal terms proposal }
+        description: { ja: 利用の状況と、取引先の評価を見て、数量、期間、価格などの条件をどうするかの案を作る。 }
+        performedBy: procurement-staff
+        receives: [usage-report, vendor-evaluation]
+        produces: [renewal-proposal]
+        requiresJudgment: true
+        judgment: { ja: 数量、期間、価格のどれを、どこまで見直すか。乗り換える候補はあるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: negotiate-renewal-terms
+        label: { ja: 更新の条件を取引先と話す, en: Negotiate the renewal terms }
+        description: { ja: 取引先の更新の案内を見て、見直し案をもとに、更新の条件を取引先と話し合う。 }
+        performedBy: procurement-staff
+        receives: [renewal-proposal, vendor-renewal-offer]
+        produces: [negotiated-terms]
+        requiresJudgment: true
+        judgment: { ja: どこまで譲って、どこから譲らないか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 取引先との対話で、条件を合意する作業だから。 }
+        toolKinds: [email]
+
+  - id: decision
+    label: { ja: 更新か解約かの決定, en: Renewal decision }
+    steps:
+      - id: decide-renewal
+        label: { ja: 更新か解約かを決める, en: Decide to renew or terminate }
+        description: { ja: 話し合いで決まった条件を見て、契約を更新するか、解約するかを決める。 }
+        performedBy: department-manager
+        confirmedBy: executive
+        receives: [negotiated-terms, usage-report]
+        produces: [renewal-decision]
+        requiresJudgment: true
+        judgment: { ja: この条件で契約を続ける価値があるか。解約したとき、業務に支障が出ないか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: notify-vendor
+        label: { ja: 更新か解約を取引先に伝える, en: Notify the vendor }
+        description: { ja: 決まった更新か解約を、解約の期限までに、取引先に知らせる。 }
+        performedBy: procurement-staff
+        receives: [renewal-decision]
+        produces: [renewal-or-termination-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: conclude-renewal
+        label: { ja: 更新の契約を結ぶ, en: Conclude the renewal agreement }
+        description: { ja: 更新するときは、更新後の条件で契約書か覚書を結ぶ。印紙税がかかる文書かを見て、必要なら納める。 }
+        performedBy: executive
+        receives: [negotiated-terms, renewal-decision]
+        produces: [signed-renewal-agreement]
+        requiresJudgment: true
+        judgment: { ja: この条件で、契約を結んでよいか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 契約は、取引先との合意そのもので、会社の代表者が結ぶ。 }
+        toolKinds: [e-contract-service]
+        regulations: [electronic-signature, stamp-tax]
+
+      - id: update-contract-records
+        label: { ja: 契約の記録を更新する, en: Update the contract records }
+        description: { ja: 更新か解約の結果を、契約の記録と、更新の予定表に反映する。 }
+        performedBy: procurement-staff
+        receives: [renewal-decision, renewal-or-termination-notice]
+        produces: [updated-contract-records]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [purchasing-system, spreadsheet]

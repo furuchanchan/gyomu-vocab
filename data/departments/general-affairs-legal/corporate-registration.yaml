@@ -1,0 +1,119 @@
+id: corporate-registration
+label: { ja: 登記の変更, en: Registering changes to the company register }
+description:
+  ja: 役員の変更、本店の移転、商号などの変更が決まったときに、変更の登記が要る事項を洗い出し、自社で申請するか司法書士に頼むかを決め、申請書を作って法務局に申請し、登記の完了を確かめて金融機関などに知らせるまでの流れ。
+  en: From identifying changes that must be registered after a change of officers, head office, trade name and the like, deciding whether to file in-house or through a judicial scrivener, filing at the legal affairs bureau, to confirming completion and notifying banks.
+frequency: on-demand
+timing: { ja: 役員の選任や退任、本店の移転、商号などの変更が決まったときに。変更が生じてから2週間以内。 }
+pcf: ["11013"]
+regulations: [commercial-registration-change]
+stages:
+  - id: confirmation
+    label: { ja: 変更の確認, en: Confirming the changes }
+    pcf: ["11047"]
+    steps:
+      - id: identify-registration-change
+        label: { ja: 登記が要る変更を洗い出す, en: Identify changes to be registered }
+        description: { ja: 株主総会や取締役会の議事録から、登記事項の変更にあたる決議を洗い出し、変更が生じた日と、2週間の期限を書き出す。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [meeting-minutes, board-minutes]
+        produces: [registration-change-list]
+        requiresJudgment: true
+        judgment: { ja: 決議の内容が登記事項の変更にあたるか。変更が生じた日はいつで、期限はいつか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [commercial-registration-change]
+
+      - id: decide-registration-route
+        label: { ja: 申請の進め方を決める, en: Decide how to file }
+        description: { ja: 自社で申請するか、司法書士に頼むかを決める。 }
+        performedBy: general-affairs-manager
+        receives: [registration-change-list]
+        produces: [registration-route-decision]
+        requiresJudgment: true
+        judgment: { ja: 期限までに間に合うか。変更の内容が複雑で、専門家に頼む方がよいか。費用はいくらか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: application
+    label: { ja: 申請書の作成と申請, en: Preparing and filing the application }
+    steps:
+      - id: prepare-application
+        label: { ja: 申請書の案を作る, en: Draft the application }
+        description: { ja: 自社で申請する場合に、登記の事由と登記すべき事項を書いた申請書の案を作り、議事録などの添付書類をそろえる。 }
+        performedBy: general-affairs-staff
+        receives: [registration-change-list, registration-route-decision]
+        produces: [registration-application-draft]
+        requiresJudgment: true
+        judgment: { ja: 登記すべき事項を、決議の内容に合わせて、どう書くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [commercial-registration-change]
+
+      - id: request-scrivener
+        label: { ja: 司法書士に依頼する, en: Request the judicial scrivener }
+        description: { ja: 司法書士に頼む場合に、変更の内容と議事録などの必要書類を司法書士に渡して、申請書の作成と登記の申請を頼む。 }
+        performedBy: general-affairs-staff
+        receives: [registration-change-list, registration-route-decision]
+        produces: [scrivener-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [commercial-registration-change]
+
+      - id: confirm-application
+        label: { ja: 申請書を確かめて押印する, en: Check and sign the application }
+        description: { ja: 申請書の案か、司法書士が作った申請書の案を、決議の内容と照らして確かめ、代表者として記名押印する。 }
+        performedBy: executive
+        receives: [registration-application-draft, scrivener-application-draft]
+        produces: [registration-application]
+        requiresJudgment: true
+        judgment: { ja: 登記すべき事項が、決議の内容と合っているか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 商業登記法17条2項が、申請書に、申請人の代表者か代理人が記名押印することを求めているため。 }
+        regulations: [commercial-registration-change]
+
+      - id: file-registration
+        label: { ja: 法務局に登記を申請する, en: File the registration }
+        description: { ja: 自社で申請する場合に、本店の所在地を管轄する法務局に、申請書を出す。本店を他の登記所の管轄区域内に移すときは、旧所在地と新所在地の両方で登記する。司法書士に頼む場合は、司法書士が申請するので、この工程は行わない。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [registration-application]
+        produces: [registration-filing]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [commercial-registration-change]
+
+  - id: completion
+    label: { ja: 完了の確認と届け出, en: Completion and notification }
+    steps:
+      - id: check-registration-result
+        label: { ja: 登記の完了を確かめる, en: Check that registration is complete }
+        description: { ja: 登記が完了したあとで登記事項証明書を取り、変更が申請の内容どおりに載っているかを確かめる。 }
+        performedBy: general-affairs-staff
+        receives: [registry-certificate]
+        produces: [registration-check-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [commercial-registration-change]
+
+      - id: notify-registered-change
+        label: { ja: 変更を金融機関などに届け出る, en: Notify banks and others of the change }
+        description: { ja: 登記事項証明書を添えて、金融機関など、変更を知らせる必要がある相手に届け出る。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [registry-certificate, registration-check-record]
+        produces: [registration-change-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]

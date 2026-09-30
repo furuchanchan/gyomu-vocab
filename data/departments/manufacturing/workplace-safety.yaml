@@ -1,0 +1,161 @@
+id: workplace-safety
+label: { ja: 作業の安全と教育, en: Work safety and training }
+description:
+  ja: 雇い入れや作業の変更のときに安全衛生教育を行い、作業主任者を選任し、危険な作業の手順を決めて伝え、災害が起きたときは救護して労働基準監督署に報告し、再発を防ぐまでの流れ。
+  en: From safety and health education at hiring or job changes to appointing work chiefs, setting and briefing hazardous-work procedures, and responding to and reporting accidents to the labor standards office and preventing recurrence.
+frequency: on-demand
+timing: { ja: 雇い入れや作業の変更のとき、危険な作業を始めるとき、災害が起きたとき。 }
+pcf: ["11179"]
+regulations: [safety-health-education, work-chief-appointment, worker-casualty-report, plant-accident-report]
+stages:
+  - id: education
+    label: { ja: 安全衛生教育, en: Safety and health education }
+    steps:
+      - id: notify-work-change
+        label: { ja: 作業内容の変更を連絡する, en: Notify a work change }
+        description: { ja: 部下の担当する作業を変えるとき、変える中身と時期を安全衛生の担当に連絡する。 }
+        performedBy: department-manager
+        produces: [work-change-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: plan-safety-education
+        label: { ja: 教育の内容を決める, en: Plan the education }
+        description: { ja: 雇い入れた人や作業が変わった人が従事する業務に合わせて、教える項目と時間を決める。十分な知識と技能があると認められる項目は省く。 }
+        performedBy: safety-officer
+        receives: [employee-record, work-change-notice]
+        produces: [safety-education-plan]
+        requiresJudgment: true
+        judgment: { ja: その人の業務に要る項目はどれか、経験や資格があって省ける項目はどれか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [safety-health-education]
+
+      - id: conduct-safety-education
+        label: { ja: 安全衛生教育を行う, en: Conduct the education }
+        description: { ja: 機械の危険性、安全装置と保護具の取扱い、作業手順、始める前の点検、事故のときの応急措置と退避を、現場で教え、受けた人と内容を記録する。 }
+        performedBy: safety-officer
+        receives: [safety-education-plan]
+        produces: [safety-education-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 労働安全衛生法で、事業者が労働者に行うと定められた教育であり、現場の機械を見せながら人が教えるため。 }
+        regulations: [safety-health-education]
+
+  - id: work-chief
+    label: { ja: 作業主任者の選任, en: Work chief appointment }
+    steps:
+      - id: identify-designated-work
+        label: { ja: 作業主任者が要る作業を洗い出す, en: Identify work that needs a work chief }
+        description: { ja: 計画に載っている作業のうち、動力プレス機械を使う作業や溶接、溶断の作業など、作業主任者を選ぶ決まりのある作業を洗い出す。 }
+        performedBy: safety-officer
+        receives: [approved-production-plan]
+        produces: [designated-work-list]
+        requiresJudgment: true
+        judgment: { ja: それぞれの作業が、作業主任者を選ぶ決まりのある作業に当たるか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [work-chief-appointment]
+
+      - id: appoint-work-chief
+        label: { ja: 作業主任者を選任する, en: Appoint the work chief }
+        description: { ja: 作業の区分に応じて、必要な免許か技能講習の修了の資格を持つ人の中から、作業主任者を決める。 }
+        performedBy: production-manager
+        receives: [designated-work-list]
+        produces: [work-chief-appointment]
+        requiresJudgment: true
+        judgment: { ja: 資格を持つ人のうち、その作業を指揮する人を誰にするか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [work-chief-appointment]
+
+      - id: post-work-chief-notice
+        label: { ja: 作業主任者の氏名と職務を知らせる, en: Post the work chief notice }
+        description: { ja: 選んだ作業主任者の氏名と、行わせる事項を、作業場の見やすい所に掲示して、働く人に知らせる。 }
+        performedBy: safety-officer
+        receives: [work-chief-appointment]
+        produces: [work-chief-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        regulations: [work-chief-appointment]
+
+  - id: procedure
+    label: { ja: 危険な作業の手順, en: Hazardous-work procedure }
+    steps:
+      - id: write-hazardous-work-procedure
+        label: { ja: 危険な作業の手順を決める, en: Set the hazardous-work procedure }
+        description: { ja: 洗い出した作業ごとに、危険な箇所、安全装置の使い方、保護具、してはいけない動きを書いた手順を決める。 }
+        performedBy: safety-officer
+        receives: [designated-work-list, work-chief-appointment]
+        produces: [hazardous-work-procedure]
+        requiresJudgment: true
+        judgment: { ja: 作業の危険を、手順のどこでどう防ぐか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: brief-hazardous-work-procedure
+        label: { ja: 手順を作業する人に伝えて指揮する, en: Brief workers and direct the work }
+        description: { ja: 作業を始める前に、決めた手順を作業する人に伝え、作業の間、その作業に従事する人を指揮する。 }
+        performedBy: work-chief
+        receives: [hazardous-work-procedure]
+        produces: [procedure-briefing-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 労働安全衛生法で、作業主任者が作業に従事する労働者を指揮すると定められており、現場で人に伝えて動かす作業であるため。 }
+        regulations: [work-chief-appointment]
+
+  - id: accident
+    label: { ja: 災害が起きたとき, en: When an accident occurs }
+    steps:
+      - id: respond-to-accident
+        label: { ja: 災害に対応して被災者を助ける, en: Respond to the accident }
+        description: { ja: 事故や負傷が起きたら、機械を止め、被災者を救護し、必要なら救急車を呼び、現場をそのまま保つ。 }
+        performedBy: production-manager
+        produces: [accident-first-report]
+        requiresJudgment: true
+        judgment: { ja: どこまで作業を止め、救急車や避難をどうするか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: けがをした人の救護と、現場の機械を止めて保つ、現物と人を扱う対応であるため。 }
+
+      - id: record-accident
+        label: { ja: 災害の状況を記録する, en: Record the accident }
+        description: { ja: 起きた日時、場所、状況、被災者、けがの名前と部位、休業の見込みを、その場の聞き取りと現場の確認から記録する。 }
+        performedBy: safety-officer
+        receives: [accident-first-report]
+        produces: [accident-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: report-accident
+        label: { ja: 労働基準監督署に報告する, en: Report to the labor standards office }
+        description: { ja: 死亡や休業になった労働災害は労働者死傷病報告を、火災や爆発、高速回転体の破裂などの事故は事故報告を、所轄の労働基準監督署長に出す。 }
+        performedBy: safety-officer
+        confirmedBy: production-manager
+        receives: [accident-record]
+        produces: [injury-report, accident-report-form]
+        requiresJudgment: true
+        judgment: { ja: 死亡か休業の労働災害か、事故報告の対象の事故かを見て、どの報告を、いつまでに出すか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing]
+        regulations: [worker-casualty-report, plant-accident-report]
+
+      - id: prevent-recurrence
+        label: { ja: 再発を防ぐ手立てを決める, en: Decide recurrence prevention }
+        description: { ja: 災害の記録から原因を調べ、設備、手順、教育のどこを変えて再発を防ぐかを決める。 }
+        performedBy: production-manager
+        receives: [accident-record]
+        produces: [recurrence-prevention-plan]
+        requiresJudgment: true
+        judgment: { ja: 原因が、設備、手順、教育のどこにあり、何を変えるか。 }
+        irreversible: false
+        humanRequired: false

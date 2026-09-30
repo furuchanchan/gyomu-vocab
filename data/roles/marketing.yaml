@@ -1,0 +1,13 @@
+- id: marketing-staff
+  label: { ja: マーケティングの担当, en: Marketing staff }
+  description: { ja: 施策の企画、コンテンツの制作、見込み客の情報の記録、メールの配信、展示会やセミナーの運営など、マーケティングの実務を行う役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "253"
+
+- id: marketing-manager
+  label: { ja: マーケティングの責任者, en: Marketing manager }
+  description: { ja: 施策の目標を決め、コンテンツの公開、メールの配信、営業への引き渡しを承認し、施策の効果を見直す役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"

@@ -1,0 +1,137 @@
+id: inventory-control
+label: { ja: 在庫の管理と棚卸, en: Inventory control and stocktaking }
+description:
+  ja: 入出荷の記録と在庫の数を照合し、棚卸を計画して実施し、帳簿との差異の原因を調べて修正し、動きのない在庫を処理するまでの流れ。
+  en: From reconciling receipt and shipment records with stock counts, through planning and carrying out the stocktake and investigating and correcting differences, to disposing of slow-moving stock.
+frequency: monthly
+timing: { ja: 照合は毎月。棚卸は、会社の決算の時期に合わせて行う。 }
+pcf: ["10357"]
+stages:
+  - id: reconciliation
+    label: { ja: 在庫の照合, en: Stock reconciliation }
+    steps:
+      - id: reconcile-stock-records
+        label: { ja: 入出荷の記録と在庫の数を照合する, en: Reconcile the receipt and shipment records with the stock }
+        description: { ja: 入荷の記録と出荷の記録を足し引きして、在庫の記録の数と合っているかを確かめる。合わないものを一覧にする。 }
+        performedBy: logistics-clerk
+        receives: [stock-record, goods-receipt-record, shipment-record]
+        produces: [stock-reconciliation]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system, spreadsheet]
+
+  - id: stocktaking
+    label: { ja: 棚卸, en: Stocktaking }
+    steps:
+      - id: plan-stocktaking
+        label: { ja: 棚卸を計画する, en: Plan the stocktake }
+        description: { ja: 決算の日程と照合の結果を見て、棚卸をする日、範囲、人数、数え方、その間の入出荷の止め方を決める。 }
+        performedBy: logistics-manager
+        receives: [stock-reconciliation, closing-schedule]
+        produces: [stocktaking-plan]
+        requiresJudgment: true
+        judgment: { ja: 棚卸の日と範囲、その間に出荷を止めるかどうか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: count-stock
+        label: { ja: 棚の現物を数える, en: Count the stock on the shelves }
+        description: { ja: 計画に沿って、棚にある現物を品物ごとに数え、数えた結果を用紙かシステムに書く。 }
+        performedBy: warehouse-staff
+        receives: [stocktaking-plan, stock-record]
+        produces: [stocktaking-count]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 棚にある現物を数える作業であるため。 }
+        toolKinds: [warehouse-system]
+
+      - id: compare-count-with-records
+        label: { ja: 数えた結果を在庫の記録と照らす, en: Compare the count with the stock record }
+        description: { ja: 数えた結果を在庫の記録と品物ごとに照らし、数の違うものを差異の一覧にする。 }
+        performedBy: logistics-clerk
+        receives: [stocktaking-count, stock-record]
+        produces: [stocktaking-differences]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system, spreadsheet]
+
+  - id: difference-handling
+    label: { ja: 差異の調査と修正, en: Investigating and correcting differences }
+    steps:
+      - id: investigate-differences
+        label: { ja: 差異の原因を調べる, en: Investigate the causes of the differences }
+        description: { ja: 差異のある品物について、入荷と出荷の記録、返品の記録を見直し、数え間違い、記録の漏れ、破損、紛失のどれかを調べる。 }
+        performedBy: logistics-clerk
+        receives: [stocktaking-differences, goods-receipt-record, shipment-record]
+        produces: [difference-cause]
+        requiresJudgment: true
+        judgment: { ja: 差異の原因を、数え間違いや記録の漏れと見るか、破損や紛失と見るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system, spreadsheet]
+
+      - id: approve-stock-adjustment
+        label: { ja: 在庫の修正を承認する, en: Approve the stock adjustment }
+        description: { ja: 差異の原因と金額を見て、在庫の記録をどう修正するかを決める。 }
+        performedBy: logistics-manager
+        receives: [difference-cause]
+        produces: [approved-stock-adjustment]
+        requiresJudgment: true
+        judgment: { ja: 差異を、記録の修正だけで済ませるか、原因の再発を防ぐ手を打つか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: correct-stock-record
+        label: { ja: 在庫の記録を直す, en: Correct the stock record }
+        description: { ja: 承認された内容で、在庫の記録を直す。棚卸の結果として、品物ごとの数と差異を一覧にまとめて残す。 }
+        performedBy: logistics-clerk
+        receives: [approved-stock-adjustment]
+        produces: [stock-record, stocktaking-result]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+  - id: slow-moving-stock
+    label: { ja: 滞留品の処理, en: Handling slow-moving stock }
+    steps:
+      - id: list-slow-moving-stock
+        label: { ja: 動きのない在庫を洗い出す, en: List the slow-moving stock }
+        description: { ja: 在庫の記録と出荷の記録から、長い間出荷されていない品物を一覧にする。 }
+        performedBy: logistics-clerk
+        receives: [stock-record, shipment-record]
+        produces: [slow-moving-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system, spreadsheet]
+
+      - id: decide-slow-moving-handling
+        label: { ja: 滞留品の扱いを決める, en: Decide how to handle the slow-moving stock }
+        description: { ja: 一覧の品物ごとに、販売を促す、値を下げて売る、仕入先に返す、廃棄するのどれにするかを決める。 }
+        performedBy: logistics-manager
+        confirmedBy: executive
+        receives: [slow-moving-list]
+        produces: [slow-moving-decision]
+        requiresJudgment: true
+        judgment: { ja: 品物ごとに、持ち続ける費用と売れる見込みを比べて、どう扱うか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: process-slow-moving-stock
+        label: { ja: 決めたとおりに滞留品を処理する, en: Process the slow-moving stock }
+        description: { ja: 決まった扱いに沿って、廃棄する物を出し、返す物を荷造りして出す。処理した内容を記録に残す。 }
+        performedBy: warehouse-staff
+        receives: [slow-moving-decision]
+        produces: [stock-disposal-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を処分する作業であるため。 }
+        toolKinds: [warehouse-system]

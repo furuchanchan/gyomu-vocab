@@ -1,0 +1,11 @@
+- id: procurement-staff
+  label: { ja: 購買の担当, en: Procurement staff }
+  description: { ja: 物や作業を頼む取引先を探し、見積を集め、発注し、取引先の登録や評価、契約の管理を行う役割。 }
+  external: false
+
+- id: receiving-staff
+  label: { ja: 受け入れの担当, en: Receiving staff }
+  description: { ja: 取引先から届いた物を受け取り、数と状態を確かめ、記録する役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "272"

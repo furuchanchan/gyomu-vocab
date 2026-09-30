@@ -1,0 +1,13 @@
+id: customer-support
+order: 5
+label: { ja: カスタマーサポート, en: Customer support }
+description:
+  ja: 法人と個人の顧客からの問い合わせと苦情に答え、よくある質問と手順書を整え、要望と不具合を製品の担当へ伝え、契約やアカウントの変更を受け付ける部署。
+  en: The department that answers inquiries and complaints from corporate and individual customers, maintains FAQs and procedures, passes requests and defects to the product side, and accepts changes to contracts and accounts.
+pcf: ["20085"]
+workflows:
+  - inquiry-handling
+  - complaint-handling
+  - knowledge-maintenance
+  - feedback-to-product
+  - contract-and-account-changes

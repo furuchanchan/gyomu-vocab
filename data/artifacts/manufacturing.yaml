@@ -1,0 +1,260 @@
+# 製造の工程で受け渡される物。
+- id: demand-summary
+  label: { ja: 受注と需要のまとめ, en: Demand summary }
+  kind: data
+  fromOutside: false
+
+- id: capacity-check
+  label: { ja: 設備と人員の空きの確認, en: Capacity check }
+  kind: data
+  fromOutside: false
+
+- id: production-plan-draft
+  label: { ja: 生産計画の案, en: Production plan draft }
+  kind: document
+  fromOutside: false
+
+- id: approved-production-plan
+  label: { ja: 承認された生産計画, en: Approved production plan }
+  kind: document
+  fromOutside: false
+
+- id: material-arrangement-request
+  label: { ja: 材料の手配の依頼, en: Material arrangement request }
+  kind: form
+  fromOutside: false
+
+- id: vendor-delivery-reply
+  label: { ja: 材料の納期の回答, en: Vendor delivery reply }
+  kind: message
+  fromOutside: true
+  sender: vendor
+
+- id: material-schedule-check
+  label: { ja: 材料が届く時期の確認, en: Material schedule check }
+  kind: data
+  fromOutside: false
+
+- id: plan-change-draft
+  label: { ja: 生産計画の変更の案, en: Production plan change draft }
+  kind: document
+  fromOutside: false
+
+- id: revised-production-plan
+  label: { ja: 変更後の生産計画, en: Revised production plan }
+  kind: document
+  fromOutside: false
+
+- id: work-order
+  label: { ja: 製造の指示, en: Work order }
+  kind: form
+  fromOutside: false
+
+- id: line-setup-record
+  label: { ja: 段取りと始める前の確認の記録, en: Line setup record }
+  kind: data
+  fromOutside: false
+
+- id: material-issue-record
+  label: { ja: 材料の払い出しの記録, en: Material issue record }
+  kind: data
+  fromOutside: false
+
+- id: produced-lot
+  label: { ja: 作った製品のロット, en: Produced lot }
+  kind: data
+  fromOutside: false
+
+- id: work-record
+  label: { ja: 作業の実績の記録, en: Work record }
+  kind: data
+  fromOutside: false
+
+- id: abnormality-report
+  label: { ja: 異常の報告, en: Abnormality report }
+  kind: message
+  fromOutside: false
+
+- id: checked-work-record
+  label: { ja: 確かめた作業の記録, en: Checked work record }
+  kind: data
+  fromOutside: false
+
+- id: completion-report
+  label: { ja: 完成の報告, en: Completion report }
+  kind: document
+  fromOutside: false
+
+- id: inspection-standard
+  label: { ja: 検査の基準, en: Inspection standard }
+  kind: document
+  fromOutside: false
+
+- id: incoming-materials
+  label: { ja: 届いた材料, en: Incoming materials }
+  kind: data
+  fromOutside: true
+  sender: vendor
+
+- id: incoming-inspection-record
+  label: { ja: 受け入れ検査の記録, en: Incoming inspection record }
+  kind: data
+  fromOutside: false
+
+- id: in-process-inspection-record
+  label: { ja: 工程内の検査の記録, en: In-process inspection record }
+  kind: data
+  fromOutside: false
+
+- id: final-inspection-record
+  label: { ja: 出荷前の検査の記録, en: Final inspection record }
+  kind: data
+  fromOutside: false
+
+- id: shipment-release-approval
+  label: { ja: 出荷の可否の決定, en: Shipment release approval }
+  kind: document
+  fromOutside: false
+
+- id: defect-record
+  label: { ja: 不良の記録, en: Defect record }
+  kind: data
+  fromOutside: false
+
+- id: defect-disposition
+  label: { ja: 不良の処置の決定, en: Defect disposition }
+  kind: document
+  fromOutside: false
+
+- id: disposition-record
+  label: { ja: 不良の処置の記録, en: Disposition record }
+  kind: data
+  fromOutside: false
+
+- id: cause-analysis
+  label: { ja: 不良の原因の調査, en: Cause analysis }
+  kind: document
+  fromOutside: false
+
+- id: corrective-action-plan
+  label: { ja: 是正の対策, en: Corrective action plan }
+  kind: document
+  fromOutside: false
+
+- id: corrective-action-result
+  label: { ja: 対策の効果の確認, en: Corrective action result }
+  kind: document
+  fromOutside: false
+
+- id: inspection-schedule
+  label: { ja: 点検と保全の計画, en: Inspection schedule }
+  kind: document
+  fromOutside: false
+
+- id: daily-inspection-record
+  label: { ja: 日常の点検の記録, en: Daily inspection record }
+  kind: data
+  fromOutside: false
+
+- id: periodic-inspection-record
+  label: { ja: 定期の自主検査の記録, en: Periodic inspection record }
+  kind: data
+  fromOutside: false
+
+- id: checked-inspection-result
+  label: { ja: 確かめた点検の結果, en: Checked inspection result }
+  kind: data
+  fromOutside: false
+
+- id: repair-decision
+  label: { ja: 修理の方針, en: Repair decision }
+  kind: document
+  fromOutside: false
+
+- id: repair-request
+  label: { ja: 修理の依頼, en: Repair request }
+  kind: message
+  fromOutside: false
+  recipient: vendor
+
+- id: repair-report
+  label: { ja: 修理の報告, en: Repair report }
+  kind: document
+  fromOutside: false
+
+- id: restart-approval
+  label: { ja: 使用の再開の決定, en: Restart approval }
+  kind: document
+  fromOutside: false
+
+- id: maintenance-history
+  label: { ja: 設備の点検と保全の履歴, en: Maintenance history }
+  kind: data
+  fromOutside: false
+
+- id: work-change-notice
+  label: { ja: 作業内容の変更の連絡, en: Work change notice }
+  kind: message
+  fromOutside: false
+
+- id: safety-education-plan
+  label: { ja: 安全衛生教育の計画, en: Safety education plan }
+  kind: document
+  fromOutside: false
+
+- id: safety-education-record
+  label: { ja: 安全衛生教育の記録, en: Safety education record }
+  kind: data
+  fromOutside: false
+
+- id: designated-work-list
+  label: { ja: 作業主任者が要る作業の一覧, en: Designated work list }
+  kind: document
+  fromOutside: false
+
+- id: work-chief-appointment
+  label: { ja: 作業主任者の選任, en: Work chief appointment }
+  kind: document
+  fromOutside: false
+
+- id: work-chief-notice
+  label: { ja: 作業主任者の氏名と職務の掲示, en: Work chief notice }
+  kind: document
+  fromOutside: false
+
+- id: hazardous-work-procedure
+  label: { ja: 危険な作業の手順, en: Hazardous-work procedure }
+  kind: document
+  fromOutside: false
+
+- id: procedure-briefing-record
+  label: { ja: 手順を伝えた記録, en: Procedure briefing record }
+  kind: data
+  fromOutside: false
+
+- id: accident-first-report
+  label: { ja: 災害の一報, en: Accident first report }
+  kind: message
+  fromOutside: false
+
+- id: accident-record
+  label: { ja: 災害の記録, en: Accident record }
+  kind: document
+  fromOutside: false
+
+- id: injury-report
+  label: { ja: 労働者死傷病報告, en: Worker casualty report }
+  kind: form
+  fromOutside: false
+  recipient: labor-standards-office
+
+- id: accident-report-form
+  label: { ja: 事故報告, en: Accident report }
+  kind: form
+  fromOutside: false
+  recipient: labor-standards-office
+
+- id: recurrence-prevention-plan
+  label: { ja: 再発防止の対策, en: Recurrence prevention plan }
+  kind: document
+  fromOutside: false

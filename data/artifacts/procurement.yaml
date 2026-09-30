@@ -1,0 +1,338 @@
+# 購買・調達の工程で受け渡される物。
+- id: purchase-request
+  label: { ja: 購入の申請, en: Purchase request }
+  kind: form
+  description: { ja: 欲しい物や作業、数量、希望の納期、予算を書いた、購入の申請。 }
+  fromOutside: false
+
+- id: confirmed-requirements
+  label: { ja: 確かめた購入の仕様, en: Confirmed purchase requirements }
+  kind: document
+  description: { ja: 申請の中身について、仕様、数量、納期、予算を確かめてまとめた物。 }
+  fromOutside: false
+
+- id: quote-request
+  label: { ja: 見積の依頼, en: Quote request }
+  kind: message
+  description: { ja: 仕様、数量、納期を伝えて、取引先に見積を頼む連絡。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: vendor-quote
+  label: { ja: 取引先からの見積書, en: Vendor quote }
+  kind: document
+  description: { ja: 取引先が示した、価格、納期、条件を書いた見積書。 }
+  fromOutside: true
+  sender: vendor
+
+- id: quote-comparison
+  label: { ja: 見積の比較表, en: Quote comparison }
+  kind: data
+  description: { ja: 複数の取引先の見積を、価格、納期、条件で並べた表。 }
+  fromOutside: false
+
+- id: vendor-selection
+  label: { ja: 取引先の選定の結果, en: Vendor selection result }
+  kind: document
+  description: { ja: どの取引先を選ぶか、その理由を書いた物。 }
+  fromOutside: false
+
+- id: purchase-approval-request
+  label: { ja: 購入の稟議書, en: Purchase approval request }
+  kind: form
+  description: { ja: 購入の目的、金額、選んだ取引先とその理由を書いた、決裁を求める書類。 }
+  fromOutside: false
+
+- id: approved-purchase
+  label: { ja: 決裁を受けた購入, en: Approved purchase }
+  kind: form
+  description: { ja: 決裁を受けた購入の稟議書。 }
+  fromOutside: false
+
+- id: purchase-order
+  label: { ja: 発注書, en: Purchase order }
+  kind: document
+  description: { ja: 品名、数量、代金、納期、支払の条件を書いて取引先に出す、注文の書類。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: order-acknowledgement
+  label: { ja: 取引先からの注文の請け, en: Vendor order acknowledgement }
+  kind: message
+  description: { ja: 発注を受けたことと、納期の確約を知らせる、取引先からの連絡。 }
+  fromOutside: true
+  sender: vendor
+
+- id: purchase-order-record
+  label: { ja: 発注の記録, en: Purchase order record }
+  kind: data
+  description: { ja: 発注した内容と、取引先が確約した納期を記録した物。 }
+  fromOutside: false
+
+- id: stored-purchase-records
+  label: { ja: 保存した発注の書類, en: Stored purchase records }
+  kind: document
+  description: { ja: 見積書、発注書、注文の請けを、探し出せる形で保存した物。 }
+  fromOutside: false
+
+- id: vendor-application
+  label: { ja: 取引先の登録のための情報, en: Vendor registration information }
+  kind: document
+  description: { ja: 新しい取引先の会社名、所在地、代表者、事業の内容、振込先などを書いた書類。 }
+  fromOutside: true
+  sender: vendor
+
+- id: vendor-profile
+  label: { ja: 取引先の情報の整理, en: Vendor profile }
+  kind: data
+  description: { ja: 取引先から受け取った情報を整理し、登録に要る項目をそろえた物。 }
+  fromOutside: false
+
+- id: vendor-check-result
+  label: { ja: 取引先の確認の結果, en: Vendor check result }
+  kind: data
+  description: { ja: 取引先が反社会的勢力でないことなどを確かめた結果。 }
+  fromOutside: false
+
+- id: vendor-credit-result
+  label: { ja: 取引先の信用と登録番号の確認の結果, en: Vendor credit and registration number check }
+  kind: data
+  description: { ja: 取引先の信用の状況と、適格請求書発行事業者の登録番号を確かめた結果。 }
+  fromOutside: false
+
+- id: master-agreement-draft
+  label: { ja: 基本契約書の案, en: Master agreement draft }
+  kind: document
+  description: { ja: 取引の基本になる条件を書いた契約書の案。 }
+  fromOutside: false
+
+- id: reviewed-master-agreement
+  label: { ja: 確認を終えた基本契約書の案, en: Reviewed master agreement draft }
+  kind: document
+  description: { ja: 法務の確認を終え、取引先に示せる基本契約書の案。 }
+  fromOutside: false
+
+- id: signed-master-agreement
+  label: { ja: 締結した基本契約書, en: Signed master agreement }
+  kind: document
+  description: { ja: 双方が署名か押印をして結んだ、取引の基本契約書。 }
+  fromOutside: false
+
+- id: vendor-master-record
+  label: { ja: 取引先の登録の記録, en: Vendor master record }
+  kind: data
+  description: { ja: 登録した取引先の情報と、基本契約の内容の記録。経理が支払のときに参照する。 }
+  fromOutside: false
+
+- id: vendor-evaluation
+  label: { ja: 取引先の評価, en: Vendor evaluation }
+  kind: data
+  description: { ja: 品質、納期、価格、対応の面から、取引先を評価した記録。 }
+  fromOutside: false
+
+- id: vendor-status-decision
+  label: { ja: 取引先との取引の方針, en: Vendor status decision }
+  kind: document
+  description: { ja: 評価をもとに、取引を続けるか、見直すか、やめるかを決めた物。 }
+  fromOutside: false
+
+- id: outsourcing-terms
+  label: { ja: 委託の内容と条件, en: Outsourcing terms }
+  kind: document
+  description: { ja: 委託する作業、成果物、納期、報酬、支払期日、検査の有無などを決めた物。 }
+  fromOutside: false
+
+- id: applicable-law-check
+  label: { ja: 委託に関わる法律の確認の結果, en: Applicable law check result }
+  kind: data
+  description: { ja: 委託の相手が、取適法かフリーランス法のどちらの対象になるかを確かめた結果。 }
+  fromOutside: false
+
+- id: terms-statement
+  label: { ja: 取引条件の明示, en: Terms statement }
+  kind: document
+  description: { ja: 給付の内容、報酬の額、支払期日その他を、書面か電磁的方法で委託先に示す物。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: vendor-progress-report
+  label: { ja: 委託先からの進み具合の報告, en: Vendor progress report }
+  kind: message
+  description: { ja: 委託した作業の進み具合について、委託先が知らせる連絡。 }
+  fromOutside: true
+  sender: vendor
+
+- id: progress-record
+  label: { ja: 進み具合の記録, en: Progress record }
+  kind: data
+  description: { ja: 委託した作業の進み具合と、期日に間に合うかの見立てを記録した物。 }
+  fromOutside: false
+
+- id: vendor-deliverable
+  label: { ja: 委託先からの成果物, en: Vendor deliverable }
+  kind: document
+  description: { ja: 委託した作業の結果として、委託先が納める成果物。 }
+  fromOutside: true
+  sender: vendor
+
+- id: deliverable-receipt-record
+  label: { ja: 成果物の受領の記録, en: Deliverable receipt record }
+  kind: data
+  description: { ja: 成果物を受け取った日と中身を記録した物。支払期日を数え始める日になる。 }
+  fromOutside: false
+
+- id: outsourcing-acceptance-record
+  label: { ja: 委託の検収の記録, en: Outsourcing acceptance record }
+  kind: data
+  description: { ja: 成果物が条件どおりかを確かめた結果と、検収の日の記録。 }
+  fromOutside: false
+
+- id: acceptance-notice
+  label: { ja: 検収の結果の通知, en: Acceptance notice }
+  kind: message
+  description: { ja: 成果物の検収の結果を、委託先に知らせる連絡。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: payment-due-schedule
+  label: { ja: 支払期日の管理表, en: Payment due schedule }
+  kind: data
+  description: { ja: 委託の代金の支払期日を、受領した日から数えて管理する表。 }
+  fromOutside: false
+
+- id: outsourcing-payment-notice
+  label: { ja: 委託の代金の支払の連絡, en: Outsourcing payment notice }
+  kind: message
+  description: { ja: 委託の代金の金額と支払期日を、経理に伝える連絡。 }
+  fromOutside: false
+
+- id: stored-outsourcing-records
+  label: { ja: 保存した委託の書類, en: Stored outsourcing records }
+  kind: document
+  description: { ja: 取引条件の明示、受領の記録、検収の記録を、まとめて保存した物。 }
+  fromOutside: false
+
+- id: delivery-note
+  label: { ja: 納品書と納品された物, en: Delivery note and delivered goods }
+  kind: document
+  description: { ja: 取引先が納品した物と、それに添えられた納品書。 }
+  fromOutside: true
+  sender: vendor
+
+- id: delivery-receipt-record
+  label: { ja: 納品の受け取りの記録, en: Delivery receipt record }
+  kind: data
+  description: { ja: 納品を受け取った日、取引先、品名を記録した物。 }
+  fromOutside: false
+
+- id: inspection-findings
+  label: { ja: 数と状態の確認の結果, en: Inspection findings }
+  kind: data
+  description: { ja: 納品された物の数と状態を、発注の内容と照らして確かめた結果。 }
+  fromOutside: false
+
+- id: inspection-decision
+  label: { ja: 検収の合否の判断, en: Inspection decision }
+  kind: data
+  description: { ja: 納品された物が、頼んだとおりかを見て、合格か不合格かを決めた物。 }
+  fromOutside: false
+
+- id: delivery-inspection-record
+  label: { ja: 検収の記録, en: Delivery inspection record }
+  kind: data
+  description: { ja: 検収の日、品名、数量、合否を書いた記録。経理が支払を確かめるときに受け取る。 }
+  fromOutside: false
+
+- id: return-exchange-request
+  label: { ja: 返品や交換の依頼, en: Return or exchange request }
+  kind: message
+  description: { ja: 不良や不足のある物について、返品、交換、修補、不足分の納品を頼む連絡。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: vendor-remedy-response
+  label: { ja: 返品や交換への取引先の対応, en: Vendor remedy response }
+  kind: message
+  description: { ja: 返品や交換の依頼に対する、取引先の返事と代替の物。 }
+  fromOutside: true
+  sender: vendor
+
+- id: remedy-confirmation
+  label: { ja: 交換や修補の確認の結果, en: Remedy confirmation }
+  kind: data
+  description: { ja: 交換された物や修補された物を確かめた結果。 }
+  fromOutside: false
+
+- id: inspection-handover-notice
+  label: { ja: 検収の済みの連絡, en: Inspection handover notice }
+  kind: message
+  description: { ja: 検収の済んだ物、金額、検収の日を、経理に知らせる連絡。 }
+  fromOutside: false
+
+- id: stored-receiving-records
+  label: { ja: 保存した納品の書類, en: Stored receiving records }
+  kind: document
+  description: { ja: 納品書と検収の記録を、探し出せる形で保存した物。 }
+  fromOutside: false
+
+- id: renewal-schedule
+  label: { ja: 契約の更新の予定表, en: Contract renewal schedule }
+  kind: data
+  description: { ja: 更新の時期と、解約を申し出る期限を、契約ごとに並べた表。 }
+  fromOutside: false
+
+- id: renewal-review-request
+  label: { ja: 契約の見直しの依頼, en: Contract review request }
+  kind: message
+  description: { ja: 更新の前に、利用部署へ利用の状況の確認を頼む連絡。 }
+  fromOutside: false
+
+- id: usage-report
+  label: { ja: 利用の状況の報告, en: Usage report }
+  kind: document
+  description: { ja: 契約している物やサービスを、どれだけ使っているかを報告した物。 }
+  fromOutside: false
+
+- id: renewal-proposal
+  label: { ja: 更新の条件の見直し案, en: Renewal terms proposal }
+  kind: document
+  description: { ja: 利用の状況と取引先の評価をもとに、更新の条件をどうするかをまとめた案。 }
+  fromOutside: false
+
+- id: vendor-renewal-offer
+  label: { ja: 取引先からの更新の案内, en: Vendor renewal offer }
+  kind: document
+  description: { ja: 更新の条件を示した、取引先からの案内。 }
+  fromOutside: true
+  sender: vendor
+
+- id: negotiated-terms
+  label: { ja: 話し合いで決めた更新の条件, en: Negotiated renewal terms }
+  kind: document
+  description: { ja: 取引先と話して決めた、更新後の条件。 }
+  fromOutside: false
+
+- id: renewal-decision
+  label: { ja: 更新か解約かの決定, en: Renewal decision }
+  kind: document
+  description: { ja: 契約を更新するか、解約するかを決めた物。 }
+  fromOutside: false
+
+- id: renewal-or-termination-notice
+  label: { ja: 更新か解約の通知, en: Renewal or termination notice }
+  kind: message
+  description: { ja: 契約を更新するか、解約するかを取引先に知らせる連絡。 }
+  fromOutside: false
+  recipient: vendor
+
+- id: signed-renewal-agreement
+  label: { ja: 締結した更新の契約書, en: Signed renewal agreement }
+  kind: document
+  description: { ja: 更新の条件で、双方が結んだ契約書や覚書。 }
+  fromOutside: false
+
+- id: updated-contract-records
+  label: { ja: 更新した契約の記録, en: Updated contract records }
+  kind: data
+  description: { ja: 更新や解約の結果を反映した、契約の記録。 }
+  fromOutside: false

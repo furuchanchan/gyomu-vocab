@@ -1,0 +1,303 @@
+# 物流の工程で受け渡される物。
+# --- 出荷
+- id: shipping-order
+  label: { ja: 出荷の指示, en: Shipping order }
+  description: { ja: 出荷する品物、数、届け先、出荷の予定日、棚の場所を書いた、倉庫への指示。 }
+  kind: form
+  fromOutside: false
+
+- id: picked-goods
+  label: { ja: 取り出した荷物, en: Picked goods }
+  description: { ja: 出荷の指示に沿って、棚から取り出した現物。 }
+  kind: data
+  fromOutside: false
+
+- id: inspected-goods
+  label: { ja: 検品を終えた荷物, en: Inspected goods }
+  description: { ja: 品物と数と状態を確かめた現物。 }
+  kind: data
+  fromOutside: false
+
+- id: packed-goods
+  label: { ja: 梱包した荷物, en: Packed goods }
+  description: { ja: 箱や包みに入れ、届け先ごとにまとめた現物。 }
+  kind: data
+  fromOutside: false
+
+- id: waybill
+  label: { ja: 送り状, en: Waybill }
+  description: { ja: 届け先、品物、個数、希望の届け日を書いて、荷物に添える書類。 }
+  kind: form
+  fromOutside: false
+
+- id: shipment
+  label: { ja: 運送会社に引き渡した荷物, en: Shipment handed to the carrier }
+  kind: data
+  fromOutside: false
+  recipient: carrier
+
+- id: driver-wait-record
+  label: { ja: 運転者の荷待ちと荷役の時間の記録, en: Driver waiting and handling time record }
+  description: { ja: 運転者が着いた時刻、荷物の受け渡しを始めた時刻、荷役を終えた時刻を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: shipment-record
+  label: { ja: 出荷の記録, en: Shipment record }
+  description: { ja: 出荷した日、品物、数、送り状の番号、運送会社を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: shipping-notice
+  label: { ja: 出荷の連絡, en: Shipping notice }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+# --- 入荷と保管
+- id: inbound-notice
+  label: { ja: 仕入先からの出荷の連絡, en: Vendor's shipping notice }
+  description: { ja: 仕入先が、発注した物を出荷したことと、着く予定を知らせる連絡。 }
+  kind: message
+  fromOutside: true
+  sender: vendor
+
+- id: inbound-schedule
+  label: { ja: 入荷の予定表, en: Inbound schedule }
+  description: { ja: 荷物を受け取る日と時間帯を、仕入先ごとに並べた予定。 }
+  kind: data
+  fromOutside: false
+
+- id: receiving-slot-notice
+  label: { ja: 荷受けの日時の連絡, en: Receiving time slot notice }
+  kind: message
+  fromOutside: false
+  recipient: vendor
+
+- id: received-goods
+  label: { ja: 荷受けした荷物, en: Received goods }
+  kind: data
+  fromOutside: false
+
+- id: received-goods-check
+  label: { ja: 荷受けの数と状態の確認の記録, en: Received goods check record }
+  description: { ja: 納品書に照らして、受け取った物の数と状態を確かめた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: discrepancy-notice
+  label: { ja: 入荷の相違の連絡, en: Discrepancy notice }
+  kind: message
+  fromOutside: false
+  recipient: vendor
+
+- id: stored-goods
+  label: { ja: 棚に入れた荷物, en: Stored goods }
+  description: { ja: 決めた棚の場所に入れた現物と、その場所の記録。 }
+  kind: data
+  fromOutside: false
+
+- id: stock-record
+  label: { ja: 在庫の記録, en: Stock record }
+  description: { ja: 品物ごとの在庫の数と棚の場所の記録。 }
+  kind: data
+  fromOutside: false
+
+- id: goods-receipt-record
+  label: { ja: 入荷の記録, en: Goods receipt record }
+  description: { ja: 入荷した日、仕入先、品物、数、状態を書いた記録。購買や経理が納品を確かめるときにも使う。 }
+  kind: data
+  fromOutside: false
+
+# --- 在庫の管理と棚卸
+- id: stock-reconciliation
+  label: { ja: 在庫の照合の結果, en: Stock reconciliation result }
+  kind: data
+  fromOutside: false
+
+- id: stocktaking-plan
+  label: { ja: 棚卸の計画, en: Stocktaking plan }
+  description: { ja: 棚卸をする日、範囲、人数、数え方、その間の入出荷の止め方。 }
+  kind: document
+  fromOutside: false
+
+- id: stocktaking-count
+  label: { ja: 棚卸で数えた結果, en: Stocktaking count }
+  kind: data
+  fromOutside: false
+
+- id: stocktaking-differences
+  label: { ja: 棚卸の差異の一覧, en: Stocktaking differences }
+  kind: data
+  fromOutside: false
+
+- id: difference-cause
+  label: { ja: 差異の原因の調査結果, en: Cause of the differences }
+  kind: document
+  fromOutside: false
+
+- id: approved-stock-adjustment
+  label: { ja: 承認された在庫の修正, en: Approved stock adjustment }
+  kind: form
+  fromOutside: false
+
+- id: stocktaking-result
+  label: { ja: 棚卸の結果, en: Stocktaking result }
+  description: { ja: 品物ごとの棚卸の数と差異をまとめた記録。決算の在庫の確認にも使う。 }
+  kind: data
+  fromOutside: false
+
+- id: slow-moving-list
+  label: { ja: 動きのない在庫の一覧, en: Slow-moving stock list }
+  kind: data
+  fromOutside: false
+
+- id: slow-moving-decision
+  label: { ja: 滞留品の扱いの決定, en: Slow-moving stock decision }
+  kind: document
+  fromOutside: false
+
+- id: stock-disposal-record
+  label: { ja: 滞留品の処理の記録, en: Stock disposal record }
+  kind: data
+  fromOutside: false
+
+# --- 返品
+- id: return-request
+  label: { ja: 顧客からの返品の申し出, en: Customer's return request }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: return-case
+  label: { ja: 返品の案件の記録, en: Return case record }
+  description: { ja: 返したい品物、数、理由、元の受注を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: return-acceptance-decision
+  label: { ja: 返品を受け入れるかの決定, en: Return acceptance decision }
+  kind: document
+  fromOutside: false
+
+- id: return-instruction
+  label: { ja: 返送の方法の案内, en: Return instructions }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: returned-shipment
+  label: { ja: 顧客から返送された荷物, en: Returned shipment from the customer }
+  kind: data
+  fromOutside: true
+  sender: customer
+
+- id: returned-goods
+  label: { ja: 受け取った返品, en: Returned goods received }
+  kind: data
+  fromOutside: false
+
+- id: return-inspection-result
+  label: { ja: 返品の状態の確認の結果, en: Return inspection result }
+  kind: data
+  fromOutside: false
+
+- id: return-disposition
+  label: { ja: 返品の扱いの決定, en: Return disposition }
+  description: { ja: 在庫に戻す、直してから戻す、仕入先に返す、廃棄するのどれにするかの決定。 }
+  kind: document
+  fromOutside: false
+
+- id: return-processing-record
+  label: { ja: 返品の処理の記録, en: Return processing record }
+  kind: data
+  fromOutside: false
+
+- id: returned-stock-record
+  label: { ja: 返品を反映した在庫の記録, en: Stock record after returns }
+  kind: data
+  fromOutside: false
+
+- id: return-result-notice
+  label: { ja: 返品の結果の連絡, en: Return result notice }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: return-report
+  label: { ja: 営業への返品の報告, en: Return report to sales }
+  kind: message
+  fromOutside: false
+
+# --- 運送の手配と運送会社の管理
+- id: carrier-quote-request
+  label: { ja: 運送会社への見積の依頼, en: Carrier quote request }
+  kind: message
+  fromOutside: false
+  recipient: carrier
+
+- id: carrier-quote
+  label: { ja: 運送会社の見積, en: Carrier quote }
+  kind: document
+  fromOutside: true
+  sender: carrier
+
+- id: carrier-selection
+  label: { ja: 運送会社の選定の結果, en: Carrier selection }
+  kind: document
+  fromOutside: false
+
+- id: agreed-carrier-terms
+  label: { ja: 運送会社と合意した条件, en: Agreed carrier terms }
+  kind: document
+  fromOutside: false
+
+- id: carrier-agreement
+  label: { ja: 運送の契約の書面, en: Transport agreement }
+  description: { ja: 運送の内容、運賃などの対価、支払の期日と方法を書いて、運送会社と相互に交わす書面。 }
+  kind: document
+  fromOutside: false
+  recipient: carrier
+
+- id: pickup-request
+  label: { ja: 集荷の依頼, en: Pickup request }
+  kind: message
+  fromOutside: false
+  recipient: carrier
+
+- id: wait-time-summary
+  label: { ja: 荷待ちと荷役の時間のまとめ, en: Waiting and handling time summary }
+  kind: data
+  fromOutside: false
+
+- id: logistics-improvement-plan
+  label: { ja: 荷待ちと荷役の時間の短縮の計画, en: Time reduction plan }
+  kind: document
+  fromOutside: false
+
+- id: annual-freight-weight
+  label: { ja: 年度の貨物の重量の集計, en: Annual freight weight }
+  kind: data
+  fromOutside: false
+
+- id: shipper-plan-and-report
+  label: { ja: 特定荷主の中長期の計画と定期の報告, en: Shipper plan and periodic report }
+  kind: document
+  fromOutside: false
+  recipient: shipper-supervising-ministry
+
+- id: carrier-invoice
+  label: { ja: 運送会社からの請求書, en: Carrier invoice }
+  kind: form
+  fromOutside: true
+  sender: carrier
+
+- id: checked-carrier-invoice
+  label: { ja: 確かめた運送会社の請求, en: Checked carrier invoice }
+  kind: form
+  fromOutside: false
+
+- id: stored-transport-records
+  label: { ja: 保存した運送の書類, en: Stored transport records }
+  kind: document
+  fromOutside: false

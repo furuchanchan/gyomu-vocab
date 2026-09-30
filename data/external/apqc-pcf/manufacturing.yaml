@@ -1,0 +1,12 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、製造で参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "10217", hierarchy: "4.3", name: "Produce/Assemble/Test product" }
+- { id: "10303", hierarchy: "4.3.1", name: "Schedule production" }
+- { id: "10307", hierarchy: "4.3.1.3", name: "Generate detailed schedule" }
+- { id: "10315", hierarchy: "4.3.1.5", name: "Plan for preventive maintenance" }
+- { id: "10316", hierarchy: "4.3.1.6", name: "Request unplanned maintenance" }
+- { id: "10304", hierarchy: "4.3.2", name: "Produce/Assemble product" }
+- { id: "10369", hierarchy: "4.3.3", name: "Perform quality testing" }
+- { id: "10374", hierarchy: "4.3.3.2", name: "Perform testing using the standard testing procedure" }
+- { id: "12046", hierarchy: "4.3.3.6", name: "Perform root cause analysis" }
+- { id: "11179", hierarchy: "13.8", name: "Manage environmental health and safety (EHS)" }

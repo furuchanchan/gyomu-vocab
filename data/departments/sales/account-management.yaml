@@ -41,7 +41,7 @@ stages:
         label: { ja: 追加の提案を考える, en: Draft the expansion proposal }
         description: { ja: 利用の状況から、追加で役立つ提案を考える。 }
         performedBy: sales-rep
-        receives: [usage-summary]
+        receives: [usage-summary, sales-handover-note]
         produces: [expansion-proposal]
         requiresJudgment: true
         judgment: { ja: どの追加の提案が、顧客の役に立つか。 }

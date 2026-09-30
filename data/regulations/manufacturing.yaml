@@ -1,0 +1,106 @@
+# 製造に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: safety-health-education
+  label: { ja: 雇い入れ時と作業内容の変更時の安全衛生教育（労働安全衛生法）, en: Safety and health education at hiring and at job changes }
+  obligation:
+    ja: 事業者は、労働者を雇い入れたときと、労働者の作業内容を変更したときは、その労働者に、従事する業務に関する安全または衛生のための教育を行う。教える事項は、機械等や原材料等の危険性と取扱い方法、安全装置や保護具の性能と取扱い方法、作業手順、作業開始時の点検、事故時等の応急措置と退避などのうち、従事する業務に必要な事項である。十分な知識と技能があると認められる労働者には、その事項の教育を省略できる。危険または有害な業務で厚生労働省令で定めるものにつかせるときは、別に特別の教育を行う。
+  deadline:
+    ja: 雇い入れたときと作業内容を変更したとき。遅滞なく。
+  appliesTo:
+    ja: 労働者を使用する事業者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働安全衛生法
+      lawId: 347AC0000000057
+      articles:
+        - { article: "59", contains: [労働者を雇い入れたとき, 作業内容を変更したとき, 安全又は衛生のための特別の教育] }
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "35", contains: [遅滞なく, 作業手順に関すること, 事故時等における応急措置及び退避に関すること, 教育を省略することができる] }
+  verifiedOn: 2026-09-30
+
+- id: work-chief-appointment
+  label: { ja: 作業主任者の選任と周知（労働安全衛生法）, en: Appointment of work chiefs }
+  obligation:
+    ja: 事業者は、高圧室内作業その他の労働災害を防止するための管理を必要とする作業で政令で定めるものについて、都道府県労働局長の免許を受けた者か、技能講習を修了した者のうちから、作業の区分に応じて作業主任者を選任し、その作業に従事する労働者の指揮その他の事項を行わせる。政令で定める作業には、動力により駆動されるプレス機械を五台以上有する事業場で行う作業や、アセチレン溶接装置またはガス集合溶接装置を用いて行う金属の溶接、溶断、加熱の作業などがある。作業主任者を選任したときは、その氏名と行わせる事項を、作業場の見やすい箇所に掲示するなどして、関係労働者に周知させる。
+  appliesTo:
+    ja: 政令で定める作業を行う事業者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働安全衛生法
+      lawId: 347AC0000000057
+      articles:
+        - { article: "14", contains: [作業主任者, 技能講習を修了した者, 作業に従事する労働者の指揮] }
+    - law: 労働安全衛生法施行令
+      lawId: 347CO0000000318
+      articles:
+        - { article: "6", contains: [動力により駆動されるプレス機械を五台以上有する事業場, アセチレン溶接装置又はガス集合溶接装置を用いて行う金属の溶接、溶断又は加熱の作業] }
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "16", contains: [資格を有する者のうちから] }
+        - { article: "18", contains: [作業主任者の氏名, 作業場の見やすい箇所に掲示] }
+  verifiedOn: 2026-09-30
+
+- id: periodic-self-inspection
+  label: { ja: 機械等の定期自主検査と記録（労働安全衛生法）, en: Periodic self-inspection of machinery and its records }
+  obligation:
+    ja: 事業者は、ボイラーその他の機械等で政令で定めるものについて、定期に自主検査を行い、その結果を記録しておく。政令で定める機械等には、動力により駆動されるプレス機械、シャー、遠心機械、乾燥設備などがある。動力プレスと動力により駆動されるシヤーの自主検査は、一年以内ごとに一回行う。この自主検査を行ったときは、検査年月日、検査方法、検査箇所、検査の結果、検査を実施した者の氏名、補修などの措置の内容を記録し、三年間保存する。
+  deadline:
+    ja: 動力プレスとシヤーは一年以内ごとに一回。記録は三年間保存。
+  appliesTo:
+    ja: 政令で定める機械等を使う事業者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働安全衛生法
+      lawId: 347AC0000000057
+      articles:
+        - { article: "45", contains: [定期に自主検査を行ない, その結果を記録しておかなければならない] }
+    - law: 労働安全衛生法施行令
+      lawId: 347CO0000000318
+      articles:
+        - { article: "15", contains: [動力により駆動されるプレス機械, 動力により駆動されるシャー, 動力により駆動される遠心機械, 乾燥設備及びその附属設備] }
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "134_3", contains: [動力プレス, 一年以内ごとに一回] }
+        - { article: "135", contains: [シヤー, 一年以内ごとに一回] }
+        - { article: "135_2", contains: [検査年月日, 検査の結果, 三年間保存] }
+  verifiedOn: 2026-09-30
+
+- id: worker-casualty-report
+  label: { ja: 労働者死傷病報告（労働安全衛生規則）, en: Report of worker deaths and injuries }
+  obligation:
+    ja: 事業者は、労働者が労働災害などにより死亡したか、休業したときは、遅滞なく、電子情報処理組織を使って、所轄の労働基準監督署長に報告する。報告には、事業場の名称と所在地、被災した労働者の氏名、生年月日、職種、傷病の名称と部位、休業見込期間、災害の発生日時と場所と状況と原因などを書く。休業の日数が四日に満たないときは、一月から三月まで、四月から六月まで、七月から九月まで、十月から十二月までの期間ごとに、期間の最後の月の翌月末日までに、まとめて報告する。
+  deadline:
+    ja: 死亡か休業が四日以上のときは遅滞なく。休業が四日に満たないときは、四半期ごとに、期間の最後の月の翌月末日まで。
+  appliesTo:
+    ja: 労働者が労働災害などで死亡か休業した事業者。
+  authority: { ja: 厚生労働省、労働基準監督署, en: "Ministry of Health, Labour and Welfare, Labor Standards Inspection Office" }
+  legalBasis:
+    - law: 労働安全衛生法
+      lawId: 347AC0000000057
+      articles:
+        - { article: "100", contains: [労働基準監督署長, 必要な事項を報告させ] }
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "97", contains: [遅滞なく, 電子情報処理組織を使用して, 所轄労働基準監督署長, 死亡し、又は休業したとき, 休業の日数が四日に満たないとき, 翌月末日] }
+  verifiedOn: 2026-09-30
+
+- id: plant-accident-report
+  label: { ja: 事業場内の事故の報告（労働安全衛生規則）, en: Report of accidents at the workplace }
+  obligation:
+    ja: 事業者は、事業場またはその附属建設物内で、火災や爆発の事故、遠心機械、研削といしその他の高速回転体の破裂の事故などが起きたときは、遅滞なく、様式第二十二号の報告書を所轄の労働基準監督署長に提出する。
+  deadline:
+    ja: 遅滞なく。
+  appliesTo:
+    ja: 事業場内で規定の事故が起きた事業者。
+  authority: { ja: 厚生労働省、労働基準監督署, en: "Ministry of Health, Labour and Welfare, Labor Standards Inspection Office" }
+  legalBasis:
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "96", contains: [遅滞なく, 様式第二十二号, 所轄労働基準監督署長, 火災又は爆発の事故, 遠心機械、研削といしその他高速回転体の破裂の事故] }
+  verifiedOn: 2026-09-30

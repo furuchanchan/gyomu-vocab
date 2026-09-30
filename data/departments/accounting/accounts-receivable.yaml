@@ -16,7 +16,7 @@ stages:
         label: { ja: 請求する中身をそろえる, en: Collect the billing data }
         description: { ja: 営業からの依頼をもとに、請求先、取引の内容、金額、税率、支払の期日をそろえる。 }
         performedBy: accounting-staff
-        receives: [billing-request]
+        receives: [billing-request, change-handover-note]
         produces: [billing-data]
         requiresJudgment: false
         irreversible: false

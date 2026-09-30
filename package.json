@@ -6,8 +6,10 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "test": "node --test test/"
+    "build": "node scripts/build.mjs && node scripts/check-site.mjs",
+    "test": "node --test test/",
+    "verify": "node scripts/verify-sources.mjs",
+    "check": "node scripts/check.mjs"
   },
   "dependencies": {
     "jsonld": "^8.3.3",

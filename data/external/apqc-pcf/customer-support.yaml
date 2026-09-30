@@ -1,0 +1,7 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、カスタマーサポートで参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "20085", hierarchy: "6.0", name: "Manage Customer Service" }
+- { id: "10388", hierarchy: "6.2.2", name: "Manage customer service problems, requests, and inquiries" }
+- { id: "13482", hierarchy: "6.2.2.2", name: "Analyze problems, requests, and inquiries" }
+- { id: "16937", hierarchy: "6.2.2.6", name: "Deliver opportunity to sales team" }
+- { id: "10389", hierarchy: "6.2.3", name: "Manage customer complaints" }

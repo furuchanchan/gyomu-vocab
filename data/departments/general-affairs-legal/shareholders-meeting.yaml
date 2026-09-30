@@ -1,0 +1,167 @@
+id: shareholders-meeting
+label: { ja: 定時株主総会の運営, en: Running the annual shareholders meeting }
+description:
+  ja: 定時株主総会の日程と議案を決め、株主に招集の通知を出し、当日の総会を開いて決議を得て、議事録を作って本店に備え置くまでの流れ。計算書類を総会で承認する手続きそのものは、経理・財務の計算書類の承認で扱う。
+  en: From setting the schedule and agenda of the annual shareholders meeting and sending the convocation notice, to holding the meeting, obtaining resolutions, and preparing and keeping the minutes at the head office. Approval of the financial statements itself is covered in the accounting department.
+frequency: yearly
+timing: { ja: 事業年度の終了後、毎年。株主総会の日から逆算して、日程を決める。 }
+pcf: ["11037"]
+regulations: [shareholders-meeting-convocation, shareholders-meeting-minutes, financial-statements]
+stages:
+  - id: preparation
+    label: { ja: 日程と議案の決定, en: Schedule and agenda }
+    steps:
+      - id: decide-meeting-schedule
+        label: { ja: 株主総会の日程を決める, en: Decide the meeting schedule }
+        description: { ja: 決算の日程をもとに、基準日、株主総会の日、場所、招集の通知を出す日の案を作る。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [annual-closing-schedule]
+        produces: [meeting-schedule-plan]
+        requiresJudgment: true
+        judgment: { ja: 決算の日程と、基準日から3か月以内に権利を行使するという決まりに合わせて、基準日と株主総会の日をいつにするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [shareholders-meeting-convocation]
+
+      - id: fix-shareholder-list
+        label: { ja: 基準日の株主を確かめる, en: Fix the list of shareholders on the record date }
+        description: { ja: 基準日に株主名簿に載っている株主と、持っている株式の数を一覧にする。 }
+        performedBy: general-affairs-staff
+        receives: [meeting-schedule-plan]
+        produces: [shareholder-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: decide-convocation
+        label: { ja: 招集の内容を決定する, en: Decide the convocation }
+        description: { ja: 株主総会の日時と場所、目的である事項、書面や電磁的方法による議決権の行使を認めるかを定める。取締役会を置く会社では、取締役会の決議で決める。 }
+        performedBy: executive
+        receives: [meeting-schedule-plan]
+        produces: [convocation-decision]
+        requiresJudgment: true
+        judgment: { ja: 日時と場所、目的である事項、議決権の行使の方法を、どう定めるか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [shareholders-meeting-convocation]
+
+      - id: decide-agenda
+        label: { ja: 議案を決める, en: Decide the agenda }
+        description: { ja: 計算書類の承認、役員の選任など、株主総会に諮る議案と、諮る順番を決める。 }
+        performedBy: executive
+        receives: [convocation-decision, financial-statements-draft]
+        produces: [agenda-draft]
+        requiresJudgment: true
+        judgment: { ja: どの議案を出し、どの順に諮るか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [shareholders-meeting-convocation, financial-statements]
+
+  - id: notice
+    label: { ja: 招集の通知, en: Convocation notice }
+    steps:
+      - id: prepare-meeting-notice
+        label: { ja: 招集通知の案を作る, en: Draft the convocation notice }
+        description: { ja: 決めた日時と場所、目的である事項、議案を、招集通知の案にまとめる。議決権行使書などの参考書類を付ける。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [convocation-decision, agenda-draft]
+        produces: [meeting-notice-draft]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [shareholders-meeting-convocation]
+
+      - id: send-meeting-notice
+        label: { ja: 招集の通知を株主に発する, en: Send the convocation notice to shareholders }
+        description: { ja: 株主総会の日の2週間前まで（公開会社でない株式会社は1週間前まで）に、株主に招集の通知を発する。書面で出すか、株主の承諾を得て電磁的方法で出す。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        receives: [meeting-notice-draft, shareholder-list]
+        produces: [meeting-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [shareholders-meeting-convocation]
+
+      - id: tally-votes
+        label: { ja: 議決権行使書を集計する, en: Tally the voting forms }
+        description: { ja: 株主から届いた議決権行使書と委任状を受け取り、議案ごとの賛否と、委任の内容を集計する。 }
+        performedBy: general-affairs-staff
+        receives: [voting-form]
+        produces: [voting-summary]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+  - id: meeting
+    label: { ja: 当日の運営, en: Meeting day }
+    steps:
+      - id: check-attendance
+        label: { ja: 出席と議決権の数を確かめる, en: Check attendance and voting rights }
+        description: { ja: 当日、出席した株主と、代理人、議決権行使書を出した株主の、議決権の数を数える。 }
+        performedBy: general-affairs-staff
+        receives: [shareholder-list, voting-summary]
+        produces: [shareholder-attendance-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+
+      - id: hold-shareholders-meeting
+        label: { ja: 株主総会を開いて決議を得る, en: Hold the meeting and obtain resolutions }
+        description: { ja: 議長として総会を進め、計算書類や議案を株主に説明し、質問に答え、採決をとる。 }
+        performedBy: executive
+        receives: [agenda-draft, shareholder-attendance-record, financial-statements-draft]
+        produces: [meeting-resolutions]
+        requiresJudgment: true
+        judgment: { ja: 議事をどう進め、株主の質問や動議にどう答え、採決をどうとるか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 取締役が招集した総会で、株主の議決権の行使を受けて決議する、株主との合意そのものであるため（会社法296条）。 }
+        regulations: [shareholders-meeting-convocation, financial-statements]
+
+  - id: minutes
+    label: { ja: 議事録の作成と保存, en: Minutes }
+    steps:
+      - id: draft-meeting-minutes
+        label: { ja: 議事録の案を作る, en: Draft the minutes }
+        description: { ja: 日時と場所、議事の経過の要領とその結果、出席した取締役の氏名、議長の氏名などを、議事録の案に書く。承認された計算書類の内容も記録する。 }
+        performedBy: general-affairs-staff
+        receives: [meeting-resolutions, shareholder-attendance-record, approved-financial-statements]
+        produces: [meeting-minutes-draft]
+        requiresJudgment: true
+        judgment: { ja: 議事の経過の要領とその結果を、法務省令が求める内容に沿って、どこまで書くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [shareholders-meeting-minutes]
+
+      - id: finalize-meeting-minutes
+        label: { ja: 議事録を確定する, en: Finalize the minutes }
+        description: { ja: 議事録の案が、実際の議事の経過と結果に合っているかを確かめて確定する。議事録の作成に係る職務を行った取締役として、氏名を書く。 }
+        performedBy: executive
+        receives: [meeting-minutes-draft]
+        produces: [meeting-minutes]
+        requiresJudgment: true
+        judgment: { ja: 議事録の内容が、実際の議事の経過と結果に合っているか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [shareholders-meeting-minutes]
+
+      - id: keep-meeting-minutes
+        label: { ja: 議事録を本店に備え置く, en: Keep the minutes at the head office }
+        description: { ja: 株主総会の日から10年間、議事録を本店に備え置く。支店には写しを5年間備え置く（電磁的記録で作り、必要な措置をとっている場合を除く）。 }
+        performedBy: general-affairs-staff
+        receives: [meeting-minutes]
+        produces: [kept-meeting-minutes]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [shareholders-meeting-minutes]

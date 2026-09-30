@@ -27,7 +27,7 @@ stages:
         label: { ja: 頼んだ中身と照らす, en: Check against what was ordered }
         description: { ja: 請求の中身が、頼んだ物や作業、受け取った結果と合っているかを確かめ、支払を申請する。 }
         performedBy: requesting-staff
-        receives: [invoice-receipt-record]
+        receives: [invoice-receipt-record, delivery-inspection-record, inspection-handover-notice]
         produces: [payment-request]
         requiresJudgment: true
         judgment: { ja: 請求された物や作業が、頼んだとおりに納められたと言えるか。 }
@@ -82,7 +82,7 @@ stages:
         label: { ja: 支払の予定をまとめる, en: Prepare the payment list }
         description: { ja: 支払の期日が来る請求を集め、支払先、金額、振込先の口座を一覧にする。 }
         performedBy: accounting-staff
-        receives: [payable-journal-entry]
+        receives: [payable-journal-entry, outsourcing-payment-notice]
         produces: [payment-list]
         requiresJudgment: false
         irreversible: false

@@ -1,0 +1,7 @@
+- id: production-management-system
+  label: { ja: 生産管理のシステム, en: Production management system }
+  description: { ja: 生産の計画、製造の指示、材料の在庫、作業の実績、設備の履歴を管理するシステム。 }
+
+- id: measuring-instrument
+  label: { ja: 検査・測定の機器, en: Inspection and measuring instrument }
+  description: { ja: 寸法、重さ、圧力などを測り、材料や製品、設備の状態を確かめる機器。 }

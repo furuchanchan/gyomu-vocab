@@ -1,0 +1,115 @@
+id: receiving-and-inspection
+label: { ja: 物品の受け入れと検収, en: Receiving and inspection }
+description:
+  ja: 取引先から届いた物を受け取り、数と状態を発注の内容と照らして確かめ、検収の記録を残し、不良は返品や交換を頼み、検収の済んだ物を経理に引き継ぐまでの流れ。
+  en: From receiving delivered goods and checking quantity and condition against the order, through recording inspection and requesting returns or exchanges, to handing over to accounting.
+frequency: on-demand
+timing: { ja: 物が納品されるたび。 }
+pcf: ["10354"]
+regulations: [sale-nonconformity-liability, electronic-transaction-data]
+stages:
+  - id: receipt
+    label: { ja: 受け取り, en: Receipt }
+    steps:
+      - id: receive-delivery
+        label: { ja: 納品を受け取る, en: Receive the delivery }
+        description: { ja: 届いた物と納品書を受け取り、受け取った日、取引先、品名を記録する。 }
+        performedBy: receiving-staff
+        receives: [delivery-note]
+        produces: [delivery-receipt-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を受け取り、運び入れる作業だから。 }
+
+      - id: check-quantity-and-condition
+        label: { ja: 数と状態を確かめる, en: Check quantity and condition }
+        description: { ja: 納品された物の数と状態を、発注の記録と納品書に照らして確かめる。傷、汚れ、不足があれば書き留める。 }
+        performedBy: receiving-staff
+        receives: [delivery-receipt-record, purchase-order-record, delivery-note]
+        produces: [inspection-findings]
+        requiresJudgment: true
+        judgment: { ja: 傷や汚れが、使うのに差し支えない範囲か。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を開けて、目で見て数え、状態を確かめる作業だから。 }
+
+  - id: inspection
+    label: { ja: 検収, en: Inspection }
+    steps:
+      - id: decide-acceptance
+        label: { ja: 合格か不合格かを決める, en: Decide whether to accept }
+        description: { ja: 確かめた結果と、頼んだ内容を見て、受け入れてよいかを決める。 }
+        performedBy: requesting-staff
+        receives: [inspection-findings, purchase-order-record]
+        produces: [inspection-decision]
+        requiresJudgment: true
+        judgment: { ja: 頼んだとおりの物か。違いがあるとき、受け入れるか、返すか、交換を求めるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: write-inspection-record
+        label: { ja: 検収の記録を作る, en: Write the inspection record }
+        description: { ja: 検収の日、品名、数量、合否を書いた記録を作る。経理が支払を確かめるときに受け取る。 }
+        performedBy: receiving-staff
+        receives: [inspection-decision, delivery-receipt-record]
+        produces: [delivery-inspection-record]
+        doneWhen: { ja: 検収の日、品名、数量、合否が、記録に書かれている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [purchasing-system]
+
+  - id: nonconformity
+    label: { ja: 不良への対応, en: Handling nonconformity }
+    pcf: ["10302"]
+    steps:
+      - id: request-return-or-exchange
+        label: { ja: 返品や交換を頼む, en: Request return or exchange }
+        description: { ja: 不合格の物について、返品、交換、修補、不足分の納品のどれを求めるかを決めて、取引先に頼む。契約に合わない物の買主の権利は、民法が定めている。 }
+        performedBy: procurement-staff
+        receives: [inspection-decision]
+        produces: [return-exchange-request]
+        requiresJudgment: true
+        judgment: { ja: 交換、修補、代金の減額、契約の解除のどれを求めるか。期限までに取引先へ通知できているか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [sale-nonconformity-liability]
+
+      - id: confirm-remedy
+        label: { ja: 交換や修補の結果を確かめる, en: Confirm the remedy }
+        description: { ja: 取引先から届いた代わりの物や修補した物を受け取り、数と状態を確かめる。 }
+        performedBy: receiving-staff
+        receives: [vendor-remedy-response, return-exchange-request]
+        produces: [remedy-confirmation]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を受け取り、状態を確かめる作業だから。 }
+
+  - id: handover
+    label: { ja: 経理への引き継ぎと保存, en: Handover and storage }
+    steps:
+      - id: hand-over-to-accounting
+        label: { ja: 検収の済んだ物を経理に伝える, en: Notify accounting of accepted goods }
+        description: { ja: 検収の済んだ物、金額、検収の日を、経理に知らせる。請求書が届いたとき、経理が頼んだ物と照らせるようにする。 }
+        performedBy: procurement-staff
+        receives: [delivery-inspection-record, purchase-order-record]
+        produces: [inspection-handover-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: store-receiving-records
+        label: { ja: 納品書と検収の記録を保存する, en: Store the delivery note and inspection record }
+        description: { ja: 納品書と検収の記録を、決まった期間、探し出せる形で保存する。電子で受け取った納品書は、データのまま保存する。 }
+        performedBy: receiving-staff
+        receives: [delivery-note, delivery-inspection-record]
+        produces: [stored-receiving-records]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [electronic-transaction-data]

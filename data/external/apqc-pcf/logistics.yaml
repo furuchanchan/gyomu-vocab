@@ -1,0 +1,10 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、物流で参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "10219", hierarchy: "4.4", name: "Manage logistics and warehousing" }
+- { id: "10347", hierarchy: "4.4.1.5", name: "Optimize transportation schedules and costs" }
+- { id: "10349", hierarchy: "4.4.2.1", name: "Plan inbound material receipts" }
+- { id: "10352", hierarchy: "4.4.2.4", name: "Manage flow of returned products" }
+- { id: "20109", hierarchy: "4.4.2.5", name: "Manage disposition of returned products" }
+- { id: "10356", hierarchy: "4.4.3.4", name: "Pick, pack, and ship product for delivery" }
+- { id: "10357", hierarchy: "4.4.3.5", name: "Track inventory accuracy" }
+- { id: "10363", hierarchy: "4.4.4.4", name: "Process and audit carrier invoices and documents" }

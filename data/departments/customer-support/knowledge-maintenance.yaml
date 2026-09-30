@@ -1,0 +1,94 @@
+id: knowledge-maintenance
+label: { ja: よくある質問と手順書の整備, en: Knowledge maintenance }
+description:
+  ja: 問い合わせの傾向を集計し、記事にする質問と手順を決め、作成して内容を確かめ、公開し、公開後も見直すまでの流れ。
+  en: From analyzing inquiry trends and deciding which articles to write, to drafting, reviewing and publishing FAQs and procedures, and reviewing them after publication.
+frequency: monthly
+timing: { ja: 毎月、前の月の問い合わせの記録がそろってから。 }
+pcf: ["13482"]
+stages:
+  - id: analysis
+    label: { ja: 問い合わせの傾向の集計, en: Trend analysis }
+    steps:
+      - id: aggregate-inquiries
+        label: { ja: 問い合わせの傾向を集計する, en: Aggregate inquiry trends }
+        description: { ja: 解決した問い合わせを、種類ごとの件数、繰り返し来る質問、答えるのに時間がかかった質問に分けて集計する。 }
+        performedBy: cs-staff
+        receives: [resolved-case-record]
+        produces: [inquiry-trend-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet, support-desk]
+
+      - id: plan-articles
+        label: { ja: 記事にする質問と手順を決める, en: Decide which articles to write }
+        description: { ja: 集計の結果から、記事にする質問と、直す手順を選ぶ。 }
+        performedBy: cs-manager
+        receives: [inquiry-trend-report]
+        produces: [article-plan]
+        requiresJudgment: true
+        judgment: { ja: 件数、顧客が困る度合い、記事にして減らせる見込みのどれを優先するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+
+  - id: drafting
+    label: { ja: 記事の作成と確認, en: Drafting and review }
+    steps:
+      - id: draft-article
+        label: { ja: 記事の案を書く, en: Draft the article }
+        description: { ja: 計画と過去の解決の記録をもとに、質問と答え、または手順を書く。個人が特定される情報は入れない。 }
+        performedBy: cs-staff
+        receives: [article-plan, resolved-case-record]
+        produces: [article-draft]
+        requiresJudgment: true
+        judgment: { ja: 顧客が迷わず読める言葉と順番。個人が特定される情報を残していないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [knowledge-base]
+
+      - id: review-article
+        label: { ja: 記事の内容を確かめる, en: Review the article }
+        description: { ja: 記事の内容が、製品や契約や社内の決まりの現状と合っているかを、専門の立場で確かめる。 }
+        performedBy: related-staff
+        receives: [article-draft]
+        produces: [reviewed-article]
+        requiresJudgment: true
+        judgment: { ja: 内容が正確で、顧客に案内してよい範囲か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [knowledge-base, workflow-system]
+
+
+  - id: publishing
+    label: { ja: 公開, en: Publishing }
+    steps:
+      - id: publish-article
+        label: { ja: 記事を公開する, en: Publish the article }
+        description: { ja: 確かめた記事を、顧客が読める場所に載せる。社内向けの手順書は、担当者が探せる場所に載せる。 }
+        performedBy: cs-staff
+        confirmedBy: cs-manager
+        receives: [reviewed-article]
+        produces: [published-article]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [knowledge-base]
+
+
+  - id: review
+    label: { ja: 見直し, en: Periodic review }
+    steps:
+      - id: review-published-articles
+        label: { ja: 公開した記事を見直す, en: Review published articles }
+        description: { ja: 公開した記事が読まれているか、その記事のあとも同じ問い合わせが来ていないかを見て、残す、直す、下げるを決める。 }
+        performedBy: cs-staff
+        receives: [published-article, inquiry-trend-report]
+        produces: [article-review-result]
+        requiresJudgment: true
+        judgment: { ja: 記事を直すか、下げるか、そのまま残すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [knowledge-base, spreadsheet]

@@ -1,0 +1,104 @@
+id: receiving-and-warehousing
+label: { ja: 入荷と保管, en: Receiving and warehousing }
+description:
+  ja: 仕入先の出荷の連絡から入荷の予定を組み、荷物を受け取って数と状態を確かめ、相違があれば知らせ、棚に入れて、在庫の記録に反映するまでの流れ。
+  en: From scheduling inbound deliveries based on the vendor's notice, through receiving the goods and checking quantity and condition, reporting discrepancies and putting the goods away, to reflecting them in the stock record.
+frequency: on-demand
+timing: { ja: 発注した物が届くごとに。 }
+pcf: ["10349"]
+regulations: [shipper-logistics-efficiency, forklift-operation]
+stages:
+  - id: inbound-planning
+    label: { ja: 入荷の予定, en: Inbound planning }
+    steps:
+      - id: plan-inbound-schedule
+        label: { ja: 入荷の予定を組む, en: Plan the inbound schedule }
+        description: { ja: 発注した内容と仕入先の出荷の連絡を見て、荷物を受け取る日と時間帯を決める。一度に多くの車が着いて運転者が待つことがないように、時間帯を分ける。 }
+        performedBy: logistics-clerk
+        receives: [purchase-order, inbound-notice]
+        produces: [inbound-schedule]
+        requiresJudgment: true
+        judgment: { ja: 荷役ができる車の数と人手に合わせて、どの日のどの時間帯に受けるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+        regulations: [shipper-logistics-efficiency]
+
+      - id: notify-receiving-slot
+        label: { ja: 荷受けの日時を仕入先に知らせる, en: Tell the vendor the receiving time slot }
+        description: { ja: 決めた日と時間帯を、仕入先に知らせる。 }
+        performedBy: logistics-clerk
+        receives: [inbound-schedule]
+        produces: [receiving-slot-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+  - id: receiving-check
+    label: { ja: 荷受けと確認, en: Receiving and checking }
+    steps:
+      - id: receive-goods
+        label: { ja: 荷物を受け取る, en: Receive the goods }
+        description: { ja: 着いた運転者から荷物を受け取り、納品書を受け取る。運転者が着いた時刻と、荷降ろしを終えた時刻を記録する。荷降ろしにフォークリフトを使うことがある。 }
+        performedBy: warehouse-staff
+        receives: [inbound-schedule, delivery-note]
+        produces: [received-goods, driver-wait-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 運転者から現物を直接受け取る作業であるため。フォークリフトを使うときは、その資格のある人が行う。 }
+        toolKinds: [warehouse-system]
+        regulations: [shipper-logistics-efficiency, forklift-operation]
+
+      - id: check-received-goods
+        label: { ja: 数と状態を確かめる, en: Check quantity and condition }
+        description: { ja: 受け取った物を、納品書の品物と数に照らし、傷や濡れがないかを見て確かめる。 }
+        performedBy: warehouse-staff
+        receives: [received-goods, delivery-note]
+        produces: [received-goods-check]
+        requiresJudgment: true
+        judgment: { ja: 数や状態に違いがある物を、受け入れるか、預かるだけにするか、返すか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の数と状態を目で見て確かめる作業であるため。 }
+        toolKinds: [warehouse-system]
+
+      - id: report-discrepancy
+        label: { ja: 数や状態の相違を仕入先に知らせる, en: Report discrepancies to the vendor }
+        description: { ja: 数や状態に違いがあったときに、その中身を仕入先に知らせる。違いがなければ、この工程は行わない。 }
+        performedBy: logistics-clerk
+        receives: [received-goods-check]
+        produces: [discrepancy-notice]
+        requiresJudgment: true
+        judgment: { ja: 違いの内容を、仕入先にどう伝え、何を求めるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+  - id: putaway-and-stock
+    label: { ja: 棚入れと在庫, en: Putaway and stock }
+    steps:
+      - id: put-away-goods
+        label: { ja: 荷物を棚に入れる, en: Put the goods away }
+        description: { ja: 確かめた物を、決めた棚の場所に入れ、場所を記録に残す。重い物は、フォークリフトを使う。 }
+        performedBy: warehouse-staff
+        receives: [received-goods-check]
+        produces: [stored-goods]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を棚へ運んで入れる作業であるため。フォークリフトを使うときは、その資格のある人が行う。 }
+        toolKinds: [warehouse-system]
+        regulations: [forklift-operation]
+
+      - id: update-stock-record
+        label: { ja: 入荷を在庫に反映する, en: Reflect the receipt in the stock record }
+        description: { ja: 棚に入れた物の品物、数、棚の場所を、在庫の記録に足す。入荷の記録は、購買や経理が納品を確かめるときにも使える形で残す。 }
+        performedBy: logistics-clerk
+        receives: [stored-goods, received-goods-check]
+        produces: [stock-record, goods-receipt-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]

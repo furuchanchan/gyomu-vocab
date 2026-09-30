@@ -15,7 +15,7 @@ stages:
         label: { ja: 問い合わせや名刺の情報を記録する, en: Record the inquiry or business card }
         description: { ja: 問い合わせや名刺交換で受け取った相手の情報を、見込み客の記録として登録する。 }
         performedBy: sales-rep
-        receives: [inquiry]
+        receives: [inquiry, marketing-lead]
         produces: [lead-record]
         doneWhen: { ja: 相手の名前、会社、連絡先、接点になった経緯が入っている。 }
         requiresJudgment: false

@@ -1,0 +1,114 @@
+id: production-planning
+label: { ja: 生産計画, en: Production planning }
+description:
+  ja: 受注と需要を確かめ、設備と人員の空きを見て生産の計画を作り、承認を受け、材料の手配を依頼し、進み具合に応じて計画を変えるまでの流れ。
+  en: From confirming demand and orders to drafting the production plan against equipment and staff capacity, approving it, requesting materials, and revising the plan as work progresses.
+frequency: weekly
+timing: { ja: 毎週。計画の期間と見直しの間隔は、会社の決まりによる。 }
+pcf: ["10303"]
+stages:
+  - id: demand
+    label: { ja: 需要と能力の確認, en: Demand and capacity check }
+    steps:
+      - id: confirm-demand
+        label: { ja: 受注と需要を確かめる, en: Confirm orders and demand }
+        description: { ja: 営業から届いた受注と、見込みの需要を集め、作る製品ごとの数量と納めたい時期をまとめる。 }
+        performedBy: production-planner
+        receives: [order-record]
+        produces: [demand-summary]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, spreadsheet]
+
+      - id: check-capacity
+        label: { ja: 設備と人員の空きを確かめる, en: Check equipment and staff capacity }
+        description: { ja: 計画の期間に使える設備と作業者の時間を、点検や修理で止まる予定も含めて確かめる。 }
+        performedBy: production-planner
+        receives: [demand-summary]
+        produces: [capacity-check]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, spreadsheet]
+
+  - id: planning
+    label: { ja: 計画の作成と承認, en: Drafting and approval }
+    pcf: ["10307"]
+    steps:
+      - id: draft-production-plan
+        label: { ja: 生産計画の案を作る, en: Draft the production plan }
+        description: { ja: 何を、いつ、どれだけ、どの設備で作るかを決めて、生産計画の案にまとめる。 }
+        performedBy: production-planner
+        receives: [demand-summary, capacity-check]
+        produces: [production-plan-draft]
+        requiresJudgment: true
+        judgment: { ja: 納期、設備と人員の空き、作る順番のうち、どれを優先して数量と時期を決めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, spreadsheet]
+
+      - id: approve-production-plan
+        label: { ja: 生産計画を承認する, en: Approve the production plan }
+        description: { ja: 計画案が納期と能力に見合っているかを見て、計画として決める。 }
+        performedBy: production-manager
+        receives: [production-plan-draft]
+        produces: [approved-production-plan]
+        requiresJudgment: true
+        judgment: { ja: 案が、納期と、設備と人員の能力の範囲に収まっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+  - id: materials
+    label: { ja: 材料の手配, en: Material arrangement }
+    steps:
+      - id: request-materials
+        label: { ja: 材料の手配を依頼する, en: Request materials }
+        description: { ja: 承認された計画から要る材料と部品の種類と数量を洗い出し、手配を調達の担当に依頼する。 }
+        performedBy: production-planner
+        receives: [approved-production-plan]
+        produces: [material-arrangement-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, workflow-system]
+
+      - id: check-material-schedule
+        label: { ja: 材料が届く時期を確かめる, en: Check the material delivery schedule }
+        description: { ja: 取引先から返ってきた納期の回答を、計画の製造の開始に間に合うかどうか照らす。 }
+        performedBy: production-planner
+        receives: [vendor-delivery-reply, approved-production-plan]
+        produces: [material-schedule-check]
+        requiresJudgment: true
+        judgment: { ja: 材料の納期が、計画の製造の開始に間に合うと言えるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, email]
+
+  - id: revision
+    label: { ja: 計画の変更, en: Plan revision }
+    steps:
+      - id: draft-plan-change
+        label: { ja: 計画の変更の案を作る, en: Draft the plan change }
+        description: { ja: 完成の報告と材料の納期の確認から、計画とのずれを見て、日程や数量を組み直す案を作る。 }
+        performedBy: production-planner
+        receives: [completion-report, material-schedule-check]
+        produces: [plan-change-draft]
+        requiresJudgment: true
+        judgment: { ja: ずれを、日程の組み直しで吸収するか、数量や納期の変更を求めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [production-management-system, spreadsheet]
+
+      - id: approve-plan-change
+        label: { ja: 計画の変更を承認する, en: Approve the plan change }
+        description: { ja: 変更の案が納期と能力に見合っているかを見て、変更後の計画として決める。 }
+        performedBy: production-manager
+        receives: [plan-change-draft]
+        produces: [revised-production-plan]
+        requiresJudgment: true
+        judgment: { ja: 変更が、納期と、設備と人員の能力の範囲に収まっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]

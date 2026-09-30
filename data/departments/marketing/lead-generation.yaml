@@ -1,0 +1,105 @@
+id: lead-generation
+label: { ja: 見込み客の獲得と営業への引き渡し, en: Lead generation and handover to sales }
+description:
+  ja: 展示会・セミナー・Webで得た見込み客の情報を記録し、利用目的の知らせと同意の確認をして、見込みの度合いを判定し、営業へ引き渡すまでの流れ。
+  en: From recording lead information gathered at exhibitions, seminars and on the web to notifying the purpose of use, checking consent, qualifying the lead and handing it over to sales.
+frequency: on-demand
+timing: { ja: 展示会やセミナーが終わるたび、Webの問い合わせがあるたびに。 }
+pcf: ["10189"]
+regulations: [personal-information-protection, specified-email, personal-data-handling]
+stages:
+  - id: capture
+    label: { ja: 記録と利用目的, en: Capture and purpose }
+    pcf: ["10189"]
+    steps:
+      - id: record-lead
+        label: { ja: 見込み客の情報を記録する, en: Record the lead information }
+        description: { ja: 展示会・セミナー・Webで受け取った相手の情報を、接点になった場所と日とともに記録する。 }
+        performedBy: marketing-staff
+        receives: [lead-source-information, visitor-record]
+        produces: [lead-list-entry]
+        doneWhen: { ja: 名前、会社、連絡先、接点になった場所と日が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, spreadsheet]
+        regulations: [personal-data-handling]
+
+      - id: notify-purpose
+        label: { ja: 利用目的を知らせる, en: Notify the purpose of use }
+        description: { ja: 利用目的を公表していない場合や、取得の状況から明らかでない場合に、本人に利用目的を知らせる。 }
+        performedBy: marketing-staff
+        receives: [lead-list-entry]
+        produces: [purpose-notice]
+        requiresJudgment: true
+        judgment: { ja: 取得の状況からみて、利用目的が明らかと言えるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, marketing-automation]
+        regulations: [personal-information-protection]
+
+
+  - id: consent
+    label: { ja: 同意の確認, en: Consent check }
+    pcf: ["18115"]
+    steps:
+      - id: check-consent
+        label: { ja: 配信への同意を確かめる, en: Check consent to advertising email }
+        description: { ja: 名刺交換の際の説明、フォームの選択欄、申込みの内容などから、広告や宣伝のメールを送ってよい相手かを確かめる。 }
+        performedBy: marketing-staff
+        receives: [lead-list-entry]
+        produces: [consent-check-result]
+        requiresJudgment: true
+        judgment: { ja: 同意があると言えるか。取引関係にあるか、通知されたアドレスか、公表されたアドレスか。同意がなければ送らない相手にする。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [specified-email]
+
+
+  - id: qualification
+    label: { ja: 見込みの判定, en: Qualification }
+    pcf: ["18115"]
+    steps:
+      - id: qualify-lead
+        label: { ja: 見込みの度合いを判定する, en: Qualify the lead }
+        description: { ja: 相手の関心、会社の規模、時期を見て、営業が会う価値があるかを判定する。 }
+        performedBy: marketing-staff
+        receives: [lead-list-entry, consent-check-result]
+        produces: [qualified-lead]
+        requiresJudgment: true
+        judgment: { ja: いま営業が会うべきか、メールなどでもう少し育てるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation, spreadsheet]
+
+
+  - id: handover
+    label: { ja: 営業への引き渡し, en: Handover to sales }
+    pcf: ["10182"]
+    steps:
+      - id: decide-handover
+        label: { ja: 営業へ渡すかを決める, en: Decide the handover }
+        description: { ja: 判定の結果を見て、営業へ渡す見込み客を決める。 }
+        performedBy: marketing-staff
+        confirmedBy: marketing-manager
+        receives: [qualified-lead]
+        produces: [handover-decision]
+        requiresJudgment: true
+        judgment: { ja: 渡す件数と質が、営業の対応できる範囲に合っているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+
+      - id: hand-over-lead
+        label: { ja: 見込み客の情報を営業へ渡す, en: Hand the lead over to sales }
+        description: { ja: 接点の経緯、判定の結果、同意の状況、利用目的の知らせの有無をつけて、営業の担当へ渡す。 }
+        performedBy: marketing-staff
+        receives: [qualified-lead, handover-decision, purpose-notice]
+        produces: [marketing-lead]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [marketing-automation]
+        regulations: [personal-data-handling]
+

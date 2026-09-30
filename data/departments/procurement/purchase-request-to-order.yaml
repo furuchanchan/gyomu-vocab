@@ -1,0 +1,141 @@
+id: purchase-request-to-order
+label: { ja: 購入の申請から発注まで, en: From purchase request to purchase order }
+description:
+  ja: 依頼した部署の購入の申請を受け、仕様を確かめ、相見積を取って取引先を選び、稟議で決裁を受け、発注書を出して保存するまでの流れ。
+  en: From receiving a purchase request to confirming requirements, comparing quotes, selecting a vendor, getting approval, issuing the purchase order and storing the records.
+frequency: on-demand
+timing: { ja: 購入の申請があるたび。 }
+pcf: ["10279"]
+regulations: [torite-terms-statement, freelance-terms-disclosure, electronic-transaction-data]
+stages:
+  - id: request-and-requirements
+    label: { ja: 申請と仕様の確認, en: Request and requirements }
+    pcf: ["10292"]
+    steps:
+      - id: submit-purchase-request
+        label: { ja: 購入を申請する, en: Submit the purchase request }
+        description: { ja: 欲しい物や作業、数量、希望の納期、予算を書いて、購買に購入を申請する。 }
+        performedBy: requesting-staff
+        receives: [material-arrangement-request]
+        produces: [purchase-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: confirm-requirements
+        label: { ja: 仕様と数量と納期を確かめる, en: Confirm the requirements }
+        description: { ja: 申請の内容について、仕様、数量、納期、予算が決まっているかを確かめ、足りない点は依頼した部署に聞く。 }
+        performedBy: procurement-staff
+        receives: [purchase-request]
+        produces: [confirmed-requirements]
+        doneWhen: { ja: 仕様、数量、納期、予算が、取引先に伝えられる形で書かれている。 }
+        requiresJudgment: true
+        judgment: { ja: 申請の仕様が、取引先に見積を頼めるほど具体的か。似た物で足りないか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: quotation-and-selection
+    label: { ja: 相見積と取引先の選定, en: Quotation and vendor selection }
+    pcf: ["10294"]
+    steps:
+      - id: request-quotes
+        label: { ja: 複数の取引先に見積を頼む, en: Request quotes from several vendors }
+        description: { ja: 仕様、数量、納期を伝えて、候補の取引先に見積を頼む。 }
+        performedBy: procurement-staff
+        receives: [confirmed-requirements]
+        produces: [quote-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: compare-quotes
+        label: { ja: 見積を受け取って比べる, en: Receive and compare the quotes }
+        description: { ja: 届いた見積書の価格、納期、条件を、同じ形の表に並べる。 }
+        performedBy: procurement-staff
+        receives: [vendor-quote]
+        produces: [quote-comparison]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: select-vendor
+        label: { ja: 取引先を選ぶ, en: Select the vendor }
+        description: { ja: 見積の比較表から、価格、品質、納期、過去の取引の実績を見て、発注する取引先を選び、理由を書く。 }
+        performedBy: procurement-staff
+        confirmedBy: department-manager
+        receives: [quote-comparison]
+        produces: [vendor-selection]
+        requiresJudgment: true
+        judgment: { ja: 価格、品質、納期、取引の実績のどれを重く見て、どの取引先にするか。 }
+        irreversible: false
+        humanRequired: false
+
+  - id: approval
+    label: { ja: 稟議, en: Approval }
+    pcf: ["10293"]
+    steps:
+      - id: prepare-approval-request
+        label: { ja: 購入の稟議書を作る, en: Prepare the approval request }
+        description: { ja: 購入の目的、金額、選んだ取引先とその理由を書いて、決裁を求める稟議書にまとめる。 }
+        performedBy: procurement-staff
+        receives: [vendor-selection, confirmed-requirements]
+        produces: [purchase-approval-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-purchase
+        label: { ja: 購入を決裁する, en: Approve the purchase }
+        description: { ja: 稟議書の中身と金額を見て、購入してよいかを決める。 }
+        performedBy: department-manager
+        receives: [purchase-approval-request]
+        produces: [approved-purchase]
+        requiresJudgment: true
+        judgment: { ja: 支出が、予算と決裁の権限の範囲に収まっているか。この取引先から買ってよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+  - id: ordering
+    label: { ja: 発注と保存, en: Ordering and storage }
+    pcf: ["10295"]
+    steps:
+      - id: issue-purchase-order
+        label: { ja: 発注書を出す, en: Issue the purchase order }
+        description: { ja: 決裁を受けた内容で、品名、数量、代金、納期、支払の条件を書いた発注書を作り、取引先に出す。製造や役務の委託にあたるときは、法律が求める事項を、書面か電磁的方法で明示する。 }
+        performedBy: procurement-staff
+        confirmedBy: department-manager
+        receives: [approved-purchase]
+        produces: [purchase-order]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [purchasing-system, email]
+        regulations: [torite-terms-statement, freelance-terms-disclosure, electronic-transaction-data]
+
+      - id: record-order-acknowledgement
+        label: { ja: 注文の請けを受け取り、納期を記録する, en: Record the vendor's acknowledgement }
+        description: { ja: 取引先から届いた注文の請けを見て、納期が発注書のとおりかを確かめ、発注の記録に残す。 }
+        performedBy: procurement-staff
+        receives: [order-acknowledgement, purchase-order]
+        produces: [purchase-order-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [purchasing-system]
+
+      - id: store-purchase-records
+        label: { ja: 見積書と発注書を保存する, en: Store the quotes and purchase order }
+        description: { ja: 見積書、発注書、注文の請けを、決まった期間、探し出せる形で保存する。電子で受け取った物は、データのまま保存する。 }
+        performedBy: procurement-staff
+        receives: [vendor-quote, purchase-order, order-acknowledgement]
+        produces: [stored-purchase-records]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [electronic-transaction-data, torite-record-keeping]

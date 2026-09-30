@@ -1,0 +1,95 @@
+id: records-management
+label: { ja: 文書の保存と廃棄, en: Retaining and disposing of records }
+description:
+  ja: 文書の種類ごとに保存期間を決め、文書を保管して期限を台帳に付け、期限が来た文書を洗い出し、廃棄してよいかを確かめ、承認を得て廃棄するまでの流れ。
+  en: From deciding retention periods by document type, storing documents with expiry dates in a ledger, identifying expired records and confirming they can be disposed of, to approval and disposal.
+frequency: yearly
+timing: { ja: 保存期間は、決めたときと見直すときに。期限の確認と廃棄は、年に1回など決めた時期に。 }
+pcf: ["20776"]
+regulations: [bookkeeping-retention, company-books-retention, shareholders-meeting-minutes, board-meeting-minutes, wage-records, electronic-transaction-data, personal-data-security, personal-data-erasure]
+stages:
+  - id: retention-and-storage
+    label: { ja: 保存期間と保管, en: Retention periods and storage }
+    steps:
+      - id: decide-retention-periods
+        label: { ja: 文書の種類ごとに保存期間を決める, en: Decide retention periods }
+        description: { ja: 文書の種類ごとに、法令が決める保存期間を確かめ、社内で必要な期間を足して、保存期間を決める。 }
+        performedBy: general-affairs-staff
+        confirmedBy: general-affairs-manager
+        produces: [retention-schedule]
+        requiresJudgment: true
+        judgment: { ja: 法令が決める期間のほかに、社内の必要や、争いになったときの備えとして、どれだけ長く持つか。個人データが入った文書を、いつ消すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+        regulations: [bookkeeping-retention, company-books-retention, shareholders-meeting-minutes, board-meeting-minutes, wage-records, electronic-transaction-data]
+
+      - id: hand-over-documents
+        label: { ja: 保管する文書を総務に渡す, en: Hand over documents for storage }
+        description: { ja: 業務が終わった文書を、種類と作った日を書いて、総務・法務に渡す。 }
+        performedBy: employee
+        produces: [documents-for-storage]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+
+      - id: store-documents
+        label: { ja: 保管して期限を台帳に付ける, en: Store documents and record expiry }
+        description: { ja: 文書を決めた場所に保管し、保存期間の数え始めの日から、保存期限を計算して台帳に書く。個人データが入った文書は、見られる人を限る。 }
+        performedBy: general-affairs-staff
+        receives: [retention-schedule, documents-for-storage]
+        produces: [records-ledger]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage, spreadsheet]
+        regulations: [personal-data-security]
+
+  - id: expiry-and-disposal
+    label: { ja: 期限の管理と廃棄, en: Expiry and disposal }
+    steps:
+      - id: find-expired-records
+        label: { ja: 期限が来た文書を洗い出す, en: Find expired records }
+        description: { ja: 台帳から、保存期限が過ぎた文書を洗い出す。 }
+        performedBy: general-affairs-staff
+        receives: [records-ledger]
+        produces: [expired-records-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: review-disposal
+        label: { ja: 廃棄してよいかを確かめる, en: Confirm records can be disposed of }
+        description: { ja: 訴訟や調査、契約の争いなどで、保存を続ける必要がある文書が無いかを確かめる。 }
+        performedBy: legal-staff
+        receives: [expired-records-list]
+        produces: [disposal-review-result]
+        requiresJudgment: true
+        judgment: { ja: 保存期限が過ぎていても、保存を続ける必要がある文書があるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: approve-disposal
+        label: { ja: 廃棄を承認する, en: Approve the disposal }
+        description: { ja: 確認の結果をもとに、廃棄する文書の一覧を承認する。 }
+        performedBy: general-affairs-manager
+        receives: [disposal-review-result]
+        produces: [approved-disposal-list]
+        requiresJudgment: true
+        judgment: { ja: この一覧の文書を、廃棄してよいか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: dispose-records
+        label: { ja: 文書を廃棄する, en: Dispose of the records }
+        description: { ja: 承認された一覧の文書を、紙は裁断するなど、電子のデータは消去して、廃棄する。廃棄したことを台帳に記録する。 }
+        performedBy: general-affairs-staff
+        receives: [approved-disposal-list]
+        produces: [records-disposal-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 紙の文書を裁断するなど、現物を扱う作業と、廃棄した文書が読み出せないことを確かめる作業であるため。 }
+        toolKinds: [document-storage]
+        regulations: [personal-data-erasure]

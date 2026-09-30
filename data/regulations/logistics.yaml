@@ -1,0 +1,126 @@
+# 物流に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: shipper-logistics-efficiency
+  label: { ja: 荷主の運転者の荷待ち時間等の短縮の努力義務（物流効率化法）, en: "Shippers' duty to make efforts to shorten drivers' waiting and handling time" }
+  obligation:
+    ja: 自らの事業に関して、貨物自動車運送事業者などに継続して貨物の運送を行わせる荷主（第一種荷主）は、貨物を運送する運転者の荷待ち時間等（荷待ち時間と荷役等時間）の短縮と、運転者一人当たりの一回の運送ごとの貨物の重量の増加を図るため、措置を講ずるよう努める。措置には、貨物の受渡しを行う日と時刻か時間帯を決めるとき、他の貨物との積合せができるようにすること、荷役ができる車両台数を上回る多数の貨物自動車が一時に着かないようにすること、運転者に荷役等を行わせる場合に、パレットなど荷役の効率化に資する輸送用器具を運転者が利用できるようにする措置その他の荷役等を省力化する措置がある。短縮すべき荷待ち時間等は、荷主が管理する施設か、荷主と寄託契約を結んだ者が管理する施設のものに限られる。自らの事業に関して継続して貨物を運転者から受け取る者、または運転者に引き渡す者（第二種荷主）も、受渡しの日時を運転者に指示するときに、一時に多数の貨物自動車が着かないようにするなど、荷待ち時間等の短縮の措置を講ずるよう努める。荷主の事業を所管する大臣は、国が定める判断の基準となるべき事項を勘案して、必要な指導と助言をすることができる。
+  deadline:
+    ja: 努力義務であり、期限はない。
+  appliesTo:
+    ja: 貨物自動車運送事業者などに継続して貨物の運送を行わせる第一種荷主と、貨物を運転者から継続して受け取るか運転者に継続して引き渡す第二種荷主。貨物自動車を使わない運送の委託は除く。
+  authority: { ja: 国土交通省、経済産業省、農林水産省（荷主の事業を所管する大臣）, en: "Ministry of Land, Infrastructure, Transport and Tourism, Ministry of Economy, Trade and Industry, Ministry of Agriculture, Forestry and Fisheries" }
+  legalBasis:
+    - law: 物資の流通の効率化に関する法律
+      lawId: 417AC0000000085
+      articles:
+        - { article: "30", contains: [第一種荷主, 第二種荷主, 荷待ち時間等, 荷役等時間] }
+        - { article: "42", contains: [荷主の努力義務, 荷待ち時間等の短縮, 積合せ, パレットその他の荷役の効率化に資する輸送用器具, 一時に多数の貨物自動車が集貨又は配達を行うべき場所に到着しないように] }
+        - { article: "44", contains: [指導及び助言, 必要な指導及び助言をすることができる] }
+  officialGuidance:
+    - url: https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html
+      contains: [努力義務, 判断基準, 荷待ち時間]
+  verifiedOn: 2026-09-30
+
+- id: specified-shipper-duty
+  label: { ja: 特定荷主の届出・中長期計画・物流統括管理者・定期報告（物流効率化法）, en: "Designated shippers' duties: notification, medium- to long-term plan, logistics manager and periodic report" }
+  obligation:
+    ja: 運送を行わせた貨物の年度の合計の重量が基準重量（政令で9万トン）以上の第一種荷主は、荷主の事業を所管する大臣に、貨物の運送の委託の状況を届け出る。大臣は、その荷主を特定荷主に指定する。特定荷主は、指定を受けたあと速やかに、中長期的な計画の作成などを統括管理する物流統括管理者を選任する。定期に、判断の基準となるべき事項を踏まえた中長期的な計画を作って大臣に提出する。指定を受けた年度の翌年度以降は、毎年度、措置の実施の状況を大臣に報告する。措置の実施の状況が判断の基準に照らして著しく不十分なときは、大臣が勧告をすることができ、従わなかったときは公表することができる。
+  deadline:
+    ja: 物流統括管理者の選任は、指定を受けたあと速やかに。中長期的な計画の提出は定期に。報告は指定を受けた日の属する年度の翌年度以降、毎年度。
+  appliesTo:
+    ja: 貨物自動車運送事業者などに運送を行わせた貨物の、算定した前年度の合計の重量が9万トン以上の第一種荷主。指定を受けた特定荷主が、計画・管理者・報告の義務を負う。
+  authority: { ja: 国土交通省、経済産業省、農林水産省（荷主の事業を所管する大臣）, en: "Ministry of Land, Infrastructure, Transport and Tourism, Ministry of Economy, Trade and Industry, Ministry of Agriculture, Forestry and Fisheries" }
+  legalBasis:
+    - law: 物資の流通の効率化に関する法律
+      lawId: 417AC0000000085
+      articles:
+        - { article: "45", contains: [特定荷主の指定, 基準重量, 荷主事業所管大臣に届け出なければならない] }
+        - { article: "46", contains: [中長期的な計画, 荷主事業所管大臣に提出しなければならない] }
+        - { article: "47", contains: [物流統括管理者, 速やかに, 選任しなければならない] }
+        - { article: "48", contains: [定期の報告, 毎年度, 荷主事業所管大臣に報告しなければならない] }
+        - { article: "49", contains: [勧告及び命令, 著しく不十分, 公表することができる] }
+    - law: 物資の流通の効率化に関する法律施行令
+      lawId: 417CO0000000298
+      articles:
+        - { article: "6", contains: [九万トン, 実測] }
+  officialGuidance:
+    - url: https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn1_000034.html
+      contains: [特定事業者, 中長期計画, 定期報告, 物流統括管理者]
+  verifiedOn: 2026-09-30
+
+- id: truck-transport-contract-document
+  label: { ja: 貨物自動車の運送契約の書面の交付（貨物自動車運送事業法）, en: Written contract for truck transport }
+  obligation:
+    ja: 自らの事業に関して貨物自動車運送事業者などと運送契約を結んで貨物の運送を頼む荷主（真荷主）と、一般貨物自動車運送事業者は、運送契約を結ぶときに、運送の役務の内容とその対価などを書面に書いて、相互に交付する。運送の役務のほかの役務の提供が含まれるときは、その役務の内容と対価も書く。書面のかわりに、相手の承諾を得て、書くべき事項を電磁的方法で示すこともできる。この場合は、書面を交付したものとみなす。
+  deadline:
+    ja: 運送契約を結ぶとき。
+  appliesTo:
+    ja: 自らの事業に関して貨物自動車運送事業者などに貨物の運送を頼む荷主（真荷主）と、一般貨物自動車運送事業者。国土交通省令で定める場合は除く。
+  authority: { ja: 国土交通省, en: "Ministry of Land, Infrastructure, Transport and Tourism" }
+  legalBasis:
+    - law: 貨物自動車運送事業法
+      lawId: 401AC0000000083
+      articles:
+        - { article: "12", contains: [書面の交付, 真荷主, 運送の役務の内容及びその対価, 書面に記載して相互に交付, 電磁的方法] }
+  verifiedOn: 2026-09-30
+
+- id: shipper-consideration-truck
+  label: { ja: 荷主の配慮の責務と荷主への勧告（貨物自動車運送事業法）, en: "Shippers' duty of consideration and recommendations to shippers" }
+  obligation:
+    ja: 荷主は、貨物自動車運送事業者が貨物自動車運送事業法とそれにもとづく命令を守って事業を行えるように、必要な配慮をする。貨物自動車運送事業者への命令や処分の原因となった違反行為が、荷主の指示にもとづいて行われたことが明らかなときなど、主として荷主の行為に起因すると認められ、事業者への命令や処分だけでは再発の防止が困難なときは、国土交通大臣が、その荷主にも、再発の防止を図るために適当な措置をとるよう勧告することができる。勧告をしたときは、国土交通大臣はその旨を公表する。
+  deadline:
+    ja: 運送を頼む間、常に。
+  appliesTo:
+    ja: 貨物自動車運送事業者に運送を頼む荷主。運送を頼んだ者から二以上の段階にわたって委託をした者や、他人のために貨物を受け取るか引き渡す者も含む。
+  authority: { ja: 国土交通省, en: "Ministry of Land, Infrastructure, Transport and Tourism" }
+  legalBasis:
+    - law: 貨物自動車運送事業法
+      lawId: 401AC0000000083
+      articles:
+        - { article: "64", contains: [荷主の責務, 必要な配慮をしなければならない] }
+        - { article: "65", contains: [荷主への勧告, 荷主の指示に基づき行われたことが明らか, 勧告することができる, 公表するものとする] }
+  verifiedOn: 2026-09-30
+
+- id: specified-transport-subcontract
+  label: { ja: 取適法の特定運送委託（条件の明示と記録の保存）, en: Specified transport subcontracting under the Act on subcontract transactions }
+  obligation:
+    ja: 事業者が業として行う販売などの取引の相手方に対する運送を、他の事業者に委託することは、取適法で特定運送委託とされる。委託事業者は、中小受託事業者にこの委託をしたら、直ちに、運送の内容、代金の額、支払期日、支払方法などを、書面か電磁的方法で明示する。電磁的方法で明示したときに、相手から書面を求められたら、遅滞なく書面を交付する。あわせて、給付の内容、役務の提供を受けたこと、代金の支払などを書いた書類か電磁的記録を作り、保存する。委託事業者と中小受託事業者になる範囲は、資本金の額によって法律で決まっており、たとえば資本金が3億円を超える委託事業者から、3億円以下の法人や個人への委託が対象になる。代金の支払期日の決まりは、別の制度（subcontract-payment）に書いた。
+  deadline:
+    ja: 明示は、委託をしたあと直ちに。
+  appliesTo:
+    ja: 特定運送委託をする委託事業者。資本金の額の区分などによる範囲は、法律で決まっている。
+  authority: { ja: 公正取引委員会、中小企業庁, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency" }
+  legalBasis:
+    - law: 製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律
+      lawId: 331AC0000000120
+      articles:
+        - { article: "2", contains: [特定運送委託, 取引の相手方, 運送の行為の全部又は一部を他の事業者に委託, 資本金の額又は出資の総額が三億円を超える] }
+        - { article: "4", contains: [直ちに, 支払期日及び支払方法, 書面又は電磁的方法, 遅滞なく, これを交付しなければならない] }
+        - { article: "7", contains: [書類等の作成及び保存, 役務の提供を受けたこと, 作成し、これを保存しなければならない] }
+  officialGuidance:
+    - url: https://www.jftc.go.jp/toriteki/toriteki_qa.html
+      contains: [特定運送委託]
+  verifiedOn: 2026-09-30
+
+- id: forklift-operation
+  label: { ja: フォークリフトの運転の資格と特別の教育（労働安全衛生法）, en: Qualifications and special training for forklift operation }
+  obligation:
+    ja: 事業者は、最大荷重が1トン以上のフォークリフトを運転する業務（道路上を走行させる運転を除く）に、都道府県労働局長の免許を受けた者か、登録を受けた者が行う技能講習を修了した者などの資格のある者でなければ、就かせてはならない。資格のある者は、業務に従事するときに、免許証などの資格を証する書面を携帯する。最大荷重が1トン未満のフォークリフトを運転する業務（道路上を走行させる運転を除く）には、その業務に就かせるときに、特別の教育を行う。
+  appliesTo:
+    ja: 倉庫などでフォークリフトを運転させる事業者。
+  authority: { ja: 厚生労働省, en: Ministry of Health, Labour and Welfare }
+  legalBasis:
+    - law: 労働安全衛生法
+      lawId: 347AC0000000057
+      articles:
+        - { article: "59", contains: [安全衛生教育, 特別の教育を行なわなければならない] }
+        - { article: "61", contains: [就業制限, 技能講習を修了した者, 資格を証する書面を携帯] }
+    - law: 労働安全衛生法施行令
+      lawId: 347CO0000000318
+      articles:
+        - { article: "20", contains: [最大荷重, 一トン以上のフオークリフトの運転, 道路上を走行させる運転を除く] }
+    - law: 労働安全衛生規則
+      lawId: 347M50002000032
+      articles:
+        - { article: "36", contains: [最大荷重一トン未満のフオークリフトの運転] }
+  verifiedOn: 2026-09-30

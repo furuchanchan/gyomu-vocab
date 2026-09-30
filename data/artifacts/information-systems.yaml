@@ -1,0 +1,376 @@
+# 情報システムの工程で受け渡される物。
+# --- アカウントの発行と削除
+- id: account-request
+  label: { ja: アカウントの発行の依頼, en: Account request }
+  description: { ja: 入社する人の氏名、所属、入社日、必要な道具を書いて、情報システムに出す依頼。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-permission-plan
+  label: { ja: 承認された権限の案, en: Approved permission plan }
+  description: { ja: 新しく入る人に付ける権限を、部門の責任者が決めた物。 }
+  kind: form
+  fromOutside: false
+
+- id: account-record
+  label: { ja: アカウントの記録, en: Account record }
+  description: { ja: 発行したアカウントと、付けた権限の記録。 }
+  kind: data
+  fromOutside: false
+
+- id: initial-login-notice
+  label: { ja: 最初のログインの案内, en: Initial login notice }
+  description: { ja: 初期の認証情報と、多要素認証の登録の手順を、本人に知らせる文面。 }
+  kind: message
+  fromOutside: false
+
+- id: permission-change-record
+  label: { ja: 権限の見直しの記録, en: Permission change record }
+  description: { ja: 異動に合わせて付けた権限と外した権限の記録。 }
+  kind: data
+  fromOutside: false
+
+- id: suspension-plan
+  label: { ja: アカウント停止の段取り, en: Account suspension plan }
+  description: { ja: 停止の日時、引き継ぐデータ、メールの扱いを決めた物。 }
+  kind: document
+  fromOutside: false
+
+- id: handover-record
+  label: { ja: データの引き継ぎの記録, en: Data handover record }
+  kind: data
+  fromOutside: false
+
+- id: suspended-account-record
+  label: { ja: アカウント停止の記録, en: Suspended account record }
+  kind: data
+  fromOutside: false
+
+- id: deletion-record
+  label: { ja: アカウント削除の記録, en: Account deletion record }
+  kind: data
+  fromOutside: false
+
+# --- 端末
+- id: device-request
+  label: { ja: 端末の申請, en: Device request }
+  description: { ja: 必要な端末の種類、使う人、理由を書いた申請。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-device-request
+  label: { ja: 承認された端末の申請, en: Approved device request }
+  kind: form
+  fromOutside: false
+
+- id: device-order
+  label: { ja: 端末の発注, en: Device order }
+  description: { ja: 購入する端末の数と仕様を、取引先に伝える発注。 }
+  kind: message
+  fromOutside: false
+  recipient: vendor
+
+- id: device-delivery-note
+  label: { ja: 端末の納品書, en: Device delivery note }
+  description: { ja: 取引先から端末と一緒に届く納品書。 }
+  kind: document
+  fromOutside: true
+  sender: vendor
+
+- id: asset-record
+  label: { ja: 端末の台帳の記録, en: Asset record }
+  description: { ja: 端末の種類、管理の番号、購入の日、使う人を記録した物。 }
+  kind: data
+  fromOutside: false
+
+- id: configured-device-record
+  label: { ja: 端末の設定の記録, en: Configured device record }
+  kind: data
+  fromOutside: false
+
+- id: device-loan-record
+  label: { ja: 端末の貸与の記録, en: Device loan record }
+  description: { ja: 貸した端末、貸した日、受け取った本人の確認を記録した物。 }
+  kind: form
+  fromOutside: false
+
+- id: device-incident-report
+  label: { ja: 端末の紛失・故障の連絡, en: Device loss or failure report }
+  description: { ja: 端末をなくした、盗まれた、壊れたときに、本人が出す連絡。 }
+  kind: form
+  fromOutside: false
+
+- id: device-response-record
+  label: { ja: 端末の紛失・故障への対応の記録, en: Device incident response record }
+  kind: data
+  fromOutside: false
+
+- id: device-return-record
+  label: { ja: 端末の返却の記録, en: Device return record }
+  kind: data
+  fromOutside: false
+
+- id: wipe-record
+  label: { ja: 端末の初期化の記録, en: Device wipe record }
+  kind: data
+  fromOutside: false
+
+- id: disposal-record
+  label: { ja: 端末の再利用・廃棄の記録, en: Device reuse or disposal record }
+  kind: data
+  fromOutside: false
+
+# --- 権限とセキュリティの運用
+- id: permission-request
+  label: { ja: 権限の申請, en: Permission request }
+  description: { ja: システムやデータを使うために、必要な権限とその理由を書いた申請。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-permission-request
+  label: { ja: 承認された権限の申請, en: Approved permission request }
+  kind: form
+  fromOutside: false
+
+- id: permission-grant-record
+  label: { ja: 権限を付けた記録, en: Permission grant record }
+  kind: data
+  fromOutside: false
+
+- id: permission-list
+  label: { ja: 権限の一覧, en: Permission list }
+  description: { ja: 誰にどの権限が付いているかの一覧。 }
+  kind: data
+  fromOutside: false
+
+- id: permission-review-result
+  label: { ja: 権限の棚卸の結果, en: Permission review result }
+  description: { ja: 一覧の権限ごとに、残すか外すかを決めた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: permission-removal-record
+  label: { ja: 権限を外した記録, en: Permission removal record }
+  kind: data
+  fromOutside: false
+
+- id: vulnerability-advisory
+  label: { ja: 脆弱性の情報, en: Vulnerability advisory }
+  description: { ja: 使っている製品の提供元や、公的な機関から届く、脆弱性と対策の情報。 }
+  kind: document
+  fromOutside: true
+  sender: vendor
+
+- id: affected-systems-list
+  label: { ja: 影響を受けるシステムの一覧, en: Affected systems list }
+  kind: data
+  fromOutside: false
+
+- id: update-record
+  label: { ja: 更新の適用の記録, en: Update record }
+  kind: data
+  fromOutside: false
+
+- id: authentication-rules
+  label: { ja: パスワードと多要素認証の決まり, en: Authentication rules }
+  description: { ja: パスワードの条件と、多要素認証を求める範囲を決めた社内の決まり。 }
+  kind: document
+  fromOutside: false
+
+- id: mfa-status-list
+  label: { ja: 多要素認証の登録の状況, en: MFA enrollment status }
+  kind: data
+  fromOutside: false
+
+- id: credential-reset-request
+  label: { ja: 認証情報の再設定の依頼, en: Credential reset request }
+  description: { ja: パスワードを忘れた、多要素認証の端末をなくした、というときに本人が出す依頼。 }
+  kind: form
+  fromOutside: false
+
+- id: credential-reset-record
+  label: { ja: 認証情報の再設定の記録, en: Credential reset record }
+  kind: data
+  fromOutside: false
+
+# --- 障害とセキュリティ事故
+- id: incident-notice
+  label: { ja: 障害や不審な動きの連絡, en: Incident notice }
+  description: { ja: 業務で気づいた、システムの不調や不審なメール、誤送信などの連絡。 }
+  kind: message
+  fromOutside: false
+
+- id: monitoring-alert
+  label: { ja: 監視の通知, en: Monitoring alert }
+  kind: data
+  fromOutside: false
+
+- id: incident-assessment
+  label: { ja: 事故の受け付けの判断, en: Incident triage result }
+  description: { ja: 障害かセキュリティ事故か、個人データが関わるか、緊急度を判断した結果。 }
+  kind: document
+  fromOutside: false
+
+- id: impact-assessment
+  label: { ja: 影響の見極めの結果, en: Impact assessment }
+  description: { ja: 影響を受けたシステム、個人データの項目、本人の数、原因の見当をまとめた物。 }
+  kind: document
+  fromOutside: false
+
+- id: containment-record
+  label: { ja: 暫定の対処の記録, en: Containment record }
+  kind: data
+  fromOutside: false
+
+- id: internal-incident-notice
+  label: { ja: 社内への事故の連絡, en: Internal incident notice }
+  kind: message
+  fromOutside: false
+
+- id: reporting-decision
+  label: { ja: 報告と通知の要否の決定, en: Reporting decision }
+  description: { ja: 個人情報保護委員会への報告、本人への通知、公表をするかを、経営者が決めた物。 }
+  kind: document
+  fromOutside: false
+
+- id: ppc-breach-report
+  label: { ja: 個人データの漏えい等の報告, en: Personal data breach report }
+  description: { ja: 個人情報保護委員会へ出す報告。 }
+  kind: message
+  fromOutside: false
+  recipient: personal-information-protection-commission
+
+- id: breach-notice-to-persons
+  label: { ja: 本人への漏えい等の通知, en: Breach notice to data subjects }
+  kind: message
+  fromOutside: false
+  recipient: data-subject
+
+- id: recovery-record
+  label: { ja: 復旧の記録, en: Recovery record }
+  kind: data
+  fromOutside: false
+
+- id: incident-record
+  label: { ja: 事故の記録, en: Incident record }
+  description: { ja: 経過、原因、対応を残した記録。 }
+  kind: document
+  fromOutside: false
+
+- id: prevention-plan
+  label: { ja: 再発防止の計画, en: Prevention plan }
+  kind: document
+  fromOutside: false
+
+# --- システムの導入と変更
+- id: system-request
+  label: { ja: システムの導入や変更の要望, en: System request }
+  description: { ja: 業務で困っていること、望む変更、使う人を書いた要望。 }
+  kind: form
+  fromOutside: false
+
+- id: requirements-summary
+  label: { ja: 要件の整理, en: Requirements summary }
+  kind: document
+  fromOutside: false
+
+- id: option-comparison
+  label: { ja: 候補の比較, en: Option comparison }
+  description: { ja: 候補の機能、費用、安全管理、個人データの扱いを並べた比較。 }
+  kind: document
+  fromOutside: false
+
+- id: system-ringi
+  label: { ja: 導入の稟議書, en: System adoption ringi }
+  kind: document
+  fromOutside: false
+
+- id: approved-system-ringi
+  label: { ja: 決裁された導入の稟議書, en: Approved system adoption ringi }
+  kind: document
+  fromOutside: false
+
+- id: service-agreement
+  label: { ja: 利用の契約, en: Service agreement }
+  description: { ja: 導入するサービスの利用の契約。 }
+  kind: document
+  fromOutside: false
+
+- id: system-configuration-record
+  label: { ja: システムの設定の記録, en: System configuration record }
+  kind: data
+  fromOutside: false
+
+- id: test-result
+  label: { ja: 試験の結果, en: Test result }
+  kind: data
+  fromOutside: false
+
+- id: change-notice
+  label: { ja: 利用者への変更の案内, en: Change notice to users }
+  kind: message
+  fromOutside: false
+
+- id: release-record
+  label: { ja: 本番への反映の記録, en: Release record }
+  kind: data
+  fromOutside: false
+
+- id: system-inventory-record
+  label: { ja: システムの台帳の記録, en: System inventory record }
+  description: { ja: 使っているシステムとその管理者、契約、扱うデータの一覧。 }
+  kind: data
+  fromOutside: false
+
+# --- バックアップと復旧
+- id: backup-policy
+  label: { ja: バックアップの方針, en: Backup policy }
+  description: { ja: 取る対象、頻度、保管の期間、戻すまでの目標の時間を決めた物。 }
+  kind: document
+  fromOutside: false
+
+- id: backup-configuration-record
+  label: { ja: バックアップの設定の記録, en: Backup configuration record }
+  kind: data
+  fromOutside: false
+
+- id: backup-check-record
+  label: { ja: バックアップの結果の確認の記録, en: Backup check record }
+  kind: data
+  fromOutside: false
+
+- id: restore-test-plan
+  label: { ja: 復旧の試験の計画, en: Restore test plan }
+  kind: document
+  fromOutside: false
+
+- id: restore-test-result
+  label: { ja: 復旧の試験の結果, en: Restore test result }
+  kind: data
+  fromOutside: false
+
+- id: backup-improvement-record
+  label: { ja: バックアップの見直しの記録, en: Backup improvement record }
+  kind: data
+  fromOutside: false
+
+- id: restore-request
+  label: { ja: 復旧の依頼, en: Restore request }
+  description: { ja: データを消した、壊れた、というときに戻したい対象と時点を書いた依頼。 }
+  kind: form
+  fromOutside: false
+
+- id: restore-plan
+  label: { ja: 復旧の段取り, en: Restore plan }
+  kind: document
+  fromOutside: false
+
+- id: restore-record
+  label: { ja: 復旧の実施の記録, en: Restore record }
+  kind: data
+  fromOutside: false
+
+- id: restore-confirmation
+  label: { ja: 復旧の確認, en: Restore confirmation }
+  kind: data
+  fromOutside: false

@@ -1,0 +1,13 @@
+id: logistics
+order: 10
+label: { ja: 物流, en: Logistics }
+description:
+  ja: 自社の倉庫で、荷物を出荷し、入荷を受けて保管し、在庫を管理し、返品を受け入れ、運送を運送会社に頼んで、その運賃を確かめる部署。荷主の立場で、運送そのものは運送会社に任せる会社の物流を扱う。
+  en: The department that ships goods from the company's own warehouse, receives and stores inbound goods, controls inventory, accepts returns, and arranges transport with carriers and checks their charges. It is described from the point of view of a shipper that leaves the transport itself to carriers.
+pcf: ["10219"]
+workflows:
+  - shipping
+  - receiving-and-warehousing
+  - inventory-control
+  - returns
+  - transport-arrangement

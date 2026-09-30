@@ -1,0 +1,137 @@
+id: returns
+label: { ja: 返品の受け入れ, en: Accepting returns }
+description:
+  ja: 顧客からの返品の申し出を受け付け、受け入れるかを決めて返送の方法を知らせ、戻ってきた荷物の状態を確かめ、再入庫か廃棄かを決めて処理し、顧客と営業に結果を知らせるまでの流れ。
+  en: From receiving a customer's return request and deciding whether to accept it, through inspecting the returned goods and deciding between restocking and disposal, to notifying the customer and sales of the result.
+frequency: on-demand
+timing: { ja: 顧客から返品の申し出があるごとに。 }
+pcf: ["10352"]
+stages:
+  - id: return-request
+    label: { ja: 返品の受け付け, en: Return request }
+    steps:
+      - id: receive-return-request
+        label: { ja: 返品の申し出を受け付ける, en: Receive the return request }
+        description: { ja: 顧客から、返したい品物、数、理由、元の受注を聞き取り、返品の案件として記録する。 }
+        performedBy: logistics-clerk
+        receives: [return-request]
+        produces: [return-case]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+      - id: decide-return-acceptance
+        label: { ja: 返品を受け入れるかを決める, en: Decide whether to accept the return }
+        description: { ja: 返品の理由と、元の受注の契約の条件を見比べて、受け入れるか、受け入れる範囲はどこまでかを決める。営業に相談することもある。 }
+        performedBy: logistics-manager
+        receives: [return-case, order-record]
+        produces: [return-acceptance-decision]
+        requiresJudgment: true
+        judgment: { ja: 契約の条件に照らして、返品を受け入れるか。顧客の求めのうち、どこまで応じるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: send-return-instruction
+        label: { ja: 返送の方法を顧客に知らせる, en: Send the return instructions to the customer }
+        description: { ja: 受け入れると決めた内容と、返送の送り先、荷物の詰め方、送り状の扱いを、顧客に知らせる。 }
+        performedBy: logistics-clerk
+        receives: [return-acceptance-decision]
+        produces: [return-instruction]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+  - id: return-inspection
+    label: { ja: 受け取りと状態の確認, en: Receiving and inspecting the return }
+    steps:
+      - id: receive-returned-goods
+        label: { ja: 戻ってきた荷物を受け取る, en: Receive the returned goods }
+        description: { ja: 顧客から返送されてきた荷物を受け取り、返品の案件と結びつけて、受け取った日と個数を記録する。 }
+        performedBy: warehouse-staff
+        receives: [returned-shipment, return-instruction]
+        produces: [returned-goods]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 返送された現物を受け取る作業であるため。 }
+        toolKinds: [warehouse-system]
+
+      - id: inspect-returned-goods
+        label: { ja: 返品の数と状態を確かめる, en: Inspect the returned goods }
+        description: { ja: 返品の申し出の内容に照らして、品物と数を確かめ、傷、汚れ、使った跡、付属品の欠けを見て、状態を記録する。 }
+        performedBy: warehouse-staff
+        receives: [returned-goods, return-case]
+        produces: [return-inspection-result]
+        requiresJudgment: true
+        judgment: { ja: 状態を見て、もう一度売れる物か、直せば売れる物か、売れない物か。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の状態を目で見て確かめる作業であるため。 }
+        toolKinds: [warehouse-system]
+
+  - id: return-disposition
+    label: { ja: 再入庫か廃棄かの判断と処理, en: Disposition of the returned goods }
+    pcf: ["20109"]
+    steps:
+      - id: decide-return-disposition
+        label: { ja: 再入庫か廃棄かを決める, en: Decide between restocking and disposal }
+        description: { ja: 状態の確認の結果をもとに、在庫に戻す、直してから戻す、仕入先に返す、廃棄するのどれにするかを決める。 }
+        performedBy: logistics-manager
+        receives: [return-inspection-result]
+        produces: [return-disposition]
+        requiresJudgment: true
+        judgment: { ja: 直す費用と売れる見込みを比べて、在庫に戻すか、廃棄するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: process-returned-goods
+        label: { ja: 決めたとおりに返品を処理する, en: Process the returned goods }
+        description: { ja: 決まった扱いに沿って、棚へ戻す、直しへ回す、仕入先へ返送する、廃棄するのいずれかを行い、行った内容を記録する。 }
+        performedBy: warehouse-staff
+        receives: [return-disposition]
+        produces: [return-processing-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を棚へ戻したり、処分したりする作業であるため。 }
+        toolKinds: [warehouse-system]
+
+      - id: update-stock-for-return
+        label: { ja: 返品を在庫に反映する, en: Reflect the return in the stock record }
+        description: { ja: 棚へ戻した物を、在庫の記録に足す。廃棄した物や返送した物は、在庫に足さずに、その旨を記録に残す。 }
+        performedBy: logistics-clerk
+        receives: [return-processing-record, stock-record]
+        produces: [returned-stock-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [warehouse-system]
+
+  - id: return-notification
+    label: { ja: 顧客と営業への連絡, en: Notifying the customer and sales }
+    steps:
+      - id: notify-return-result
+        label: { ja: 返品の結果を顧客に知らせる, en: Notify the customer of the return result }
+        description: { ja: 返品を受け取ったこと、状態の確認の結果、これからの扱いを、顧客に知らせる。 }
+        performedBy: logistics-clerk
+        receives: [return-processing-record, return-case]
+        produces: [return-result-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: report-return-to-sales
+        label: { ja: 返品の結果を営業に知らせる, en: Report the return result to sales }
+        description: { ja: 返品の品物、数、状態、処理の内容を、営業に知らせる。返金や請求の取り消しなど、代金の扱いを営業が決められるようにする。 }
+        performedBy: logistics-clerk
+        receives: [return-processing-record, return-case]
+        produces: [return-report]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]

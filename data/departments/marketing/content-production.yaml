@@ -1,0 +1,109 @@
+id: content-production
+label: { ja: コンテンツとWebサイトの制作・公開, en: Content and website production }
+description:
+  ja: コンテンツを企画して制作し、他人の著作物や商標を確かめ、法務と責任者の確認を受けて、公開するまでの流れ。
+  en: From planning and producing content to checking third-party works and trademarks, obtaining legal and manager approval and publishing it.
+frequency: on-demand
+timing: { ja: 記事、ページ、資料を作るたびに。 }
+pcf: ["20010"]
+regulations: [copyright-use, trademark-rights, misleading-representation]
+stages:
+  - id: planning
+    label: { ja: 企画, en: Planning }
+    steps:
+      - id: plan-content
+        label: { ja: コンテンツを企画する, en: Plan the content }
+        description: { ja: 施策の日程をもとに、コンテンツの狙い、読み手、載せる中身、公開の時期を決める。 }
+        performedBy: marketing-staff
+        receives: [campaign-schedule]
+        produces: [content-brief]
+        requiresJudgment: true
+        judgment: { ja: 読み手の困りごとに答える中身になっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+
+  - id: production
+    label: { ja: 制作と権利の確認, en: Production and rights check }
+    steps:
+      - id: write-content
+        label: { ja: 原稿と素材を作る, en: Write the content and prepare materials }
+        description: { ja: 企画に沿って、文章、画像、図表を作る。 }
+        performedBy: marketing-staff
+        receives: [content-brief]
+        produces: [content-draft]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage, web-cms]
+
+      - id: check-third-party-rights
+        label: { ja: 他人の著作物と商標を確かめる, en: Check third-party works and trademarks }
+        description: { ja: 原稿に使った他人の文章や画像、他社の商標について、引用の範囲に収まるか、許可を取るか、使わないかを確かめる。 }
+        performedBy: marketing-staff
+        receives: [content-draft]
+        produces: [rights-check-record]
+        doneWhen: { ja: 使った他人の著作物と商標のすべてに、扱いが書かれている。 }
+        requiresJudgment: true
+        judgment: { ja: 引用として認められる範囲か。許可を取るか、差し替えるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [copyright-use, trademark-rights]
+
+
+  - id: review
+    label: { ja: 法務と責任者の確認, en: Legal and manager review }
+    steps:
+      - id: review-legal
+        label: { ja: 法務が表示と権利を確かめる, en: Review claims and rights }
+        description: { ja: 効果や価格などの表示が事実に合っているか、他人の権利を侵していないかを確かめる。 }
+        performedBy: legal-staff
+        receives: [content-draft, rights-check-record]
+        produces: [content-legal-review]
+        requiresJudgment: true
+        judgment: { ja: 一般消費者に向けた表示で、実際より優れている、有利だと受け取られないか。他人の権利を侵していないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [misleading-representation, copyright-use, trademark-rights]
+
+      - id: approve-publication
+        label: { ja: 公開を承認する, en: Approve publication }
+        description: { ja: 原稿、権利の確認の記録、法務の意見を見て、公開してよいかを決める。 }
+        performedBy: marketing-manager
+        receives: [content-draft, rights-check-record, content-legal-review]
+        produces: [approved-content]
+        requiresJudgment: true
+        judgment: { ja: 法務の指摘が直っているか。公開してよい内容か。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+
+  - id: publishing
+    label: { ja: 公開, en: Publishing }
+    steps:
+      - id: publish-content
+        label: { ja: コンテンツを公開する, en: Publish the content }
+        description: { ja: 承認された内容を、Webサイトなどで公開する。 }
+        performedBy: marketing-staff
+        receives: [approved-content]
+        produces: [published-content]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [web-cms]
+
+      - id: record-published
+        label: { ja: 公開したコンテンツを記録する, en: Record the published content }
+        description: { ja: 公開した日、場所、担当、確認の記録の置き場所を一覧に残す。 }
+        performedBy: marketing-staff
+        receives: [published-content, rights-check-record]
+        produces: [content-catalog]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+

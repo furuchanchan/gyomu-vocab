@@ -1,0 +1,7 @@
+- id: web-cms
+  label: { ja: Webサイトの更新のシステム, en: Website content management system }
+  description: { ja: Webサイトのページやお知らせを作り、公開するシステム。 }
+
+- id: marketing-automation
+  label: { ja: 見込み客の管理と配信のシステム, en: Lead management and email delivery system }
+  description: { ja: 見込み客の情報と同意の状況を管理し、メールの配信と配信停止を扱うシステム。 }

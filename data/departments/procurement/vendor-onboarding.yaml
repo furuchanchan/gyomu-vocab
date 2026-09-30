@@ -1,0 +1,127 @@
+id: vendor-onboarding
+label: { ja: 取引先の登録と評価, en: Vendor onboarding and evaluation }
+description:
+  ja: 新しい取引先の情報を集め、反社会的勢力でないことや信用を確かめ、基本契約を結んで登録し、取引の実績を見て評価するまでの流れ。
+  en: From collecting a new vendor's information and screening it, through concluding a master agreement and registering the vendor, to evaluating the vendor.
+frequency: on-demand
+timing: { ja: 新しい取引先と取引を始めるとき。評価は、年に1回など、会社が決めた時期。 }
+pcf: ["10280"]
+regulations: [antisocial-forces-exclusion, invoice-system, stamp-tax, electronic-signature]
+stages:
+  - id: screening
+    label: { ja: 調査, en: Screening }
+    pcf: ["10289"]
+    steps:
+      - id: collect-vendor-information
+        label: { ja: 新しい取引先の情報を集める, en: Collect the new vendor's information }
+        description: { ja: 会社名、所在地、代表者、事業の内容、振込先などを、取引先から受け取り、登録に要る項目を整理する。 }
+        performedBy: procurement-staff
+        receives: [vendor-application]
+        produces: [vendor-profile]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, spreadsheet]
+
+      - id: check-antisocial-forces
+        label: { ja: 反社会的勢力でないことを確かめる, en: Check that the vendor is not an antisocial force }
+        description: { ja: 取引先の会社と代表者などが、暴力団関係者でないかを、公開情報や記事の検索で確かめ、結果を残す。 }
+        performedBy: procurement-staff
+        receives: [vendor-profile]
+        produces: [vendor-check-result]
+        requiresJudgment: true
+        judgment: { ja: 調べて出てきた情報が、暴力団関係者と疑うべきものか。疑いがあるとき、警察に相談するか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [antisocial-forces-exclusion]
+
+      - id: check-credit-and-registration
+        label: { ja: 信用と登録番号を確かめる, en: Check credit and the invoice registration number }
+        description: { ja: 取引先の信用の状況を調べ、適格請求書発行事業者の登録番号を国税庁の公表サイトで確かめる。 }
+        performedBy: procurement-staff
+        receives: [vendor-profile]
+        produces: [vendor-credit-result]
+        requiresJudgment: true
+        judgment: { ja: 信用の状況が、取引する金額と期間に見合うか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [invoice-system]
+
+  - id: contracting
+    label: { ja: 基本契約, en: Master agreement }
+    pcf: ["10290"]
+    steps:
+      - id: draft-master-agreement
+        label: { ja: 基本契約書の案を用意する, en: Draft the master agreement }
+        description: { ja: 取引の基本になる条件（対象、代金の支払、検収、契約不適合、解除など）を書いた契約書の案を用意する。 }
+        performedBy: procurement-staff
+        receives: [vendor-check-result, vendor-credit-result]
+        produces: [master-agreement-draft]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: review-master-agreement
+        label: { ja: 基本契約書の案を確かめる, en: Review the master agreement draft }
+        description: { ja: 契約書の案を読み、会社にとって不利な点や、法令に合わない点を直す。 }
+        performedBy: legal-staff
+        receives: [master-agreement-draft]
+        produces: [reviewed-master-agreement]
+        requiresJudgment: true
+        judgment: { ja: 不利な条項を、どこまで直して取引先に求めるか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: conclude-master-agreement
+        label: { ja: 基本契約を結ぶ, en: Conclude the master agreement }
+        description: { ja: 取引先と条件を確かめ合い、署名や押印、または電子署名で、基本契約を結ぶ。印紙税がかかる文書かを見て、必要なら納める。 }
+        performedBy: executive
+        receives: [reviewed-master-agreement]
+        produces: [signed-master-agreement]
+        requiresJudgment: true
+        judgment: { ja: この条件で、この取引先と取引を始めてよいか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 契約は、取引先との合意そのもので、会社の代表者が結ぶ。 }
+        toolKinds: [e-contract-service]
+        regulations: [electronic-signature, stamp-tax]
+
+  - id: registration-and-evaluation
+    label: { ja: 登録と評価, en: Registration and evaluation }
+    pcf: ["10299", "10300"]
+    steps:
+      - id: register-vendor
+        label: { ja: 取引先を登録する, en: Register the vendor }
+        description: { ja: 取引先の情報と基本契約の内容を、購買のシステムに登録する。経理が支払のときに参照できるようにする。 }
+        performedBy: procurement-staff
+        receives: [vendor-profile, signed-master-agreement]
+        produces: [vendor-master-record]
+        doneWhen: { ja: 取引先の名前、登録番号、振込先、契約の内容が、システムに登録されている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [purchasing-system]
+
+      - id: evaluate-vendor
+        label: { ja: 取引先を評価する, en: Evaluate the vendor }
+        description: { ja: 取引の実績（納期、品質、価格、対応）を見て、取引先を定期に評価する。検収の記録を根拠にする。 }
+        performedBy: procurement-staff
+        receives: [vendor-master-record, delivery-inspection-record]
+        produces: [vendor-evaluation]
+        requiresJudgment: true
+        judgment: { ja: 納期、品質、価格、対応を、どの基準で採点し、総合でどう評価するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: decide-vendor-status
+        label: { ja: 取引を続けるかを決める, en: Decide whether to continue }
+        description: { ja: 評価の結果を見て、取引を続けるか、改善を求めるか、取引をやめるかを決める。 }
+        performedBy: department-manager
+        receives: [vendor-evaluation]
+        produces: [vendor-status-decision]
+        requiresJudgment: true
+        judgment: { ja: 評価が低い取引先と、取引を続けるか。代わりの取引先はあるか。 }
+        irreversible: false
+        humanRequired: false

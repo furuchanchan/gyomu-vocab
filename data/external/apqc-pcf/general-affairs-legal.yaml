@@ -1,0 +1,14 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、総務・法務で参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+# 4.2.2.4 Manage contracts（10291）は調達の部署が定義済み。
+- { id: "10012", hierarchy: "12.0", name: "Manage External Relationships" }
+- { id: "11037", hierarchy: "12.1.3", name: "Communicate with shareholders" }
+- { id: "11012", hierarchy: "12.3", name: "Manage relations with board of directors" }
+- { id: "11013", hierarchy: "12.4", name: "Manage legal and ethical issues" }
+- { id: "11047", hierarchy: "12.4.4", name: "Ensure compliance" }
+- { id: "17468", hierarchy: "11.2.1", name: "Establish compliance framework and policies" }
+- { id: "19207", hierarchy: "10.0", name: "Acquire, Construct, and Manage Assets" }
+- { id: "10963", hierarchy: "10.1.3.1", name: "Acquire workspace and facilities" }
+- { id: "19249", hierarchy: "10.3.2.4", name: "Update work and asset records" }
+- { id: "18592", hierarchy: "10.4.1.1", name: "Monitor useful life of assets" }
+- { id: "20776", hierarchy: "8.4.3", name: "Define and execute business information lifecycle planning and control" }

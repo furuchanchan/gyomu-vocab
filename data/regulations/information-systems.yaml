@@ -1,0 +1,70 @@
+# 情報システムに関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: personal-data-security
+  label: { ja: 個人データの安全管理と、従業者・委託先の監督（個人情報保護法）, en: Security control of personal data and supervision of staff and contractors }
+  obligation:
+    ja: 個人データの漏えい、滅失、毀損の防止その他の安全管理のために、必要かつ適切な措置を講じる。従業者に個人データを取り扱わせるときは、安全管理が図られるよう、その従業者を必要かつ適切に監督する。個人データの取扱いの全部か一部を委託するときは、委託を受けた者を必要かつ適切に監督する。
+  appliesTo:
+    ja: 個人情報取扱事業者。
+  authority: { ja: 個人情報保護委員会, en: Personal Information Protection Commission }
+  legalBasis:
+    - law: 個人情報の保護に関する法律
+      lawId: 415AC0000000057
+      articles:
+        - { article: "23", contains: [安全管理措置, 漏えい、滅失又は毀損の防止, 必要かつ適切な措置を講じなければならない] }
+        - { article: "24", contains: [従業者の監督, 必要かつ適切な監督を行わなければならない] }
+        - { article: "25", contains: [委託先の監督, 取扱いの全部又は一部を委託する場合, 必要かつ適切な監督を行わなければならない] }
+  verifiedOn: 2026-09-30
+
+- id: data-breach-reporting
+  label: { ja: 個人データの漏えい等の報告と本人への通知（個人情報保護法）, en: Reporting personal data breaches and notifying the persons concerned }
+  obligation:
+    ja: 個人データの漏えい、滅失、毀損などで、個人の権利利益を害するおそれが大きいものとして定められた事態が生じたときは、個人情報保護委員会に報告し、本人にも、その事態が生じたことを通知する。定められた事態は、要配慮個人情報が含まれる個人データの漏えい等（そのおそれを含む）、不正に利用されて財産的被害が生じるおそれがある個人データの漏えい等、不正の目的をもって行われたおそれがある行為による個人データの漏えい等、本人の数が千人を超える漏えい等の、いずれか。報告は、その事態を知った後、速やかに、そのとき把握している事項（概要、個人データの項目、本人の数、原因、二次被害のおそれ、本人への対応、公表の状況、再発防止の措置など）を出し、あわせて、その事態を知った日から30日以内に、これらの事項を全て報告する。不正の目的をもって行われたおそれがある行為による事態は60日以内。本人への通知は、その事態を知った後、状況に応じて速やかに行う。本人への通知が困難で、代わりの措置をとるときは、通知をしなくてもよい。
+  deadline:
+    ja: 事態を知った後、速やかに報告する。事態を知った日から30日以内（不正の目的をもって行われたおそれがある行為による事態は60日以内）に、全ての事項を報告する。本人への通知は、状況に応じて速やかに。
+  appliesTo:
+    ja: 個人情報取扱事業者。
+  authority: { ja: 個人情報保護委員会, en: Personal Information Protection Commission }
+  legalBasis:
+    - law: 個人情報の保護に関する法律
+      lawId: 415AC0000000057
+      articles:
+        - { article: "26", contains: [漏えい等の報告等, 個人情報保護委員会に報告しなければならない, 本人に対し, 通知しなければならない, これに代わるべき措置をとるとき] }
+    - law: 個人情報の保護に関する法律施行規則
+      lawId: 428M60020000003
+      articles:
+        - { article: "7", contains: [要配慮個人情報が含まれる個人データ, 財産的被害が生じるおそれ, 不正の目的をもって行われたおそれ, 千人を超える] }
+        - { article: "8", contains: [速やかに, 三十日以内, 六十日以内, 再発防止のための措置] }
+        - { article: "10", contains: [本人に対する通知, 当該事態の状況に応じて速やかに] }
+  officialGuidance:
+    - url: https://www.ppc.go.jp/personalinfo/legal/leakAction/
+      contains: [発覚したら、まずは速やかに報告してください, 60日以内]
+  verifiedOn: 2026-09-30
+
+- id: unauthorized-access-prevention
+  label: { ja: アクセス管理者の防御措置（不正アクセス禁止法）, en: Defensive measures by the access administrator }
+  obligation:
+    ja: アクセス制御機能をつけたコンピュータの管理者は、識別符号（パスワードなど）を適正に管理するよう努める。また、常にそのアクセス制御機能が有効か検証し、必要があると認めるときは速やかに、機能を高度にするなどの、不正アクセス行為から防御するために必要な措置を講ずるよう努める。罰則のある義務ではなく、努力義務。
+  appliesTo:
+    ja: アクセス制御機能を特定電子計算機につけたアクセス管理者。
+  authority: { ja: 国家公安委員会、総務省、経済産業省, en: "National Public Safety Commission, Ministry of Internal Affairs and Communications, Ministry of Economy, Trade and Industry" }
+  legalBasis:
+    - law: 不正アクセス行為の禁止等に関する法律
+      lawId: 411AC0000000128
+      articles:
+        - { article: "8", contains: [アクセス管理者による防御措置, 適正な管理に努める, 有効性を検証, 講ずるよう努める] }
+  verifiedOn: 2026-09-30
+
+- id: cybersecurity-effort
+  label: { ja: 事業者のサイバーセキュリティ確保の努力（サイバーセキュリティ基本法）, en: Business operators' duty to endeavor to ensure cybersecurity }
+  obligation:
+    ja: 事業者は、その事業活動に関し、自主的かつ積極的にサイバーセキュリティの確保に努め、国や地方公共団体が実施するサイバーセキュリティに関する施策に協力するよう努める。努力義務。
+  appliesTo:
+    ja: サイバー関連事業者その他の事業者。
+  authority: { ja: 内閣官房, en: Cabinet Secretariat }
+  legalBasis:
+    - law: サイバーセキュリティ基本法
+      lawId: 426AC1000000104
+      articles:
+        - { article: "7", contains: [事業者の責務, 自主的かつ積極的にサイバーセキュリティの確保に努め, 協力するよう努める] }
+  verifiedOn: 2026-09-30

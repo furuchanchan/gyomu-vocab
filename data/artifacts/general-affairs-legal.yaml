@@ -1,0 +1,379 @@
+# 総務・法務の工程で受け渡される物。
+# --- 定時株主総会
+- id: meeting-schedule-plan
+  label: { ja: 株主総会の日程案, en: Shareholders meeting schedule plan }
+  description: { ja: 基準日、株主総会の日、場所、招集の通知を出す日を並べた案。 }
+  kind: document
+  fromOutside: false
+
+- id: shareholder-list
+  label: { ja: 基準日の株主の一覧, en: List of shareholders on the record date }
+  description: { ja: 基準日に株主名簿に載っている株主と、持っている株式の数の一覧。 }
+  kind: data
+  fromOutside: false
+
+- id: convocation-decision
+  label: { ja: 株主総会の招集の決定, en: Decision to convene the shareholders meeting }
+  description: { ja: 株主総会の日時と場所、目的である事項、書面や電磁的方法による議決権の行使を認めるかを定めた決定。 }
+  kind: document
+  fromOutside: false
+
+- id: agenda-draft
+  label: { ja: 株主総会の議案の案, en: Draft agenda of the shareholders meeting }
+  kind: document
+  fromOutside: false
+
+- id: meeting-notice-draft
+  label: { ja: 招集通知の案, en: Draft convocation notice }
+  description: { ja: 日時と場所、目的である事項、議案などを書いた、株主への通知の案。 }
+  kind: document
+  fromOutside: false
+
+- id: meeting-notice
+  label: { ja: 株主総会の招集通知, en: Convocation notice of the shareholders meeting }
+  kind: message
+  fromOutside: false
+  recipient: shareholder
+
+- id: voting-form
+  label: { ja: 議決権行使書と委任状, en: Voting form and proxy form }
+  description: { ja: 株主が、総会に出席しない代わりに、議決権の行使や代理人への委任を書いて返す書面。 }
+  kind: form
+  fromOutside: true
+  sender: shareholder
+
+- id: voting-summary
+  label: { ja: 議決権行使の集計, en: Summary of exercised votes }
+  kind: data
+  fromOutside: false
+
+- id: shareholder-attendance-record
+  label: { ja: 出席した株主と議決権の数の記録, en: Record of attendance and voting rights }
+  kind: data
+  fromOutside: false
+
+- id: meeting-resolutions
+  label: { ja: 株主総会の決議の結果, en: Resolutions of the shareholders meeting }
+  description: { ja: 議案ごとの、可決か否決かの結果と、議事の経過の要領。 }
+  kind: document
+  fromOutside: false
+
+- id: meeting-minutes-draft
+  label: { ja: 株主総会議事録の案, en: Draft minutes of the shareholders meeting }
+  kind: document
+  fromOutside: false
+
+- id: meeting-minutes
+  label: { ja: 株主総会議事録, en: Minutes of the shareholders meeting }
+  description: { ja: 日時と場所、議事の経過の要領とその結果などを書き、確定した議事録。 }
+  kind: document
+  fromOutside: false
+
+- id: kept-meeting-minutes
+  label: { ja: 備え置いた株主総会議事録, en: Kept minutes of the shareholders meeting }
+  description: { ja: 本店に備え置いた議事録。 }
+  kind: document
+  fromOutside: false
+
+# --- 取締役会
+- id: board-agenda-request
+  label: { ja: 取締役会に諮る事項の提出, en: Item submitted to the board of directors }
+  kind: form
+  fromOutside: false
+
+- id: board-agenda
+  label: { ja: 取締役会の議題, en: Agenda of the board meeting }
+  description: { ja: 開催日、場所、議題を並べた、招集のもとになる書面。 }
+  kind: document
+  fromOutside: false
+
+- id: board-notice
+  label: { ja: 取締役会の招集通知, en: Convocation notice of the board meeting }
+  description: { ja: 取締役会の日の1週間前までに、各取締役と、監査役を置く会社では各監査役に出す通知。 }
+  kind: message
+  fromOutside: false
+
+- id: board-materials
+  label: { ja: 取締役会の資料, en: Materials for the board meeting }
+  kind: document
+  fromOutside: false
+
+- id: board-resolutions
+  label: { ja: 取締役会の決議の結果, en: Resolutions of the board meeting }
+  description: { ja: 議題ごとの、可決か否決かの結果と、議事の経過の要領。 }
+  kind: document
+  fromOutside: false
+
+- id: board-minutes-draft
+  label: { ja: 取締役会議事録の案, en: Draft minutes of the board meeting }
+  kind: document
+  fromOutside: false
+
+- id: board-minutes
+  label: { ja: 取締役会議事録, en: Minutes of the board meeting }
+  description: { ja: 出席した取締役と監査役が署名か記名押印をした議事録。電磁的記録で作った場合は、署名や記名押印に代わる措置をとったもの。 }
+  kind: document
+  fromOutside: false
+
+- id: kept-board-minutes
+  label: { ja: 備え置いた取締役会議事録, en: Kept minutes of the board meeting }
+  description: { ja: 本店に備え置いた議事録。 }
+  kind: document
+  fromOutside: false
+
+# --- 登記の変更
+- id: registration-change-list
+  label: { ja: 登記が要る変更の一覧, en: List of changes to be registered }
+  description: { ja: 変更の内容、変更が生じた日、登記の期限、根拠にする議事録を並べた一覧。 }
+  kind: document
+  fromOutside: false
+
+- id: registration-route-decision
+  label: { ja: 登記の申請の進め方の決定, en: Decision on how to file the registration }
+  description: { ja: 自社で申請するか、司法書士に頼むかの決定。 }
+  kind: document
+  fromOutside: false
+
+- id: registration-application-draft
+  label: { ja: 変更登記申請書の案, en: Draft registration application }
+  description: { ja: 申請書の案と、議事録などの添付書類をそろえたもの。 }
+  kind: document
+  fromOutside: false
+
+- id: scrivener-request
+  label: { ja: 司法書士への依頼, en: Request to the judicial scrivener }
+  kind: message
+  fromOutside: false
+  recipient: judicial-scrivener
+
+- id: scrivener-application-draft
+  label: { ja: 司法書士が作った申請書の案, en: Application draft prepared by the judicial scrivener }
+  kind: document
+  fromOutside: true
+  sender: judicial-scrivener
+
+- id: registration-application
+  label: { ja: 確かめて押印した変更登記申請書, en: Checked and signed registration application }
+  kind: document
+  fromOutside: false
+
+- id: registration-filing
+  label: { ja: 変更登記の申請, en: Registration filing }
+  kind: form
+  fromOutside: false
+  recipient: legal-affairs-bureau
+
+- id: registry-certificate
+  label: { ja: 登記事項証明書, en: Certificate of registered information }
+  description: { ja: 登記の内容が載った、法務局が交付する証明書。 }
+  kind: document
+  fromOutside: true
+  sender: legal-affairs-bureau
+
+- id: registration-check-record
+  label: { ja: 登記の完了の確認の記録, en: Record of registration completion check }
+  kind: data
+  fromOutside: false
+
+- id: registration-change-notice
+  label: { ja: 登記の変更の届け出, en: Notification of the registered change }
+  description: { ja: 登記事項証明書を添えて、金融機関などに変更を伝える書面。 }
+  kind: message
+  fromOutside: false
+  recipient: bank
+
+# --- 契約書
+- id: received-contract-draft
+  label: { ja: 相手から届いた契約書の案, en: Contract draft received from the counterparty }
+  kind: document
+  fromOutside: true
+  sender: vendor
+
+- id: contract-review-request
+  label: { ja: 契約書の審査の依頼, en: Contract review request }
+  description: { ja: 契約書の案と、取引の内容、金額、期間、相手を書いた依頼。 }
+  kind: form
+  fromOutside: false
+
+- id: contract-review-opinion
+  label: { ja: 契約書の審査の意見, en: Contract review opinion }
+  description: { ja: 会社に不利な点、法令に合わない点、抜けている点と、直し方の意見。 }
+  kind: document
+  fromOutside: false
+
+- id: checked-signed-contract
+  label: { ja: 締結内容を確かめた契約書, en: Checked signed contract }
+  description: { ja: 審査した内容どおりか、署名や押印、日付、印紙、電子署名を確かめた契約書。 }
+  kind: document
+  fromOutside: false
+
+- id: filed-contract
+  label: { ja: 保管した契約書, en: Filed contract }
+  kind: document
+  fromOutside: false
+
+- id: contract-ledger-entry
+  label: { ja: 契約管理台帳の記録, en: Contract ledger entry }
+  description: { ja: 相手、契約の種類、金額、期間、更新の方法、期限、保管場所を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: contract-renewal-alert
+  label: { ja: 契約の更新の期限の知らせ, en: Contract renewal deadline alert }
+  kind: message
+  fromOutside: false
+
+- id: contract-renewal-decision
+  label: { ja: 契約の更新か終了かの決定, en: Decision to renew or end the contract }
+  kind: document
+  fromOutside: false
+
+- id: updated-contract-ledger-entry
+  label: { ja: 更新後の契約管理台帳の記録, en: Updated contract ledger entry }
+  kind: data
+  fromOutside: false
+
+# --- 備品・オフィス・固定資産
+- id: office-purchase-request
+  label: { ja: 備品・設備の購入の申請, en: Purchase request for office equipment }
+  description: { ja: 欲しい物、数量、金額、理由、使う人を書いた申請。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-office-purchase-request
+  label: { ja: 承認された購入の申請, en: Approved purchase request }
+  kind: form
+  fromOutside: false
+
+- id: office-purchase-order
+  label: { ja: 備品・設備の発注書, en: Purchase order for office equipment }
+  kind: document
+  fromOutside: false
+  recipient: vendor
+
+- id: office-delivery-slip
+  label: { ja: 備品・設備の納品書, en: Delivery slip for office equipment }
+  kind: document
+  fromOutside: true
+  sender: vendor
+
+- id: received-goods-record
+  label: { ja: 現物の受け取りの記録, en: Record of received goods }
+  description: { ja: 届いた物が、発注どおりの品名、数量、状態かを確かめた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: asset-ledger-entry
+  label: { ja: 備品・固定資産台帳の記録, en: Asset ledger entry }
+  description: { ja: 管理番号、品名、取得日、金額、置き場所、使う人を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: asset-loan-record
+  label: { ja: 貸与の記録, en: Asset loan record }
+  description: { ja: 誰に、いつ、何を貸したかの記録。 }
+  kind: data
+  fromOutside: false
+
+- id: asset-inspection-record
+  label: { ja: 点検の記録, en: Asset inspection record }
+  description: { ja: 台帳と現物を照らし、状態と置き場所を確かめた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: asset-disposal-decision
+  label: { ja: 廃棄の決定, en: Asset disposal decision }
+  kind: document
+  fromOutside: false
+
+- id: asset-disposal-record
+  label: { ja: 廃棄の記録, en: Asset disposal record }
+  kind: data
+  fromOutside: false
+
+- id: asset-retirement-notice
+  label: { ja: 固定資産の除却の連絡, en: Notice of fixed asset retirement }
+  description: { ja: 廃棄した固定資産を、経理・財務に知らせる連絡。 }
+  kind: message
+  fromOutside: false
+
+# --- 社内規程
+- id: rule-change-request
+  label: { ja: 規程の新設や改定の要望, en: Request to create or amend a rule }
+  kind: form
+  fromOutside: false
+
+- id: rule-draft
+  label: { ja: 規程の案, en: Draft rule }
+  kind: document
+  fromOutside: false
+
+- id: rule-legal-opinion
+  label: { ja: 規程の案への法務の意見, en: Legal opinion on the draft rule }
+  kind: document
+  fromOutside: false
+
+- id: rule-department-feedback
+  label: { ja: 規程の案への関係部署の意見, en: Department feedback on the draft rule }
+  kind: document
+  fromOutside: false
+
+- id: final-rule-draft
+  label: { ja: 直した規程の案, en: Revised draft rule }
+  kind: document
+  fromOutside: false
+
+- id: approved-rule
+  label: { ja: 決裁された規程, en: Approved rule }
+  kind: document
+  fromOutside: false
+
+- id: rule-announcement
+  label: { ja: 規程の周知, en: Announcement of the rule }
+  kind: message
+  fromOutside: false
+
+- id: rule-register
+  label: { ja: 規程の一覧と改廃の記録, en: Rule register and revision history }
+  description: { ja: 規程ごとの、名前、施行日、改廃の履歴、最新の版の置き場所。 }
+  kind: data
+  fromOutside: false
+
+# --- 文書の保存と廃棄
+- id: retention-schedule
+  label: { ja: 文書の保存期間の一覧, en: Document retention schedule }
+  description: { ja: 文書の種類ごとの、保存期間、期間の数え始め、保管場所、廃棄の方法。 }
+  kind: document
+  fromOutside: false
+
+- id: documents-for-storage
+  label: { ja: 保管に回す文書, en: Documents to be stored }
+  kind: document
+  fromOutside: false
+
+- id: records-ledger
+  label: { ja: 保管文書の台帳, en: Records ledger }
+  description: { ja: 保管している文書の種類、置き場所、保存期限を書いた台帳。 }
+  kind: data
+  fromOutside: false
+
+- id: expired-records-list
+  label: { ja: 保存期限が来た文書の一覧, en: List of records past retention }
+  kind: data
+  fromOutside: false
+
+- id: disposal-review-result
+  label: { ja: 廃棄してよいかの確認の結果, en: Disposal review result }
+  description: { ja: 訴訟や調査などで保存を続ける必要がある文書が無いかを確かめた結果。 }
+  kind: document
+  fromOutside: false
+
+- id: approved-disposal-list
+  label: { ja: 承認された廃棄の一覧, en: Approved disposal list }
+  kind: document
+  fromOutside: false
+
+- id: records-disposal-record
+  label: { ja: 文書の廃棄の記録, en: Records disposal record }
+  kind: data
+  fromOutside: false
