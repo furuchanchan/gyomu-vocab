@@ -1,0 +1,74 @@
+# 日本標準職業分類（平成21年12月統計基準設定）の大分類。
+# 出典：政府統計の総合窓口(e-Stat) 統計LOD（https://data.e-stat.go.jp/lodw/）。名前は統計LODの skos:prefLabel から、先頭のコードを除いたもの。
+- id: jsoc-a
+  code: A
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-A
+  label:
+    ja: "管理的職業従事者"
+    en: "Administrative and managerial workers"
+- id: jsoc-b
+  code: B
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-B
+  label:
+    ja: "専門的・技術的職業従事者"
+    en: "Specialist professionals"
+- id: jsoc-c
+  code: C
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-C
+  label:
+    ja: "事務従事者"
+    en: "Clerical workers"
+- id: jsoc-d
+  code: D
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-D
+  label:
+    ja: "販売従事者"
+    en: "Sales workers"
+- id: jsoc-e
+  code: E
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-E
+  label:
+    ja: "サービス職業従事者"
+    en: "Service workers"
+- id: jsoc-f
+  code: F
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-F
+  label:
+    ja: "保安職業従事者"
+    en: "Security workers"
+- id: jsoc-g
+  code: G
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-G
+  label:
+    ja: "農林漁業従事者"
+    en: "Agriculture and forestry workers"
+- id: jsoc-h
+  code: H
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-H
+  label:
+    ja: "生産工程従事者"
+    en: "Manufacturing process workers"
+- id: jsoc-i
+  code: I
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-I
+  label:
+    ja: "輸送・機械運転従事者"
+    en: "Transport and machine operation workers"
+- id: jsoc-j
+  code: J
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-J
+  label:
+    ja: "建設・採掘従事者"
+    en: "Construction and mining workers"
+- id: jsoc-k
+  code: K
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-K
+  label:
+    ja: "運搬・清掃・包装等従事者"
+    en: "Carrying, cleaning and related workers"
+- id: jsoc-l
+  code: L
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/occupationalClassification2009-L
+  label:
+    ja: "分類不能の職業"
+    en: "Workers not classified by occupation"

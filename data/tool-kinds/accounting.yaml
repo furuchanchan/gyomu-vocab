@@ -1,0 +1,8 @@
+- id: accounting-software
+  label: { ja: 会計ソフト, en: Accounting software }
+
+- id: billing-system
+  label: { ja: 請求書を発行するシステム, en: Billing system }
+
+- id: expense-system
+  label: { ja: 経費精算のシステム, en: Expense management system }

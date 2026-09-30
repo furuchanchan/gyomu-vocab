@@ -1,0 +1,11 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、参照する要素だけを書く。
+# id は要素の番号、hierarchy は階層の番号、name は APQC の表記のまま。
+- { id: "17058", hierarchy: "9.0", name: "Manage Financial Resources" }
+- { id: "10756", hierarchy: "9.6.1", name: "Process accounts payable (AP)" }
+- { id: "10757", hierarchy: "9.6.2", name: "Process expense reimbursements" }
+- { id: "10743", hierarchy: "9.2.2", name: "Invoice customer" }
+- { id: "10744", hierarchy: "9.2.3", name: "Process accounts receivable (AR)" }
+- { id: "10745", hierarchy: "9.2.4", name: "Manage and process collections" }
+- { id: "10748", hierarchy: "9.3.2", name: "Perform general accounting" }
+- { id: "10750", hierarchy: "9.3.4", name: "Perform financial reporting" }
+- { id: "10766", hierarchy: "9.9.2", name: "Process taxes" }

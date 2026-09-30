@@ -1,0 +1,115 @@
+id: accounts-receivable
+label: { ja: 請求と入金の確認, en: Accounts receivable }
+description:
+  ja: 営業からの依頼を受けて請求書を発行し、売上を計上し、入金を確かめて請求に当て、未入金を知らせるまでの流れ。
+  en: From issuing a customer invoice on request from sales to booking the sale, matching deposits and reporting overdue invoices.
+frequency: monthly
+timing: { ja: 毎月。請求の締め日と入金の期日は、顧客との取り決めによる。 }
+pcf: ["10743", "10744", "10745"]
+regulations: [invoice-system, electronic-transaction-data]
+stages:
+  - id: billing
+    label: { ja: 請求, en: Billing }
+    pcf: ["10743"]
+    steps:
+      - id: collect-billing-data
+        label: { ja: 請求する中身をそろえる, en: Collect the billing data }
+        description: { ja: 営業からの依頼をもとに、請求先、取引の内容、金額、税率、支払の期日をそろえる。 }
+        performedBy: accounting-staff
+        receives: [billing-request]
+        produces: [billing-data]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [billing-system]
+
+      - id: issue-invoice
+        label: { ja: 請求書を作る, en: Prepare the invoice }
+        description: { ja: 適格請求書に要る項目を入れて、請求書を作る。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [billing-data]
+        produces: [customer-invoice-draft]
+        doneWhen: { ja: 登録番号、取引の年月日、取引の内容、税率ごとの合計と消費税額、請求先の名前が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [billing-system]
+        regulations: [invoice-system]
+
+      - id: send-invoice
+        label: { ja: 請求書を送る, en: Send the invoice }
+        description: { ja: 請求書を顧客に送り、写しを手元に残す。 }
+        performedBy: accounting-staff
+        receives: [customer-invoice-draft]
+        produces: [customer-invoice, issued-invoice-copy]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [billing-system, email]
+
+      - id: record-receivable
+        label: { ja: 売上と売掛金を計上する, en: Record the sale and the receivable }
+        description: { ja: 請求した取引について、売上と売掛金の仕訳を入れる。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [issued-invoice-copy]
+        produces: [receivable-journal-entry]
+        requiresJudgment: true
+        judgment: { ja: 売上をどの月に計上するか。勘定科目と税区分をどれにするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: collection
+    label: { ja: 入金の確認, en: Collection }
+    pcf: ["10744", "10745"]
+    steps:
+      - id: check-deposits
+        label: { ja: 入金を確かめる, en: Check the deposits }
+        description: { ja: 預金の入出金の明細から、入金の日、金額、振り込んだ人の名前を取り出す。 }
+        performedBy: accounting-staff
+        receives: [bank-statement]
+        produces: [deposit-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [online-banking]
+
+      - id: match-deposits
+        label: { ja: 入金を請求に当てる, en: Match the deposits to the invoices }
+        description: { ja: 入金を、どの請求の分かを見分けて当て、売掛金を消す仕訳を入れる。 }
+        performedBy: accounting-staff
+        receives: [deposit-record, receivable-journal-entry]
+        produces: [matched-receivable]
+        requiresJudgment: true
+        judgment: { ja: 金額や名前が請求と合わない入金を、どの請求に当てるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+      - id: report-overdue
+        label: { ja: 未入金を営業に知らせる, en: Report overdue invoices to sales }
+        description: { ja: 支払の期日を過ぎても入金のない請求を一覧にして、担当の営業に知らせる。 }
+        performedBy: accounting-staff
+        receives: [matched-receivable]
+        produces: [overdue-notice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software, email]
+
+  - id: retention
+    label: { ja: 保存, en: Retention }
+    steps:
+      - id: store-issued-invoice
+        label: { ja: 請求書の写しを保存する, en: Store the copy of the invoice }
+        description: { ja: 発行した請求書の写しを、決まった期間、探し出せる形で保存する。電子で送った請求書は、データのまま保存する。 }
+        performedBy: accounting-staff
+        receives: [issued-invoice-copy]
+        produces: [stored-issued-invoice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [invoice-system, electronic-transaction-data]

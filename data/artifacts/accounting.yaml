@@ -1,0 +1,248 @@
+# 経理・財務の工程で受け渡される物。
+# --- 支払
+- id: vendor-invoice
+  label: { ja: 取引先からの請求書, en: Vendor invoice }
+  kind: form
+  fromOutside: true
+  sender: vendor
+
+- id: invoice-receipt-record
+  label: { ja: 請求書の受け取りの記録, en: Invoice receipt record }
+  description: { ja: 受け取った日、取引先、金額、支払の期日を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: payment-request
+  label: { ja: 支払の申請, en: Payment request }
+  kind: form
+  fromOutside: false
+
+- id: approved-payment-request
+  label: { ja: 承認された支払の申請, en: Approved payment request }
+  kind: form
+  fromOutside: false
+
+- id: checked-invoice
+  label: { ja: 記載を確かめた請求書, en: Checked invoice }
+  kind: form
+  fromOutside: false
+
+- id: payable-journal-entry
+  label: { ja: 買掛金・未払金の仕訳, en: Journal entry for payables }
+  kind: data
+  fromOutside: false
+
+- id: payment-list
+  label: { ja: 支払の予定表, en: Payment list }
+  kind: data
+  fromOutside: false
+
+- id: approved-payment-list
+  label: { ja: 承認された支払の予定表, en: Approved payment list }
+  kind: data
+  fromOutside: false
+
+- id: transfer-instruction
+  label: { ja: 振込の依頼, en: Transfer instruction }
+  kind: data
+  fromOutside: false
+  recipient: bank
+
+- id: payment-record
+  label: { ja: 支払の記録, en: Payment record }
+  kind: data
+  fromOutside: false
+
+- id: cleared-payable-entry
+  label: { ja: 支払済みの仕訳, en: Journal entry for cleared payables }
+  kind: data
+  fromOutside: false
+
+- id: stored-invoice
+  label: { ja: 保存した請求書, en: Stored invoice }
+  kind: form
+  fromOutside: false
+
+# --- 請求と入金
+- id: billing-data
+  label: { ja: 請求する中身, en: Billing data }
+  description: { ja: 請求先、取引の内容、金額、税率、支払の期日をそろえたデータ。 }
+  kind: data
+  fromOutside: false
+
+- id: customer-invoice-draft
+  label: { ja: 請求書の案, en: Draft customer invoice }
+  kind: form
+  fromOutside: false
+
+- id: customer-invoice
+  label: { ja: 顧客への請求書, en: Customer invoice }
+  kind: form
+  fromOutside: false
+  recipient: customer
+
+- id: issued-invoice-copy
+  label: { ja: 請求書の写し, en: Copy of issued invoice }
+  kind: form
+  fromOutside: false
+
+- id: receivable-journal-entry
+  label: { ja: 売上と売掛金の仕訳, en: Journal entry for sales and receivables }
+  kind: data
+  fromOutside: false
+
+- id: bank-statement
+  label: { ja: 預金の入出金の明細, en: Bank statement }
+  kind: data
+  fromOutside: true
+  sender: bank
+
+- id: deposit-record
+  label: { ja: 入金の記録, en: Deposit record }
+  kind: data
+  fromOutside: false
+
+- id: matched-receivable
+  label: { ja: 入金を当てた売掛金の記録, en: Matched receivable }
+  kind: data
+  fromOutside: false
+
+- id: stored-issued-invoice
+  label: { ja: 保存した請求書の写し, en: Stored copy of issued invoice }
+  kind: form
+  fromOutside: false
+
+# --- 経費の精算
+- id: receipt
+  label: { ja: 領収書, en: Receipt }
+  kind: form
+  fromOutside: true
+  sender: vendor
+
+- id: expense-claim
+  label: { ja: 経費の申請, en: Expense claim }
+  kind: form
+  fromOutside: false
+
+- id: approved-expense-claim
+  label: { ja: 承認された経費の申請, en: Approved expense claim }
+  kind: form
+  fromOutside: false
+
+- id: checked-expense-claim
+  label: { ja: 経理が確かめた経費の申請, en: Checked expense claim }
+  kind: form
+  fromOutside: false
+
+- id: expense-journal-entry
+  label: { ja: 経費の仕訳, en: Journal entry for expenses }
+  kind: data
+  fromOutside: false
+
+- id: expense-payment-record
+  label: { ja: 経費の支払の記録, en: Expense payment record }
+  kind: data
+  fromOutside: false
+
+- id: stored-receipt
+  label: { ja: 保存した領収書, en: Stored receipt }
+  kind: form
+  fromOutside: false
+
+# --- 月次決算
+- id: closing-schedule
+  label: { ja: 締めの日程の知らせ, en: Closing schedule notice }
+  kind: message
+  fromOutside: false
+
+- id: complete-journal
+  label: { ja: 当月分がそろった仕訳, en: Complete journal for the month }
+  kind: data
+  fromOutside: false
+
+- id: bank-reconciliation
+  label: { ja: 預金の残高の照合の記録, en: Bank reconciliation }
+  kind: data
+  fromOutside: false
+
+- id: account-balance-check
+  label: { ja: 勘定の残高の確認の記録, en: Account balance check }
+  kind: data
+  fromOutside: false
+
+- id: adjusting-entries
+  label: { ja: 月次の整理の仕訳, en: Monthly adjusting entries }
+  kind: data
+  fromOutside: false
+
+- id: trial-balance
+  label: { ja: 試算表, en: Trial balance }
+  kind: form
+  fromOutside: false
+
+- id: monthly-report
+  label: { ja: 月次の報告, en: Monthly report }
+  kind: document
+  fromOutside: false
+
+- id: management-decision
+  label: { ja: 経営者の決定, en: Management decision }
+  kind: message
+  fromOutside: false
+
+# --- 年次決算と税の申告
+- id: annual-closing-schedule
+  label: { ja: 決算の日程と分担, en: Annual closing schedule }
+  kind: document
+  fromOutside: false
+
+- id: count-record
+  label: { ja: 在庫と固定資産の確認の記録, en: Count record of inventory and fixed assets }
+  kind: data
+  fromOutside: false
+
+- id: year-end-adjusting-entries
+  label: { ja: 決算整理の仕訳, en: Year-end adjusting entries }
+  kind: data
+  fromOutside: false
+
+- id: financial-statements-draft
+  label: { ja: 計算書類の案, en: Draft financial statements }
+  kind: form
+  fromOutside: false
+
+- id: approved-financial-statements
+  label: { ja: 承認された計算書類, en: Approved financial statements }
+  kind: form
+  fromOutside: false
+
+- id: public-notice
+  label: { ja: 決算公告, en: Public notice of financial statements }
+  kind: form
+  fromOutside: false
+
+- id: tax-return-draft
+  label: { ja: 申告書の案, en: Draft tax return }
+  kind: form
+  fromOutside: false
+
+- id: confirmed-tax-return
+  label: { ja: 確かめた申告書, en: Confirmed tax return }
+  kind: form
+  fromOutside: false
+
+- id: filed-tax-return
+  label: { ja: 提出した申告書, en: Filed tax return }
+  kind: form
+  fromOutside: false
+  recipient: tax-office
+
+- id: tax-payment-record
+  label: { ja: 納税の記録, en: Tax payment record }
+  kind: data
+  fromOutside: false
+
+- id: stored-closing-documents
+  label: { ja: 保存した帳簿と決算の書類, en: Stored books and closing documents }
+  kind: document
+  fromOutside: false

@@ -1,0 +1,140 @@
+id: accounts-payable
+label: { ja: 支払, en: Accounts payable }
+description:
+  ja: 取引先から請求書を受け取り、中身を確かめ、仕訳を起こし、期日までに代金を振り込み、請求書を保存するまでの流れ。
+  en: From receiving a vendor invoice to checking it, booking it, paying it by the due date and storing the invoice.
+frequency: monthly
+timing: { ja: 毎月。締め日と支払日は、会社と取引先の取り決めによる。 }
+pcf: ["10756"]
+regulations: [invoice-system, electronic-transaction-data, subcontract-payment]
+stages:
+  - id: receive-and-check
+    label: { ja: 受け取りと確認, en: Receipt and check }
+    steps:
+      - id: receive-invoice
+        label: { ja: 請求書を受け取る, en: Receive the invoice }
+        description: { ja: 紙、メール、クラウドのどれで届いた請求書も1か所に集め、受け取った日、取引先、金額、支払の期日を記録する。 }
+        performedBy: accounting-staff
+        receives: [vendor-invoice]
+        produces: [invoice-receipt-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email, document-storage]
+        regulations: [electronic-transaction-data]
+
+      - id: check-delivery
+        label: { ja: 頼んだ中身と照らす, en: Check against what was ordered }
+        description: { ja: 請求の中身が、頼んだ物や作業、受け取った結果と合っているかを確かめ、支払を申請する。 }
+        performedBy: requesting-staff
+        receives: [invoice-receipt-record]
+        produces: [payment-request]
+        requiresJudgment: true
+        judgment: { ja: 請求された物や作業が、頼んだとおりに納められたと言えるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-payment-request
+        label: { ja: 支払の申請を承認する, en: Approve the payment request }
+        description: { ja: 申請の中身と金額を見て、部門として支払ってよいかを決める。 }
+        performedBy: department-manager
+        receives: [payment-request]
+        produces: [approved-payment-request]
+        requiresJudgment: true
+        judgment: { ja: 支出が、予算と決裁の権限の範囲に収まっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: check-invoice-requirements
+        label: { ja: 請求書の記載と登録番号を確かめる, en: Check the invoice items and the registration number }
+        description: { ja: 適格請求書に要る項目がそろっているかを見て、登録番号を国税庁の公表サイトで確かめる。 }
+        performedBy: accounting-staff
+        receives: [approved-payment-request, vendor-invoice]
+        produces: [checked-invoice]
+        doneWhen: { ja: 要る項目がすべて書かれていて、登録番号が公表サイトの登録と合っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        regulations: [invoice-system]
+
+  - id: booking
+    label: { ja: 計上, en: Booking }
+    steps:
+      - id: record-payable
+        label: { ja: 仕訳を起こす, en: Record the journal entry }
+        description: { ja: 請求書の中身から、勘定科目、税区分、計上する月を決めて、会計ソフトに仕訳を入れる。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [checked-invoice]
+        produces: [payable-journal-entry]
+        requiresJudgment: true
+        judgment: { ja: 勘定科目と税区分をどれにするか。費用をどの月に計上するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: payment
+    label: { ja: 支払, en: Payment }
+    steps:
+      - id: prepare-payment-list
+        label: { ja: 支払の予定をまとめる, en: Prepare the payment list }
+        description: { ja: 支払の期日が来る請求を集め、支払先、金額、振込先の口座を一覧にする。 }
+        performedBy: accounting-staff
+        receives: [payable-journal-entry]
+        produces: [payment-list]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software, spreadsheet]
+        regulations: [subcontract-payment]
+
+      - id: approve-payment-list
+        label: { ja: 支払を承認する, en: Approve the payments }
+        description: { ja: 支払の予定表を、請求書と預金の残高に照らして確かめ、支払ってよいかを決める。 }
+        performedBy: accounting-manager
+        receives: [payment-list]
+        produces: [approved-payment-list]
+        requiresJudgment: true
+        judgment: { ja: 預金の残高で支払えるか。支払先と金額に誤りがないか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: execute-payment
+        label: { ja: 振込を実行する, en: Execute the bank transfers }
+        description: { ja: 承認された予定表のとおりに、振込のデータを作って金融機関に送る。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [approved-payment-list]
+        produces: [transfer-instruction, payment-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+
+      - id: clear-payable
+        label: { ja: 支払済みを記録する, en: Record the payments as cleared }
+        description: { ja: 振り込んだ分について、買掛金や未払金を消す仕訳を入れる。 }
+        performedBy: accounting-staff
+        receives: [payment-record]
+        produces: [cleared-payable-entry]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: retention
+    label: { ja: 保存, en: Retention }
+    steps:
+      - id: store-invoice
+        label: { ja: 請求書を保存する, en: Store the invoice }
+        description: { ja: 請求書を、決まった期間、探し出せる形で保存する。電子で受け取った請求書は、データのまま保存する。 }
+        performedBy: accounting-staff
+        receives: [checked-invoice]
+        produces: [stored-invoice]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [invoice-system, electronic-transaction-data]

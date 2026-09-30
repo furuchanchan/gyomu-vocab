@@ -1,0 +1,219 @@
+{
+  "checkedOn": "2026-09-30",
+  "results": {
+    "invoice-system": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "消費税法 第57条の4",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/363AC0000000108?elm=MainProvision-Article_57_4&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "363AC0000000108_20260401_508AC0000000012",
+          "enforcedOn": "2026-04-01",
+          "head": "（適格請求書発行事業者の義務）第五十七条の四適格請求書発行事業者は、国内において課税資産の譲渡等（第七条第一項、第八条第"
+        },
+        {
+          "kind": "article",
+          "name": "消費税法 第30条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/363AC0000000108?elm=MainProvision-Article_30&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "363AC0000000108_20260401_508AC0000000012",
+          "enforcedOn": "2026-04-01",
+          "head": "（仕入れに係る消費税額の控除）第三十条事業者（第九条第一項本文の規定により消費税を納める義務が免除される事業者を除く。）"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6498.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6498.htm",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6625.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6625.htm",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6496.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6496.htm",
+          "ok": true
+        }
+      ]
+    },
+    "electronic-transaction-data": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "電子計算機を使用して作成する国税関係帳簿書類の保存方法等の特例に関する法律 第7条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/410AC0000000025?elm=MainProvision-Article_7&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "410AC0000000025_20250401_507AC0000000013",
+          "enforcedOn": "2025-04-01",
+          "head": "（電子取引の取引情報に係る電磁的記録の保存）第七条所得税（源泉徴収に係る所得税を除く。）及び法人税に係る保存義務者は、電"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/law/joho-zeikaishaku/sonota/jirei/tokusetsu/index.htm",
+          "url": "https://www.nta.go.jp/law/joho-zeikaishaku/sonota/jirei/tokusetsu/index.htm",
+          "ok": true
+        }
+      ]
+    },
+    "bookkeeping-retention": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第435条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_435&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（計算書類等の作成及び保存）第四百三十五条株式会社は、法務省令で定めるところにより、その成立の日における貸借対照表を作成"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5930.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5930.htm",
+          "ok": true
+        }
+      ]
+    },
+    "consumption-tax-return": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "消費税法 第45条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/363AC0000000108?elm=MainProvision-Article_45&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "363AC0000000108_20260401_508AC0000000012",
+          "enforcedOn": "2026-04-01",
+          "head": "（課税資産の譲渡等及び特定課税仕入れについての確定申告）第四十五条事業者（第九条第一項本文の規定により消費税を納める義務"
+        },
+        {
+          "kind": "article",
+          "name": "消費税法 第42条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/363AC0000000108?elm=MainProvision-Article_42&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "363AC0000000108_20260401_508AC0000000012",
+          "enforcedOn": "2026-04-01",
+          "head": "（課税資産の譲渡等及び特定課税仕入れについての中間申告）第四十二条事業者（第九条第一項本文の規定により消費税を納める義務"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6610.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6610.htm",
+          "ok": true
+        },
+        {
+          "kind": "page",
+          "name": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6609.htm",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6609.htm",
+          "ok": true
+        }
+      ]
+    },
+    "corporate-tax-return": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "法人税法 第74条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000034?elm=MainProvision-Article_74&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000034_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（確定申告）第七十四条内国法人は、各事業年度終了の日の翌日から二月以内に、税務署長に対し、確定した決算に基づき次に掲げる"
+        },
+        {
+          "kind": "article",
+          "name": "法人税法 第75条の2",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/340AC0000000034?elm=MainProvision-Article_75_2&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "340AC0000000034_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（確定申告書の提出期限の延長の特例）第七十五条の二第七十四条第一項（確定申告）の規定による申告書を提出すべき内国法人が、"
+        }
+      ]
+    },
+    "financial-statements": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "会社法 第435条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_435&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（計算書類等の作成及び保存）第四百三十五条株式会社は、法務省令で定めるところにより、その成立の日における貸借対照表を作成"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第438条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_438&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（計算書類等の定時株主総会への提出等）第四百三十八条次の各号に掲げる株式会社においては、取締役は、当該各号に定める計算書"
+        },
+        {
+          "kind": "article",
+          "name": "会社法 第440条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/417AC0000000086?elm=MainProvision-Article_440&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "417AC0000000086_20260812_508AC0000000064",
+          "enforcedOn": "2026-08-12",
+          "head": "（計算書類の公告）第四百四十条株式会社は、法務省令で定めるところにより、定時株主総会の終結後遅滞なく、貸借対照表（大会社"
+        }
+      ]
+    },
+    "subcontract-payment": {
+      "ok": true,
+      "checkedOn": "2026-09-30",
+      "file": "accounting.yaml",
+      "checks": [
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第3条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_3&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（製造委託等代金の支払期日）第三条製造委託等代金の支払期日は、委託事業者が中小受託事業者の給付の内容について検査をするか"
+        },
+        {
+          "kind": "article",
+          "name": "製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律 第5条",
+          "url": "https://laws.e-gov.go.jp/api/2/law_data/331AC0000000120?elm=MainProvision-Article_5&law_full_text_format=json&asof=2026-09-30",
+          "ok": true,
+          "revision": "331AC0000000120_20260101_507AC0000000041",
+          "enforcedOn": "2026-01-01",
+          "head": "（委託事業者の遵守事項）第五条委託事業者は、中小受託事業者に対し製造委託等をした場合は、次に掲げる行為（役務提供委託又は"
+        },
+        {
+          "kind": "page",
+          "name": "https://www.jftc.go.jp/toriteki/",
+          "url": "https://www.jftc.go.jp/toriteki/",
+          "ok": true
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# 部署をまたいで受け渡される物。作る部署と受け取る部署が違う。
+- id: billing-request
+  label: { ja: 請求の依頼, en: Billing request }
+  description: { ja: 営業が、納品や検収が済んだ取引について、経理に請求書の発行を頼む連絡。取引先、金額、取引の内容、支払の条件を含む。 }
+  kind: message
+  fromOutside: false
+
+- id: payroll-summary
+  label: { ja: 給与の集計, en: Payroll summary }
+  description: { ja: 人事・労務が、月ごとの給与の支給額、控除額、会社が負担する社会保険料をまとめたデータ。経理が仕訳に使う。 }
+  kind: data
+  fromOutside: false
+
+- id: overdue-notice
+  label: { ja: 未入金の知らせ, en: Overdue notice }
+  description: { ja: 経理が、支払の期日を過ぎても入金のない請求を、営業に知らせる連絡。 }
+  kind: message
+  fromOutside: false

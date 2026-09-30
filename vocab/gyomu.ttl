@@ -1,0 +1,543 @@
+@prefix gyomu:   <https://w3id.org/gyomu/ns#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix p-plan:  <http://purl.org/net/p-plan#> .
+@prefix schema:  <https://schema.org/> .
+@prefix freq:    <http://purl.org/cld/freq/> .
+
+<https://w3id.org/gyomu/ns>
+    a owl:Ontology ;
+    dcterms:title "業務語彙（Gyomu Vocabulary）"@ja , "Gyomu Vocabulary"@en ;
+    dcterms:description "日本の会社の業務を、部署・ワークフロー・段階・工程の4つの層で表す語彙。工程ごとに、担い手、受け取る物と渡す物、判断の有無、取り消せない操作かどうか、関係する制度を書ける。AIに業務を渡す前の、共通の言葉として使う。"@ja ,
+        "A vocabulary for describing business operations of companies in Japan in four layers: department, workflow, stage and step. Each step records who performs it, what it receives and produces, whether it needs judgment, whether it is irreversible, and which regulations apply."@en ;
+    dcterms:creator "古野光太朗"@ja , "Kotaro Furuno"@en ;
+    dcterms:publisher "株式会社TechWorker"@ja , "TechWorker Inc."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-09-30"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    vann:preferredNamespacePrefix "gyomu" ;
+    vann:preferredNamespaceUri "https://w3id.org/gyomu/ns#" .
+
+#
+# クラス
+#
+
+gyomu:Department
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "部署"@ja , "Department"@en ;
+    rdfs:comment "多くの会社に共通する、部署の型。個別の会社の部署そのものではない。個別の会社の部署（org:OrganizationalUnit）は、dcterms:conformsTo でこの型を指す。"@ja ,
+        "A type of department commonly found in companies. It is a reference model element, not a unit of a particular company."@en ;
+    rdfs:subClassOf skos:Concept .
+
+gyomu:Workflow
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "ワークフロー"@ja , "Workflow"@en ;
+    rdfs:comment "1つの目的に向かう、仕事のひとつながり。いくつかの段階に分かれる。部署には、複数のワークフローが並んで走る。"@ja ,
+        "A sequence of work towards one purpose, divided into stages. It describes how the work is planned to be done, not a particular execution."@en ;
+    rdfs:subClassOf p-plan:Plan ;
+    skos:closeMatch schema:HowTo .
+
+gyomu:Stage
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "段階"@ja , "Stage"@en ;
+    rdfs:comment "ワークフローの中の区切り。いくつかの工程をまとめる。"@ja ,
+        "A phase of a workflow that groups steps."@en ;
+    rdfs:subClassOf p-plan:MultiStep ;
+    skos:closeMatch schema:HowToSection .
+
+gyomu:Step
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "工程"@ja , "Step"@en ;
+    rdfs:comment "1人の担い手が、物を受け取り、手を加えて、次へ渡す、仕事の最小の単位。"@ja ,
+        "The smallest unit of work: one role receives artifacts, works on them and hands the result over."@en ;
+    rdfs:subClassOf p-plan:Step ;
+    skos:closeMatch schema:HowToStep .
+
+gyomu:Role
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "担い手"@ja , "Role"@en ;
+    rdfs:comment "工程を行う役割。人の名前や役職の名前ではなく、仕事の上での立場を表す。社外の相手（取引先、役所、専門家）も含む。"@ja ,
+        "A role that performs steps. It includes external parties such as business partners, public offices and licensed professionals."@en ;
+    rdfs:subClassOf org:Role .
+
+gyomu:Artifact
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "物"@ja , "Artifact"@en ;
+    rdfs:comment "工程のあいだで受け渡される物。帳票、データ、文書、連絡のどれか。"@ja ,
+        "Something handed over between steps: a form, data, a document or a message."@en ;
+    rdfs:subClassOf p-plan:Variable .
+
+gyomu:Regulation
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "制度"@ja , "Regulation"@en ;
+    rdfs:comment "法令にもとづいて、会社に手続きや保存を求める制度。根拠の法令、所管する役所、期限を書く。"@ja ,
+        "An obligation on companies that is based on Japanese law, with its legal basis, competent authority and deadline."@en .
+
+gyomu:ToolKind
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "道具の種類"@ja , "Tool kind"@en ;
+    rdfs:comment "工程で使う道具の種類。製品の名前ではなく、種類を表す（会計ソフト、表計算など）。"@ja ,
+        "A kind of tool used in a step, such as accounting software. It is not a product name."@en ;
+    rdfs:subClassOf skos:Concept .
+
+gyomu:PcfElement
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "APQC PCF の要素"@ja , "APQC PCF element"@en ;
+    rdfs:comment "APQC Process Classification Framework の要素への参照。要素の番号（dcterms:identifier）と階層の番号（skos:notation）を持つ。"@ja ,
+        "A reference to an element of the APQC Process Classification Framework, with its element ID and hierarchy ID."@en .
+
+#
+# 層をつなぐ性質
+#
+
+gyomu:hasWorkflow
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "ワークフローを持つ"@ja , "has workflow"@en ;
+    rdfs:domain gyomu:Department ;
+    rdfs:range gyomu:Workflow .
+
+gyomu:hasStage
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "段階を持つ"@ja , "has stage"@en ;
+    rdfs:domain gyomu:Workflow ;
+    rdfs:range gyomu:Stage .
+
+gyomu:hasStep
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "工程を持つ"@ja , "has step"@en ;
+    rdfs:domain gyomu:Stage ;
+    rdfs:range gyomu:Step .
+
+gyomu:order
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "順番"@ja , "order"@en ;
+    rdfs:comment "同じ親の中での順番。1から始まる。"@ja , "Position within the parent, starting from 1."@en ;
+    rdfs:range xsd:integer .
+
+gyomu:next
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "次の工程"@ja , "next step"@en ;
+    rdfs:comment "この工程の次に行う工程。段階をまたいでもよい。逆向きは p-plan:isPrecededBy。"@ja ,
+        "The step performed after this one. The inverse direction is p-plan:isPrecededBy."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:Step ;
+    owl:inverseOf p-plan:isPrecededBy .
+
+#
+# 工程の中身
+#
+
+gyomu:performedBy
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "担い手"@ja , "performed by"@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:Role .
+
+gyomu:confirmedBy
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "確かめる人"@ja , "confirmed by"@en ;
+    rdfs:comment "工程の結果を確かめる、または承認する役割。"@ja , "The role that checks or approves the result of the step."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:Role .
+
+gyomu:receives
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "受け取る物"@ja , "receives"@en ;
+    rdfs:subPropertyOf p-plan:hasInputVar ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:Artifact .
+
+gyomu:produces
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "渡す物"@ja , "produces"@en ;
+    rdfs:subPropertyOf p-plan:hasOutputVar ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:Artifact .
+
+gyomu:doneWhen
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "できあがりの条件"@ja , "done when"@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range rdf:langString .
+
+gyomu:requiresJudgment
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "判断がある"@ja , "requires judgment"@en ;
+    rdfs:comment "決まった手順だけでは結果が決まらず、担い手の判断が要るとき true。"@ja ,
+        "True when the result is not determined by a fixed procedure and depends on the judgment of the role."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range xsd:boolean .
+
+gyomu:judgment
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "判断の中身"@ja , "judgment"@en ;
+    rdfs:comment "何を判断するか。"@ja , "What is judged in the step."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range rdf:langString .
+
+gyomu:irreversible
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "取り消せない操作"@ja , "irreversible"@en ;
+    rdfs:comment "行ったあとで、自社だけでは元に戻せない操作を含むとき true。送金、役所への提出、社外への送付、契約の締結など。"@ja ,
+        "True when the step includes an operation that the company cannot undo by itself, such as a payment, a filing with a public office, sending something outside or concluding a contract."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range xsd:boolean .
+
+gyomu:humanRequired
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "人が行う必要がある"@ja , "human required"@en ;
+    rdfs:comment "法令、資格、契約、相手との合意そのもの、または現物を扱う作業であるために、人が行う必要があるとき true。理由を gyomu:humanRequiredReason に書く。"@ja ,
+        "True when a person has to perform the step because of law, a licence, a contract, because the step is itself an agreement with another party, or because it is physical work."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range xsd:boolean .
+
+gyomu:humanRequiredReason
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "人が行う理由"@ja , "reason a human is required"@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range rdf:langString .
+
+gyomu:aiAllocation
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "AIとの分担の目安"@ja , "AI allocation"@en ;
+    rdfs:comment "工程をAIにどこまで任せられるかの目安。gyomu:humanRequired、gyomu:requiresJudgment、gyomu:irreversible の3つから、決まった規則で導く。人が行う必要があれば gyomu:HumanOnly。そうでなく、判断があるか、取り消せない操作であれば gyomu:AiDraftsHumanConfirms。どれにも当たらなければ gyomu:AiCanDo。"@ja ,
+        "A guideline on how far the step can be delegated to AI, derived by a fixed rule from gyomu:humanRequired, gyomu:requiresJudgment and gyomu:irreversible."@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:AiAllocation .
+
+gyomu:usesToolKind
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "使う道具の種類"@ja , "uses tool kind"@en ;
+    rdfs:domain gyomu:Step ;
+    rdfs:range gyomu:ToolKind .
+
+gyomu:timing
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "行う時期"@ja , "timing"@en ;
+    rdfs:range rdf:langString .
+
+gyomu:frequency
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "頻度"@ja , "frequency"@en ;
+    rdfs:domain gyomu:Workflow ;
+    rdfs:range gyomu:Frequency .
+
+gyomu:external
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "社外の担い手"@ja , "external"@en ;
+    rdfs:comment "会社の外の担い手（取引先、役所、専門家、応募者など）のとき true。"@ja ,
+        "True when the role is outside the company, such as a business partner, a public office or a licensed professional."@en ;
+    rdfs:domain gyomu:Role ;
+    rdfs:range xsd:boolean .
+
+#
+# 物
+#
+
+gyomu:artifactKind
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "物の種類"@ja , "artifact kind"@en ;
+    rdfs:domain gyomu:Artifact ;
+    rdfs:range gyomu:ArtifactKind .
+
+gyomu:fromOutside
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "社外から来る"@ja , "from outside"@en ;
+    rdfs:comment "社外の相手（取引先、従業員本人、役所など）が作って、会社に届く物のとき true。"@ja ,
+        "True when the artifact is made by an external party and arrives at the company."@en ;
+    rdfs:domain gyomu:Artifact ;
+    rdfs:range xsd:boolean .
+
+gyomu:sender
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "送り手"@ja , "sender"@en ;
+    rdfs:comment "社外から来る物を、作って送る担い手。"@ja , "The external role that makes and sends the artifact to the company."@en ;
+    rdfs:domain gyomu:Artifact ;
+    rdfs:range gyomu:Role .
+
+gyomu:recipient
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "宛先"@ja , "recipient"@en ;
+    rdfs:comment "社外へ出ていく物を、受け取る担い手。"@ja , "The external role that receives the artifact from the company."@en ;
+    rdfs:domain gyomu:Artifact ;
+    rdfs:range gyomu:Role .
+
+#
+# 制度
+#
+
+gyomu:relatedRegulation
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "関係する制度"@ja , "related regulation"@en ;
+    rdfs:range gyomu:Regulation .
+
+gyomu:legalBasis
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "根拠の法令"@ja , "legal basis"@en ;
+    rdfs:comment "根拠の法令の、e-Gov 法令検索でのページ。"@ja , "The page of the law on e-Gov, the Japanese government's law search."@en ;
+    rdfs:subPropertyOf dcterms:source ;
+    rdfs:domain gyomu:Regulation .
+
+gyomu:legalBasisArticle
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "根拠の条"@ja , "article of the legal basis"@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range rdf:langString .
+
+gyomu:officialGuidance
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "役所の説明のページ"@ja , "official guidance"@en ;
+    rdfs:subPropertyOf rdfs:seeAlso ;
+    rdfs:domain gyomu:Regulation .
+
+gyomu:authority
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "所管"@ja , "competent authority"@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range rdf:langString .
+
+gyomu:obligation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "会社がやること"@ja , "obligation"@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range rdf:langString .
+
+gyomu:deadline
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "期限"@ja , "deadline"@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range rdf:langString .
+
+gyomu:appliesTo
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "対象になる会社"@ja , "applies to"@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range rdf:langString .
+
+gyomu:verifiedOn
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "確かめた日"@ja , "verified on"@en ;
+    rdfs:comment "この制度の中身を、役所のページと法令で確かめた日。"@ja ,
+        "The date when the content was checked against the official page and the law."@en ;
+    rdfs:domain gyomu:Regulation ;
+    rdfs:range xsd:date .
+
+#
+# 外の分類につなぐ性質
+#
+
+gyomu:occupationClass
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "職業分類"@ja , "occupation class"@en ;
+    rdfs:comment "担い手に近い、日本標準職業分類の項目。e-Stat 統計LOD のURIで指す。"@ja ,
+        "The item of the Japan Standard Occupational Classification that is close to the role, identified by its URI in the e-Stat Statistics LOD."@en ;
+    rdfs:subPropertyOf rdfs:seeAlso ;
+    rdfs:domain gyomu:Role .
+
+gyomu:occupationCode
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "職業分類のコード"@ja , "occupation code"@en ;
+    rdfs:comment "担い手に近い、日本標準職業分類（平成21年12月統計基準設定）の中分類または小分類のコード。e-Stat 統計LOD には大分類のURIしか無いので、細かい分類はコードで書く。"@ja ,
+        "The code of the minor or unit group of the Japan Standard Occupational Classification (2009) that is close to the role. The e-Stat Statistics LOD has URIs only for major groups, so finer groups are given as codes."@en ;
+    rdfs:domain gyomu:Role ;
+    rdfs:range xsd:string .
+
+gyomu:industryClass
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "産業分類"@ja , "industry class"@en ;
+    rdfs:comment "その業種だけにあるワークフローのときに、日本標準産業分類の項目を指す。"@ja ,
+        "The item of the Japan Standard Industrial Classification, for workflows specific to an industry."@en ;
+    rdfs:subPropertyOf rdfs:seeAlso ;
+    rdfs:domain gyomu:Workflow .
+
+gyomu:pcfElement
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "APQC PCF の要素"@ja , "PCF element"@en ;
+    rdfs:comment "中身が近い、APQC Process Classification Framework の要素。"@ja ,
+        "The element of the APQC Process Classification Framework that is close in content."@en ;
+    rdfs:subPropertyOf rdfs:seeAlso ;
+    rdfs:range gyomu:PcfElement .
+
+#
+# 決まった値
+#
+
+gyomu:AiAllocation
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "AIとの分担"@ja , "AI allocation"@en ;
+    rdfs:subClassOf skos:Concept .
+
+gyomu:AiAllocationScheme
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "AIとの分担の目安"@ja , "AI allocation scheme"@en .
+
+gyomu:AiCanDo
+    a gyomu:AiAllocation ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:AiAllocationScheme ;
+    skos:prefLabel "AIに任せられる"@ja , "AI can do"@en ;
+    skos:definition "判断がなく、取り消せる操作だけで、人が行う必要もない工程。"@ja ,
+        "A step with no judgment, only reversible operations and no requirement for a person."@en .
+
+gyomu:AiDraftsHumanConfirms
+    a gyomu:AiAllocation ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:AiAllocationScheme ;
+    skos:prefLabel "AIが下書きし、人が確かめる"@ja , "AI drafts, human confirms"@en ;
+    skos:definition "判断がある、または取り消せない操作を含む工程。AIが用意し、人が確かめてから実行する。"@ja ,
+        "A step with judgment or an irreversible operation. AI prepares it and a person confirms before it is executed."@en .
+
+gyomu:HumanOnly
+    a gyomu:AiAllocation ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:AiAllocationScheme ;
+    skos:prefLabel "人が行う"@ja , "human only"@en ;
+    skos:definition "法令、資格、契約、相手との合意そのもの、または現物を扱う作業であるために、人が行う必要がある工程。"@ja ,
+        "A step that a person has to perform because of law, a licence, a contract, because it is itself an agreement with another party, or because it is physical work."@en .
+
+gyomu:Frequency
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "頻度"@ja , "Frequency"@en ;
+    rdfs:subClassOf skos:Concept .
+
+gyomu:FrequencyScheme
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "頻度"@ja , "Frequency scheme"@en .
+
+gyomu:OnDemand
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "都度"@ja , "on demand"@en ;
+    skos:definition "きっかけになる出来事が起きるたびに行う。"@ja , "Performed each time a triggering event occurs."@en .
+
+gyomu:Daily
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "毎日"@ja , "daily"@en ;
+    skos:closeMatch freq:daily .
+
+gyomu:Weekly
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "毎週"@ja , "weekly"@en ;
+    skos:closeMatch freq:weekly .
+
+gyomu:Monthly
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "毎月"@ja , "monthly"@en ;
+    skos:closeMatch freq:monthly .
+
+gyomu:Quarterly
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "四半期ごと"@ja , "quarterly"@en ;
+    skos:closeMatch freq:quarterly .
+
+gyomu:Yearly
+    a gyomu:Frequency ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:FrequencyScheme ;
+    skos:prefLabel "毎年"@ja , "yearly"@en ;
+    skos:closeMatch freq:annual .
+
+gyomu:ArtifactKind
+    a owl:Class ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "物の種類"@ja , "Artifact kind"@en ;
+    rdfs:subClassOf skos:Concept .
+
+gyomu:ArtifactKindScheme
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    rdfs:label "物の種類"@ja , "Artifact kind scheme"@en .
+
+gyomu:Form
+    a gyomu:ArtifactKind ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:ArtifactKindScheme ;
+    skos:prefLabel "帳票"@ja , "form"@en ;
+    skos:definition "決まった様式を持つ書類。請求書、届出書、申告書など。"@ja , "A document with a fixed format, such as an invoice or a filing form."@en .
+
+gyomu:Data
+    a gyomu:ArtifactKind ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:ArtifactKindScheme ;
+    skos:prefLabel "データ"@ja , "data"@en ;
+    skos:definition "システムや表の中の記録。仕訳、勤怠の記録、顧客の情報など。"@ja , "Records in a system or a table, such as journal entries or attendance records."@en .
+
+gyomu:Document
+    a gyomu:ArtifactKind ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:ArtifactKindScheme ;
+    skos:prefLabel "文書"@ja , "document"@en ;
+    skos:definition "決まった様式を持たない文書。提案書、契約書、議事録など。"@ja , "A document without a fixed format, such as a proposal or a contract."@en .
+
+gyomu:Message
+    a gyomu:ArtifactKind ;
+    rdfs:isDefinedBy <https://w3id.org/gyomu/ns> ;
+    skos:inScheme gyomu:ArtifactKindScheme ;
+    skos:prefLabel "連絡"@ja , "message"@en ;
+    skos:definition "人から人への知らせ。依頼、承認、通知など。"@ja , "A notice from a person to a person, such as a request, an approval or a notification."@en .

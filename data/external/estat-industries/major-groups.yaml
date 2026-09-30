@@ -1,0 +1,122 @@
+# 日本標準産業分類（平成25年10月改定）の大分類。
+# 出典：政府統計の総合窓口(e-Stat) 統計LOD（https://data.e-stat.go.jp/lodw/）。名前は統計LODの skos:prefLabel から、先頭のコードを除いたもの。
+- id: jsic-a
+  code: A
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-A
+  label:
+    ja: "農業，林業"
+    en: "Agriculture and forestry"
+- id: jsic-b
+  code: B
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-B
+  label:
+    ja: "漁業"
+    en: "Fisheries"
+- id: jsic-c
+  code: C
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-C
+  label:
+    ja: "鉱業，採石業，砂利採取業"
+    en: "Mining and quarrying of stone and gravel"
+- id: jsic-d
+  code: D
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-D
+  label:
+    ja: "建設業"
+    en: "Construction"
+- id: jsic-e
+  code: E
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-E
+  label:
+    ja: "製造業"
+    en: "Manufacturing"
+- id: jsic-f
+  code: F
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-F
+  label:
+    ja: "電気・ガス・熱供給・水道業"
+    en: "Electricity, gas, heat supply and water"
+- id: jsic-g
+  code: G
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-G
+  label:
+    ja: "情報通信業"
+    en: "Information and communications"
+- id: jsic-h
+  code: H
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-H
+  label:
+    ja: "運輸業，郵便業"
+    en: "Transport and postal activities"
+- id: jsic-i
+  code: I
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-I
+  label:
+    ja: "卸売業，小売業"
+    en: "Wholesale and retail trade"
+- id: jsic-j
+  code: J
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-J
+  label:
+    ja: "金融業，保険業"
+    en: "Finance and insurance"
+- id: jsic-k
+  code: K
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-K
+  label:
+    ja: "不動産業，物品賃貸業"
+    en: "Real estate and goods rental and leasing"
+- id: jsic-l
+  code: L
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-L
+  label:
+    ja: "学術研究，専門・技術サービス業"
+    en: "Scienteific research, professional and technical services"
+- id: jsic-m
+  code: M
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-M
+  label:
+    ja: "宿泊業，飲食サービス業"
+    en: "Accomodations, eating and drinking services"
+- id: jsic-n
+  code: N
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-N
+  label:
+    ja: "生活関連サービス業，娯楽業"
+    en: "Living-related and personal services and amusement services"
+- id: jsic-o
+  code: O
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-O
+  label:
+    ja: "教育，学習支援業"
+    en: "Education, learning support"
+- id: jsic-p
+  code: P
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-P
+  label:
+    ja: "医療，福祉"
+    en: "Medical, health care and welfare"
+- id: jsic-q
+  code: Q
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-Q
+  label:
+    ja: "複合サービス事業"
+    en: "Compound services"
+- id: jsic-r
+  code: R
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-R
+  label:
+    ja: "サービス業（他に分類されないもの）"
+    en: "Services, N.E.C"
+- id: jsic-s
+  code: S
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-S
+  label:
+    ja: "公務（他に分類されるものを除く）"
+    en: "Government, expect elsewhere classified"
+- id: jsic-t
+  code: T
+  uri: http://data.e-stat.go.jp/lod/ontology/crossDomain/code/industryClassification2013-T
+  label:
+    ja: "分類不能の産業"
+    en: "Industries unable to classify"

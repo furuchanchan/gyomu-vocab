@@ -1,0 +1,138 @@
+# 経理・財務に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: invoice-system
+  label: { ja: 適格請求書等保存方式（インボイス制度）, en: Qualified invoice system }
+  obligation:
+    ja: 売り手は、登録を受けたうえで適格請求書を交付し、その写しを保存する。買い手は、仕入税額控除を受けるために、帳簿と適格請求書を保存する。適格請求書には、発行した事業者の名前と登録番号、取引の年月日、取引の内容、税率ごとの対価の合計と適用税率、税率ごとの消費税額、受け取る事業者の名前を書く。取引先の登録番号は、国税庁の公表サイトで確かめられる。
+  deadline:
+    ja: 帳簿と請求書は、その課税期間の末日の翌日から2か月を経過した日から7年間保存する。
+  appliesTo:
+    ja: 消費税の課税事業者。適格請求書を交付できるのは、登録を受けた事業者だけ。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 消費税法
+      lawId: 363AC0000000108
+      articles:
+        - { article: "57_4", contains: [適格請求書発行事業者の義務, 登録番号] }
+        - { article: "30", contains: [仕入れに係る消費税額の控除, 保存] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6498.htm
+      contains: [登録番号, 公表サイト]
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6625.htm
+      contains: [登録番号, 取引年月日, 適用税率]
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6496.htm
+      contains: [2か月を経過した日から7年間]
+  verifiedOn: 2026-09-30
+
+- id: electronic-transaction-data
+  label: { ja: 電子取引のデータの保存（電子帳簿保存法）, en: Retention of electronic transaction data }
+  obligation:
+    ja: メールやクラウドなど、電子でやり取りした請求書や領収書などの取引の情報を、データのまま保存する。
+  appliesTo:
+    ja: 電子取引を行った、所得税と法人税の保存義務者。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 電子計算機を使用して作成する国税関係帳簿書類の保存方法等の特例に関する法律
+      lawId: 410AC0000000025
+      articles:
+        - { article: "7", contains: [電子取引の取引情報に係る電磁的記録の保存, 電子取引を行った場合] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/law/joho-zeikaishaku/sonota/jirei/tokusetsu/index.htm
+      contains: [電子帳簿等保存制度, 電子取引]
+  verifiedOn: 2026-09-30
+
+- id: bookkeeping-retention
+  label: { ja: 帳簿と書類の保存, en: Retention of books and documents }
+  obligation:
+    ja: 帳簿と、取引に関して作った書類や受け取った書類を保存する。計算書類とその附属明細書も保存する。
+  deadline:
+    ja: 法人税では、その事業年度の確定申告書の提出期限の翌日から7年間。欠損金が生じた事業年度などは10年間。会社法では、計算書類を作った時から10年間。
+  appliesTo:
+    ja: 法人。計算書類の保存は株式会社。
+  authority: { ja: 国税庁、法務省, en: "National Tax Agency, Ministry of Justice" }
+  legalBasis:
+    - law: 会社法
+      lawId: 417AC0000000086
+      articles:
+        - { article: "435", contains: [計算書類等の作成及び保存, 十年間] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5930.htm
+      contains: [確定申告書の提出期限の翌日から7年間, 10年間]
+  verifiedOn: 2026-09-30
+
+- id: consumption-tax-return
+  label: { ja: 消費税の申告と納付, en: Consumption tax return }
+  obligation:
+    ja: 課税期間ごとに、消費税と地方消費税の確定申告をして納める。直前の課税期間の消費税の年税額が48万円を超えるときは、中間申告もする。
+  deadline:
+    ja: 確定申告は、課税期間の末日の翌日から2か月以内。
+  appliesTo:
+    ja: 消費税の課税事業者である法人。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 消費税法
+      lawId: 363AC0000000108
+      articles:
+        - { article: "45", contains: [確定申告, 当該課税期間の末日の翌日から二月以内] }
+        - { article: "42", contains: [中間申告] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6610.htm
+      contains: [2か月以内]
+    - url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6609.htm
+      contains: [48万円, 中間申告]
+  verifiedOn: 2026-09-30
+
+- id: corporate-tax-return
+  label: { ja: 法人税の確定申告, en: Corporate tax return }
+  obligation:
+    ja: 事業年度ごとに、確定した決算にもとづいて法人税の申告書を出し、納める。定款の定めや特別の事情により、事業年度の終了の日の翌日から2か月以内に、決算についての定時総会が開かれない常況にあるときは、申請して、申告書を出す期限を延ばせる。
+  deadline:
+    ja: 事業年度の終了の日の翌日から2か月以内。
+  appliesTo:
+    ja: 内国法人。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 法人税法
+      lawId: 340AC0000000034
+      articles:
+        - { article: "74", contains: [確定申告, 各事業年度終了の日の翌日から二月以内] }
+        - { article: "75_2", contains: [確定申告書の提出期限の延長の特例] }
+  verifiedOn: 2026-09-30
+
+- id: financial-statements
+  label: { ja: 計算書類の作成・承認・公告, en: Preparation, approval and public notice of financial statements }
+  obligation:
+    ja: 事業年度ごとに、計算書類と事業報告、それらの附属明細書を作る。取締役は、計算書類と事業報告を定時株主総会に出す。定時株主総会が終わったあと、貸借対照表を公告する。大会社は、損益計算書も公告する。
+  deadline:
+    ja: 公告は、定時株主総会の終結後、遅滞なく。
+  appliesTo:
+    ja: 株式会社。
+  authority: { ja: 法務省, en: Ministry of Justice }
+  legalBasis:
+    - law: 会社法
+      lawId: 417AC0000000086
+      articles:
+        - { article: "435", contains: [計算書類等の作成及び保存, 各事業年度に係る計算書類] }
+        - { article: "438", contains: [計算書類等の定時株主総会への提出等, 定時株主総会の承認] }
+        - { article: "440", contains: [計算書類の公告, 定時株主総会の終結後遅滞なく] }
+  verifiedOn: 2026-09-30
+
+- id: subcontract-payment
+  label: { ja: 中小受託取引適正化法（取適法）の支払の決まり, en: Payment rules under the Act on subcontract transactions }
+  obligation:
+    ja: 製造や役務の提供などを中小受託事業者に委託した委託事業者は、物や役務を受け取った日から60日以内の、できる限り短い期間の中で、代金の支払期日を決める。代金の支払に、手形を使わない。
+  deadline:
+    ja: 支払期日は、受け取った日から起算して60日以内。
+  appliesTo:
+    ja: 中小受託事業者に、製造委託などをする委託事業者。対象になる取引と事業者の範囲は、法律で決まっている。
+  authority: { ja: 公正取引委員会、中小企業庁, en: "Japan Fair Trade Commission, Small and Medium Enterprise Agency" }
+  legalBasis:
+    - law: 製造委託等に係る中小受託事業者に対する代金の支払の遅延等の防止に関する法律
+      lawId: 331AC0000000120
+      articles:
+        - { article: "3", contains: [製造委託等代金の支払期日, 六十日] }
+        - { article: "5", contains: [委託事業者の遵守事項, 手形] }
+  officialGuidance:
+    - url: https://www.jftc.go.jp/toriteki/
+      contains: [取適法, 令和8年1月1日]
+  verifiedOn: 2026-09-30

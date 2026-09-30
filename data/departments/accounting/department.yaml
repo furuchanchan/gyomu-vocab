@@ -1,0 +1,13 @@
+id: accounting
+order: 1
+label: { ja: 経理・財務, en: Accounting and finance }
+description:
+  ja: 会社のお金の出入りを記録し、支払と回収を行い、決算と税の申告をまとめる部署。
+  en: The department that records the company's money, makes and collects payments, and closes the books and files taxes.
+pcf: ["17058"]
+workflows:
+  - accounts-payable
+  - accounts-receivable
+  - expense-reimbursement
+  - monthly-closing
+  - annual-closing-and-tax

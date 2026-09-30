@@ -1,0 +1,93 @@
+id: expense-reimbursement
+label: { ja: 経費の精算, en: Expense reimbursement }
+description:
+  ja: 従業員が立て替えた経費を申請し、承認を受け、経理が確かめて仕訳を起こし、従業員に支払い、領収書を保存するまでの流れ。
+  en: From an employee's expense claim to approval, checking, booking, payment to the employee and storing the receipt.
+frequency: monthly
+timing: { ja: 毎月。申請の締め日と支払日は、会社の決まりによる。 }
+pcf: ["10757"]
+regulations: [invoice-system, electronic-transaction-data, bookkeeping-retention]
+stages:
+  - id: claim
+    label: { ja: 申請, en: Claim }
+    steps:
+      - id: submit-expense
+        label: { ja: 経費を申請する, en: Submit the expense claim }
+        description: { ja: 立て替えた日、支払先、金額、使った目的を書き、領収書を付けて申請する。 }
+        performedBy: employee
+        receives: [receipt]
+        produces: [expense-claim]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [expense-system]
+
+      - id: approve-expense
+        label: { ja: 申請を承認する, en: Approve the claim }
+        description: { ja: 申請の中身を見て、会社の経費として認めてよいかを決める。 }
+        performedBy: department-manager
+        receives: [expense-claim]
+        produces: [approved-expense-claim]
+        requiresJudgment: true
+        judgment: { ja: 仕事に要る支出か。会社の決まりの範囲に収まっているか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [expense-system]
+
+  - id: check-and-book
+    label: { ja: 確認と計上, en: Check and booking }
+    steps:
+      - id: check-expense
+        label: { ja: 申請と領収書を照らす, en: Check the claim against the receipt }
+        description: { ja: 申請の日付、支払先、金額が領収書と合っているか、領収書に適格請求書の項目があるかを確かめる。 }
+        performedBy: accounting-staff
+        receives: [approved-expense-claim, receipt]
+        produces: [checked-expense-claim]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [expense-system]
+        regulations: [invoice-system]
+
+      - id: record-expense
+        label: { ja: 仕訳を起こす, en: Record the journal entry }
+        description: { ja: 使った目的から、勘定科目と税区分を決めて、仕訳を入れる。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [checked-expense-claim]
+        produces: [expense-journal-entry]
+        requiresJudgment: true
+        judgment: { ja: 勘定科目と税区分をどれにするか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: payment
+    label: { ja: 支払, en: Payment }
+    steps:
+      - id: pay-expense
+        label: { ja: 従業員に支払う, en: Pay the employee }
+        description: { ja: 確かめた申請の金額を、従業員の口座に振り込む。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [checked-expense-claim]
+        produces: [transfer-instruction, expense-payment-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [online-banking]
+
+  - id: retention
+    label: { ja: 保存, en: Retention }
+    steps:
+      - id: store-receipt
+        label: { ja: 領収書を保存する, en: Store the receipt }
+        description: { ja: 領収書を、決まった期間、探し出せる形で保存する。電子で受け取った領収書は、データのまま保存する。 }
+        performedBy: accounting-staff
+        receives: [checked-expense-claim]
+        produces: [stored-receipt]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [electronic-transaction-data, bookkeeping-retention]

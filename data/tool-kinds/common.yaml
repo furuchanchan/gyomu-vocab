@@ -1,0 +1,21 @@
+# 道具は、製品の名前ではなく種類で書く。
+- id: email
+  label: { ja: メール, en: Email }
+
+- id: spreadsheet
+  label: { ja: 表計算ソフト, en: Spreadsheet }
+
+- id: document-storage
+  label: { ja: 文書の保管の場所, en: Document storage }
+  description: { ja: ファイルサーバーやクラウドストレージなど、文書やデータを保管する場所。 }
+
+- id: workflow-system
+  label: { ja: 申請と承認のシステム, en: Approval workflow system }
+  description: { ja: 社内の申請を回し、承認の記録を残すシステム。 }
+
+- id: online-banking
+  label: { ja: インターネットバンキング, en: Online banking }
+
+- id: e-filing
+  label: { ja: 電子申告・電子申請, en: Electronic filing }
+  description: { ja: 役所への申告や届け出を、オンラインで行う仕組み。 }

@@ -1,0 +1,20 @@
+- id: accounting-staff
+  label: { ja: 経理の担当, en: Accounting staff }
+  description: { ja: 請求書の処理、仕訳、支払、入金の確認などの、経理の実務を行う役割。 }
+  external: false
+  occupation: jsoc-c
+  occupationCode: "263"
+
+- id: accounting-manager
+  label: { ja: 経理の責任者, en: Accounting manager }
+  description: { ja: 経理の処理を確かめ、支払や決算を承認する役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: tax-accountant
+  label: { ja: 税理士, en: Certified tax accountant }
+  description: { ja: 会社から頼まれて、税の申告書の作成や税務の相談を受ける、社外の専門家。 }
+  external: true
+  occupation: jsoc-b
+  occupationCode: "182"

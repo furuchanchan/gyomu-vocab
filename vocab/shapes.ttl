@@ -1,0 +1,274 @@
+@prefix gyomu:   <https://w3id.org/gyomu/ns#> .
+@prefix gsh:     <https://w3id.org/gyomu/shapes#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+# 名前は、日本語と英語を1つずつ持つ
+gsh:LabelJa
+    a sh:PropertyShape ;
+    sh:path rdfs:label ;
+    sh:qualifiedValueShape [ sh:languageIn ( "ja" ) ] ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedMaxCount 1 ;
+    sh:message "日本語の名前（rdfs:label@ja）が1つ要る" .
+
+gsh:LabelEn
+    a sh:PropertyShape ;
+    sh:path rdfs:label ;
+    sh:qualifiedValueShape [ sh:languageIn ( "en" ) ] ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedMaxCount 1 ;
+    sh:message "英語の名前（rdfs:label@en）が1つ要る" .
+
+gsh:DescriptionJa
+    a sh:PropertyShape ;
+    sh:path dcterms:description ;
+    sh:qualifiedValueShape [ sh:languageIn ( "ja" ) ] ;
+    sh:qualifiedMinCount 1 ;
+    sh:message "日本語の説明（dcterms:description@ja）が要る" .
+
+gsh:DepartmentShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Department ;
+    sh:property gsh:LabelJa , gsh:LabelEn , gsh:DescriptionJa ;
+    sh:property [
+        sh:path gyomu:hasWorkflow ;
+        sh:class gyomu:Workflow ;
+        sh:minCount 1 ;
+        sh:message "部署は、ワークフローを1つ以上持つ"
+    ] .
+
+gsh:WorkflowShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Workflow ;
+    sh:property gsh:LabelJa , gsh:LabelEn , gsh:DescriptionJa ;
+    sh:property [
+        sh:path gyomu:hasStage ;
+        sh:class gyomu:Stage ;
+        sh:minCount 1 ;
+        sh:message "ワークフローは、段階を1つ以上持つ"
+    ] ;
+    sh:property [
+        sh:path gyomu:frequency ;
+        sh:class gyomu:Frequency ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "ワークフローは、頻度を1つ持つ"
+    ] ;
+    sh:property [
+        sh:path [ sh:inversePath gyomu:hasWorkflow ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "ワークフローは、ちょうど1つの部署に属する"
+    ] ;
+    sh:property [
+        sh:path gyomu:pcfElement ;
+        sh:class gyomu:PcfElement
+    ] ;
+    sh:property [
+        sh:path gyomu:relatedRegulation ;
+        sh:class gyomu:Regulation
+    ] .
+
+gsh:StageShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Stage ;
+    sh:property gsh:LabelJa , gsh:LabelEn ;
+    sh:property [
+        sh:path gyomu:order ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:hasStep ;
+        sh:class gyomu:Step ;
+        sh:minCount 1 ;
+        sh:message "段階は、工程を1つ以上持つ"
+    ] ;
+    sh:property [
+        sh:path [ sh:inversePath gyomu:hasStage ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "段階は、ちょうど1つのワークフローに属する"
+    ] .
+
+gsh:StepShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Step ;
+    sh:property gsh:LabelJa , gsh:LabelEn , gsh:DescriptionJa ;
+    sh:property [
+        sh:path gyomu:order ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:performedBy ;
+        sh:class gyomu:Role ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "工程は、担い手を1つ持つ"
+    ] ;
+    sh:property [
+        sh:path gyomu:confirmedBy ;
+        sh:class gyomu:Role ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:receives ;
+        sh:class gyomu:Artifact
+    ] ;
+    sh:property [
+        sh:path gyomu:produces ;
+        sh:class gyomu:Artifact
+    ] ;
+    sh:property [
+        sh:path gyomu:requiresJudgment ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:irreversible ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:humanRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:aiAllocation ;
+        sh:in ( gyomu:AiCanDo gyomu:AiDraftsHumanConfirms gyomu:HumanOnly ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:usesToolKind ;
+        sh:class gyomu:ToolKind
+    ] ;
+    sh:property [
+        sh:path gyomu:relatedRegulation ;
+        sh:class gyomu:Regulation
+    ] ;
+    sh:property [
+        sh:path [ sh:inversePath gyomu:hasStep ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "工程は、ちょうど1つの段階に属する"
+    ] ;
+    # 判断があるなら、判断の中身を書く
+    sh:or (
+        [ sh:not [ sh:property [ sh:path gyomu:requiresJudgment ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path gyomu:judgment ; sh:minCount 1 ] ]
+    ) ;
+    # 人が行う必要があるなら、理由を書く
+    sh:or (
+        [ sh:not [ sh:property [ sh:path gyomu:humanRequired ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path gyomu:humanRequiredReason ; sh:minCount 1 ] ]
+    ) .
+
+gsh:RoleShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Role ;
+    sh:property gsh:LabelJa , gsh:LabelEn , gsh:DescriptionJa ;
+    sh:property [
+        sh:path gyomu:external ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] .
+
+gsh:ArtifactShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Artifact ;
+    sh:property gsh:LabelJa , gsh:LabelEn ;
+    sh:property [
+        sh:path gyomu:artifactKind ;
+        sh:in ( gyomu:Form gyomu:Data gyomu:Document gyomu:Message ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:fromOutside ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:sender ;
+        sh:class gyomu:Role ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path gyomu:recipient ;
+        sh:class gyomu:Role ;
+        sh:maxCount 1
+    ] .
+
+gsh:RegulationShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:Regulation ;
+    sh:property gsh:LabelJa , gsh:LabelEn ;
+    sh:property [
+        sh:path gyomu:obligation ;
+        sh:minCount 1 ;
+        sh:message "制度は、会社がやることを書く"
+    ] ;
+    sh:property [
+        sh:path gyomu:authority ;
+        sh:minCount 1 ;
+        sh:message "制度は、所管を書く"
+    ] ;
+    sh:property [
+        sh:path gyomu:officialGuidance ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:or (
+        [ sh:property [ sh:path gyomu:officialGuidance ; sh:minCount 1 ] ]
+        [ sh:property [ sh:path gyomu:legalBasisArticle ; sh:minCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path gyomu:legalBasis ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path gyomu:verifiedOn ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "制度は、確かめた日を1つ持つ"
+    ] .
+
+gsh:ToolKindShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:ToolKind ;
+    sh:property gsh:LabelJa , gsh:LabelEn .
+
+gsh:PcfElementShape
+    a sh:NodeShape ;
+    sh:targetClass gyomu:PcfElement ;
+    sh:property [
+        sh:path dcterms:identifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path skos:notation ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1
+    ] .

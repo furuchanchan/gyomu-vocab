@@ -1,0 +1,45 @@
+# どの部署の業務にも出てくる担い手。
+# 職業分類のコードは、日本標準職業分類（平成21年12月統計基準設定）の中分類・小分類。
+- id: employee
+  label: { ja: 従業員, en: Employee }
+  description: { ja: 申請や届け出をする、本人としての従業員。 }
+  external: false
+
+- id: requesting-staff
+  label: { ja: 依頼した部署の担当, en: Requesting staff }
+  description: { ja: 物や作業を取引先に頼み、結果を受け取った部署の担当。 }
+  external: false
+
+- id: department-manager
+  label: { ja: 部門の責任者, en: Department manager }
+  description: { ja: 部や課を預かり、部下の申請を承認する役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "03"
+
+- id: executive
+  label: { ja: 経営者, en: Executive }
+  description: { ja: 代表取締役や役員など、会社としての決定をする役割。 }
+  external: false
+  occupation: jsoc-a
+  occupationCode: "021"
+
+- id: vendor
+  label: { ja: 取引先（仕入先・委託先）, en: Vendor }
+  description: { ja: 会社が物や作業を頼み、代金を支払う相手。 }
+  external: true
+
+- id: customer
+  label: { ja: 顧客, en: Customer }
+  description: { ja: 会社が物やサービスを提供し、代金を受け取る相手。 }
+  external: true
+
+- id: bank
+  label: { ja: 金融機関, en: Bank }
+  description: { ja: 会社の預金の口座を持ち、振込や入金を扱う相手。 }
+  external: true
+
+- id: tax-office
+  label: { ja: 税務署, en: Tax office }
+  description: { ja: 国税の申告と納付を受け付ける役所。 }
+  external: true

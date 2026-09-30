@@ -1,0 +1,145 @@
+id: annual-closing-and-tax
+label: { ja: 年次決算と税の申告, en: Annual closing and tax filing }
+description:
+  ja: 事業年度の終わりに、決算整理をして計算書類を作り、承認を受けて公告し、法人税と消費税を申告して納め、帳簿と書類を保存するまでの流れ。
+  en: At the end of the business year, from year-end adjustments and financial statements to approval, public notice, filing and paying corporate and consumption taxes, and storing the books.
+frequency: yearly
+timing: { ja: 毎年。事業年度の終了の日から、申告の期限までのあいだ。 }
+pcf: ["10750", "10766"]
+regulations: [financial-statements, corporate-tax-return, consumption-tax-return, bookkeeping-retention]
+stages:
+  - id: preparation
+    label: { ja: 決算の準備, en: Preparation }
+    steps:
+      - id: plan-closing
+        label: { ja: 決算の日程と分担を決める, en: Plan the closing }
+        description: { ja: 申告の期限から逆に数えて、決算の日程、各部署に頼むこと、税理士と分担することを決める。 }
+        performedBy: accounting-manager
+        produces: [annual-closing-schedule]
+        requiresJudgment: true
+        judgment: { ja: 期限に間に合う日程と、分担の切り分け。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: count-inventory-and-assets
+        label: { ja: 在庫と固定資産を確かめる, en: Count the inventory and the fixed assets }
+        description: { ja: 事業年度の終わりの時点で、在庫と固定資産が実際にあるかを数え、帳簿と照らす。 }
+        performedBy: accounting-staff
+        receives: [annual-closing-schedule]
+        produces: [count-record]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 現物を数える作業であるため。 }
+        toolKinds: [spreadsheet]
+
+  - id: adjustment
+    label: { ja: 決算整理, en: Year-end adjustment }
+    steps:
+      - id: post-year-end-adjustments
+        label: { ja: 決算整理の仕訳を入れる, en: Post the year-end adjusting entries }
+        description: { ja: 在庫の評価、減価償却費、引当金、前払いや未払いの費用、税金などの仕訳を入れる。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [count-record]
+        produces: [year-end-adjusting-entries]
+        requiresJudgment: true
+        judgment: { ja: 見積りを含む項目を、いくらで計上するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+      - id: prepare-financial-statements
+        label: { ja: 計算書類を作る, en: Prepare the financial statements }
+        description: { ja: 決算整理まで入った帳簿から、貸借対照表、損益計算書などの計算書類と、附属明細書を作る。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [year-end-adjusting-entries]
+        produces: [financial-statements-draft]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+        regulations: [financial-statements]
+
+  - id: approval
+    label: { ja: 承認と公告, en: Approval and public notice }
+    steps:
+      - id: approve-financial-statements
+        label: { ja: 計算書類の承認を受ける, en: Obtain approval of the financial statements }
+        description: { ja: 取締役が、計算書類と事業報告を定時株主総会に出し、承認を受ける。 }
+        performedBy: executive
+        receives: [financial-statements-draft]
+        produces: [approved-financial-statements]
+        requiresJudgment: true
+        judgment: { ja: 計算書類が、会社の財産と損益を正しく表しているか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 会社法により、取締役が定時株主総会に計算書類を出し、承認を受ける手続きであるため。 }
+        regulations: [financial-statements]
+
+      - id: publish-notice
+        label: { ja: 決算公告をする, en: Give the public notice }
+        description: { ja: 定時株主総会が終わったあと、貸借対照表を、定款で決めた方法で公告する。 }
+        performedBy: accounting-manager
+        receives: [approved-financial-statements]
+        produces: [public-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        regulations: [financial-statements]
+
+  - id: tax-filing
+    label: { ja: 税の申告, en: Tax filing }
+    steps:
+      - id: prepare-tax-returns
+        label: { ja: 申告書を作る, en: Prepare the tax returns }
+        description: { ja: 承認された計算書類をもとに、税務上の調整をして、法人税と消費税の申告書を作る。 }
+        performedBy: tax-accountant
+        receives: [approved-financial-statements]
+        produces: [tax-return-draft]
+        requiresJudgment: true
+        judgment: { ja: 税務上の調整が要る項目はどれで、金額はいくらか。 }
+        irreversible: false
+        humanRequired: false
+        regulations: [corporate-tax-return, consumption-tax-return]
+
+      - id: confirm-tax-returns
+        label: { ja: 申告書を確かめる, en: Confirm the tax returns }
+        description: { ja: 申告書の数字を、計算書類と帳簿に照らして確かめ、会社として出してよいかを決める。 }
+        performedBy: accounting-manager
+        receives: [tax-return-draft]
+        produces: [confirmed-tax-return]
+        requiresJudgment: true
+        judgment: { ja: 申告の中身に、誤りや漏れがないか。 }
+        irreversible: false
+        humanRequired: false
+
+      - id: file-and-pay
+        label: { ja: 申告して納める, en: File the returns and pay the taxes }
+        description: { ja: 期限までに申告書を税務署に出し、税金を納める。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [confirmed-tax-return]
+        produces: [filed-tax-return, tax-payment-record]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [e-filing, online-banking]
+        regulations: [corporate-tax-return, consumption-tax-return]
+
+  - id: retention
+    label: { ja: 保存, en: Retention }
+    steps:
+      - id: store-closing-documents
+        label: { ja: 帳簿と書類を保存する, en: Store the books and documents }
+        description: { ja: 帳簿、計算書類、申告書の控え、取引の書類を、決まった期間、保存する。 }
+        performedBy: accounting-staff
+        receives: [filed-tax-return, approved-financial-statements]
+        produces: [stored-closing-documents]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [bookkeeping-retention, financial-statements]

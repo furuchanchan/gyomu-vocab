@@ -1,0 +1,111 @@
+id: monthly-closing
+label: { ja: 月次決算, en: Monthly closing }
+description:
+  ja: 月ごとに、取引の計上がそろっているかを確かめ、残高を合わせ、整理の仕訳を入れて試算表を作り、経営者に報告するまでの流れ。
+  en: Each month, from confirming that all transactions are booked to reconciling balances, posting adjustments, preparing the trial balance and reporting to management.
+frequency: monthly
+timing: { ja: 毎月。月が終わったあと、会社が決めた日数の中で締める。 }
+pcf: ["10748", "10750"]
+stages:
+  - id: cutoff
+    label: { ja: 締め, en: Cut-off }
+    steps:
+      - id: announce-schedule
+        label: { ja: 締めの日程を知らせる, en: Announce the closing schedule }
+        description: { ja: 請求書や経費の申請を出す期限を、各部署に知らせる。 }
+        performedBy: accounting-manager
+        produces: [closing-schedule]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: confirm-all-entries
+        label: { ja: 当月の計上がそろったかを確かめる, en: Confirm that the month's entries are complete }
+        description: { ja: 支払、請求、経費、給与の仕訳が、当月の分までそろっているかを確かめる。足りない分は、担当に出してもらう。 }
+        performedBy: accounting-staff
+        receives: [payable-journal-entry, receivable-journal-entry, expense-journal-entry, payroll-summary]
+        produces: [complete-journal]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: reconciliation
+    label: { ja: 残高の確認, en: Reconciliation }
+    steps:
+      - id: reconcile-bank
+        label: { ja: 預金の残高を合わせる, en: Reconcile the bank balances }
+        description: { ja: 帳簿の預金の残高と、金融機関の明細の残高が合っているかを確かめる。 }
+        performedBy: accounting-staff
+        receives: [complete-journal, bank-statement]
+        produces: [bank-reconciliation]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software, online-banking]
+
+      - id: reconcile-accounts
+        label: { ja: 売掛金や買掛金の残高を確かめる, en: Check the balances of receivables and payables }
+        description: { ja: 売掛金、買掛金、仮払金などの残高を、相手ごとの明細と照らし、差があれば原因を調べる。 }
+        performedBy: accounting-staff
+        receives: [complete-journal]
+        produces: [account-balance-check]
+        requiresJudgment: true
+        judgment: { ja: 残高に差があるとき、原因が何で、どう直すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software, spreadsheet]
+
+  - id: adjustment
+    label: { ja: 整理, en: Adjustment }
+    steps:
+      - id: post-adjustments
+        label: { ja: 月次の整理の仕訳を入れる, en: Post the monthly adjusting entries }
+        description: { ja: 減価償却費、前払いや未払いの費用など、月をまたぐ分の仕訳を入れる。 }
+        performedBy: accounting-staff
+        confirmedBy: accounting-manager
+        receives: [bank-reconciliation, account-balance-check]
+        produces: [adjusting-entries]
+        requiresJudgment: true
+        judgment: { ja: 見積りを含む費用を、いくらで計上するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+  - id: reporting
+    label: { ja: 報告, en: Reporting }
+    steps:
+      - id: prepare-trial-balance
+        label: { ja: 試算表を作る, en: Prepare the trial balance }
+        description: { ja: 整理の仕訳まで入った帳簿から、試算表を出す。 }
+        performedBy: accounting-staff
+        receives: [adjusting-entries]
+        produces: [trial-balance]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [accounting-software]
+
+      - id: analyze-variance
+        label: { ja: 前月や予算との差を調べる, en: Analyse the variances }
+        description: { ja: 売上、費用、利益を前月や予算と比べ、差の大きい所の原因を調べて、報告にまとめる。 }
+        performedBy: accounting-manager
+        receives: [trial-balance]
+        produces: [monthly-report]
+        requiresJudgment: true
+        judgment: { ja: 差の原因は何か。経営者に伝えるべき点はどれか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+      - id: decide-actions
+        label: { ja: 報告を受けて打ち手を決める, en: Decide actions based on the report }
+        description: { ja: 月次の報告を受け、費用の見直しや資金の手当てなどの打ち手を決める。 }
+        performedBy: executive
+        receives: [monthly-report]
+        produces: [management-decision]
+        requiresJudgment: true
+        judgment: { ja: 数字から見て、どの打ち手を取るか。 }
+        irreversible: false
+        humanRequired: false
