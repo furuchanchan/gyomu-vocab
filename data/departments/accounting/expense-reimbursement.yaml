@@ -63,7 +63,7 @@ stages:
         toolKinds: [accounting-software]
 
   - id: payment
-    label: { ja: 支払, en: Payment }
+    label: { ja: 振込, en: Bank transfer }
     steps:
       - id: pay-expense
         label: { ja: 従業員に支払う, en: Pay the employee }

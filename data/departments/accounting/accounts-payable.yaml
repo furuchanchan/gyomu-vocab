@@ -1,5 +1,5 @@
 id: accounts-payable
-label: { ja: 支払, en: Accounts payable }
+label: { ja: 取引先への支払, en: Accounts payable }
 description:
   ja: 取引先から請求書を受け取り、中身を確かめ、仕訳を起こし、期日までに代金を振り込み、請求書を保存するまでの流れ。
   en: From receiving a vendor invoice to checking it, booking it, paying it by the due date and storing the invoice.
@@ -76,7 +76,7 @@ stages:
         toolKinds: [accounting-software]
 
   - id: payment
-    label: { ja: 支払, en: Payment }
+    label: { ja: 振込, en: Bank transfer }
     steps:
       - id: prepare-payment-list
         label: { ja: 支払の予定をまとめる, en: Prepare the payment list }
