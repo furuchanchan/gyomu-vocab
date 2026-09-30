@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: 業務語彙（Gyomu Vocabulary）
+message: このデータを使うときは、次のように引用してください。
+type: dataset
+authors:
+  - family-names: 古野
+    given-names: 光太朗
+    affiliation: 株式会社TechWorker
+version: 0.1.0
+date-released: "2026-09-30"
+license: CC-BY-4.0
+url: https://w3id.org/gyomu/
+repository-code: https://github.com/furuchanchan/gyomu-vocab
+abstract: 日本の会社の業務を、部署・ワークフロー・段階・工程の4つの層で表す語彙と、10部署・55ワークフロー・492工程の標準の業務のデータ。工程ごとに、担い手、受け取る物と渡す物、判断の有無、取り消せない操作かどうか、関係する制度（根拠の法令と役所のページに照らして確かめたもの）を持つ。

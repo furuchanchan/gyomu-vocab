@@ -13,6 +13,23 @@
 
 AIに業務を渡す前の、共通の言葉として使えます。
 
+- 見る：https://furuchanchan.github.io/gyomu-vocab/
+- URI：https://w3id.org/gyomu/ （語彙は `https://w3id.org/gyomu/ns#`、データは `https://w3id.org/gyomu/id/...`）
+- 中身（2026-09-30 の版）：部署 10、ワークフロー 55、工程 492、担い手 55、物 544、制度 68（法令 43、条 181、役所のページ 35）
+
+| 部署 | ワークフロー |
+| --- | --- |
+| 経理・財務 | 取引先への支払、請求と入金の確認、経費の精算、月次決算、年次決算と税の申告 |
+| 人事・労務 | 採用、入社の手続き、勤怠の集計と給与計算、年末調整、算定基礎届と年度更新、退職の手続き、36協定と就業規則 |
+| 営業 | 見込み客の獲得から商談まで、提案と見積、稟議と契約、受注から請求の依頼まで、既存の顧客のフォロー |
+| マーケティング | 施策の企画と予算、コンテンツとWebサイトの制作・公開、見込み客の獲得と営業への引き渡し、メールでの配信、展示会やセミナーの運営 |
+| カスタマーサポート | 問い合わせの対応、苦情・クレームの対応、よくある質問と手順書の整備、要望と不具合の製品側への引き渡し、契約とアカウントの変更の受け付け |
+| 総務・法務 | 定時株主総会の運営、取締役会の運営、登記の変更、契約書の審査と管理、備品・オフィス・固定資産の管理、社内規程の整備、文書の保存と廃棄 |
+| 情報システム | アカウントの発行と削除、端末の調達・貸与・回収、権限とセキュリティの運用、障害とセキュリティ事故の対応、システムの導入と変更、バックアップと復旧 |
+| 購買・調達 | 購入の申請から発注まで、取引先の登録と評価、業務の委託（外注）の管理、物品の受け入れと検収、定期の契約の見直し |
+| 製造 | 生産計画、製造の指示と実行、検査と不良の処理、設備の点検と保全、作業の安全と教育 |
+| 物流 | 出荷、入荷と保管、在庫の管理と棚卸、返品の受け入れ、運送の手配と運送会社の管理 |
+
 ## 中身
 
 | 場所 | 中身 |
@@ -79,6 +96,10 @@ node scripts/verify-sources.mjs
 - 業務の分類の一部は、APQC Process Classification Framework の要素を参照しています。
 
 > APQC's Process Classification Framework® (PCF) is an open standard developed by APQC, a nonprofit that promotes benchmarking and best practices worldwide. The PCF is intended to facilitate organizational improvement through process management and benchmarking, regardless of industry, size, or geography. To download the full PCF or industry-specific versions of the PCF, as well as associated measures and benchmarking, please visit www.apqc.org/pcf.
+
+## 直し方と足し方
+
+`data/` の YAML を直して、`node scripts/check.mjs` → `node scripts/verify-sources.mjs <ファイル名>` → `npm run build` → `npm test` の順に通してください。誤りの指摘や追加の提案は、GitHub の Issue か Pull Request でお願いします。制度を足すときは、条と役所のページの照合が通ることが条件です。
 
 ## 作った人
 
