@@ -1,0 +1,160 @@
+id: contracting
+label: { ja: 稟議と契約, en: Ringi approval and contracting }
+description:
+  ja: 取引先を確かめ、契約書の案を作って法務の確認を受け、相手と条件を合わせ、社内の稟議で決裁を受けて契約を結び、契約書を保存するまでの流れ。
+  en: From checking the counterparty and drafting the contract with legal review, to agreeing terms, obtaining internal ringi approval, signing and storing the contract.
+frequency: on-demand
+timing: { ja: 受注が見込める案件ごとに。 }
+regulations: [antisocial-forces-exclusion, electronic-signature, stamp-tax]
+stages:
+  - id: counterparty-check
+    label: { ja: 取引先の確認, en: Counterparty check }
+    steps:
+      - id: check-counterparty
+        label: { ja: 取引先を確認する, en: Check the counterparty }
+        description: { ja: 契約の相手の会社の情報から、取引してよい相手かを確かめる。 }
+        performedBy: sales-rep
+        confirmedBy: legal-staff
+        receives: [company-info]
+        produces: [counterparty-check-result]
+        requiresJudgment: true
+        judgment: { ja: 暴力団など、取引してはいけない相手の疑いがないか。取引を進めてよいか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+        regulations: [antisocial-forces-exclusion]
+
+
+  - id: drafting
+    label: { ja: 契約書の案と法務の確認, en: Contract drafting and legal review }
+    steps:
+      - id: draft-contract
+        label: { ja: 契約書の案を作る, en: Draft the contract }
+        description: { ja: 承認された見積と確認の結果をもとに、契約書の案を作る。暴力団関係者だと分かったときに催告なく解除できる特約条項を入れる。 }
+        performedBy: sales-rep
+        receives: [approved-quote, counterparty-check-result]
+        produces: [contract-draft]
+        requiresJudgment: true
+        judgment: { ja: どの条件を、どのように契約書に書くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+        regulations: [antisocial-forces-exclusion]
+
+      - id: legal-review
+        label: { ja: 契約書の案を確認する, en: Review the contract draft }
+        description: { ja: 契約書の案について、会社に不利な点、法令に合わない点、抜けている点を確かめ、意見を返す。 }
+        performedBy: legal-staff
+        receives: [contract-draft]
+        produces: [legal-review-comments]
+        requiresJudgment: true
+        judgment: { ja: どの点を直さなければ、契約を結んではいけないか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: revise-contract
+        label: { ja: 法務の意見を反映して契約書の案を直す, en: Revise the contract }
+        description: { ja: 法務の意見に沿って契約書の案を直し、相手に示す案として確定する。 }
+        performedBy: sales-rep
+        receives: [contract-draft, legal-review-comments]
+        produces: [final-contract-draft]
+        requiresJudgment: true
+        judgment: { ja: 法務の意見のうち、どれを直し、どれは相手と話して決めるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]
+
+      - id: negotiate-terms
+        label: { ja: 契約の条件を相手と話し合う, en: Negotiate the terms }
+        description: { ja: 契約書の案を相手に示し、相手の意見を聞いて、条件を合意する。 }
+        performedBy: sales-rep
+        receives: [final-contract-draft, contract-comments]
+        produces: [agreed-contract-terms]
+        requiresJudgment: true
+        judgment: { ja: 相手の求めをどこまで受けるか。 }
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 相手との合意そのものであり、対話で条件を決めるため。 }
+        toolKinds: [email, web-meeting]
+
+
+  - id: ringi
+    label: { ja: 稟議, en: Ringi approval }
+    steps:
+      - id: draft-ringi
+        label: { ja: 稟議書を起案する, en: Draft the ringi document }
+        description: { ja: 契約を結ぶ目的、相手、条件、金額、リスクを書いた稟議書を作り、承認を求める。 }
+        performedBy: sales-rep
+        receives: [agreed-contract-terms, counterparty-check-result]
+        produces: [ringi-document]
+        doneWhen: { ja: 目的、相手、条件、金額、リスク、契約の期間が入っている。 }
+        requiresJudgment: true
+        judgment: { ja: 決裁者に何を伝えれば、判断できるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: circulate-ringi
+        label: { ja: 稟議書を回覧して承認する, en: Circulate and approve the ringi document }
+        description: { ja: 関係する部署に稟議書を回して意見をもらい、営業の責任者が承認する。 }
+        performedBy: sales-manager
+        receives: [ringi-document]
+        produces: [approved-ringi]
+        requiresJudgment: true
+        judgment: { ja: 意見が分かれたとき、契約を進めるか、条件を見直すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: decide-ringi
+        label: { ja: 稟議を決裁する, en: Decide the ringi document }
+        description: { ja: 決裁権限のある人が、契約を結んでよいかを決める。 }
+        performedBy: executive
+        receives: [approved-ringi]
+        produces: [decided-ringi]
+        requiresJudgment: true
+        judgment: { ja: この契約を、会社として結ぶか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: store-ringi
+        label: { ja: 決裁された稟議書を保存する, en: Store the decided ringi document }
+        description: { ja: 決裁された稟議書を、承認の記録とあわせて、探し出せる形で保存する。 }
+        performedBy: sales-admin
+        receives: [decided-ringi]
+        produces: [stored-ringi]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system, document-storage]
+
+
+  - id: execution
+    label: { ja: 契約の締結と保存, en: Signing and storage }
+    steps:
+      - id: sign-contract
+        label: { ja: 契約を締結する, en: Sign the contract }
+        description: { ja: 決裁を受けた条件で、契約書に署名か押印をして、相手と契約を交わす。電子で交わすときは、電子署名を付ける。書面で交わすときは、課税文書に当たれば印紙をはる。 }
+        performedBy: sales-rep
+        confirmedBy: executive
+        receives: [decided-ringi, agreed-contract-terms]
+        produces: [signed-contract]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 契約という、相手との合意そのものであるため。 }
+        toolKinds: [e-contract-service]
+        regulations: [electronic-signature, stamp-tax]
+
+      - id: store-contract
+        label: { ja: 契約書を保存する, en: Store the contract }
+        description: { ja: 締結した契約書を、探し出せる形で保存する。 }
+        performedBy: sales-admin
+        receives: [signed-contract]
+        produces: [stored-contract]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [document-storage]

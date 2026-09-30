@@ -1,0 +1,295 @@
+# 営業の工程で受け渡される物。
+- id: inquiry
+  label: { ja: 問い合わせや名刺の情報, en: Inquiry or business card information }
+  description: { ja: 見込み客からの問い合わせや、名刺交換で受け取った連絡先の情報。 }
+  kind: message
+  fromOutside: true
+  sender: prospect
+
+- id: lead-record
+  label: { ja: 見込み客の記録, en: Lead record }
+  description: { ja: 相手の名前、会社、連絡先、接点になった経緯を書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: prospect-profile
+  label: { ja: 見込み客の調べた結果, en: Prospect profile }
+  description: { ja: 相手の会社の事業、規模、課題になりそうな点をまとめたもの。 }
+  kind: document
+  fromOutside: false
+
+- id: first-contact-message
+  label: { ja: 初回の連絡, en: First contact message }
+  description: { ja: 見込み客に最初に送る、自社の紹介と面談のお願いの連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: prospect
+
+- id: prospect-reply
+  label: { ja: 見込み客の返事, en: Prospect reply }
+  kind: message
+  fromOutside: true
+  sender: prospect
+
+- id: meeting-plan
+  label: { ja: 商談の予定, en: Meeting plan }
+  description: { ja: 初回の商談の日時、参加者、話す内容を決めたもの。 }
+  kind: data
+  fromOutside: false
+
+- id: meeting-notes
+  label: { ja: 商談の記録, en: Meeting notes }
+  description: { ja: 商談で聞いた内容と、相手の反応を書いた記録。 }
+  kind: document
+  fromOutside: false
+
+- id: opportunity-record
+  label: { ja: 商談の記録（進める案件）, en: Opportunity record }
+  description: { ja: 商談として進めると決めた案件の、相手、見込みの金額、次にやることを書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: hearing-notes
+  label: { ja: 聞き取りの記録, en: Hearing notes }
+  description: { ja: 相手の課題、目的、予算、決め方を聞き取った記録。 }
+  kind: document
+  fromOutside: false
+
+- id: needs-summary
+  label: { ja: 課題と要望の整理, en: Needs summary }
+  kind: document
+  fromOutside: false
+
+- id: proposal-draft
+  label: { ja: 提案書の案, en: Proposal draft }
+  kind: document
+  fromOutside: false
+
+- id: quote-draft
+  label: { ja: 見積書の案, en: Quote draft }
+  kind: document
+  fromOutside: false
+
+- id: discount-approval-request
+  label: { ja: 値引きと条件の承認の依頼, en: Discount and terms approval request }
+  description: { ja: 見積の値引きや、支払・納期などの条件について、営業の責任者に承認を頼む申請。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-quote
+  label: { ja: 承認された見積, en: Approved quote }
+  description: { ja: 営業の責任者が、値引きと条件を承認した見積。 }
+  kind: document
+  fromOutside: false
+
+- id: proposal-package
+  label: { ja: 提案書と見積書, en: Proposal and quote }
+  description: { ja: 相手に提示する、提案書と見積書。 }
+  kind: document
+  fromOutside: false
+  recipient: prospect
+
+- id: customer-feedback
+  label: { ja: 提案への相手の反応, en: Feedback on the proposal }
+  kind: message
+  fromOutside: true
+  sender: prospect
+
+- id: proposal-result
+  label: { ja: 提案の結果の記録, en: Proposal result }
+  description: { ja: 提案に対する相手の反応と、受注の見込みや、次にやることを書いた記録。 }
+  kind: data
+  fromOutside: false
+
+- id: company-info
+  label: { ja: 取引先の会社の情報, en: Counterparty company information }
+  description: { ja: 契約の相手の会社名、所在地、代表者、事業の内容など。相手から受け取る。 }
+  kind: document
+  fromOutside: true
+  sender: customer
+
+- id: counterparty-check-result
+  label: { ja: 取引先の確認の結果, en: Counterparty check result }
+  description: { ja: 契約の相手が、取引してよい相手かを確かめた結果。 }
+  kind: data
+  fromOutside: false
+
+- id: contract-draft
+  label: { ja: 契約書の案, en: Contract draft }
+  kind: document
+  fromOutside: false
+
+- id: legal-review-comments
+  label: { ja: 契約書の案への法務の意見, en: Legal review comments }
+  kind: document
+  fromOutside: false
+
+- id: final-contract-draft
+  label: { ja: 確認を終えた契約書の案, en: Reviewed contract draft }
+  description: { ja: 法務の意見を反映し、相手に示す契約書の案。 }
+  kind: document
+  fromOutside: false
+  recipient: customer
+
+- id: contract-comments
+  label: { ja: 契約書の案への相手の意見, en: Counterparty comments on the contract }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: agreed-contract-terms
+  label: { ja: 合意した契約の条件, en: Agreed contract terms }
+  description: { ja: 相手と話し合って合意した、契約の条件をまとめたもの。 }
+  kind: document
+  fromOutside: false
+
+- id: ringi-document
+  label: { ja: 稟議書, en: Ringi document }
+  description: { ja: 契約を結ぶことについて、目的、相手、条件、金額、リスクを書き、社内の承認を求める文書。 }
+  kind: form
+  fromOutside: false
+
+- id: approved-ringi
+  label: { ja: 回覧して承認を受けた稟議書, en: Circulated and approved ringi document }
+  kind: form
+  fromOutside: false
+
+- id: decided-ringi
+  label: { ja: 決裁された稟議書, en: Decided ringi document }
+  description: { ja: 決裁権限のある人が、契約を結んでよいと決めた稟議書。 }
+  kind: form
+  fromOutside: false
+
+- id: stored-ringi
+  label: { ja: 保存した稟議書, en: Stored ringi document }
+  kind: document
+  fromOutside: false
+
+- id: signed-contract
+  label: { ja: 締結した契約書, en: Signed contract }
+  description: { ja: 双方が署名か押印をした契約書。 }
+  kind: document
+  fromOutside: false
+  recipient: customer
+
+- id: stored-contract
+  label: { ja: 保存した契約書, en: Stored contract }
+  kind: document
+  fromOutside: false
+
+- id: order-record
+  label: { ja: 受注の記録, en: Order record }
+  description: { ja: 受注した内容、金額、納期、支払の条件を、システムに登録した記録。 }
+  kind: data
+  fromOutside: false
+
+- id: delivery-instruction
+  label: { ja: 納品・作業の指示, en: Delivery instruction }
+  kind: message
+  fromOutside: false
+
+- id: deliverable
+  label: { ja: 納品する物やサービスの成果, en: Deliverable }
+  description: { ja: 顧客に納める物、または作業の成果。 }
+  kind: data
+  fromOutside: false
+  recipient: customer
+
+- id: delivery-report
+  label: { ja: 納品・作業の報告, en: Delivery report }
+  kind: document
+  fromOutside: false
+
+- id: acceptance-request
+  label: { ja: 検収の依頼, en: Acceptance request }
+  description: { ja: 納めた物や作業の成果を確かめて、受け入れるかどうかを返してもらうための依頼。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: acceptance-certificate
+  label: { ja: 検収の連絡, en: Acceptance certificate }
+  description: { ja: 顧客が、納品を確かめて受け入れたことを知らせる書面かメール。 }
+  kind: document
+  fromOutside: true
+  sender: customer
+
+- id: acceptance-record
+  label: { ja: 検収の記録, en: Acceptance record }
+  kind: data
+  fromOutside: false
+
+- id: billing-notice
+  label: { ja: 請求の時期の連絡, en: Billing timing notice }
+  description: { ja: 請求書を送る予定の時期を、顧客に知らせる連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: follow-up-message
+  label: { ja: 定期の連絡, en: Follow-up message }
+  description: { ja: 顧客の様子を聞いたり、役立つ情報を伝えたりする連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: usage-data
+  label: { ja: 顧客の利用の状況, en: Customer usage data }
+  description: { ja: 顧客が、契約した物やサービスをどう使っているかを示す情報。 }
+  kind: data
+  fromOutside: true
+  sender: customer
+
+- id: usage-summary
+  label: { ja: 利用の状況のまとめ, en: Usage summary }
+  kind: document
+  fromOutside: false
+
+- id: expansion-proposal
+  label: { ja: 追加の提案の案, en: Expansion proposal draft }
+  kind: document
+  fromOutside: false
+
+- id: renewal-offer
+  label: { ja: 更新と追加の提案, en: Renewal and expansion offer }
+  description: { ja: 契約の更新の案内と、追加の提案をまとめて顧客に示す文書。 }
+  kind: document
+  fromOutside: false
+  recipient: customer
+
+- id: renewal-reply
+  label: { ja: 更新と追加の提案への顧客の返事, en: Customer reply to the renewal offer }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: renewal-agreement
+  label: { ja: 更新の合意, en: Renewal agreement }
+  description: { ja: 更新や追加について、顧客と合意した内容の記録。 }
+  kind: data
+  fromOutside: false
+
+- id: overdue-case
+  label: { ja: 未入金の案件, en: Overdue case }
+  description: { ja: 経理から知らされた、未入金の請求ごとの案件。顧客、金額、期日、対応の状況を含む。 }
+  kind: data
+  fromOutside: false
+
+- id: payment-inquiry
+  label: { ja: 支払の状況の確認, en: Payment status inquiry }
+  description: { ja: 支払が遅れている理由や、支払の予定を、顧客に尋ねる連絡。 }
+  kind: message
+  fromOutside: false
+  recipient: customer
+
+- id: payment-reply
+  label: { ja: 支払の状況への顧客の返事, en: Customer reply about payment }
+  kind: message
+  fromOutside: true
+  sender: customer
+
+- id: payment-outlook
+  label: { ja: 支払の見込みの連絡, en: Payment outlook }
+  description: { ja: 顧客から聞いた支払の予定を、経理に伝える連絡。 }
+  kind: message
+  fromOutside: false

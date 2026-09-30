@@ -1,0 +1,95 @@
+id: lead-to-opportunity
+label: { ja: 見込み客の獲得から商談まで, en: Lead to opportunity }
+description:
+  ja: 問い合わせや名刺の情報を受け取り、相手を調べて連絡し、初回の商談を行って、商談として進めるかを決めるまでの流れ。
+  en: From receiving an inquiry or business card, researching and contacting the prospect and holding a first meeting to deciding whether to pursue it as an opportunity.
+frequency: on-demand
+timing: { ja: 問い合わせや名刺交換があるたびに。 }
+pcf: ["10182"]
+regulations: [personal-information-protection, specified-email]
+stages:
+  - id: intake
+    label: { ja: 情報の受け取りと調査, en: Intake and research }
+    steps:
+      - id: receive-inquiry
+        label: { ja: 問い合わせや名刺の情報を記録する, en: Record the inquiry or business card }
+        description: { ja: 問い合わせや名刺交換で受け取った相手の情報を、見込み客の記録として登録する。 }
+        performedBy: sales-rep
+        receives: [inquiry]
+        produces: [lead-record]
+        doneWhen: { ja: 相手の名前、会社、連絡先、接点になった経緯が入っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+        regulations: [personal-information-protection]
+
+      - id: research-prospect
+        label: { ja: 相手の会社を調べる, en: Research the prospect }
+        description: { ja: 相手の会社の事業、規模、最近の動きを調べ、課題になりそうな点をまとめる。 }
+        performedBy: sales-rep
+        receives: [lead-record]
+        produces: [prospect-profile]
+        requiresJudgment: true
+        judgment: { ja: この相手に連絡する価値があるか。どの課題から話すか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+
+  - id: outreach
+    label: { ja: 連絡, en: Outreach }
+    steps:
+      - id: send-first-contact
+        label: { ja: 初回の連絡を送る, en: Send the first contact }
+        description: { ja: 相手に自社を紹介し、面談をお願いする連絡を送る。 }
+        performedBy: sales-rep
+        receives: [prospect-profile]
+        produces: [first-contact-message]
+        requiresJudgment: true
+        judgment: { ja: この相手にメールを送ってよいか。どの内容と言い方にするか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+        regulations: [specified-email]
+
+      - id: arrange-meeting
+        label: { ja: 返事を受けて商談の日程を決める, en: Arrange the meeting }
+        description: { ja: 相手の返事を受けて、初回の商談の日時、参加者、話す内容を決める。 }
+        performedBy: sales-rep
+        receives: [prospect-reply, prospect-profile]
+        produces: [meeting-plan]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, email]
+
+
+  - id: first-meeting
+    label: { ja: 初回の商談, en: First meeting }
+    steps:
+      - id: hold-first-meeting
+        label: { ja: 初回の商談を行う, en: Hold the first meeting }
+        description: { ja: 相手に会い、課題や状況を聞き、自社の説明をする。 }
+        performedBy: sales-rep
+        receives: [meeting-plan]
+        produces: [meeting-notes]
+        requiresJudgment: true
+        judgment: { ja: 相手の話から、どの課題が本当に困っていることか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 相手との対話そのものであり、その場で相手の反応を受けて進めるため。 }
+        toolKinds: [web-meeting]
+
+      - id: decide-pursue
+        label: { ja: 商談として進めるかを決める, en: Decide whether to pursue the opportunity }
+        description: { ja: 商談の記録から、提案に進むかどうかを決め、進める案件として登録する。 }
+        performedBy: sales-rep
+        confirmedBy: sales-manager
+        receives: [meeting-notes]
+        produces: [opportunity-record]
+        requiresJudgment: true
+        judgment: { ja: この相手に時間をかけて提案する価値があるか。見込みの金額と時期をどう置くか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]

@@ -1,0 +1,92 @@
+# 営業に関係する制度。
+# legalBasis の条と officialGuidance のページは、contains の語が本文にあることを scripts/verify-sources.mjs で確かめる。
+- id: personal-information-protection
+  label: { ja: 個人情報の取得と利用目的（個人情報保護法）, en: Acquiring personal information and stating its purpose }
+  obligation:
+    ja: 個人情報を取り扱うときは、利用目的をできる限り特定する。個人情報を取得したら、あらかじめ利用目的を公表している場合を除き、速やかに、利用目的を本人に通知するか公表する。ただし、取得の状況からみて利用目的が明らかであると認められる場合は、この通知と公表はしなくてよい。個人情報保護委員会のQ&Aは、事業者の従業者であることを明らかにして名刺を交換した場合に、その連絡先へ自社の広告宣伝のための冊子や電子メールを送ることは、この場合に当たると解される、としている。
+  deadline:
+    ja: 個人情報を取得したら速やかに。
+  appliesTo:
+    ja: 個人情報取扱事業者。
+  authority: { ja: 個人情報保護委員会, en: Personal Information Protection Commission }
+  legalBasis:
+    - law: 個人情報の保護に関する法律
+      lawId: 415AC0000000057
+      articles:
+        - { article: "17", contains: [をできる限り特定しなければならない] }
+        - { article: "21", contains: [速やかに, 本人に通知し、又は公表しなければならない, 取得の状況からみて利用目的が明らかであると認められる場合] }
+  officialGuidance:
+    - url: https://www.ppc.go.jp/all_faq_index/faq1-q4-16/
+      contains: [名刺交換, 取得の状況からみて利用目的が明らかであると認められる場合]
+  verifiedOn: 2026-09-30
+
+- id: specified-email
+  label: { ja: 広告・宣伝の電子メールの送信（特定電子メール法）, en: Sending advertising email }
+  obligation:
+    ja: 自己や他人の営業について広告や宣伝を行うための電子メール（特定電子メール）は、次の者にだけ送る。送るように求めた者や同意した者、法令で定めるところにより自分のメールアドレスを通知した者、その営業を営む者と取引関係にある者、法令で定めるところによりメールアドレスを公表している団体か個人（個人は営業を営む者に限る）。求めや同意を受けた場合は、それがあったことを証する記録を保存する。送らないよう求める通知を受けたら、その意思に反して送らない。送るときは、送信者の氏名か名称と、送らないよう求める通知を受けるためのメールアドレスなどを、受信者の画面に正しく表示する。
+  appliesTo:
+    ja: 営利を目的とする団体と、営業を営む場合の個人が送る、広告・宣伝のための電子メール。
+  authority: { ja: 消費者庁、総務省, en: "Consumer Affairs Agency, Ministry of Internal Affairs and Communications" }
+  legalBasis:
+    - law: 特定電子メールの送信の適正化等に関する法律
+      lawId: 414AC0100000026
+      articles:
+        - { article: "2", contains: [営業につき広告又は宣伝を行うための手段として送信をする電子メール] }
+        - { article: "3", contains: [特定電子メールの送信をしてはならない, 取引関係にある者, 証する記録を保存しなければならない, 意思に反して] }
+        - { article: "4", contains: [氏名又は名称, 通知を受けるための電子メールアドレス] }
+  officialGuidance:
+    - url: https://www.caa.go.jp/policies/policy/consumer_transaction/specifed_email
+      contains: [特定電子メールの送信の適正化等に関する法律, ガイドライン]
+  verifiedOn: 2026-09-30
+
+- id: electronic-signature
+  label: { ja: 電子署名がある電磁的記録の推定（電子署名法）, en: Presumption of authenticity for electronically signed records }
+  obligation:
+    ja: 電子文書に、本人だけが行うことができる電子署名（署名に必要な符号と物件を適正に管理することで、本人だけが行えるもの）が行われているときは、その電子文書は真正に成立したものと推定される。電子で契約を交わすときに、この推定を受けたいなら、そのような電子署名を付ける。
+  appliesTo:
+    ja: 電子文書（電磁的記録）で契約などを交わす場合。公務員が職務上作った文書は除く。
+  authority: { ja: 法務省, en: Ministry of Justice }
+  legalBasis:
+    - law: 電子署名及び認証業務に関する法律
+      lawId: 412AC0000000102
+      articles:
+        - { article: "2", contains: [当該情報が当該措置を行った者の作成に係るものであることを示すためのもの, 改変が行われていないかどうかを確認することができるもの] }
+        - { article: "3", contains: [真正に成立したものと推定する, 本人だけが行うことができることとなるもの] }
+  officialGuidance:
+    - url: https://www.moj.go.jp/MINJI/minji32-1.html
+      contains: [真正に成立したものと推定する, 手書き署名や押印と同等]
+  verifiedOn: 2026-09-30
+
+- id: antisocial-forces-exclusion
+  label: { ja: 暴力団関係者との契約の防止（暴力団排除条例）, en: Preventing contracts with organized crime groups }
+  obligation:
+    ja: 事業者は、事業に関して結ぶ契約が「暴力団の活動を助長し、又は暴力団の運営に資することとなる疑いがあると認められる場合」に、契約の相手方が暴力団関係者でないかを確認するよう努める（第18条第1項）。契約を書面で結ぶ場合は、相手方が暴力団関係者だと分かったときに催告なく解除できる旨の特約条項を、書面に定めるよう努める（第18条第2項）。どちらも努力義務で、すべての契約に求めるものではない。確認が難しいときは、警察に相談して情報の提供を受けられる。
+  appliesTo:
+    ja: 東京都暴力団排除条例の対象となる事業者。ここでは警視庁のQ&Aで確かめた範囲だけを書いている。
+  authority: { ja: 警視庁, en: Tokyo Metropolitan Police Department }
+  basisNote:
+    ja: 法律ではなく、都道府県の条例にもとづく。ここでは東京都の条例を例に書く。ほかの都道府県の条例の内容は確かめていない。
+  officialGuidance:
+    - url: https://www.keishicho.metro.tokyo.lg.jp/kurashi/anzen/tsuiho/haijo_seitei/haijo_q_a.html
+      contains: [第18条第1項, 第18条第2項, 努力義務, 催告なく解除, 最寄りの警察署]
+  verifiedOn: 2026-09-30
+
+- id: stamp-tax
+  label: { ja: 印紙税, en: Stamp tax }
+  obligation:
+    ja: 印紙税法の別表第一に掲げる文書（課税文書）を作った人は、その文書に課される印紙税に当たる金額の印紙を、文書にはり付けて納める。国税庁の質疑応答事例は、電磁的記録は文書に含まれず、電子署名を付けて電子メールで送った電磁的記録に印紙税は課税されない、としている。
+  deadline:
+    ja: 課税文書を作る時まで。
+  appliesTo:
+    ja: 課税文書を作る人。
+  authority: { ja: 国税庁, en: National Tax Agency }
+  legalBasis:
+    - law: 印紙税法
+      lawId: 342AC0000000023
+      articles:
+        - { article: "2", contains: [別表第一の課税物件の欄に掲げる文書] }
+        - { article: "8", contains: [当該課税文書の作成の時までに, 当該課税文書にはり付ける方法により] }
+  officialGuidance:
+    - url: https://www.nta.go.jp/law/shitsugi/inshi/02/10.htm
+      contains: [電磁的記録は文書に含まれません, 印紙税は課税されません]
+  verifiedOn: 2026-09-30

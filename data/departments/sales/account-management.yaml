@@ -1,0 +1,114 @@
+id: account-management
+label: { ja: 既存の顧客のフォロー, en: Account management }
+description:
+  ja: 契約後の顧客に定期的に連絡して利用の状況を確かめ、追加の提案と更新を進め、未入金があれば顧客に支払の状況を確かめるまでの流れ。
+  en: From regular follow-ups and usage checks with existing customers, through renewal and expansion proposals, to confirming payment status with the customer when an invoice is overdue.
+frequency: monthly
+timing: { ja: 毎月。更新の時期は契約の期間による。 }
+pcf: ["10183"]
+stages:
+  - id: follow-up
+    label: { ja: 定期のフォロー, en: Follow-up }
+    steps:
+      - id: contact-customer
+        label: { ja: 定期の連絡をする, en: Contact the customer regularly }
+        description: { ja: 顧客の様子を聞いたり、役立つ情報を伝えたりする連絡をする。 }
+        performedBy: sales-rep
+        receives: [stored-contract]
+        produces: [follow-up-message]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email, crm]
+
+      - id: check-usage
+        label: { ja: 利用の状況を確かめる, en: Check usage }
+        description: { ja: 顧客が契約した物やサービスをどう使っているかを確かめ、まとめる。 }
+        performedBy: sales-rep
+        receives: [usage-data]
+        produces: [usage-summary]
+        requiresJudgment: true
+        judgment: { ja: 利用が進んでいない、または不満が出ている兆しがあるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+
+  - id: renewal-expansion
+    label: { ja: 追加の提案と更新, en: Expansion and renewal }
+    steps:
+      - id: draft-expansion
+        label: { ja: 追加の提案を考える, en: Draft the expansion proposal }
+        description: { ja: 利用の状況から、追加で役立つ提案を考える。 }
+        performedBy: sales-rep
+        receives: [usage-summary]
+        produces: [expansion-proposal]
+        requiresJudgment: true
+        judgment: { ja: どの追加の提案が、顧客の役に立つか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [presentation-software]
+
+      - id: send-renewal-offer
+        label: { ja: 更新の案内と追加の提案を出す, en: Send the renewal and expansion offer }
+        description: { ja: 契約の更新の案内と追加の提案を、顧客に示す。 }
+        performedBy: sales-rep
+        confirmedBy: sales-manager
+        receives: [expansion-proposal, stored-contract]
+        produces: [renewal-offer]
+        requiresJudgment: true
+        judgment: { ja: 更新の条件を変えるか。追加の提案を同時に出すか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: agree-renewal
+        label: { ja: 更新の条件を話し合う, en: Agree the renewal }
+        description: { ja: 顧客の返事を受けて、更新や追加の条件を話し合い、合意する。 }
+        performedBy: sales-rep
+        receives: [renewal-reply]
+        produces: [renewal-agreement]
+        requiresJudgment: true
+        judgment: { ja: 顧客の求めをどこまで受けるか。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 相手との合意そのものであり、対話で条件を決めるため。 }
+        toolKinds: [web-meeting, email]
+
+
+  - id: payment-follow-up
+    label: { ja: 未入金の確認, en: Overdue payment follow-up }
+    steps:
+      - id: receive-overdue-notice
+        label: { ja: 未入金の知らせを受ける, en: Receive the overdue notice }
+        description: { ja: 経理から、支払の期日を過ぎても入金のない請求の知らせを受け、案件として記録する。 }
+        performedBy: sales-rep
+        receives: [overdue-notice]
+        produces: [overdue-case]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+      - id: confirm-payment-status
+        label: { ja: 顧客に支払の状況を確かめる, en: Confirm payment status with the customer }
+        description: { ja: 入金が遅れている理由と、支払の予定を、顧客に尋ねる。 }
+        performedBy: sales-rep
+        receives: [overdue-case]
+        produces: [payment-inquiry]
+        requiresJudgment: true
+        judgment: { ja: どの言い方と経路で、顧客との関係を保ちながら確かめるか。 }
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: report-payment-outlook
+        label: { ja: 支払の見込みを経理に伝える, en: Report the payment outlook to accounting }
+        description: { ja: 顧客から聞いた支払の予定を、経理に伝える。 }
+        performedBy: sales-rep
+        receives: [payment-reply]
+        produces: [payment-outlook]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [email]

@@ -1,0 +1,119 @@
+id: proposal-and-quote
+label: { ja: 提案と見積, en: Proposal and quote }
+description:
+  ja: 相手の課題を聞き取り、提案書と見積書を作り、値引きや条件の承認を受けて、相手に提示するまでの流れ。
+  en: From hearing the prospect's needs to preparing a proposal and quote, getting approval for discounts and terms, and presenting them.
+frequency: on-demand
+timing: { ja: 進める案件ごとに。 }
+pcf: ["11779"]
+stages:
+  - id: hearing
+    label: { ja: 聞き取り, en: Hearing }
+    steps:
+      - id: hold-hearing
+        label: { ja: 課題を聞き取る, en: Hear the needs }
+        description: { ja: 相手の課題、目的、予算、決め方を聞き取る。 }
+        performedBy: sales-rep
+        receives: [opportunity-record]
+        produces: [hearing-notes]
+        requiresJudgment: true
+        judgment: { ja: 相手が言葉にしていない課題が何か。決める人は誰か。 }
+        irreversible: false
+        humanRequired: true
+        humanRequiredReason: { ja: 相手との対話そのものであり、その場の反応を受けて質問を変えるため。 }
+        toolKinds: [web-meeting]
+
+      - id: organize-needs
+        label: { ja: 課題と要望を整理する, en: Organize the needs }
+        description: { ja: 聞き取った内容から、課題、要望、決める条件、時期を整理する。 }
+        performedBy: sales-rep
+        receives: [hearing-notes]
+        produces: [needs-summary]
+        requiresJudgment: true
+        judgment: { ja: 課題のうち、どれを提案で解決するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+
+  - id: proposal
+    label: { ja: 提案書と見積書, en: Proposal and quote }
+    steps:
+      - id: draft-proposal
+        label: { ja: 提案書を作る, en: Draft the proposal }
+        description: { ja: 整理した課題に対する解決の内容、進め方、期待できる効果をまとめた提案書を作る。 }
+        performedBy: sales-rep
+        receives: [needs-summary]
+        produces: [proposal-draft]
+        requiresJudgment: true
+        judgment: { ja: どの解決を、どこまでの範囲で提案するか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [presentation-software]
+
+      - id: draft-quote
+        label: { ja: 見積書を作る, en: Draft the quote }
+        description: { ja: 提案の範囲に合わせて、金額、数量、納期、支払の条件を入れた見積書を作る。 }
+        performedBy: sales-rep
+        receives: [proposal-draft]
+        produces: [quote-draft]
+        requiresJudgment: true
+        judgment: { ja: 金額をいくらにするか。値引きを入れるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [spreadsheet]
+
+
+  - id: internal-approval
+    label: { ja: 社内の承認, en: Internal approval }
+    steps:
+      - id: request-approval
+        label: { ja: 値引きや条件の承認を頼む, en: Request approval for discounts and terms }
+        description: { ja: 値引きや、通常と違う支払・納期の条件がある見積を、営業の責任者に承認してもらうよう申請する。 }
+        performedBy: sales-rep
+        receives: [quote-draft]
+        produces: [discount-approval-request]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+      - id: approve-terms
+        label: { ja: 値引きと条件を承認する, en: Approve the discounts and terms }
+        description: { ja: 申請された値引きと条件が、利益と会社の決まりに合うかを見て、承認するか差し戻す。 }
+        performedBy: sales-manager
+        receives: [discount-approval-request]
+        produces: [approved-quote]
+        requiresJudgment: true
+        judgment: { ja: この値引きと条件で、この案件を受けるか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [workflow-system]
+
+
+  - id: presentation
+    label: { ja: 提案, en: Presentation }
+    steps:
+      - id: present-proposal
+        label: { ja: 提案書と見積書を相手に提示する, en: Present the proposal and quote }
+        description: { ja: 提案書と見積書を相手に示し、内容を説明する。 }
+        performedBy: sales-rep
+        receives: [proposal-draft, approved-quote]
+        produces: [proposal-package]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 提案の説明という、相手との対話そのものであるため。 }
+        toolKinds: [web-meeting, email]
+
+      - id: record-response
+        label: { ja: 相手の反応を記録する, en: Record the response }
+        description: { ja: 提案に対する相手の反応、質問、次にやることを記録する。 }
+        performedBy: sales-rep
+        receives: [customer-feedback]
+        produces: [proposal-result]
+        requiresJudgment: true
+        judgment: { ja: 受注の見込みをどう見るか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]

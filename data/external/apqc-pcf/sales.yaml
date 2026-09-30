@@ -1,0 +1,6 @@
+# APQC Process Classification Framework, Cross-Industry, Version 7.4 から、参照する要素だけを書く。
+- { id: "10004", hierarchy: "3.0", name: "Market and Sell Products and Services" }
+- { id: "10182", hierarchy: "3.5.1", name: "Manage leads/opportunities" }
+- { id: "10183", hierarchy: "3.5.2", name: "Manage customers and accounts" }
+- { id: "11779", hierarchy: "3.5.3", name: "Develop and manage sales proposals, bids, and quotes" }
+- { id: "10185", hierarchy: "3.5.4", name: "Manage sales orders" }

@@ -1,0 +1,13 @@
+id: sales
+order: 3
+label: { ja: 営業, en: Sales }
+description:
+  ja: 見込み客を探して商談を進め、提案と見積を出し、契約を結び、受注から請求の依頼までを扱い、契約後も顧客との関係を続ける部署。
+  en: The department that finds prospects, runs sales meetings, prepares proposals and quotes, closes contracts, handles orders through to billing requests and keeps up the relationship with existing customers.
+pcf: ["10004"]
+workflows:
+  - lead-to-opportunity
+  - proposal-and-quote
+  - contracting
+  - order-to-billing-request
+  - account-management

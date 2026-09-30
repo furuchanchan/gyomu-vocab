@@ -1,0 +1,13 @@
+- id: crm
+  label: { ja: 顧客と商談の管理のシステム, en: Customer relationship management system }
+  description: { ja: 顧客、見込み客、商談、受注の情報を記録して管理するシステム。 }
+
+- id: web-meeting
+  label: { ja: オンライン会議, en: Web meeting }
+
+- id: presentation-software
+  label: { ja: 資料を作るソフト, en: Presentation software }
+
+- id: e-contract-service
+  label: { ja: 電子契約のサービス, en: Electronic contract service }
+  description: { ja: 契約書を電子で交わし、署名の記録を残すサービス。 }

@@ -1,0 +1,100 @@
+id: order-to-billing-request
+label: { ja: 受注から請求の依頼まで, en: Order to billing request }
+description:
+  ja: 契約を受けて受注を登録し、納品や作業を手配し、検収を受けて、経理に請求を依頼するまでの流れ。
+  en: From registering the order under a signed contract and arranging delivery, through customer acceptance, to asking accounting to invoice.
+frequency: on-demand
+timing: { ja: 契約ごとに。請求の時期は契約の条件による。 }
+pcf: ["10185"]
+stages:
+  - id: order
+    label: { ja: 受注, en: Order }
+    steps:
+      - id: register-order
+        label: { ja: 受注を登録する, en: Register the order }
+        description: { ja: 契約の内容から、受注の内容、金額、納期、支払の条件をシステムに登録する。 }
+        performedBy: sales-admin
+        receives: [signed-contract]
+        produces: [order-record]
+        doneWhen: { ja: 契約書と登録の内容が一致している。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+      - id: arrange-delivery
+        label: { ja: 納品や作業を手配する, en: Arrange delivery or work }
+        description: { ja: 受注の内容にもとづいて、納品や作業の担当に指示を出す。 }
+        performedBy: sales-admin
+        receives: [order-record]
+        produces: [delivery-instruction]
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, email]
+
+
+  - id: delivery-acceptance
+    label: { ja: 納品と検収, en: Delivery and acceptance }
+    steps:
+      - id: perform-delivery
+        label: { ja: 納品や作業を行う, en: Deliver or perform the work }
+        description: { ja: 契約した物やサービスを、顧客に納める、または作業として行う。 }
+        performedBy: delivery-staff
+        receives: [delivery-instruction]
+        produces: [deliverable, delivery-report]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: true
+        humanRequiredReason: { ja: 現物の引き渡しや、現場での作業を伴うため。 }
+
+      - id: request-acceptance
+        label: { ja: 検収を依頼する, en: Request acceptance }
+        description: { ja: 納品や作業が済んだことを顧客に知らせ、確かめて受け入れてもらうよう頼む。 }
+        performedBy: sales-rep
+        receives: [delivery-report]
+        produces: [acceptance-request]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
+
+      - id: receive-acceptance
+        label: { ja: 検収を受ける, en: Receive the acceptance }
+        description: { ja: 顧客から検収の連絡を受ける。指摘があれば、手直しが要るかを見極める。 }
+        performedBy: sales-rep
+        receives: [acceptance-certificate]
+        produces: [acceptance-record]
+        requiresJudgment: true
+        judgment: { ja: 顧客の指摘のうち、契約に照らして手直しが要るのはどれか。 }
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm]
+
+
+  - id: billing
+    label: { ja: 請求の依頼, en: Billing request }
+    steps:
+      - id: prepare-billing-request
+        label: { ja: 請求の依頼を作る, en: Prepare the billing request }
+        description: { ja: 検収が済んだ取引について、請求先、取引の内容、金額、支払の条件をまとめ、経理に請求書の発行を頼む。 }
+        performedBy: sales-admin
+        confirmedBy: sales-manager
+        receives: [acceptance-record, order-record]
+        produces: [billing-request]
+        doneWhen: { ja: 請求先、取引の内容、金額、支払の期日が、契約と検収の内容に合っている。 }
+        requiresJudgment: false
+        irreversible: false
+        humanRequired: false
+        toolKinds: [crm, email]
+
+      - id: notify-billing-timing
+        label: { ja: 請求の時期を顧客に伝える, en: Tell the customer when the invoice will come }
+        description: { ja: 請求書が届く予定の時期を、顧客に知らせる。 }
+        performedBy: sales-rep
+        receives: [billing-request]
+        produces: [billing-notice]
+        requiresJudgment: false
+        irreversible: true
+        humanRequired: false
+        toolKinds: [email]
