@@ -8,7 +8,11 @@ const ID = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
 const FREQUENCIES = { 'on-demand': 'OnDemand', daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly', quarterly: 'Quarterly', yearly: 'Yearly' };
 const ARTIFACT_KINDS = { form: 'Form', data: 'Data', document: 'Document', message: 'Message' };
 
-const readYaml = path => YAML.parse(readFileSync(path, 'utf8'));
+// YAML の文法の誤りは、その場で投げずに、ほかの誤りと一緒に集める（同時に何人かが書いていても、検査が止まらないように）
+const readYamlOrError = (path, err) => {
+  try { return YAML.parse(readFileSync(path, 'utf8')); }
+  catch (e) { err(path, `YAML として読めない：${String(e.message ?? e).split('\n')[0]}`); return null; }
+};
 
 // 分担の目安は、3つの事実から決まった規則で導く（vocab/gyomu.ttl の gyomu:aiAllocation と同じ規則）
 export function aiAllocation(step) {
@@ -20,6 +24,7 @@ export function aiAllocation(step) {
 export function load(dataDir) {
   const errors = [];
   const err = (where, message) => errors.push(`${where}: ${message}`);
+  const readYaml = path => readYamlOrError(path, err);
 
   const text = (where, value, { en = true } = {}) => {
     if (!value || typeof value !== 'object') return err(where, '日本語と英語の組（ja・en）で書く');
