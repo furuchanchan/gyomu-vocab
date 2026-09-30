@@ -23,7 +23,7 @@ body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-u
 a { color: inherit; text-underline-offset: 3px; }
 header.site, main, footer.site { max-width: 820px; margin: 0 auto; padding: 0 20px; }
 header.site { padding-top: 20px; font-size: 14px; color: var(--sub); }
-header.site a { text-decoration: none; }
+header.site a { text-decoration: none; margin-right: 12px; }
 header.site .name { color: var(--fg); font-weight: 700; margin-right: 12px; }
 nav.crumb { margin-top: 28px; font-size: 14px; color: var(--sub); }
 h1 { font-size: 30px; line-height: 1.4; margin: 6px 0 0; }
@@ -87,7 +87,7 @@ ${path === 'ns' ? `<p>データ　<a href="${root}/gyomu-vocab.ttl">Turtle</a>�
 <style>${CSS}</style>
 </head>
 <body>
-<header class="site"><a class="name" href="${root}/">業務語彙</a><a href="${root}/ns/">語彙の定義</a></header>
+<header class="site"><a class="name" href="${root}/">業務語彙</a><a href="${root}/ns/">語彙の定義</a><a href="https://github.com/furuchanchan/gyomu-vocab">GitHub</a></header>
 <main>
 ${crumb.length ? `<nav class="crumb">${crumb.map(([u, t]) => link(u, t)).join(' › ')}</nav>` : '<nav class="crumb"></nav>'}
 <h1>${esc(title)}</h1>
@@ -97,7 +97,7 @@ ${body(link)}
 ${dataBox}
 </main>
 <footer class="site">
-<p>業務語彙 ${esc(version)}　データは <a href="https://creativecommons.org/licenses/by/4.0/deed.ja">CC BY 4.0</a> で公開。</p>
+<p>業務語彙 ${esc(version)}　データは <a href="https://creativecommons.org/licenses/by/4.0/deed.ja">CC BY 4.0</a> で公開。元のデータと直し方は <a href="https://github.com/furuchanchan/gyomu-vocab">GitHub</a>。作った人：古野光太朗（株式会社TechWorker）。</p>
 <p>職業分類と産業分類は、政府統計の総合窓口(e-Stat)の統計LODのURIを参照。制度の根拠は、e-Gov 法令検索と役所のページに照らして確かめている。</p>
 <p lang="en">${esc(APQC_ATTRIBUTION)}</p>
 </footer>
