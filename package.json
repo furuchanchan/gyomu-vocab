@@ -12,7 +12,7 @@
     "check": "node scripts/check.mjs"
   },
   "dependencies": {
-    "jsonld": "^8.3.3",
+    "jsonld": "^9.0.0",
     "n3": "^1.23.1",
     "rdf-validate-shacl": "^0.5.6",
     "yaml": "^2.6.1"
